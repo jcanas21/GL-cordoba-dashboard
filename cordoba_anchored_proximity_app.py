@@ -617,7 +617,7 @@ def page_analisis():
     st.session_state.setdefault("c4_opex_threshold", 1_000_000)
     st.session_state.setdefault("c4_accessible_market_min", 0.0)
     st.session_state.setdefault("c4_am_cagr_only", False)
-    st.session_state.setdefault("c4_strategic_balance", 0.30)
+    st.session_state.setdefault("c4_strategic_balance", 0.50)
     st.session_state.setdefault("c4_w_dai", 0.50)
     st.session_state.setdefault("c4_w_distance", 0.50)
     st.session_state.setdefault("c4_w_anchor_count", 0.0)
@@ -645,7 +645,7 @@ def page_analisis():
         st.session_state["c4_proximity_rank_range"] = (1, min(100, max(1, proximity_rank_max)))
 
         if profile_name == "top_candidates":
-            st.session_state["c4_strategic_balance"] = 0.70
+            st.session_state["c4_strategic_balance"] = 0.50
             st.session_state["c4_w_pci"] = 0.50
             st.session_state["c4_w_growth"] = 0.25
             st.session_state["c4_w_market"] = 0.25
@@ -678,7 +678,7 @@ def page_analisis():
     with st.sidebar:
         st.header("Perfiles predefinidos")
         st.button(
-            "Top perfil seleccionado",
+            "Recomendado",
             on_click=_apply_profile,
             args=("top_candidates",),
             use_container_width=True,
