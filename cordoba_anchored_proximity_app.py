@@ -550,21 +550,21 @@ def page_firmas():
         opex_tm["sector"] = opex_tm["CCOD_RUBRO"].map(rubro_to_sector).fillna("Other")
         opex_tm["rubro_label"] = opex_tm["CCOD_RUBRO"] + " - " + opex_tm["DESCRIP_RUBRO"].astype(str)
         opex_tm["rubro_label_wrapped"] = opex_tm["rubro_label"].map(_wrap_label)
-        opex_tm["opex_avg_b"] = opex_tm["2023_2025_avg"] / 1e9
+        opex_tm["opex_avg_m"] = opex_tm["2023_2025_avg"] / 1e6
 
         st.metric(
-            label="OPEX total mostrado (USD mil millones)",
-            value=f"{opex_tm['opex_avg_b'].sum():,.3f}",
+            label="OPEX total mostrado (USD millones)",
+            value=f"{opex_tm['opex_avg_m'].sum():,.1f}",
         )
 
         fig_tm = px.treemap(
             opex_tm,
             path=["sector", "rubro_label_wrapped"],
-            values="opex_avg_b",
+            values="opex_avg_m",
             color="sector",
             color_discrete_map=SECTOR_COLORS,
             hover_data={
-                "opex_avg_b": ":.3f",
+                "opex_avg_m": ":.1f",
                 "CCOD_RUBRO": True,
                 "DESCRIP_RUBRO": True,
                 "sector": False,
@@ -572,8 +572,8 @@ def page_firmas():
             },
             title=(
                 f"Exportaciones OPEX por rubro INDEC (n = {len(opex_tm)} rubros | "
-                f"OPEX total = {opex_tm['opex_avg_b'].sum():,.3f} USD mil M) "
-                f"| tamaño = OPEX promedio 2023-2025 (USD mil M) | color = sector modal"
+                f"OPEX total = {opex_tm['opex_avg_m'].sum():,.1f} USD M) "
+                f"| tamaño = OPEX promedio 2023-2025 (USD M) | color = sector modal"
             ),
         )
         fig_tm.update_traces(
