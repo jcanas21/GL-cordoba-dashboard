@@ -265,19 +265,62 @@ st.set_page_config(
 # Loaders + page functions
 # ---------------------------------------------------------------------------
 @st.cache_data
-def load_firms_data():
-    firm_ev = pd.read_csv(
+def load_firms_data(_signature: str = ""):
+    """Union 03 (curated) + 04 (registry-keyword) firm-HS4 evidence."""
+    curated = pd.read_csv(
         DATA_DIR / "03_firm_hs4_evidence.csv",
         dtype={"firm_id": "string", "hs4": str, "supports_top50_line": str},
     )
-    firm_ev["hs4"] = firm_ev["hs4"].astype(str).str.zfill(4)
-    firm_ev["supports_top50_line"] = firm_ev["supports_top50_line"].astype(str).str.strip()
+    curated["hs4"] = curated["hs4"].astype(str).str.zfill(4)
+    curated["supports_top50_line"] = curated["supports_top50_line"].astype(str).str.strip()
+
+    reg = pd.read_csv(
+        DATA_DIR / "04_registry_full.csv",
+        dtype={"firm_id": "string", "code": str, "opex_line": str},
+    )
+    reg = reg[reg["classification"] == "HS4"].copy()
+    reg["code"] = reg["code"].astype(str).str.zfill(4)
+    reg["opex_line"] = reg["opex_line"].astype(str).str.strip()
+
+    curated_norm = pd.DataFrame({
+        "firm_id": curated["firm_id"].astype(str),
+        "firm_name": curated["firm_name"].astype(str),
+        "razon_social": curated["razon_social"].astype(str),
+        "hs4": curated["hs4"],
+        "rubro_indec": curated["supports_top50_line"],
+        "rubro_indec_nombre": curated["top50_line_name"].astype(str),
+        "attribution_type": curated["attribution_type"].astype(str),
+        "confidence": curated["confidence"].astype(str),
+        "evidence_text": curated["hs4_evidence"].astype(str),
+        "evidence_url": curated["hs4_source_url"].astype(str),
+        "source_url": curated["cordoba_evidence_url"].astype(str),
+        "evidence_layer": "curated",
+    })
+
+    reg_norm = pd.DataFrame({
+        "firm_id": reg["firm_id"].astype(str),
+        "firm_name": reg["firm_name"].astype(str),
+        "razon_social": reg["razon_social"].astype(str),
+        "hs4": reg["code"],
+        "rubro_indec": reg["opex_line"],
+        "rubro_indec_nombre": reg["opex_line_name"].astype(str),
+        "attribution_type": reg["attribution_type"].astype(str),
+        "confidence": reg["confidence"].astype(str),
+        "evidence_text": reg["evidence"].astype(str),
+        "evidence_url": reg["source_url"].astype(str),
+        "source_url": reg["source_url"].astype(str),
+        "evidence_layer": "registry-keyword",
+    })
+
+    pair_key = curated_norm["firm_id"] + "|" + curated_norm["hs4"]
+    reg_norm_dedup = reg_norm[~(reg_norm["firm_id"] + "|" + reg_norm["hs4"]).isin(set(pair_key))].copy()
+    firm_ev = pd.concat([curated_norm, reg_norm_dedup], ignore_index=True)
 
     opex = pd.read_csv(
         DATA_DIR / "exportaciones_opex_cordoba.csv",
         dtype={"CCOD_RUBRO": str},
     )
-    opex.columns = [c.lstrip("﻿").strip() for c in opex.columns]
+    opex.columns = [c.lstrip("\ufeff").strip() for c in opex.columns]
     for c in ["2023", "2024", "2025", "2023_2025_avg"]:
         if c in opex.columns:
             opex[c] = (
@@ -412,27 +455,30 @@ como mayor factibilidad para Córdoba.
 
 
 def page_firmas():
-    st.title("Firmas evidenciadas → anclas")
+    st.title("Firmas → anclas")
     st.caption(
-        "Firmas con **evidencia explícita** de exportar un producto HS4 ancla. "
-        "Cada fila trazable a una URL (registro, cámaras, sitio corporativo, "
-        "notas de prensa)."
+        "Firmas del registro de Córdoba con evidencia de atribución HS4. "
+        "Dos capas: **`curated`** (rows con evidencia HS4 explícita + URL "
+        "fuente, curados a mano) y **`registry-keyword`** (atribución vía "
+        "match de keyword en `products_text`, post-fix sin fallback ciego)."
     )
 
-    firm_ev, opex = load_firms_data()
+    firm_ev, opex = load_firms_data(_data_signature() if "_data_signature" in globals() else "")
 
     merged = firm_ev.merge(
         opex[["CCOD_RUBRO", "DESCRIP_RUBRO", "2023_2025_avg", "2024"]].rename(
             columns={
-                "DESCRIP_RUBRO": "rubro_indec_nombre",
+                "DESCRIP_RUBRO": "rubro_indec_nombre_opex",
                 "2023_2025_avg": "opex_avg_2023_2025_usd",
                 "2024": "opex_2024_usd",
             }
         ),
-        left_on="supports_top50_line",
+        left_on="rubro_indec",
         right_on="CCOD_RUBRO",
         how="left",
     )
+
+    merged["rubro_indec_nombre_final"] = merged["rubro_indec_nombre_opex"].fillna(merged["rubro_indec_nombre"])
 
     merged["hs4_es"] = merged["hs4"].astype(str).str.zfill(4).map(
         lambda h: SPANISH_OVERRIDES.get(h, "")
@@ -440,12 +486,16 @@ def page_firmas():
     merged["hs4_label"] = merged["hs4"].astype(str).str.zfill(4) + (
         " - " + merged["hs4_es"]
     ).where(merged["hs4_es"] != "", "")
-
     merged["opex_avg_b"] = merged["opex_avg_2023_2025_usd"] / 1e9
 
     with st.sidebar:
         st.header("Filtros — Firmas")
-        rubros = sorted(merged["rubro_indec_nombre"].dropna().astype(str).unique().tolist())
+        layers = sorted(merged["evidence_layer"].dropna().unique().tolist())
+        sel_layers = st.multiselect(
+            "Capa de evidencia", options=layers, default=layers,
+            help="`curated` = evidencia HS4 manual con URL · `registry-keyword` = match de keyword automático en products_text",
+        )
+        rubros = sorted(merged["rubro_indec_nombre_final"].dropna().astype(str).unique().tolist())
         sel_rubros = st.multiselect("Rubro INDEC (CCOD_RUBRO)", options=rubros, default=rubros)
         hs4_options = sorted(merged["hs4_label"].dropna().astype(str).unique().tolist())
         sel_hs4 = st.multiselect("HS4 ancla", options=hs4_options, default=hs4_options)
@@ -453,28 +503,31 @@ def page_firmas():
         sel_conf = st.multiselect("Confianza", options=confidence_options, default=confidence_options)
 
     f = merged.copy()
+    if sel_layers:
+        f = f[f["evidence_layer"].isin(sel_layers)]
     if sel_rubros:
-        f = f[f["rubro_indec_nombre"].isin(sel_rubros)]
+        f = f[f["rubro_indec_nombre_final"].isin(sel_rubros)]
     if sel_hs4:
         f = f[f["hs4_label"].isin(sel_hs4)]
     if sel_conf:
         f = f[f["confidence"].astype(str).isin(sel_conf)]
 
-    c1, c2, c3 = st.columns(3)
-    c1.metric("Firmas", f["firm_id"].nunique())
-    c2.metric("HS4 ancla cubiertos", f["hs4"].nunique())
-    c3.metric("Rubros INDEC", f["rubro_indec_nombre"].nunique())
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Firmas únicas", f["firm_id"].nunique())
+    c2.metric("Filas (pares firma-HS4)", len(f))
+    c3.metric("HS4 ancla cubiertos", f["hs4"].nunique())
+    c4.metric("Rubros INDEC", f["rubro_indec_nombre_final"].nunique())
 
     cols = [
-        "firm_name", "razon_social", "hs4_label", "rubro_indec_nombre",
+        "firm_name", "razon_social", "hs4_label", "rubro_indec_nombre_final",
+        "evidence_layer", "confidence",
         "opex_avg_2023_2025_usd", "opex_avg_b", "opex_2024_usd",
-        "confidence", "source_type", "attribution_type",
-        "cordoba_evidence_url", "hs4_source_url", "hs4_evidence", "notes",
+        "attribution_type", "evidence_text", "evidence_url", "source_url",
     ]
     display = f[[c for c in cols if c in f.columns]].copy()
     display = display.sort_values(
-        ["rubro_indec_nombre", "opex_avg_2023_2025_usd", "firm_name"],
-        ascending=[True, False, True],
+        ["evidence_layer", "rubro_indec_nombre_final", "opex_avg_2023_2025_usd", "firm_name"],
+        ascending=[True, True, False, True],
         na_position="last",
     )
 
@@ -486,31 +539,22 @@ def page_firmas():
             "firm_name": st.column_config.TextColumn("Firma (alias)", width="medium"),
             "razon_social": st.column_config.TextColumn("Razón social", width="medium"),
             "hs4_label": st.column_config.TextColumn("HS4 ancla", width="medium"),
-            "rubro_indec_nombre": st.column_config.TextColumn("Rubro INDEC", width="medium"),
-            "opex_avg_2023_2025_usd": st.column_config.NumberColumn(
-                "OPEX rubro (USD, prom 2023-2025)",
-                format="$%.0f",
-                help="Monto exportado por Córdoba en el rubro INDEC del lado de la firma.",
-            ),
-            "opex_avg_b": st.column_config.NumberColumn(
-                "OPEX rubro (USD mil M)", format="%.3f",
-            ),
-            "opex_2024_usd": st.column_config.NumberColumn(
-                "OPEX rubro 2024 (USD)", format="$%.0f",
+            "rubro_indec_nombre_final": st.column_config.TextColumn("Rubro INDEC", width="medium"),
+            "evidence_layer": st.column_config.TextColumn(
+                "Capa",
+                help="`curated` = evidencia manual con URL · `registry-keyword` = match de keyword en products_text",
             ),
             "confidence": st.column_config.TextColumn("Confianza"),
-            "source_type": st.column_config.TextColumn("Tipo fuente"),
-            "attribution_type": st.column_config.TextColumn("Tipo atribución"),
-            "cordoba_evidence_url": st.column_config.LinkColumn(
-                "Evidencia Córdoba", display_text="↗", width="small",
+            "opex_avg_2023_2025_usd": st.column_config.NumberColumn(
+                "OPEX rubro (USD, prom 2023-2025)", format="$%.0f",
+                help="Monto exportado por Córdoba en el rubro INDEC del lado de la firma (USD).",
             ),
-            "hs4_source_url": st.column_config.LinkColumn(
-                "Fuente HS4", display_text="↗", width="small",
-            ),
-            "hs4_evidence": st.column_config.TextColumn(
-                "Evidencia HS4 (texto)", width="large",
-            ),
-            "notes": st.column_config.TextColumn("Notas", width="medium"),
+            "opex_avg_b": st.column_config.NumberColumn("OPEX rubro (USD mil M)", format="%.3f"),
+            "opex_2024_usd": st.column_config.NumberColumn("OPEX rubro 2024 (USD)", format="$%.0f"),
+            "attribution_type": st.column_config.TextColumn("Tipo de atribución"),
+            "evidence_text": st.column_config.TextColumn("Evidencia (texto)", width="large"),
+            "evidence_url": st.column_config.LinkColumn("Evidencia URL", display_text="↗", width="small"),
+            "source_url": st.column_config.LinkColumn("Página registro", display_text="↗", width="small"),
         },
     )
 
@@ -518,25 +562,20 @@ def page_firmas():
     st.download_button(
         "⬇ Descargar tabla (CSV)",
         csv_bytes,
-        "cordoba_firmas_evidenciadas.csv",
+        "cordoba_firmas.csv",
         "text/csv",
     )
 
     with st.expander("Notas metodológicas"):
         st.markdown("""
-- Fuente principal: registro `exportadoresdecordoba.com` (scrape estático).
-- Corroboración: sitios de cámaras, sitios corporativos y notas de prensa.
-- Cada fila requiere al menos una URL fuente (no se aceptan firmas a-priori).
-- El **rubro INDEC** se asigna por el atributo `supports_top50_line` del
-  proceso de atribución HS4↔rubro; corresponde al CCOD_RUBRO de
-  exportaciones OPEX al que la firma "se le adjudica" en el panel
-  provincial.
-- El monto OPEX es el promedio 2023-2025 del rubro completo (no de la
-  firma individual). Una firma en un rubro grande no necesariamente
-  representa una porción grande de ese monto.
+- **`curated`** (66 firmas, 152 pares firm-HS4): cada par tiene evidencia
+  HS4 manual + URL fuente.
+- **`registry-keyword`** (~899 firmas adicionales): atribución vía match
+  de keyword en `products_text` (regex sobre términos específicos como
+  "soja" → HS 1201, "biodiesel" → HS 3826). Si el products_text no
+  matchea ningún pattern, la firma no recibe HS4 — sin fallback ciego.
+- El monto OPEX corresponde al rubro INDEC entero (no a la firma).
         """)
-
-
 
 def page_analisis():
     st.title("Córdoba — Análisis de proximidad anclada")
