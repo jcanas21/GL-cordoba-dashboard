@@ -860,6 +860,7 @@ candidate_table["rank"] = np.arange(1, len(candidate_table) + 1)
 candidate_display = (
     candidate_table.head(top_n).copy().assign(
         accessible_market_growth_5y=lambda d: d["accessible_market_growth_5y"] * 100,
+        distance_pctile=lambda d: d["distance_pctile"] * 100,
     )
 )
 
@@ -868,7 +869,7 @@ st.dataframe(
         "rank", "candidate_hs4", "candidate_product_name_es", "candidate_sector",
         "posible_ancla",
         "combined_score", "attractiveness_index", "feasibility_index",
-        "dai_index", "pci", "dai_percentile", "distance_travelled",
+        "dai_index", "pci", "dai_percentile", "distance_travelled", "distance_pctile",
         "accessible_market_growth_5y", "accessible_market_size_b",
         "avg_proximity", "anchor_count", "anchors",
     ]],
@@ -896,6 +897,15 @@ st.dataframe(
         "pci": st.column_config.NumberColumn("PCI", format="%.3f"),
         "dai_percentile": st.column_config.NumberColumn("DAI (percentil)", format="%.1f"),
         "distance_travelled": st.column_config.NumberColumn("Distancia recorrida", format="%.1f"),
+        "distance_pctile": st.column_config.NumberColumn(
+            "Distancia (percentil)",
+            format="%.1f",
+            help=(
+                "Percentil del HS4 en la distribución de `distance_travelled` "
+                "dentro del set filtrado. Mayor = el producto viaja más lejos "
+                "globalmente = más tradeable = más factible."
+            ),
+        ),
         "accessible_market_growth_5y": st.column_config.NumberColumn("Crecimiento del mercado accesible % (5 años)", format="%.2f%%"),
         "accessible_market_size_b": st.column_config.NumberColumn("Mercado accesible (USD mil M)", format="%.3f"),
         "avg_proximity": st.column_config.NumberColumn("Proximidad promedio", format="%.4f"),
