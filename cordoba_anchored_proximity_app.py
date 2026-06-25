@@ -469,7 +469,7 @@ def load_hs4_sector_map(_signature: str = ""):
     anch = dict(zip(df["anchor_hs4"].astype(str).str.zfill(4), df["anchor_sector"].astype(str)))
     # anchor side wins on conflict (consistent values, but anchor coverage is
     # what the firms table joins to).
-    return {**cand, **anch})
+    return {**cand, **anch}
 
 
 def page_firmas():
