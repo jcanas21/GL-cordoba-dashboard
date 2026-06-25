@@ -806,9 +806,10 @@ link_colors = [
 sankey = go.Figure(go.Sankey(
     arrangement="snap",
     node=dict(
-        pad=18, thickness=18,
+        pad=24, thickness=18,
         line=dict(color="rgba(15,23,42,0.15)", width=0.6),
         label=node_labels, color=node_colors,
+        hoverlabel=dict(font=dict(size=14)),
     ),
     link=dict(
         source=sankey_df["source"],
@@ -826,11 +827,14 @@ sankey = go.Figure(go.Sankey(
         ),
     ),
 ))
+_n_sankey_nodes = max(len(anchor_node_ids), len(candidate_node_ids))
+_sankey_height = max(760, min(1800, 22 * _n_sankey_nodes + 200))
+sankey.update_traces(textfont=dict(size=14, color="#0f172a", family="Inter, system-ui, sans-serif"))
 sankey.update_layout(
     title="Sankey — anclas → candidatos por proximidad",
-    font=dict(size=12),
+    font=dict(size=14, color="#0f172a"),
     margin=dict(t=60, l=10, r=10, b=10),
-    height=760,
+    height=_sankey_height,
 )
 st.plotly_chart(sankey, use_container_width=True)
 
