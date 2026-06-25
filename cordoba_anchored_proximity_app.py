@@ -456,11 +456,20 @@ como mayor factibilidad para Córdoba.
 
 @st.cache_data
 def load_hs4_sector_map(_signature: str = ""):
-    """HS4 → sector (Atlas sector classification) — used to colour the
-    page-3 OPEX treemap by sector, matching the page-2 palette."""
-    df = pd.read_csv(DATA_DIR / "product_hs92.csv", dtype={"product_hs92_code": str, "product_level": str})
-    df = df[df["product_level"] == "4"]
-    return dict(zip(df["product_hs92_code"].astype(str).str.zfill(4), df["sector"].astype(str)))
+    """HS4 → sector (Atlas sector classification) used to colour the
+    page-3 OPEX treemap. Sourced from cordoba_anchored_proximity.csv —
+    that file already attaches `anchor_sector` and `candidate_sector` to
+    each HS4 (product_hs92.csv has no sector column)."""
+    df = pd.read_csv(
+        DATA_DIR / "cordoba_anchored_proximity.csv",
+        dtype={"anchor_hs4": str, "candidate_hs4": str},
+        usecols=["anchor_hs4", "anchor_sector", "candidate_hs4", "candidate_sector"],
+    )
+    cand = dict(zip(df["candidate_hs4"].astype(str).str.zfill(4), df["candidate_sector"].astype(str)))
+    anch = dict(zip(df["anchor_hs4"].astype(str).str.zfill(4), df["anchor_sector"].astype(str)))
+    # anchor side wins on conflict (consistent values, but anchor coverage is
+    # what the firms table joins to).
+    return {**cand, **anch})
 
 
 def page_firmas():
