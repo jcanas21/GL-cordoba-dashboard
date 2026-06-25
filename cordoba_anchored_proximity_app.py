@@ -518,6 +518,41 @@ def page_firmas():
     c3.metric("HS4 ancla cubiertos", f["hs4"].nunique())
     c4.metric("Rubros INDEC", f["rubro_indec_nombre_final"].nunique())
 
+    # ----- OPEX treemap (USD prom 2023-2025 por rubro INDEC) -----
+    st.subheader("Exportaciones OPEX por rubro INDEC")
+    st.caption(
+        "Tamaño proporcional al monto exportado por rubro (promedio "
+        "2023-2025). Refleja sólo los rubros del filtro actual."
+    )
+    visible_rubros = set(f["rubro_indec"].dropna().astype(str).str.strip().unique())
+    opex_tm = opex.copy()
+    opex_tm["CCOD_RUBRO"] = opex_tm["CCOD_RUBRO"].astype(str).str.strip()
+    opex_tm = opex_tm[opex_tm["CCOD_RUBRO"].isin(visible_rubros)]
+    opex_tm = opex_tm.dropna(subset=["2023_2025_avg"])
+    opex_tm = opex_tm[opex_tm["2023_2025_avg"] > 0].copy()
+    if len(opex_tm):
+        opex_tm["rubro_label"] = opex_tm["CCOD_RUBRO"] + " — " + opex_tm["DESCRIP_RUBRO"].astype(str)
+        fig_tm = px.treemap(
+            opex_tm,
+            path=[px.Constant("OPEX 2023-2025 avg"), "rubro_label"],
+            values="2023_2025_avg",
+            color="2023_2025_avg",
+            color_continuous_scale="Teal",
+        )
+        fig_tm.update_traces(
+            texttemplate="<b>%{label}</b><br>$%{value:,.0f}<br>%{percentRoot:.1%}",
+            hovertemplate="<b>%{label}</b><br>USD %{value:,.0f}<br>%{percentRoot:.2%} del total filtrado<extra></extra>",
+            textfont=dict(size=13, color="#0f172a"),
+        )
+        fig_tm.update_layout(
+            margin=dict(t=10, l=10, r=10, b=10),
+            height=450,
+            coloraxis_showscale=False,
+        )
+        st.plotly_chart(fig_tm, use_container_width=True)
+    else:
+        st.info("Ningún rubro INDEC con OPEX > 0 en el filtro actual.")
+
     cols = [
         "firm_name", "razon_social", "hs4_label", "rubro_indec_nombre_final",
         "evidence_layer", "confidence",
