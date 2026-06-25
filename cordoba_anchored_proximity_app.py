@@ -338,7 +338,7 @@ componente son configurables en el sidebar.
 | Variable | Significado |
 |---|---|
 | **HS4** | Sistema Armonizado a 4 dígitos, revisión 1992 (convención Atlas / Growth Lab). |
-| **Ancla** (anchor) | HS4 donde Córdoba tiene presencia exportadora **evidenciada por firmas reales** (registry + chambers). 184 HS4 en total. |
+| **Ancla** (anchor) | HS4 donde Córdoba tiene presencia exportadora **evidenciada por firmas reales** (registry + chambers). 125 HS4 en total (set actual; el universo se re-genera al limpiar la lógica de atribución). |
 | **Candidato** | HS4 sin presencia evidenciada que aparece en el top-1% de proximidad de al menos un ancla, **o** un HS4 evidenciado cuyo OPEX cayó por debajo del umbral del slider (en cuyo caso queda flageado `posible_ancla = 1`). |
 | **OPEX** | Exportaciones de Córdoba por rubro INDEC (CCOD_RUBRO), promedio 2023–2025. Filtrá anclas por umbral OPEX. |
 | **RUBRO** | "Grandes Rubros / Capítulos" de INDEC (clasificación ICA); 100 rubros en el panel OPEX usado acá. **No es lo mismo que NCM ni que Complejos Exportadores Rev. 2018**. |
@@ -350,7 +350,7 @@ componente son configurables en el sidebar.
 | **Factibilidad** | `(w·DAI + w·dist_pctile + w·anchor_count) / Σw` (todos en [0, 1]). |
 | **Atractividad** | `(w·PCI + w·acc_size + w·acc_growth) / Σw`. |
 | **Score combinado** | `(1 − balance) · factibilidad + balance · atractividad`. |
-| **`posible_ancla`** | Dummy 1/0: el candidato pertenece al set de 184 evidenciadas pero su OPEX no llegó al umbral. |
+| **`posible_ancla`** | Dummy 1/0: el candidato pertenece al set de evidenciadas pero su OPEX no llegó al umbral. |
 | **`anchors`** | HS4 (separados por ·) de las anclas que tienen al candidato en su top-1% de proximidad. |
     """)
 
@@ -820,7 +820,7 @@ def page_analisis():
     # ---------------------------------------------------------------------------
     # 1. Derive anchor universe from OPEX threshold + apply filters
     # ---------------------------------------------------------------------------
-    # evidenced_set is the full set of 184 firm-evidenced HS4. The anchor universe
+    # evidenced_set is the firm-evidenced HS4 universe (currently 125 HS4). The anchor universe
     # is the subset of those whose OPEX clears the threshold. Evidenced HS4 that
     # fall BELOW the threshold can resurface as candidates of the surviving
     # anchors — they're flagged `posible_ancla = 1` so users can spot them.
