@@ -600,6 +600,7 @@ candidate_scores = (
         distance_travelled=("distance_travelled", "first"),
         avg_proximity=("proximity", "mean"),
         anchor_count=("anchor_hs4", "nunique"),
+        anchors=("anchor_hs4", lambda s: " · ".join(sorted(set(s.astype(str).str.zfill(4))))),
         posible_ancla=("posible_ancla", "max"),
     )
 )
@@ -727,13 +728,49 @@ st.plotly_chart(fig_ps, use_container_width=True)
 # ---------------------------------------------------------------------------
 # 5. Sankey diagram (anchor → candidate)
 # ---------------------------------------------------------------------------
+st.subheader("Sankey — anclas → candidatos")
+
+_sankey_anchor_options = (
+    flt[["anchor_hs4", "anchor_product_name_es"]]
+    .drop_duplicates()
+    .assign(
+        anchor_hs4=lambda d: d["anchor_hs4"].astype(str).str.zfill(4),
+        label=lambda d: d["anchor_hs4"].astype(str).str.zfill(4)
+                        + " - " + d["anchor_product_name_es"].astype(str),
+    )
+    .sort_values("anchor_hs4")
+)
+_sankey_label_to_hs4 = dict(
+    zip(_sankey_anchor_options["label"], _sankey_anchor_options["anchor_hs4"])
+)
+selected_sankey_anchor_labels = st.multiselect(
+    "Filtrar anclas en el diagrama Sankey",
+    options=_sankey_anchor_options["label"].tolist(),
+    default=[],
+    help=(
+        "Vacío = mostrar todas las anclas del set filtrado. Elegí una o más "
+        "para ver sólo sus links y los candidatos asociados."
+    ),
+    key="c4_sankey_anchor_selection",
+)
+if selected_sankey_anchor_labels:
+    _sankey_anchor_hs4 = {_sankey_label_to_hs4[l] for l in selected_sankey_anchor_labels}
+    _candidate = flt[flt["anchor_hs4"].astype(str).str.zfill(4).isin(_sankey_anchor_hs4)]
+    if _candidate.empty:
+        st.info("La selección actual no produce links — mostrando todas las anclas filtradas.")
+        flt_sankey = flt
+    else:
+        flt_sankey = _candidate.copy()
+else:
+    flt_sankey = flt
+
 anchor_labels = (
-    flt[["anchor_hs4", "anchor_product_name_es", "anchor_sector"]]
+    flt_sankey[["anchor_hs4", "anchor_product_name_es", "anchor_sector"]]
     .drop_duplicates()
     .assign(node_label=lambda d: d["anchor_hs4"] + " - " + d["anchor_product_name_es"].astype(str))
 )
 candidate_labels = (
-    flt[["candidate_hs4", "candidate_product_name_es", "candidate_sector"]]
+    flt_sankey[["candidate_hs4", "candidate_product_name_es", "candidate_sector"]]
     .drop_duplicates()
     .assign(node_label=lambda d: d["candidate_hs4"] + " - " + d["candidate_product_name_es"].astype(str))
 )
@@ -742,7 +779,7 @@ anchor_node_ids = {k: i for i, k in enumerate(anchor_labels["node_label"].tolist
 candidate_offset = len(anchor_node_ids)
 candidate_node_ids = {k: candidate_offset + i for i, k in enumerate(candidate_labels["node_label"].tolist())}
 
-links_built = flt.assign(
+links_built = flt_sankey.assign(
     anchor_node=lambda d: d["anchor_hs4"].astype(str).str.zfill(4) + " - " + d["anchor_product_name_es"].astype(str),
     candidate_node=lambda d: d["candidate_hs4"].astype(str).str.zfill(4) + " - " + d["candidate_product_name_es"].astype(str),
 )
@@ -833,7 +870,7 @@ st.dataframe(
         "combined_score", "attractiveness_index", "feasibility_index",
         "dai_index", "pci", "dai_percentile", "distance_travelled",
         "accessible_market_growth_5y", "accessible_market_size_b",
-        "avg_proximity", "anchor_count",
+        "avg_proximity", "anchor_count", "anchors",
     ]],
     use_container_width=True,
     hide_index=True,
@@ -863,6 +900,14 @@ st.dataframe(
         "accessible_market_size_b": st.column_config.NumberColumn("Mercado accesible (USD mil M)", format="%.3f"),
         "avg_proximity": st.column_config.NumberColumn("Proximidad promedio", format="%.4f"),
         "anchor_count": st.column_config.NumberColumn("# anclas", format="%.0f"),
+        "anchors": st.column_config.TextColumn(
+            "Anclas (HS4)",
+            help=(
+                "HS4 de las anclas que tienen este candidato en su top-1% de "
+                "proximidad (separadas por ·)."
+            ),
+            width="medium",
+        ),
     },
 )
 
