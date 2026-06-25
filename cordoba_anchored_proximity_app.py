@@ -536,12 +536,7 @@ def page_firmas():
     c3.metric("HS4 ancla cubiertos", f["hs4"].nunique())
     c4.metric("Rubros INDEC", f["rubro_indec_nombre_final"].nunique())
 
-    # ----- OPEX treemap (USD prom 2023-2025 por rubro INDEC) -----
-    st.subheader("Exportaciones OPEX por rubro INDEC")
-    st.caption(
-        "Tamaño proporcional al monto exportado por rubro (promedio "
-        "2023-2025). Refleja sólo los rubros del filtro actual."
-    )
+    # ----- OPEX treemap por rubro INDEC (clona el formato de página 2) -----
     visible_rubros = set(f["rubro_indec"].dropna().astype(str).str.strip().unique())
     opex_tm = opex.copy()
     opex_tm["CCOD_RUBRO"] = opex_tm["CCOD_RUBRO"].astype(str).str.strip()
@@ -549,8 +544,7 @@ def page_firmas():
     opex_tm = opex_tm.dropna(subset=["2023_2025_avg"])
     opex_tm = opex_tm[opex_tm["2023_2025_avg"] > 0].copy()
     if len(opex_tm):
-        # Map each rubro → its modal sector (most common Atlas sector across
-        # the HS4 it covers in the filtered firm set).
+        # Each rubro → modal sector (across the HS4 of its firms in the filter)
         hs4_to_sector = load_hs4_sector_map(_data_signature() if "_data_signature" in globals() else "")
         f_with_sector = f.assign(sector=f["hs4"].astype(str).str.zfill(4).map(hs4_to_sector).fillna("Other"))
         rubro_to_sector = (
@@ -559,23 +553,45 @@ def page_firmas():
             .to_dict()
         )
         opex_tm["sector"] = opex_tm["CCOD_RUBRO"].map(rubro_to_sector).fillna("Other")
-        opex_tm["rubro_label"] = opex_tm["CCOD_RUBRO"] + " — " + opex_tm["DESCRIP_RUBRO"].astype(str)
+        opex_tm["rubro_label"] = opex_tm["CCOD_RUBRO"] + " - " + opex_tm["DESCRIP_RUBRO"].astype(str)
+        opex_tm["rubro_label_wrapped"] = opex_tm["rubro_label"].map(_wrap_label)
+        opex_tm["opex_avg_b"] = opex_tm["2023_2025_avg"] / 1e9
+
+        st.metric(
+            label="OPEX total mostrado (USD mil millones)",
+            value=f"{opex_tm['opex_avg_b'].sum():,.3f}",
+        )
+
         fig_tm = px.treemap(
             opex_tm,
-            path=[px.Constant("OPEX 2023-2025 avg"), "rubro_label"],
-            values="2023_2025_avg",
+            path=["sector", "rubro_label_wrapped"],
+            values="opex_avg_b",
             color="sector",
             color_discrete_map=SECTOR_COLORS,
+            hover_data={
+                "opex_avg_b": ":.3f",
+                "CCOD_RUBRO": True,
+                "DESCRIP_RUBRO": True,
+                "sector": False,
+                "rubro_label_wrapped": False,
+            },
+            title=(
+                f"Exportaciones OPEX por rubro INDEC (n = {len(opex_tm)} rubros | "
+                f"OPEX total = {opex_tm['opex_avg_b'].sum():,.3f} USD mil M) "
+                f"| tamaño = OPEX promedio 2023-2025 (USD mil M) | color = sector modal"
+            ),
         )
         fig_tm.update_traces(
-            texttemplate="<b>%{label}</b><br>$%{value:,.0f}<br>%{percentRoot:.1%}",
-            hovertemplate="<b>%{label}</b><br>Sector: %{color}<br>USD %{value:,.0f}<br>%{percentRoot:.2%} del total filtrado<extra></extra>",
-            textfont=dict(size=13, color="#0f172a"),
+            textinfo="label",
+            textfont=dict(size=18, color="#ffffff"),
+            marker=dict(line=dict(width=1, color="rgba(255,255,255,0.45)")),
         )
         fig_tm.update_layout(
-            margin=dict(t=10, l=10, r=10, b=10),
-            height=450,
-            showlegend=False,
+            margin=dict(t=60, l=10, r=10, b=95),
+            legend=dict(
+                orientation="h", yanchor="top", y=-0.12, xanchor="center", x=0.5,
+                title_text="Sector",
+            ),
         )
         st.plotly_chart(fig_tm, use_container_width=True)
     else:
