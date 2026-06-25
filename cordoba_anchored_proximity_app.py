@@ -454,6 +454,15 @@ como mayor factibilidad para Córdoba.
     )
 
 
+@st.cache_data
+def load_hs4_sector_map(_signature: str = ""):
+    """HS4 → sector (Atlas sector classification) — used to colour the
+    page-3 OPEX treemap by sector, matching the page-2 palette."""
+    df = pd.read_csv(DATA_DIR / "product_hs92.csv", dtype={"product_hs92_code": str, "product_level": str})
+    df = df[df["product_level"] == "4"]
+    return dict(zip(df["product_hs92_code"].astype(str).str.zfill(4), df["sector"].astype(str)))
+
+
 def page_firmas():
     st.title("Firmas → anclas")
     st.caption(
@@ -531,23 +540,33 @@ def page_firmas():
     opex_tm = opex_tm.dropna(subset=["2023_2025_avg"])
     opex_tm = opex_tm[opex_tm["2023_2025_avg"] > 0].copy()
     if len(opex_tm):
+        # Map each rubro → its modal sector (most common Atlas sector across
+        # the HS4 it covers in the filtered firm set).
+        hs4_to_sector = load_hs4_sector_map(_data_signature() if "_data_signature" in globals() else "")
+        f_with_sector = f.assign(sector=f["hs4"].astype(str).str.zfill(4).map(hs4_to_sector).fillna("Other"))
+        rubro_to_sector = (
+            f_with_sector.groupby("rubro_indec")["sector"]
+            .agg(lambda s: s.mode().iloc[0] if len(s.mode()) else "Other")
+            .to_dict()
+        )
+        opex_tm["sector"] = opex_tm["CCOD_RUBRO"].map(rubro_to_sector).fillna("Other")
         opex_tm["rubro_label"] = opex_tm["CCOD_RUBRO"] + " — " + opex_tm["DESCRIP_RUBRO"].astype(str)
         fig_tm = px.treemap(
             opex_tm,
             path=[px.Constant("OPEX 2023-2025 avg"), "rubro_label"],
             values="2023_2025_avg",
-            color="2023_2025_avg",
-            color_continuous_scale="Teal",
+            color="sector",
+            color_discrete_map=SECTOR_COLORS,
         )
         fig_tm.update_traces(
             texttemplate="<b>%{label}</b><br>$%{value:,.0f}<br>%{percentRoot:.1%}",
-            hovertemplate="<b>%{label}</b><br>USD %{value:,.0f}<br>%{percentRoot:.2%} del total filtrado<extra></extra>",
+            hovertemplate="<b>%{label}</b><br>Sector: %{color}<br>USD %{value:,.0f}<br>%{percentRoot:.2%} del total filtrado<extra></extra>",
             textfont=dict(size=13, color="#0f172a"),
         )
         fig_tm.update_layout(
             margin=dict(t=10, l=10, r=10, b=10),
             height=450,
-            coloraxis_showscale=False,
+            showlegend=False,
         )
         st.plotly_chart(fig_tm, use_container_width=True)
     else:
