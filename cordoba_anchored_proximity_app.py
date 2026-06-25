@@ -508,23 +508,16 @@ def page_firmas():
 
     with st.sidebar:
         st.header("Filtros — Firmas")
-        layers = sorted(merged["evidence_layer"].dropna().unique().tolist())
-        sel_layers = st.multiselect(
-            "Capa de evidencia", options=layers, default=layers,
-            help="`curated` = evidencia HS4 manual con URL · `registry-keyword` = match de keyword automático en products_text",
-        )
-        rubros = sorted(merged["rubro_indec_nombre_final"].dropna().astype(str).unique().tolist())
-        sel_rubros = st.multiselect("Rubro INDEC (CCOD_RUBRO)", options=rubros, default=rubros)
         hs4_options = sorted(merged["hs4_label"].dropna().astype(str).unique().tolist())
         sel_hs4 = st.multiselect("HS4 ancla", options=hs4_options, default=hs4_options)
         confidence_options = sorted(merged["confidence"].dropna().astype(str).unique().tolist())
         sel_conf = st.multiselect("Confianza", options=confidence_options, default=confidence_options)
+        st.caption(
+            "Para filtrar por **rubro INDEC** o **capa de evidencia**, clickeá "
+            "una baldosa del treemap. Click en el fondo o ESC para limpiar."
+        )
 
     f = merged.copy()
-    if sel_layers:
-        f = f[f["evidence_layer"].isin(sel_layers)]
-    if sel_rubros:
-        f = f[f["rubro_indec_nombre_final"].isin(sel_rubros)]
     if sel_hs4:
         f = f[f["hs4_label"].isin(sel_hs4)]
     if sel_conf:
@@ -537,6 +530,8 @@ def page_firmas():
     c4.metric("Rubros INDEC", f["rubro_indec_nombre_final"].nunique())
 
     # ----- OPEX treemap por rubro INDEC (clona el formato de página 2) -----
+    # The treemap doubles as a filter: clicking a tile narrows the table to
+    # the firms in that rubro (leaf) or sector (parent). Empty = show all.
     visible_rubros = set(f["rubro_indec"].dropna().astype(str).str.strip().unique())
     opex_tm = opex.copy()
     opex_tm["CCOD_RUBRO"] = opex_tm["CCOD_RUBRO"].astype(str).str.strip()
@@ -593,7 +588,56 @@ def page_firmas():
                 title_text="Sector",
             ),
         )
-        st.plotly_chart(fig_tm, use_container_width=True)
+        # Render with selection event capture so the table can react to clicks
+        tm_state = st.plotly_chart(
+            fig_tm,
+            use_container_width=True,
+            on_select="rerun",
+            key="firms_treemap_select",
+        )
+
+        # Decode selection: leaf tile (path "sector/rubro_label_wrapped") →
+        # rubro filter; parent tile ("sector") → sector filter.
+        selected_rubros: set = set()
+        selected_sectors: set = set()
+        try:
+            pts = tm_state.selection.points if hasattr(tm_state, "selection") else (tm_state.get("selection", {}) or {}).get("points", [])
+        except Exception:
+            pts = []
+        # Build a reverse lookup wrapped-label → CCOD_RUBRO for leaf clicks
+        label_to_rubro = dict(zip(opex_tm["rubro_label_wrapped"].astype(str), opex_tm["CCOD_RUBRO"].astype(str)))
+        for p in pts or []:
+            try:
+                pid = p.get("id", "") if isinstance(p, dict) else getattr(p, "id", "")
+            except Exception:
+                pid = ""
+            try:
+                label = p.get("label", "") if isinstance(p, dict) else getattr(p, "label", "")
+            except Exception:
+                label = ""
+            if not pid:
+                continue
+            if "/" in pid:
+                # leaf — recover CCOD_RUBRO from the wrapped label
+                rubro_code = label_to_rubro.get(str(label))
+                if rubro_code:
+                    selected_rubros.add(rubro_code)
+            else:
+                selected_sectors.add(str(label))
+
+        if selected_rubros or selected_sectors:
+            # f_with_sector was built earlier inside the treemap block
+            mask = pd.Series(False, index=f_with_sector.index)
+            if selected_rubros:
+                mask |= f_with_sector["rubro_indec"].astype(str).isin(selected_rubros)
+            if selected_sectors:
+                mask |= f_with_sector["sector"].astype(str).isin(selected_sectors)
+            f = f_with_sector[mask].copy()
+            st.caption(
+                f"Filtro activo del treemap — "
+                + ("sectores: " + ", ".join(sorted(selected_sectors)) + " · " if selected_sectors else "")
+                + ("rubros: " + ", ".join(sorted(selected_rubros)) if selected_rubros else "")
+            )
     else:
         st.info("Ningún rubro INDEC con OPEX > 0 en el filtro actual.")
 
