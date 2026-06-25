@@ -547,7 +547,19 @@ def page_firmas():
             .agg(lambda s: s.mode().iloc[0] if len(s.mode()) else "Other")
             .to_dict()
         )
-        opex_tm["sector"] = opex_tm["CCOD_RUBRO"].map(rubro_to_sector).fillna("Other")
+        # Residual/confidential rubros (codes ending in '899' or 'Z') span
+        # multiple sectors by INDEC design (catch-all categories). For these,
+        # override the modal-sector colour to 'Other' so the treemap signals
+        # ambiguity rather than picking one sector arbitrarily by firm count.
+        def _is_mixed_rubro(code: str) -> bool:
+            s = str(code).strip()
+            return s.endswith("899") or s.endswith("Z")
+
+        opex_tm["sector"] = opex_tm.apply(
+            lambda r: "Other" if _is_mixed_rubro(r["CCOD_RUBRO"])
+                       else rubro_to_sector.get(r["CCOD_RUBRO"], "Other"),
+            axis=1,
+        )
         opex_tm["rubro_label"] = opex_tm["CCOD_RUBRO"] + " - " + opex_tm["DESCRIP_RUBRO"].astype(str)
         opex_tm["rubro_label_wrapped"] = opex_tm["rubro_label"].map(_wrap_label)
         opex_tm["opex_avg_m"] = opex_tm["2023_2025_avg"] / 1e6
