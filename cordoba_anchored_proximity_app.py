@@ -564,9 +564,39 @@ def page_firmas():
             left_on="rubro_indec", right_on="CCOD_RUBRO", how="inner",
         )
         opex_split["opex_avg_m"] = opex_split["share"] * opex_split["2023_2025_avg"] / 1e6
+
+        # Confidentials (codes ending in '899') and resto (ending in 'Z')
+        # are intentionally ambiguous — INDEC doesn't disclose internal
+        # composition, so any sector split we'd compute is a guess. Collapse
+        # those rubros to a single 'Other' tile with the full OPEX, instead
+        # of showing potentially misleading splits.
+        def _is_mixed(code: str) -> bool:
+            s = str(code).strip()
+            return s.endswith("899") or s.endswith("Z")
+
+        mixed_mask = opex_split["CCOD_RUBRO"].apply(_is_mixed)
+        clean_part = opex_split[~mixed_mask].copy()
+        mixed_part = opex_split[mixed_mask].copy()
+        if len(mixed_part):
+            mixed_collapsed = (
+                mixed_part.drop_duplicates("CCOD_RUBRO")[
+                    ["rubro_indec", "CCOD_RUBRO", "DESCRIP_RUBRO", "2023_2025_avg", "total_hs4"]
+                ]
+                .copy()
+            )
+            mixed_collapsed["sector"] = "Other"
+            mixed_collapsed["n_hs4_in_sector"] = mixed_collapsed["total_hs4"]
+            mixed_collapsed["share"] = 1.0
+            mixed_collapsed["opex_avg_m"] = mixed_collapsed["2023_2025_avg"] / 1e6
+        else:
+            mixed_collapsed = mixed_part
+
+        opex_split = pd.concat([clean_part, mixed_collapsed], ignore_index=True)
         opex_split = opex_split[opex_split["opex_avg_m"] > 0].copy()
         opex_split["rubro_label"] = opex_split["CCOD_RUBRO"] + " - " + opex_split["DESCRIP_RUBRO"].astype(str)
         opex_split["rubro_label_wrapped"] = opex_split["rubro_label"].map(_wrap_label)
+        # Set of rubros we won't split by sector — used when interpreting clicks
+        mixed_rubro_set = set(opex_split.loc[opex_split["sector"] == "Other", "CCOD_RUBRO"].astype(str))
 
         st.metric(
             label="OPEX total mostrado (USD millones)",
@@ -592,7 +622,7 @@ def page_firmas():
             title=(
                 f"Exportaciones OPEX por rubro INDEC (n = {opex_tm['CCOD_RUBRO'].nunique()} rubros | "
                 f"OPEX total = {opex_split['opex_avg_m'].sum():,.1f} USD M) "
-                f"| tamaño = OPEX proporcional al share de HS4 por sector | color = sector del HS4 ancla"
+                f"| tamaño = OPEX (split por sector cuando hay atribución firme; rubros confidenciales/resto van enteros a 'Other')"
             ),
         )
         fig_tm.update_traces(
@@ -640,14 +670,22 @@ def page_firmas():
                 # leaf — parent is the sector
                 rubro_code = pair_lookup.get((str(label), str(parent)))
                 if rubro_code:
-                    selected_pairs.add((rubro_code, str(parent)))
+                    if rubro_code in mixed_rubro_set:
+                        # Confidential/resto: filter by rubro only (the
+                        # 'Other' sector tag is a UI label, not a real
+                        # sector — firms in this rubro can have any sector).
+                        selected_rubros.add(rubro_code)
+                    else:
+                        selected_pairs.add((rubro_code, str(parent)))
             else:
                 selected_sectors.add(str(label))
 
-        if selected_pairs or selected_sectors:
+        if selected_pairs or selected_sectors or selected_rubros:
             mask = pd.Series(False, index=f_with_sector.index)
             if selected_sectors:
                 mask |= f_with_sector["sector"].astype(str).isin(selected_sectors)
+            if selected_rubros:
+                mask |= f_with_sector["rubro_indec"].astype(str).str.strip().isin(selected_rubros)
             if selected_pairs:
                 pair_mask = pd.Series(False, index=f_with_sector.index)
                 for rubro, sec in selected_pairs:
@@ -657,12 +695,14 @@ def page_firmas():
                     )
                 mask |= pair_mask
             f = f_with_sector[mask].copy()
-            pair_str = ", ".join(f"{r}/{s}" for r, s in sorted(selected_pairs))
-            st.caption(
-                "Filtro activo del treemap — "
-                + ("sectores: " + ", ".join(sorted(selected_sectors)) + " · " if selected_sectors else "")
-                + ("pares rubro/sector: " + pair_str if selected_pairs else "")
-            )
+            parts = []
+            if selected_sectors:
+                parts.append("sectores: " + ", ".join(sorted(selected_sectors)))
+            if selected_rubros:
+                parts.append("rubros: " + ", ".join(sorted(selected_rubros)))
+            if selected_pairs:
+                parts.append("pares rubro/sector: " + ", ".join(f"{r}/{s}" for r, s in sorted(selected_pairs)))
+            st.caption("Filtro activo del treemap — " + " · ".join(parts))
     else:
         st.info("Ningún rubro INDEC con OPEX > 0 en el filtro actual.")
 
