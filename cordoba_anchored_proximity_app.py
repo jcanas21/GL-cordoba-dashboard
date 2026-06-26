@@ -539,38 +539,42 @@ def page_firmas():
     opex_tm = opex_tm.dropna(subset=["2023_2025_avg"])
     opex_tm = opex_tm[opex_tm["2023_2025_avg"] > 0].copy()
     if len(opex_tm):
-        # Each rubro → modal sector (across the HS4 of its firms in the filter)
+        # Per HS4 → sector. Then per (rubro, sector) split each rubro's OPEX
+        # proportionally to its share of HS4s in that sector. Rubros that span
+        # multiple sectors (eg the confidentials 39899) emit multiple tiles —
+        # one per sector — so the treemap shows the true sector composition.
         hs4_to_sector = load_hs4_sector_map(_data_signature() if "_data_signature" in globals() else "")
         f_with_sector = f.assign(sector=f["hs4"].astype(str).str.zfill(4).map(hs4_to_sector).fillna("Other"))
-        rubro_to_sector = (
-            f_with_sector.groupby("rubro_indec")["sector"]
-            .agg(lambda s: s.mode().iloc[0] if len(s.mode()) else "Other")
-            .to_dict()
-        )
-        # Residual/confidential rubros (codes ending in '899' or 'Z') span
-        # multiple sectors by INDEC design (catch-all categories). For these,
-        # override the modal-sector colour to 'Other' so the treemap signals
-        # ambiguity rather than picking one sector arbitrarily by firm count.
-        def _is_mixed_rubro(code: str) -> bool:
-            s = str(code).strip()
-            return s.endswith("899") or s.endswith("Z")
 
-        opex_tm["sector"] = opex_tm.apply(
-            lambda r: "Other" if _is_mixed_rubro(r["CCOD_RUBRO"])
-                       else rubro_to_sector.get(r["CCOD_RUBRO"], "Other"),
-            axis=1,
+        n_hs4_by_pair = (
+            f_with_sector.drop_duplicates(["rubro_indec", "hs4", "sector"])
+            .groupby(["rubro_indec", "sector"])["hs4"].nunique()
+            .reset_index(name="n_hs4_in_sector")
         )
-        opex_tm["rubro_label"] = opex_tm["CCOD_RUBRO"] + " - " + opex_tm["DESCRIP_RUBRO"].astype(str)
-        opex_tm["rubro_label_wrapped"] = opex_tm["rubro_label"].map(_wrap_label)
-        opex_tm["opex_avg_m"] = opex_tm["2023_2025_avg"] / 1e6
+        n_hs4_per_rubro = (
+            f_with_sector.drop_duplicates(["rubro_indec", "hs4"])
+            .groupby("rubro_indec")["hs4"].nunique()
+            .reset_index(name="total_hs4")
+        )
+        shares = n_hs4_by_pair.merge(n_hs4_per_rubro, on="rubro_indec")
+        shares["share"] = shares["n_hs4_in_sector"] / shares["total_hs4"]
+
+        opex_split = shares.merge(
+            opex_tm[["CCOD_RUBRO", "DESCRIP_RUBRO", "2023_2025_avg"]],
+            left_on="rubro_indec", right_on="CCOD_RUBRO", how="inner",
+        )
+        opex_split["opex_avg_m"] = opex_split["share"] * opex_split["2023_2025_avg"] / 1e6
+        opex_split = opex_split[opex_split["opex_avg_m"] > 0].copy()
+        opex_split["rubro_label"] = opex_split["CCOD_RUBRO"] + " - " + opex_split["DESCRIP_RUBRO"].astype(str)
+        opex_split["rubro_label_wrapped"] = opex_split["rubro_label"].map(_wrap_label)
 
         st.metric(
             label="OPEX total mostrado (USD millones)",
-            value=f"{opex_tm['opex_avg_m'].sum():,.1f}",
+            value=f"{opex_split['opex_avg_m'].sum():,.1f}",
         )
 
         fig_tm = px.treemap(
-            opex_tm,
+            opex_split,
             path=["sector", "rubro_label_wrapped"],
             values="opex_avg_m",
             color="sector",
@@ -579,13 +583,16 @@ def page_firmas():
                 "opex_avg_m": ":.1f",
                 "CCOD_RUBRO": True,
                 "DESCRIP_RUBRO": True,
+                "n_hs4_in_sector": True,
+                "total_hs4": True,
+                "share": ":.0%",
                 "sector": False,
                 "rubro_label_wrapped": False,
             },
             title=(
-                f"Exportaciones OPEX por rubro INDEC (n = {len(opex_tm)} rubros | "
-                f"OPEX total = {opex_tm['opex_avg_m'].sum():,.1f} USD M) "
-                f"| tamaño = OPEX promedio 2023-2025 (USD M) | color = sector modal"
+                f"Exportaciones OPEX por rubro INDEC (n = {opex_tm['CCOD_RUBRO'].nunique()} rubros | "
+                f"OPEX total = {opex_split['opex_avg_m'].sum():,.1f} USD M) "
+                f"| tamaño = OPEX proporcional al share de HS4 por sector | color = sector del HS4 ancla"
             ),
         )
         fig_tm.update_traces(
@@ -600,7 +607,6 @@ def page_firmas():
                 title_text="Sector",
             ),
         )
-        # Render with selection event capture so the table can react to clicks
         tm_state = st.plotly_chart(
             fig_tm,
             use_container_width=True,
@@ -608,47 +614,54 @@ def page_firmas():
             key="firms_treemap_select",
         )
 
-        # Decode selection: leaf tile (path "sector/rubro_label_wrapped") →
-        # rubro filter; parent tile ("sector") → sector filter.
+        # Decode selection — leaves are (sector, rubro) pairs now.
         selected_rubros: set = set()
         selected_sectors: set = set()
+        selected_pairs: set = set()  # (rubro_code, sector) for leaf clicks
         try:
             pts = tm_state.selection.points if hasattr(tm_state, "selection") else (tm_state.get("selection", {}) or {}).get("points", [])
         except Exception:
             pts = []
-        # Build a reverse lookup wrapped-label → CCOD_RUBRO for leaf clicks
-        label_to_rubro = dict(zip(opex_tm["rubro_label_wrapped"].astype(str), opex_tm["CCOD_RUBRO"].astype(str)))
+        # Build reverse lookup (wrapped_label, sector) → CCOD_RUBRO
+        pair_lookup = {
+            (str(r["rubro_label_wrapped"]), str(r["sector"])): str(r["CCOD_RUBRO"])
+            for _, r in opex_split.iterrows()
+        }
         for p in pts or []:
             try:
                 pid = p.get("id", "") if isinstance(p, dict) else getattr(p, "id", "")
-            except Exception:
-                pid = ""
-            try:
                 label = p.get("label", "") if isinstance(p, dict) else getattr(p, "label", "")
+                parent = p.get("parent", "") if isinstance(p, dict) else getattr(p, "parent", "")
             except Exception:
-                label = ""
+                pid, label, parent = "", "", ""
             if not pid:
                 continue
             if "/" in pid:
-                # leaf — recover CCOD_RUBRO from the wrapped label
-                rubro_code = label_to_rubro.get(str(label))
+                # leaf — parent is the sector
+                rubro_code = pair_lookup.get((str(label), str(parent)))
                 if rubro_code:
-                    selected_rubros.add(rubro_code)
+                    selected_pairs.add((rubro_code, str(parent)))
             else:
                 selected_sectors.add(str(label))
 
-        if selected_rubros or selected_sectors:
-            # f_with_sector was built earlier inside the treemap block
+        if selected_pairs or selected_sectors:
             mask = pd.Series(False, index=f_with_sector.index)
-            if selected_rubros:
-                mask |= f_with_sector["rubro_indec"].astype(str).isin(selected_rubros)
             if selected_sectors:
                 mask |= f_with_sector["sector"].astype(str).isin(selected_sectors)
+            if selected_pairs:
+                pair_mask = pd.Series(False, index=f_with_sector.index)
+                for rubro, sec in selected_pairs:
+                    pair_mask |= (
+                        (f_with_sector["rubro_indec"].astype(str).str.strip() == rubro)
+                        & (f_with_sector["sector"].astype(str) == sec)
+                    )
+                mask |= pair_mask
             f = f_with_sector[mask].copy()
+            pair_str = ", ".join(f"{r}/{s}" for r, s in sorted(selected_pairs))
             st.caption(
-                f"Filtro activo del treemap — "
+                "Filtro activo del treemap — "
                 + ("sectores: " + ", ".join(sorted(selected_sectors)) + " · " if selected_sectors else "")
-                + ("rubros: " + ", ".join(sorted(selected_rubros)) if selected_rubros else "")
+                + ("pares rubro/sector: " + pair_str if selected_pairs else "")
             )
     else:
         st.info("Ningún rubro INDEC con OPEX > 0 en el filtro actual.")
