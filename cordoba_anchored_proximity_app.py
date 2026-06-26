@@ -504,7 +504,8 @@ def page_firmas():
     merged["hs4_label"] = merged["hs4"].astype(str).str.zfill(4) + (
         " - " + merged["hs4_es"]
     ).where(merged["hs4_es"] != "", "")
-    merged["opex_avg_b"] = merged["opex_avg_2023_2025_usd"] / 1e9
+    merged["opex_avg_m"] = merged["opex_avg_2023_2025_usd"] / 1e6
+    merged["opex_2024_m"] = merged["opex_2024_usd"] / 1e6
 
     with st.sidebar:
         st.header("Filtros — Firmas")
@@ -709,12 +710,12 @@ def page_firmas():
     cols = [
         "firm_name", "razon_social", "hs4_label", "rubro_indec_nombre_final",
         "evidence_layer", "confidence",
-        "opex_avg_2023_2025_usd", "opex_avg_b", "opex_2024_usd",
+        "opex_avg_m", "opex_2024_m",
         "attribution_type", "evidence_text", "evidence_url", "source_url",
     ]
     display = f[[c for c in cols if c in f.columns]].copy()
     display = display.sort_values(
-        ["evidence_layer", "rubro_indec_nombre_final", "opex_avg_2023_2025_usd", "firm_name"],
+        ["evidence_layer", "rubro_indec_nombre_final", "opex_avg_m", "firm_name"],
         ascending=[True, True, False, True],
         na_position="last",
     )
@@ -733,12 +734,14 @@ def page_firmas():
                 help="`curated` = evidencia manual con URL · `registry-keyword` = match de keyword en products_text",
             ),
             "confidence": st.column_config.TextColumn("Confianza"),
-            "opex_avg_2023_2025_usd": st.column_config.NumberColumn(
-                "OPEX rubro (USD, prom 2023-2025)", format="$%.0f",
-                help="Monto exportado por Córdoba en el rubro INDEC del lado de la firma (USD).",
+            "opex_avg_m": st.column_config.NumberColumn(
+                "OPEX rubro (USD M, prom 2023-2025)", format="%.1f",
+                help="Monto exportado por Córdoba en el rubro INDEC del lado de la firma, en millones de USD.",
             ),
-            "opex_avg_b": st.column_config.NumberColumn("OPEX rubro (USD mil M)", format="%.3f"),
-            "opex_2024_usd": st.column_config.NumberColumn("OPEX rubro 2024 (USD)", format="$%.0f"),
+            "opex_2024_m": st.column_config.NumberColumn(
+                "OPEX rubro 2024 (USD M)", format="%.1f",
+                help="Monto exportado por Córdoba en el rubro INDEC en 2024, en millones de USD.",
+            ),
             "attribution_type": st.column_config.TextColumn("Tipo de atribución"),
             "evidence_text": st.column_config.TextColumn("Evidencia (texto)", width="large"),
             "evidence_url": st.column_config.LinkColumn("Evidencia URL", display_text="↗", width="small"),
