@@ -34,21 +34,24 @@ import streamlit as st
 
 ROOT = Path(__file__).resolve().parent.parent
 
-# Spanish HS4 short names. Start from the script-13 curated dict (covers the
-# anchored HS4 universe — ~180 entries) and extend with `app/hs4_names_es.py`
-# for the wider candidate universe (~1100 additional entries). Script-13
-# entries win on conflict, so changes there propagate everywhere.
-_s13_spec = importlib.util.spec_from_file_location(
-    "s13", ROOT / "scripts" / "13_filter_and_visualize_by_opex.py"
-)
-_s13 = importlib.util.module_from_spec(_s13_spec)
-_s13_spec.loader.exec_module(_s13)
+# Spanish HS4 short names. `hs4_names_es.py` (~1,240 entries) already covers
+# the anchor + candidate universe. When running inside the monorepo, we still
+# layer script-13's dict on top (canonical source) so any edits there
+# propagate; when running standalone (Streamlit Cloud), `scripts/` is absent
+# and we fall back to `hs4_names_es.py` alone.
 _cand_spec = importlib.util.spec_from_file_location(
     "hs4_names_es", Path(__file__).resolve().parent / "hs4_names_es.py"
 )
 _cand_mod = importlib.util.module_from_spec(_cand_spec)
 _cand_spec.loader.exec_module(_cand_mod)
-SPANISH_OVERRIDES: dict[str, str] = {**_cand_mod.HS4_NAMES_ES, **_s13.SPANISH_OVERRIDES}
+SPANISH_OVERRIDES: dict[str, str] = dict(_cand_mod.HS4_NAMES_ES)
+
+_s13_path = ROOT / "scripts" / "13_filter_and_visualize_by_opex.py"
+if _s13_path.exists():
+    _s13_spec = importlib.util.spec_from_file_location("s13", _s13_path)
+    _s13 = importlib.util.module_from_spec(_s13_spec)
+    _s13_spec.loader.exec_module(_s13)
+    SPANISH_OVERRIDES.update(_s13.SPANISH_OVERRIDES)
 
 
 def hs4_name_es(hs4: str, fallback_en: str = "") -> str:
