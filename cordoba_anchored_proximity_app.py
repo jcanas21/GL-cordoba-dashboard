@@ -365,7 +365,7 @@ Cada candidato se rankea combinando dos dimensiones:
   actual (proximidad), si su demanda global se alinea con el patrón
   exportador (DAI), y si es un producto que viaja lejos en el mundo
   (`distance_travelled`).
-- **Atractividad** — qué tan complejo es el producto (PCI), qué tan grande
+- **Atractivo** — qué tan complejo es el producto (PCI), qué tan grande
   es su mercado accesible, y a qué tasa crece ese mercado.
 
 Un dial estratégico balancea ambas dimensiones, y los pesos internos de cada
@@ -399,8 +399,8 @@ componente son configurables en el sidebar.
 | **Distancia recorrida** *(distance_travelled)* | Distancia geográfica promedio (km) que recorre cada HS4 a nivel global, ponderada por valor exportado en cada par bilateral. **Atributo del producto** — no depende del país exportador. Ver fórmula abajo. |
 | **Mercado accesible** *(accessible_market_size)* | Suma de las importaciones mundiales del producto por parte de los destinos que están dentro de la distancia recorrida del producto, o que ya reciben flujo grande desde el origen. Ver fórmula abajo. |
 | **Factibilidad** | Promedio ponderado del DAI, del percentil de distancia recorrida y del número normalizado de anclas del candidato. Todos en [0, 1]. |
-| **Atractividad** | Promedio ponderado del PCI, del tamaño del mercado accesible y del crecimiento a 5 años del mercado accesible. |
-| **Puntaje combinado** | `(1 − balance) · factibilidad + balance · atractividad`, donde `balance` es el dial estratégico del sidebar. |
+| **Atractivo** | Promedio ponderado del PCI, del tamaño del mercado accesible y del crecimiento a 5 años del mercado accesible. |
+| **Puntaje combinado** | `(1 − balance) · factibilidad + balance · atractivo`, donde `balance` es el dial estratégico del sidebar. |
 | **Posible ancla** | Dummy 1/0: el candidato pertenece al set de HS4 evidenciados pero su OPEX no llegó al umbral. |
 | **Anclas del candidato** | HS4 (separados por ·) de las anclas que tienen al candidato en su top-1% de proximidad. |
     """)
@@ -761,6 +761,28 @@ def page_firmas():
         na_position="last",
     )
 
+    with st.expander("Diccionario de columnas — Tabla de firmas"):
+        st.markdown(r"""
+| Columna | Significado |
+|---|---|
+| **Firma (alias)** | Nombre comercial de la firma según el registro `exportadoresdecordoba.com`. |
+| **Razón social** | Nombre legal de la firma. |
+| **HS4 ancla** | HS4 (HS 1992) + nombre corto en español al que la firma está atribuida. Todos los HS4 aquí pertenecen al set de 125 anclas evidenciadas. |
+| **Rubro INDEC** | Rubro CCOD_RUBRO (clasificación INDEC "Grandes Rubros / Capítulos") al que el HS4 fold-up en el panel OPEX provincial. |
+| **Capa** | Origen de la evidencia firma↔HS4. `curated` = revisión manual con `evidence_text` + URL fuente específica al HS4 (66 firmas, 152 pares); `registry-keyword` = match automático de keyword en `products_text` vía PRODUCT_PATTERNS del script 07 (~899 firmas). Sin fallback ciego. |
+| **Confianza** | Nivel de confianza reportado por el pipeline (`high` / `medium` / `low`). `curated` suele ser `high`. |
+| **OPEX rubro (USD M, prom 2023-2025)** | Monto exportado por Córdoba en el rubro INDEC, promedio anual 2023-2025 en USD millones. Es del **rubro entero**, no de la firma individual — una firma en un rubro grande no representa necesariamente una porción grande del monto. |
+| **OPEX rubro 2024 (USD M)** | Idem pero sólo el año 2024. |
+| **Tipo de atribución** | Cómo el HS4 mapea al rubro INDEC: `clean` (rubro específico → 1-2 HS4), `named-aggregate` (rubro nombrado con varios HS4), `broad-chapter` (rubro cubre un capítulo HS entero), `confidential` (rubro censurado por Ley 17.622), `resto` (categoría residual). |
+| **Evidencia (texto)** | Justificación del vínculo firma↔HS4: prosa curada para `curated`, o el keyword exacto que matcheó para `registry-keyword`. |
+| **Evidencia URL** | URL pública que evidencia el vínculo (notas de prensa, sitio corporativo, cámara, etc.). |
+| **Página registro** | Link a la ficha de la firma en `exportadoresdecordoba.com`. |
+
+**Nota sobre el filtro del treemap**: al clickear una baldosa de sector o
+rubro en el treemap de arriba, la tabla se restringe a las firmas cuyo
+sector/rubro coincida. Click en el fondo del treemap para limpiar.
+        """)
+
     st.dataframe(
         display,
         use_container_width=True,
@@ -1034,19 +1056,19 @@ def page_analisis():
 
         st.header("Balance de dimensiones")
         strategic_balance = st.slider(
-            "Factibilidad (100%) = 0 | Atractividad (100%) = 1",
+            "Factibilidad (100%) = 0 | Atractivo (100%) = 1",
             0.0, 1.0,
             float(st.session_state["c4_strategic_balance"]),
             0.05,
             key="c4_strategic_balance",
             help=(
-                "Score combinado = (1 − valor)·Factibilidad + valor·Atractividad. "
-                "0 = sólo factibilidad; 1 = sólo atractividad."
+                "Score combinado = (1 − valor)·Factibilidad + valor·Atractivo. "
+                "0 = sólo factibilidad; 1 = sólo atractivo."
             ),
         )
 
         st.header("Pesos de los componentes")
-        st.caption("Factibilidad: DAI + distancia + # de anclas. Atractividad: PCI + tamaño + crecimiento (sin COG).")
+        st.caption("Factibilidad: DAI + distancia + # de anclas. Atractivo: PCI + tamaño + crecimiento (sin COG).")
         with st.expander("Componentes de factibilidad", expanded=True):
             w_dai = st.slider(
                 "Peso del DAI", 0.0, 1.0,
@@ -1073,7 +1095,7 @@ def page_analisis():
                     "min-max dentro del set filtrado."
                 ),
             )
-        with st.expander("Componentes de atractividad", expanded=True):
+        with st.expander("Componentes de atractivo", expanded=True):
             w_pci = st.slider(
                 "Peso del PCI", 0.0, 1.0,
                 float(st.session_state["c4_w_pci"]), 0.05, key="c4_w_pci",
@@ -1418,6 +1440,30 @@ def page_analisis():
         )
     )
 
+    with st.expander("Diccionario de columnas — Tabla de candidatos"):
+        st.markdown(r"""
+| Columna | Significado |
+|---|---|
+| **Ranking** | Posición del candidato ordenado por Puntaje combinado descendente. |
+| **HS4** | Código HS4 del candidato (HS 1992). |
+| **Producto** | Nombre corto del HS4 en español (curado, ~1.240 entradas). |
+| **Sector** | Sector Atlas / Growth Lab del HS4. |
+| **Posible ancla** | Dummy 1/0. `1` = el candidato pertenece al set de 125 HS4 evidenciados pero su OPEX quedó por debajo del umbral del slider — es una ex-ancla reaparecida como candidato. Ver Inicio → glosario. |
+| **Puntaje combinado** | `(1 − balance) · Factibilidad + balance · Atractivo`, normalizado 0-1 dentro del set filtrado. `balance` es el dial del sidebar. |
+| **Índice de atractivo** | Promedio ponderado del PCI, tamaño del mercado accesible y crecimiento a 5 años del mercado accesible, normalizado 0-1. |
+| **Índice de factibilidad** | Promedio ponderado del DAI, percentil de distancia recorrida y # de anclas normalizado, normalizado 0-1. |
+| **DAI (crudo)** | Índice de alineación de demanda del HS4 (valor sin percentilar). Fórmula en Inicio. |
+| **PCI** | Product Complexity Index del HS4 (más alto = más complejo). |
+| **DAI (percentil)** | Percentil del DAI de Argentina contra el set top-30 exportadores + Argentina (0-100). Mayor = mejor posición competitiva. |
+| **Distancia recorrida** | Km promedio que recorre el HS4 globalmente, ponderado por valor bilateral (atributo del producto). |
+| **Distancia (percentil)** | Percentil de `distancia recorrida` dentro del set filtrado (0-100). Mayor = producto más tradeable → más factible. |
+| **Crecimiento del mercado accesible % (5 años)** | CAGR 2020-2024 del mercado accesible del HS4. |
+| **Mercado accesible (USD mil M)** | Tamaño del mercado accesible en miles de millones USD (2024). |
+| **Proximidad promedio** | Media de las proximidades HS4↔HS4 entre el candidato y las anclas que lo tienen en su top-1%. En [0, 1]. |
+| **# anclas** | Cantidad de anclas del set filtrado que tienen a este candidato en su top-1% de proximidad. |
+| **Anclas (HS4)** | HS4 (separados por · ) de esas anclas. |
+        """)
+
     st.dataframe(
         candidate_display[[
             "rank", "candidate_hs4", "candidate_product_name_es", "candidate_sector",
@@ -1445,7 +1491,7 @@ def page_analisis():
                 ),
             ),
             "combined_score": st.column_config.NumberColumn("Puntaje combinado", format="%.4f"),
-            "attractiveness_index": st.column_config.NumberColumn("Índice de atractividad", format="%.4f"),
+            "attractiveness_index": st.column_config.NumberColumn("Índice de atractivo", format="%.4f"),
             "feasibility_index": st.column_config.NumberColumn("Índice de factibilidad", format="%.4f"),
             "dai_index": st.column_config.NumberColumn("DAI (crudo)", format="%.3f"),
             "pci": st.column_config.NumberColumn("PCI", format="%.3f"),
