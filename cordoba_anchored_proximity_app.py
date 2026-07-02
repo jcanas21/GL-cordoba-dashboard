@@ -701,12 +701,32 @@ def page_firmas():
     merged["opex_avg_m"] = merged["opex_avg_2023_2025_usd"] / 1e6
     merged["opex_2024_m"] = merged["opex_2024_usd"] / 1e6
 
+    hs4_options = sorted(merged["hs4_label"].dropna().astype(str).unique().tolist())
+    confidence_options = sorted(merged["confidence"].dropna().astype(str).unique().tolist())
+
+    def _reset_firmas_filters():
+        st.session_state["firms_sel_hs4"] = hs4_options
+        st.session_state["firms_sel_conf"] = confidence_options
+        # Clear the treemap click selection so the rubro/sector filter also resets.
+        st.session_state.pop("firms_treemap_select", None)
+
     with st.sidebar:
         st.header("Filtros — Firmas")
-        hs4_options = sorted(merged["hs4_label"].dropna().astype(str).unique().tolist())
-        sel_hs4 = st.multiselect("HS4 ancla", options=hs4_options, default=hs4_options)
-        confidence_options = sorted(merged["confidence"].dropna().astype(str).unique().tolist())
-        sel_conf = st.multiselect("Confianza", options=confidence_options, default=confidence_options)
+        st.button(
+            "Restablecer filtros",
+            on_click=_reset_firmas_filters,
+            use_container_width=True,
+            help="Limpia HS4 ancla, Confianza y la selección del treemap.",
+        )
+        sel_hs4 = st.multiselect(
+            "HS4 ancla", options=hs4_options, default=hs4_options, key="firms_sel_hs4"
+        )
+        sel_conf = st.multiselect(
+            "Confianza",
+            options=confidence_options,
+            default=confidence_options,
+            key="firms_sel_conf",
+        )
         st.caption(
             "Para filtrar por **rubro INDEC** o **capa de evidencia**, clickeá "
             "una baldosa del treemap. Click en el fondo o ESC para limpiar."
