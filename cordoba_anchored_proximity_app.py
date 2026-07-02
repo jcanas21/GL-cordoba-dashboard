@@ -1531,6 +1531,32 @@ def page_analisis():
         "evidencing_firms_sample": "Firmas ejemplo",
     }).sort_values("OPEX rubro (USD M)", ascending=False)
 
+    # Slider: mínimo # firmas para incluir el HS4 en la tabla
+    _max_firms = int(_anchor_tbl["# firmas"].max()) if len(_anchor_tbl) else 1
+    _min_firms_default = int(st.session_state.get("c4_min_firmas_ancla", 1))
+    _min_firms_default = max(1, min(_min_firms_default, max(_max_firms, 1)))
+    _min_firmas = st.slider(
+        "Mínimo # de firmas evidenciando el HS4",
+        min_value=1,
+        max_value=max(_max_firms, 1),
+        value=_min_firms_default,
+        step=1,
+        key="c4_min_firmas_ancla",
+        help=(
+            "Filtra la tabla y sus KPIs a HS4 con al menos esta cantidad de "
+            "firmas del registro evidenciando (curated + declared-ncm + "
+            "registry-keyword combinadas). Subir el mínimo elimina HS4 con "
+            "evidencia frágil (una sola firma)."
+        ),
+    )
+    _n_before = len(_anchor_tbl)
+    _anchor_tbl = _anchor_tbl[_anchor_tbl["# firmas"] >= _min_firmas]
+    if _min_firmas > 1:
+        st.caption(
+            f"→ Mostrando **{len(_anchor_tbl)}** HS4 con ≥ {_min_firmas} firmas "
+            f"(de {_n_before} en el set filtrado por OPEX)."
+        )
+
     with st.expander("Diccionario de columnas — HS4 anclas"):
         st.markdown(r"""
 | Columna | Significado |
