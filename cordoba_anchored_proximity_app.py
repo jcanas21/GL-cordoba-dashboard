@@ -1010,6 +1010,7 @@ def page_firmas():
         )
         fig_tm.update_layout(
             margin=dict(t=60, l=10, r=10, b=95),
+            height=720,
             legend=dict(
                 orientation="h", yanchor="top", y=-0.12, xanchor="center", x=0.5,
                 title_text="Sector",
