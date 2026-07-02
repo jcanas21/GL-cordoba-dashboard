@@ -1801,7 +1801,7 @@ def page_mercado_accesible():
     )
 
     am = load_accessible_market(_data_signature() if "_data_signature" in globals() else "")
-    df, presence, umap, trade_2024, cluster_color, names = load_data(_data_signature() if "_data_signature" in globals() else "")
+    df, presence, umap, trade_2024, cluster_color, names = load_data()
 
     # Product universe: HS4 in the proximity file (anchors + candidates) that
     # also have accessible-market data. Default = the top-ranked candidate
