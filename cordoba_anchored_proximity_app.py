@@ -324,9 +324,39 @@ def load_firms_data(_signature: str = ""):
         "evidence_layer": "registry-keyword",
     })
 
-    pair_key = curated_norm["firm_id"] + "|" + curated_norm["hs4"]
-    reg_norm_dedup = reg_norm[~(reg_norm["firm_id"] + "|" + reg_norm["hs4"]).isin(set(pair_key))].copy()
-    firm_ev = pd.concat([curated_norm, reg_norm_dedup], ignore_index=True)
+    # Third layer: NCM codes declared by firms in their Procórdoba profile,
+    # filtered to firms whose exporter_profile is Habitual or Ocasional.
+    declared = pd.read_csv(
+        DATA_DIR / "06_registry_ncm_declared.csv",
+        dtype={"firm_id": "string", "hs4": str, "ncm": str},
+    )
+    declared["hs4"] = declared["hs4"].astype(str).str.zfill(4)
+    declared_norm = pd.DataFrame({
+        "firm_id": declared["firm_id"].astype(str),
+        "firm_name": declared["firm_name"].astype(str),
+        "razon_social": declared["razon_social"].astype(str),
+        "hs4": declared["hs4"],
+        "rubro_indec": "",
+        "rubro_indec_nombre": "",
+        "attribution_type": "declared-ncm",
+        "confidence": "high",
+        "evidence_text": (
+            "NCM " + declared["ncm"].astype(str)
+            + " — " + declared["product_name_declared"].astype(str)
+            + " · perfil: " + declared["exporter_profile"].astype(str)
+        ),
+        "evidence_url": declared["source_url"].astype(str),
+        "source_url": declared["source_url"].astype(str),
+        "evidence_layer": "declared-ncm",
+    })
+
+    curated_pairs = set(curated_norm["firm_id"] + "|" + curated_norm["hs4"])
+    reg_dedup = reg_norm[~(reg_norm["firm_id"] + "|" + reg_norm["hs4"]).isin(curated_pairs)].copy()
+    dec_dedup = declared_norm[~(declared_norm["firm_id"] + "|" + declared_norm["hs4"]).isin(curated_pairs)].copy()
+    reg_dedup_after_declared = reg_dedup[~(reg_dedup["firm_id"] + "|" + reg_dedup["hs4"]).isin(
+        set(dec_dedup["firm_id"] + "|" + dec_dedup["hs4"])
+    )].copy()
+    firm_ev = pd.concat([curated_norm, dec_dedup, reg_dedup_after_declared], ignore_index=True)
 
     opex = pd.read_csv(
         DATA_DIR / "exportaciones_opex_cordoba.csv",

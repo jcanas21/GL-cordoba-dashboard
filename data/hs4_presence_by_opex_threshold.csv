@@ -1,126 +1,470 @@
 hs4,n_firms,evidencing_firms_sample,primary_ccod_rubro,primary_rubro_name,all_rubro_destinations,max_rubro_opex_2023_2025_avg_usd,in_tier_1M,in_tier_10M,in_tier_50M
-1005,121,ACEITERA GENERAL DEHEZA SA - AGD; FAMIGLIA ROSSI - MOLINOS ROSSI; GASTALDI HNOS. S.A.I Y C.F.E.I; ACA BIO; AGRÍCOLA PIQUILLÍN,106B,Maíz,106B Maíz (USD 2.32 B),2320526635.0,yes,yes,yes
-1201,89,Asociación de Cooperativas Argentinas (ACA) — Córdoba; ACEITERA GENERAL DEHEZA SA - AGD; AGRÍCOLA PIQUILLÍN; AGROSERVICIOS MEDITERRÁNEA; ALIMENTOS TANCACHA SA,107A,Soja,107A Soja (USD 715.70 M),715701214.0,yes,yes,yes
-1202,51,INCHIK; ACEITERA GENERAL DEHEZA SA - AGD; GASTALDI HNOS. S.A.I Y C.F.E.I; AGRO ARG SRL; AGRO TRANSPORTES S.A.,107D,Maní,107D Maní (USD 696.07 M),696067763.0,yes,yes,yes
-8703,5,"CINZIA VEHÍCULOS; Renault Argentina (Planta Santa Isabel, Córdoba); Stellantis (Complejo Industrial Ferreyra, Córdoba); DAYCO; TODO SUSPENSION SA",313BB,Vehículos automóviles terrestres,313BB Vehículos automóviles terrestres (USD 674.54 M),674541884.0,yes,yes,yes
-8704,24,"Stellantis (Complejo Industrial Ferreyra, Córdoba); Iveco Argentina (Planta Ferreyra, Córdoba); CRAVERO REPUESTOS; DRI-LEX®; FAESA",313BB,Vehículos automóviles terrestres,313BB Vehículos automóviles terrestres (USD 674.54 M),674541884.0,yes,yes,yes
-8705,2,INDUMIX; TZR BOMBAS Y EQUIPOS PARA HORMIGÓN,313BB,Vehículos automóviles terrestres,313BB Vehículos automóviles terrestres (USD 674.54 M),674541884.0,yes,yes,yes
-8708,27,DENSO MANUFACTURING ARGENTINA SA; Volkswagen Argentina (Centro Industrial Córdoba); CAUPLAS; CRAVERO REPUESTOS; DAYCO,313BC,Partes y piezas de vehículos y tractores,313BC Partes y piezas de vehículos y tractores (USD 260.05 M),260046171.0,yes,yes,yes
-1001,64,ACEITERA GENERAL DEHEZA SA - AGD; COOPERATIVA AGRICOLA GANADERA DE JUSTINIANO POSSE; EGRAN; ESTABLECIMIENTO SAN PATRICIO SA; FAMIGLIA ROSSI - MOLINOS ROSSI,106A,Trigo,106A Trigo (USD 258.29 M),258287630.0,yes,yes,yes
-0402,15,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; LA VARENSE; JAMER Y BUEN PAN; LACTEAR SA; LAS TRES NIÑAS - GRUPO ADECOAGRO,203A,Leches preparadas,203A Leches preparadas (USD 227.59 M),227591221.0,yes,yes,yes
-8408,1,"FPT Industrial (Planta Ferreyra, Córdoba)",312AA,"Motores de explosión o de combustión interna, de émbolos y sus partes.","312AA Motores de explosión o de combustión interna, de émbolos y sus partes. (USD 174.43 M)",174432269.0,yes,yes,yes
-2008,33,INCHIK; DULCOR; GEORGALOS; ARGENUT FOOD SAS; BRO FOOD SUPPLIER,210Z,"Resto de preparados de legumbres,hortalizas y frutas","210C Duraznos conservados (USD 0) | 210Z Resto de preparados de legumbres,hortalizas y frutas (USD 81.48 M)",81476882.0,yes,yes,yes
+1005,121,ACEITERA GENERAL DEHEZA SA - AGD; FAMIGLIA ROSSI - MOLINOS ROSSI; GASTALDI HNOS. S.A.I Y C.F.E.I; GRUPO ARCOR; AGRÍCOLA PIQUILLÍN,106B,Maíz,106B Maíz (USD 2.32 B),2320526635.0,yes,yes,yes
+1201,89,Asociación de Cooperativas Argentinas (ACA) — Córdoba; AGRÍCOLA PIQUILLÍN; AGROSERVICIOS MEDITERRÁNEA; ALIMENTOS TANCACHA SA; BRO FOOD SUPPLIER,107A,Soja,107A Soja (USD 715.70 M),715701214.0,yes,yes,yes
+1202,56,INCHIK; ACEITERA GENERAL DEHEZA SA - AGD; GASTALDI HNOS. S.A.I Y C.F.E.I; GEORGALOS; AGRO TRANSPORTES S.A.,107D,Maní,107D Maní (USD 696.07 M),696067763.0,yes,yes,yes
+8703,6,"CINZIA VEHÍCULOS; Renault Argentina (Planta Santa Isabel, Córdoba); Stellantis (Complejo Industrial Ferreyra, Córdoba); FIAT ARGENTINA; DAYCO",313BB,Vehículos automóviles terrestres,313BB Vehículos automóviles terrestres (USD 674.54 M),674541884.0,yes,yes,yes
+8704,25,"Stellantis (Complejo Industrial Ferreyra, Córdoba); Iveco Argentina (Planta Ferreyra, Córdoba); METALÚRGICA ROGER; CRAVERO REPUESTOS; DRI-LEX®",313BB,Vehículos automóviles terrestres,313BB Vehículos automóviles terrestres (USD 674.54 M),674541884.0,yes,yes,yes
+8705,3,INDUMIX; ECONOVO; TZR BOMBAS Y EQUIPOS PARA HORMIGÓN,313BB,Vehículos automóviles terrestres,313BB Vehículos automóviles terrestres (USD 674.54 M),674541884.0,yes,yes,yes
+8707,6,ECONOVO; SCORZA; FERIOLI S.A.; METALÚRGICA ROGER; SICA,313BC,Partes y piezas de vehículos y tractores,313BC Partes y piezas de vehículos y tractores (USD 260.05 M),260046171.0,yes,yes,yes
+8708,55,DENSO MANUFACTURING ARGENTINA SA; Volkswagen Argentina (Centro Industrial Córdoba); AIMAR FRENOS; AKWEL CORDOBA ARGENTINA SA; CAPEMI,313BC,Partes y piezas de vehículos y tractores,313BC Partes y piezas de vehículos y tractores (USD 260.05 M),260046171.0,yes,yes,yes
+8714,6,AB FUNDAS; EVOLUTION CONTROL CABLE; GRUPO CARLOS KARABITIAN; HP REPUESTOS; KRAFTEC / DIRT RACE,313BC,Partes y piezas de vehículos y tractores,313BC Partes y piezas de vehículos y tractores (USD 260.05 M),260046171.0,yes,yes,yes
+1001,64,ACEITERA GENERAL DEHEZA SA - AGD; ESTABLECIMIENTO SAN PATRICIO SA; GEVAL SA; NATURAL CROPS; PAREDES CEREALES S.A.,106A,Trigo,106A Trigo (USD 258.29 M),258287630.0,yes,yes,yes
+0402,16,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; LA VARENSE; LACTEAR SA; LAS TRES NIÑAS - GRUPO ADECOAGRO; MANFREY,203A,Leches preparadas,203A Leches preparadas (USD 227.59 M),227591221.0,yes,yes,yes
+8407,1,ORESTE BERTA SA,312AA,"Motores de explosión o de combustión interna, de émbolos y sus partes.","312AA Motores de explosión o de combustión interna, de émbolos y sus partes. (USD 174.43 M)",174432269.0,yes,yes,yes
+8408,2,"FPT Industrial (Planta Ferreyra, Córdoba); ORESTE BERTA SA",312AA,"Motores de explosión o de combustión interna, de émbolos y sus partes.","312AA Motores de explosión o de combustión interna, de émbolos y sus partes. (USD 174.43 M)",174432269.0,yes,yes,yes
+8409,9,AKWEL CORDOBA ARGENTINA SA; DAYCO; FUNDICIÓN ARIENTE; PERNOS PESCARA; PERTRAK,312AA,"Motores de explosión o de combustión interna, de émbolos y sus partes.","312AA Motores de explosión o de combustión interna, de émbolos y sus partes. (USD 174.43 M)",174432269.0,yes,yes,yes
+2001,3,GRUPO ARCOR; PAMPA COMPAÑÍA DE CARNES - DUO SILVESTRE ESCABECHES; VANOLI - GRUPO DULCOR,210Z,"Resto de preparados de legumbres,hortalizas y frutas","210Z Resto de preparados de legumbres,hortalizas y frutas (USD 81.48 M)",81476882.0,yes,yes,yes
+2002,2,GRUPO ARCOR; OLIVARES SAN NICOLAS,210Z,"Resto de preparados de legumbres,hortalizas y frutas","210Z Resto de preparados de legumbres,hortalizas y frutas (USD 81.48 M)",81476882.0,yes,yes,yes
+2004,1,NUTRICIÓN PROFESIONAL S.R.L.,210Z,"Resto de preparados de legumbres,hortalizas y frutas","210Z Resto de preparados de legumbres,hortalizas y frutas (USD 81.48 M)",81476882.0,yes,yes,yes
+2006,3,DULCES ORIETA - GRUPO DULCOR; DULCOR; FRUNAT,210Z,"Resto de preparados de legumbres,hortalizas y frutas","210Z Resto de preparados de legumbres,hortalizas y frutas (USD 81.48 M)",81476882.0,yes,yes,yes
+2008,40,INCHIK; DULCOR; GEORGALOS; DULCES ORIETA - GRUPO DULCOR; CROPPERS - GRUPO MANIAGRO,210Z,"Resto de preparados de legumbres,hortalizas y frutas","210C Duraznos conservados (USD 0) | 210Z Resto de preparados de legumbres,hortalizas y frutas (USD 81.48 M)",81476882.0,yes,yes,yes
 1007,12,ACEITERA GENERAL DEHEZA SA - AGD; CAVERZASI ORTIN SEMILLAS; EDUARDO LUSSO S.A.; LOS ALGARROBOS SEMILLAS HÍBRIDAS; PAREDES CEREALES S.A.,106C,Sorgo granífero,106C Sorgo granífero (USD 69.27 M),69267815.0,yes,yes,yes
 1508,13,"ACEITERA GENERAL DEHEZA SA - AGD; Lorenzati, Ruetsch y Cia S.A.; Olega; ACEITES DEL DESIERTO; ASR - ALIMENTOS SANTA ROSA",208AC,Aceite de maní,208AC Aceite de maní (USD 69.18 M),69181724.0,yes,yes,yes
-2302,4,Jose Minetti y Cía. (Molino San José); GRANAM - COMPAÑÍA DE GRANOS AMERICANOS; HARINA FINEZZA; MOLINO SAN PEDRO,212B,"Afrecho, afrechillo, pellets (trigo,maíz, sorgo y mijo)","212B Afrecho, afrechillo, pellets (trigo,maíz, sorgo y mijo) (USD 53.98 M)",53981025.0,yes,yes,yes
-0405,15,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; BRO FOOD SUPPLIER; JL PRODUCTOS ALIMENTICIOS; MANIAGRO ARGENTINA; NUTRIN S.A.,203B,Manteca,203B Manteca (USD 53.74 M),53737731.0,yes,yes,yes
-1507,22,ACEITERA GENERAL DEHEZA SA - AGD; ALIMENTOS TANCACHA SA; ASR - ALIMENTOS SANTA ROSA; BIOFARMA; DIEZ INDUSTRIA DE ALIMENTOS,208AA,Aceite de soja,208AA Aceite de soja (USD 46.09 M),46086702.0,yes,yes,no
-8432,11,AGROMETAL SAI; AKRON; ASCANELLI SA; BTI AGRI; IMPLEMENTOS AGRÍCOLAS ESCAÑUELA,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios","312AL Otras máquinas y aparatos mecánicos, piezas y accesorios (USD 44.66 M)",44657495.0,yes,yes,no
-8433,7,IMPLEMENTOS AGRÍCOLAS ESCAÑUELA; METALFOR S.A.; BOMBASSEI ARGENTINA SA; JLS AGROMAQUINARIAS; MATERFER,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios","312AL Otras máquinas y aparatos mecánicos, piezas y accesorios (USD 44.66 M)",44657495.0,yes,yes,no
-8436,18,AKRON; ASCANELLI SA; AGROMEC SA; BTA TOOLS - BARBURY TEAM S.A.; COMOFRA,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios","312AL Otras máquinas y aparatos mecánicos, piezas y accesorios (USD 44.66 M)",44657495.0,yes,yes,no
-8437,18,AKRON; ASCANELLI SA; AGROMEC SA; GEA GERGOLET AGRÍCOLA; IGB TECNOLOGÍA,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios","312AL Otras máquinas y aparatos mecánicos, piezas y accesorios (USD 44.66 M)",44657495.0,yes,yes,no
-8501,6,E SOLUTIONS; GIACOBONE; KÜGELLAGER; PERTRAK; ADAS SRL,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
-8504,8,ARTECHE; ELECTROPART CORDOBA; MAYO TRANSFORMADORES; SERVELEC SRL; TTE,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
-8511,1,FABRICA DE COLECTORES,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
-8537,2,CYRUS SRL; MICRO GREEN SA,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
-8544,3,EVOLUTION CONTROL CABLE; MAP SA; CABLESCOM,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
-0406,31,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; EL MAESTRO QUESERO; ESTILO REAL – ARROYO CABRAL; LACTEAR SA,203C,Quesos,203C Quesos (USD 38.89 M),38885250.0,yes,yes,no
-3901,37,BERTOTTO BOGLIONE; MISTER PET PREMIUM; VITOPEL ARGENTINA SA; ARO PLASTYC; BLONDI,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
-3917,10,FUNDICIÓN ARIENTE; AIMARETTI; METPAL; OLEOHIDRÁULICA TECNICORD S.A.; TALPE,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
-3923,30,CONAM SRL; INFOREST SRL; KLOCKNER PENTAPLAST DE ARGENTINA; ROTOR TANQUES; VITOPEL ARGENTINA SA,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
-3925,5,BERTOTTO BOGLIONE; LASSO SA; ROTOR TANQUES; TALPE; SCOLARI NANT E HIJOS SRL,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
-2304,3,ACEITERA GENERAL DEHEZA SA - AGD; LA TROJA; ALPRO,212AE,Subproductos oleaginosos de soja,212AE Subproductos oleaginosos de soja (USD 32.52 M),32518856.0,yes,yes,no
-4010,5,DAYCO; AGRETEQ; SMB CLEVER; MECANIZADOS DEL CENTRO; PINDARO INDUSTRIAL,304,Cauchos y sus manufacturas,304 Cauchos y sus manufacturas (USD 30.97 M),30972444.0,yes,yes,no
+2302,7,Jose Minetti y Cía. (Molino San José); GRANAM - COMPAÑÍA DE GRANOS AMERICANOS; GRUPO ARCOR; MOLINOS FÉNIX ALIMENTOS - MOLINOS FÉNIX NUTRICIÓN - GRUPO ALIMENTICIO SA; LINCE S.A.,212B,"Afrecho, afrechillo, pellets (trigo,maíz, sorgo y mijo)","212B Afrecho, afrechillo, pellets (trigo,maíz, sorgo y mijo) (USD 53.98 M)",53981025.0,yes,yes,yes
+0405,15,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; TONADITA; EL CRAIKENSE; BRO FOOD SUPPLIER; JL PRODUCTOS ALIMENTICIOS,203B,Manteca,203B Manteca (USD 53.74 M),53737731.0,yes,yes,yes
+1507,23,ACEITERA GENERAL DEHEZA SA - AGD; ALIMENTOS TANCACHA SA; ASR - ALIMENTOS SANTA ROSA; BIOFARMA; COOPERATIVA AGRICULTORES DEL SUR LTDA.,208AA,Aceite de soja,208AA Aceite de soja (USD 46.09 M),46086702.0,yes,yes,no
+8432,32,AGROMETAL SAI; AKRON; ASCANELLI SA; AGROMEC SA; BTI AGRI,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios","312AL Otras máquinas y aparatos mecánicos, piezas y accesorios (USD 44.66 M)",44657495.0,yes,yes,no
+8433,37,AGROMEC SA; AMADAS; EVOLUTION CONTROL CABLE; FRANCO FABRIL; GEA GERGOLET AGRÍCOLA,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios","312AL Otras máquinas y aparatos mecánicos, piezas y accesorios (USD 44.66 M)",44657495.0,yes,yes,no
+8434,5,EL MAESTRO QUESERO; ETI; CGM EQUIPAMIENTOS; COMPUTROL; JORVIC,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios","312AL Otras máquinas y aparatos mecánicos, piezas y accesorios (USD 44.66 M)",44657495.0,yes,yes,no
+8436,25,AKRON; ASCANELLI SA; AGROMEC SA; BLADE TUNGSTEN; GEA GERGOLET AGRÍCOLA,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios","312AL Otras máquinas y aparatos mecánicos, piezas y accesorios (USD 44.66 M)",44657495.0,yes,yes,no
+8437,25,AKRON; ASCANELLI SA; GESSI; LEUCA SISTEMAS DE AIRE; SELECA TECNOLOGÍA SRL,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios","312AL Otras máquinas y aparatos mecánicos, piezas y accesorios (USD 44.66 M)",44657495.0,yes,yes,no
+8479,33,ASCANELLI SA; BERTOTTO BOGLIONE; DARIO DELFABRO S.R.L.; FADICAD SA; GEA GERGOLET AGRÍCOLA,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios","312AL Otras máquinas y aparatos mecánicos, piezas y accesorios (USD 44.66 M)",44657495.0,yes,yes,no
+8501,8,ADAS SRL; MOTORES Y SERVICIOS SA; ROSSUAR; E SOLUTIONS; GIACOBONE,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8502,2,GIACOBONE; ROSSUAR,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8504,13,ARTECHE; ELECTROPART CORDOBA; MAYO TRANSFORMADORES; NOSSO; SERVELEC SRL,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8507,3,SERVELEC SRL; BATERIAS AMSA; ITHURBIDE,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8511,2,FABRICA DE COLECTORES; NOSSO,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8514,3,PANHEL; FUNDARG SRL; INDEF,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8515,2,COSTANTINI; ROSSUAR,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8516,4,TEYBO; BONOMI RESISTENCIAS ELÉCTRICAS; DYSEM; ORMAY,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8517,3,CEM ALARMAS; CONTROL GLOBAL; WOXI,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8521,2,STARLIGH; ICC SOLUCIONES TECNOLÓGICAS,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8525,2,STARLIGH; DTA SA,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8526,2,ABELARDO CUFFIA SA; CONTROLNET,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8531,2,CEM ALARMAS; SEI - SOLUCIONES ELECTRÓNICAS INTEGRALES,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8535,1,METAL CE SRL,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8536,4,NOSSO; COMPUTROL; FERRETERA GENERAL PAZ SRL; METAL CE SRL,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8537,6,GEDING AUTOMATISMOS Y CONTROL S.R.L.; NOSSO; ELECTROINGENIERIA ICS SA; SLICETEX ELECTRONICS; CYRUS SRL,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8539,1,INDUSTRIAS MEX,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8541,2,GIACOBONE; TRV ECO ENERGY,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8543,3,CIS GROUP; TRV ECO ENERGY; COMPUTROL,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8544,6,CIS GROUP; ABEL CHASCO; COMPUTROL; MAP SA; EVOLUTION CONTROL CABLE,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+8547,1,AKWEL CORDOBA ARGENTINA SA,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,312B Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes (USD 41.03 M),41032100.0,yes,yes,no
+0406,32,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; ESTILO REAL – ARROYO CABRAL; LACTEAR SA; LACTEOS CDS - LACNAT - LOMBARDE,203C,Quesos,203C Quesos (USD 38.89 M),38885250.0,yes,yes,no
+3901,38,LATIN MATERIALS; BERTOTTO BOGLIONE; MISTER PET PREMIUM; VITOPEL ARGENTINA SA; ARO PLASTYC,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+3902,1,ITHURBIDE,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+3905,1,ALPHA QUIMICA S.R.L.,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+3906,1,INDUSTRIA LAM,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+3910,1,LATIN MATERIALS,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+3912,1,MAGOAL,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+3916,1,ELDA / TP3D / TP S. R. L.,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+3917,19,AKWEL CORDOBA ARGENTINA SA; GOMACORD S.A.; INFOREST SRL; O-TEK; PLASTICOS SAN FRANCISCO SRL,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+3918,1,O.H.F.,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+3919,2,ESTINDHER SA; FERRETERA GENERAL PAZ SRL,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+3920,6,KARIKAL; KLOCKNER PENTAPLAST DE ARGENTINA; PLÁSTICOS DEL PACÍFICO; VITOPEL ARGENTINA SA; FOBOS - CLIPSAR,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+3921,1,KARIKAL,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+3922,1,TRESOL,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+3923,46,BERTOTTO BOGLIONE; CAPYC; DIMAT S.R.L.; EXTRUSYSTEM - GRUPO IN PACK; INFOREST SRL,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+3924,2,BUENACEPA; ANGEMAN,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+3925,8,BERTOTTO BOGLIONE; MOLDEAR; ROTOR TANQUES; VULCANO; O.H.F.,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+3926,16,AKWEL CORDOBA ARGENTINA SA; BAG BIO; BESORA HNOS SRL; CAPEMI; EMBALPHARMA S.A,303,Materias plásticas y sus manufacturas,303 Materias plásticas y sus manufacturas (USD 37.23 M),37228990.0,yes,yes,no
+2304,14,ACEITERA GENERAL DEHEZA SA - AGD; AGROSERVICIOS MEDITERRÁNEA; ALIMENTOS TANCACHA SA; ASR - ALIMENTOS SANTA ROSA; COOPERATIVA AGRICULTORES DEL SUR LTDA.,212AE,Subproductos oleaginosos de soja,212AE Subproductos oleaginosos de soja (USD 32.52 M),32518856.0,yes,yes,no
+4001,1,GOMACORD S.A.,304,Cauchos y sus manufacturas,304 Cauchos y sus manufacturas (USD 30.97 M),30972444.0,yes,yes,no
+4005,2,MULTICOR SA; RUBBER,304,Cauchos y sus manufacturas,304 Cauchos y sus manufacturas (USD 30.97 M),30972444.0,yes,yes,no
+4008,1,RUBBER,304,Cauchos y sus manufacturas,304 Cauchos y sus manufacturas (USD 30.97 M),30972444.0,yes,yes,no
+4009,3,CAUPLAS; HYDROM OLEODINAMICA S.R.L; OLEOHIDRÁULICA TECNICORD S.A.,304,Cauchos y sus manufacturas,304 Cauchos y sus manufacturas (USD 30.97 M),30972444.0,yes,yes,no
+4010,6,DAYCO; KÜGELLAGER; AGRETEQ; SMB CLEVER; MECANIZADOS DEL CENTRO,304,Cauchos y sus manufacturas,304 Cauchos y sus manufacturas (USD 30.97 M),30972444.0,yes,yes,no
 4011,22,AKWEL CORDOBA ARGENTINA SA; BTI AGRI; GACELA DENTAL; GRUPO TORREON; INFAS GROUP,304,Cauchos y sus manufacturas,304 Cauchos y sus manufacturas (USD 30.97 M),30972444.0,yes,yes,no
-1901,28,LA BLANCA SA; FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; DULCOR; CAPYC; ESNAOLA - GRUPO DULCOR,299,Resto de MOA,299 Resto de MOA (USD 30.45 M),30451363.0,yes,yes,no
-1904,5,GEORGALOS; CROPPERS - GRUPO MANIAGRO; CROCCANTO; FERMAR; SNACKS DANAL,299,Resto de MOA,299 Resto de MOA (USD 30.45 M),30451363.0,yes,yes,no
-2106,1,VERTRAUEN,299,Resto de MOA,299 Resto de MOA (USD 30.45 M),30451363.0,yes,yes,no
-2309,31,ALIMENTOS TANCACHA SA; ALVICOR / LUCERITO; BIOFARMA; COOPERATIVA AGRICULTORES DEL SUR LTDA.; GEPSA,212Z,Resto de residuos alimenticios y preparados para animales,212Z Resto de residuos alimenticios y preparados para animales (USD 30.23 M),30232302.0,yes,yes,no
-1902,9,FAMIGLIA ROSSI - MOLINOS ROSSI; FÁBRICA DE PASTAS BETTINI; AZAFRÁN RUEDO; LA ITALIANA; MOLINOS RÍO SEGUNDO - GRUPO VARAS,207CB,"Pastas alimenticias,productos de panadería y mezclas y pastas para la preparación de productos de panadería ","207CB Pastas alimenticias,productos de panadería y mezclas y pastas para la preparación de productos de panadería  (USD 29.41 M)",29405508.0,yes,yes,no
-1905,46,DULCOR; CERRO AZUL; BOMPANING; CARTOTECNICA HORES; CAVOUR DESARROLLOS,207CB,"Pastas alimenticias,productos de panadería y mezclas y pastas para la preparación de productos de panadería ","207CB Pastas alimenticias,productos de panadería y mezclas y pastas para la preparación de productos de panadería  (USD 29.41 M)",29405508.0,yes,yes,no
-0713,75,FAMIGLIA ROSSI - MOLINOS ROSSI; AGRO ARG SRL; ALEMAR SA / FUNNY; BARBALE AGROPECUARIA; BRO FOOD SUPPLIER,104C,Legumbres,104C Legumbres (USD 28.18 M),28177292.0,yes,yes,no
-2202,9,Pritty; LA POSTA DEL ÁGUILA; AGUA MINERAL ELLA; CENTRAL DISTRIBUCIONES; CUNAGUA,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva","211Z Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva (USD 26.07 M)",26074058.0,yes,yes,no
-2203,9,Cervecería Quilmes — Planta Córdoba; METALURGICA VZ; PEÑÓN DEL ÁGUILA; ATON BEER; BUENAS MALTAS / TRAUMER BIER,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva","211Z Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva (USD 26.07 M)",26074058.0,yes,yes,no
+4016,6,CAPEMI; EMEGOM; GOMACORD S.A.; BOETTO SH; DGH SRL,304,Cauchos y sus manufacturas,304 Cauchos y sus manufacturas (USD 30.97 M),30972444.0,yes,yes,no
+1901,34,LA BLANCA SA; FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; DULCOR; CAPYC; CELIDARINA,299,Resto de MOA,299 Resto de MOA (USD 30.45 M),30451363.0,yes,yes,no
+1904,9,GEORGALOS; CROPPERS - GRUPO MANIAGRO; EGRAN; SYTARI; CROCCANTO,299,Resto de MOA,299 Resto de MOA (USD 30.45 M),30451363.0,yes,yes,no
+2101,2,VERDEFLOR; LA CUMBRECITA,299,Resto de MOA,299 Resto de MOA (USD 30.45 M),30451363.0,yes,yes,no
+2102,2,RDC S.A / RDC LEVADURAS / GRUPO BELTRÁN; LINCE S.A.,299,Resto de MOA,299 Resto de MOA (USD 30.45 M),30451363.0,yes,yes,no
+2103,7,AZAFRÁN RUEDO; DULCOR; PORTA HNOS S.A.; MOLÉ ALIMENTOS; NUTRICIÓN PROFESIONAL S.R.L.,299,Resto de MOA,299 Resto de MOA (USD 30.45 M),30451363.0,yes,yes,no
+2104,3,GRANDIET; MOLÉ ALIMENTOS; NUTRICIÓN PROFESIONAL S.R.L.,299,Resto de MOA,299 Resto de MOA (USD 30.45 M),30451363.0,yes,yes,no
+2105,1,GRIDO,299,Resto de MOA,299 Resto de MOA (USD 30.45 M),30451363.0,yes,yes,no
+2106,21,VERTRAUEN; ACEITERA GENERAL DEHEZA SA - AGD; CAVOUR DESARROLLOS; COREX; GRUPO ARCOR,299,Resto de MOA,299 Resto de MOA (USD 30.45 M),30451363.0,yes,yes,no
+2303,3,ACA BIO; BIO4; PORTA HNOS S.A.,299,Resto de MOA,299 Resto de MOA (USD 30.45 M),30451363.0,yes,yes,no
+2308,3,ALIMENTOS TANCACHA SA; PRONOR; COOP. AGRÍCOLA DE MONTE MAÍZ,212Z,Resto de residuos alimenticios y preparados para animales,212Z Resto de residuos alimenticios y preparados para animales (USD 30.23 M),30232302.0,yes,yes,no
+2309,42,ALIMENTOS TANCACHA SA; ALVICOR / LUCERITO; BIOFARMA; COOPERATIVA AGRICULTORES DEL SUR LTDA.; DER EXPORT SA,212Z,Resto de residuos alimenticios y preparados para animales,212Z Resto de residuos alimenticios y preparados para animales (USD 30.23 M),30232302.0,yes,yes,no
+1902,13,FAMIGLIA ROSSI - MOLINOS ROSSI; FÁBRICA DE PASTAS BETTINI; AZAFRÁN RUEDO; LA ITALIANA; LEGUME,207CB,"Pastas alimenticias,productos de panadería y mezclas y pastas para la preparación de productos de panadería ","207CB Pastas alimenticias,productos de panadería y mezclas y pastas para la preparación de productos de panadería  (USD 29.41 M)",29405508.0,yes,yes,no
+1905,54,DULCOR; CERRO AZUL; BOMPANING; FÁBRICA DE PASTAS BETTINI; FIRENZE S.R.L.,207CB,"Pastas alimenticias,productos de panadería y mezclas y pastas para la preparación de productos de panadería ","207CB Pastas alimenticias,productos de panadería y mezclas y pastas para la preparación de productos de panadería  (USD 29.41 M)",29405508.0,yes,yes,no
+0713,75,FAMIGLIA ROSSI - MOLINOS ROSSI; ALEMAR SA / FUNNY; BARBALE AGROPECUARIA; BRO FOOD SUPPLIER; CAMPO YAQUICHO,104C,Legumbres,104C Legumbres (USD 28.18 M),28177292.0,yes,yes,no
+2201,1,LA POSTA DEL ÁGUILA,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva","211Z Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva (USD 26.07 M)",26074058.0,yes,yes,no
+2202,12,Pritty; GRUPO ARCOR; BIOSA LATAM; ILEX NATURAL ENERGY / PRODUCTOS ESENCIALES; LA POSTA DEL ÁGUILA,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva","211Z Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva (USD 26.07 M)",26074058.0,yes,yes,no
+2203,9,Cervecería Quilmes — Planta Córdoba; PEÑÓN DEL ÁGUILA; METALURGICA VZ; ATON BEER; BUENAS MALTAS / TRAUMER BIER,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva","211Z Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva (USD 26.07 M)",26074058.0,yes,yes,no
+2207,3,ACA BIO; BIO4; PORTA HNOS S.A.,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva","211Z Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva (USD 26.07 M)",26074058.0,yes,yes,no
 2208,9,PORTA HNOS S.A.; PEÑÓN DEL ÁGUILA; ALQUIMISTA; ÁNGELES Y DEMONIOS GIN; AUSTRAL DESTILERÍA,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva","211Z Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva (USD 26.07 M)",26074058.0,yes,yes,no
-0409,25,DULCOR; CAPYC; CROPPERS - GRUPO MANIAGRO; FEDERACIÓN DE JÓVENES AGRARIOS COOP. Y MUTUALISTAS; MIEL DE MONTE,103,Miel,103 Miel (USD 22.78 M),22777523.0,yes,yes,no
-1806,25,ESNAOLA - GRUPO DULCOR; GEORGALOS; CERRO AZUL; CACAO; CHOCOLATES BARILOCHE - GRUPO PALMESANO,209CB,Preparaciones de cacao,209CB Preparaciones de cacao (USD 21.89 M),21890351.0,yes,yes,no
-0201,26,BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORÍFICO PAMPA DE VARE; CHENNA; CUSCO COWHIDES; FRIGORÍFICO RIO SEGUNDO,201AA,Carne bovina,201AA Carne bovina (USD 20.79 M),20793101.0,yes,yes,no
-0202,2,BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORÍFICO PAMPA DE VARE,201AA,Carne bovina,201AA Carne bovina (USD 20.79 M),20793101.0,yes,yes,no
-9018,4,FEAS ELECTRONICA; DENIMED EQUIPAMIENTOS ODONTOLÓGICOS; GACELA DENTAL; TEMIS TECH / ATRIAMEDICA,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes","399A Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes (USD 20.53 M)",20527178.0,yes,yes,no
-9021,5,PROMEDON S.A.; RAOMED SA; IMPLANT ARGENTINA - YNMO; FERNÁNDEZ BODEREAU ODONTOLOGÍA DE AVANZADA; INSTRELEC,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes","399A Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes (USD 20.53 M)",20527178.0,yes,yes,no
+2209,2,PORTA HNOS S.A.; OLIVARES VERDICCHIO,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva","211Z Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva (USD 26.07 M)",26074058.0,yes,yes,no
+1521,3,APICOLA JAUREGUI; APICOLA VAIROLATTI SRL; ECOLAB CRIANZA INTENSIVA DE ABEJAS REINAS Y SUB PRODUCTOS APICOLAS,208Z,Resto de grasas y aceites,208Z Resto de grasas y aceites (USD 23.13 M),23128438.0,yes,yes,no
+0409,25,DULCOR; CAPYC; FEDERACIÓN DE JÓVENES AGRARIOS COOP. Y MUTUALISTAS; MIEL DE MONTE; APICOLA JAUREGUI,103,Miel,103 Miel (USD 22.78 M),22777523.0,yes,yes,no
+1806,26,ESNAOLA - GRUPO DULCOR; GEORGALOS; CERRO AZUL; CHOCOLATES BARILOCHE - GRUPO PALMESANO; GRUPO ARCOR,209CB,Preparaciones de cacao,209CB Preparaciones de cacao (USD 21.89 M),21890351.0,yes,yes,no
+0201,28,BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORÍFICO PAMPA DE VARE; FRIGORÍFICO RIO SEGUNDO; LA PASTORIL; PILAGÁ CARNES,201AA,Carne bovina,201AA Carne bovina (USD 20.79 M),20793101.0,yes,yes,no
+0202,8,BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORÍFICO PAMPA DE VARE; FRIGORÍFICO RIO SEGUNDO; LA PASTORIL; PILAGÁ CARNES,201AA,Carne bovina,201AA Carne bovina (USD 20.79 M),20793101.0,yes,yes,no
+9013,1,ACCME,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes","399A Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes (USD 20.53 M)",20527178.0,yes,yes,no
+9015,1,OMIXOM,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes","399A Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes (USD 20.53 M)",20527178.0,yes,yes,no
+9018,13,FEAS ELECTRONICA; CEC; DENIMED EQUIPAMIENTOS ODONTOLÓGICOS; GACELA DENTAL; LEISTUNG INGENIERÍA,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes","399A Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes (USD 20.53 M)",20527178.0,yes,yes,no
+9019,6,LEISTUNG INGENIERÍA; TECME S.A.; ACCME; BIARTIC SA; DYSEM,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes","399A Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes (USD 20.53 M)",20527178.0,yes,yes,no
+9021,7,PROMEDON S.A.; INFOREST SRL; RAOMED SA; SILMAG SA; IMPLANT ARGENTINA - YNMO,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes","399A Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes (USD 20.53 M)",20527178.0,yes,yes,no
+9022,1,DENIMED EQUIPAMIENTOS ODONTOLÓGICOS,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes","399A Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes (USD 20.53 M)",20527178.0,yes,yes,no
+9026,3,ALTOS TECHNOLOGIES; KR DEVICES; COMPUTROL,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes","399A Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes (USD 20.53 M)",20527178.0,yes,yes,no
+9027,2,SPINLOCK; OMIXOM,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes","399A Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes (USD 20.53 M)",20527178.0,yes,yes,no
+9028,1,DISCAR SA,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes","399A Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes (USD 20.53 M)",20527178.0,yes,yes,no
+9029,1,COMPUTROL,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes","399A Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes (USD 20.53 M)",20527178.0,yes,yes,no
+9030,2,NOSSO; SERVELEC SRL,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes","399A Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes (USD 20.53 M)",20527178.0,yes,yes,no
+9031,18,ABELARDO CUFFIA SA; AFENSIS; B&M; EQUILIBRADORAS TOB SRL; IE-MAT,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes","399A Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes (USD 20.53 M)",20527178.0,yes,yes,no
+9032,6,ABELARDO CUFFIA SA; NOSSO; TRV ECO ENERGY; COMPUTROL; HYDROM OLEODINAMICA S.R.L,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes","399A Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes (USD 20.53 M)",20527178.0,yes,yes,no
+1205,2,BRO FOOD SUPPLIER; GRUPO AGROEMPRESA (ARGENBEAN - AGROEMPRESA SEMILLAS),107Z,Resto semillas y frutos oleaginosos,107Z Resto semillas y frutos oleaginosos (USD 19.94 M),19944852.0,yes,yes,no
+1207,12,BRO FOOD SUPPLIER; CAPYC; CONCI SRL; CONO GROUP; DESARROLLOS AGRÍCOLAS ARGENTINOS SA,107Z,Resto semillas y frutos oleaginosos,107Z Resto semillas y frutos oleaginosos (USD 19.94 M),19944852.0,yes,yes,no
+1208,6,GEPSA; INDELMA - INSA; INSA MANÍ; LA TROJA; NATFOOD SAS,107Z,Resto semillas y frutos oleaginosos,107Z Resto semillas y frutos oleaginosos (USD 19.94 M),19944852.0,yes,yes,no
+1209,4,CAVERZASI ORTIN SEMILLAS; PEMAN SEMILLAS; SAGRA; SMART CAMPO SEMILLAS,107Z,Resto semillas y frutos oleaginosos,107Z Resto semillas y frutos oleaginosos (USD 19.94 M),19944852.0,yes,yes,no
+1211,1,AZAFRÁN RUEDO,107Z,Resto semillas y frutos oleaginosos,107Z Resto semillas y frutos oleaginosos (USD 19.94 M),19944852.0,yes,yes,no
 1214,43,PELLFOOD; ALFABAN SRL; ALFALFAR; ALFALFAS LIMENTOS; ALFASOUTH SAS,107Z,Resto semillas y frutos oleaginosos,107Z Resto semillas y frutos oleaginosos (USD 19.94 M),19944852.0,yes,yes,no
-1101,27,FAMIGLIA ROSSI - MOLINOS ROSSI; COOPERATIVA AGRICOLA GANADERA DE JUSTINIANO POSSE; GASTALDI HNOS. S.A.I Y C.F.E.I; MARIMBO; MOLINO CAÑUELAS,207A,Harina de trigo,207A Harina de trigo (USD 18.16 M),18158265.0,yes,yes,no
-1704,11,DULCOR; GEORGALOS; CAVOUR DESARROLLOS; CHOCOLATES BARILOCHE - GRUPO PALMESANO; EGRAN,209B,Artículos de confitería sin cacao,209B Artículos de confitería sin cacao (USD 17.05 M),17045737.0,yes,yes,no
+1101,29,FAMIGLIA ROSSI - MOLINOS ROSSI; COOPERATIVA AGRICOLA GANADERA DE JUSTINIANO POSSE; GASTALDI HNOS. S.A.I Y C.F.E.I; Jose Minetti y Cía. (Molino San José); MARIMBO,207A,Harina de trigo,207A Harina de trigo (USD 18.16 M),18158265.0,yes,yes,no
+1704,15,DULCOR; GEORGALOS; CHOCOLATES BARILOCHE - GRUPO PALMESANO; GRUPO ARCOR; JL PRODUCTOS ALIMENTICIOS,209B,Artículos de confitería sin cacao,209B Artículos de confitería sin cacao (USD 17.05 M),17045737.0,yes,yes,no
+2904,2,SERVQUIM SA; FACYT,302B,Productos químicos orgánicos,302B Productos químicos orgánicos (USD 11.96 M),11963845.0,yes,yes,no
+2921,1,PETROQUÍMICA RIO TERCERO SA,302B,Productos químicos orgánicos,302B Productos químicos orgánicos (USD 11.96 M),11963845.0,yes,yes,no
 2923,2,ACEITERA GENERAL DEHEZA SA - AGD; WILBEY TENSOACTIVOS ARGENTINOS SRL,302B,Productos químicos orgánicos,302B Productos químicos orgánicos (USD 11.96 M),11963845.0,yes,yes,no
 2929,2,Petroquímica Río Tercero; PETROQUÍMICA RIO TERCERO SA,302B,Productos químicos orgánicos,302B Productos químicos orgánicos (USD 11.96 M),11963845.0,yes,yes,no
-8415,1,DENSO MANUFACTURING ARGENTINA SA,312AC,"Material, máquinas y aparatos para la producción de frío y sus partes","312AC Material, máquinas y aparatos para la producción de frío y sus partes (USD 10.43 M)",10430885.0,yes,yes,no
-8418,5,DENSO MANUFACTURING ARGENTINA SA; ICE SA; TECNOAIR; MICRO GREEN SA; SIMSA,312AC,"Material, máquinas y aparatos para la producción de frío y sus partes","312AC Material, máquinas y aparatos para la producción de frío y sus partes (USD 10.43 M)",10430885.0,yes,yes,no
-2305,11,"Lorenzati, Ruetsch y Cia S.A.; Olega; INDELMA — Insa; GC EXPORT SA - GRUPO CAVIGLIASSO S.A.; INDELMA - INSA",212AD,Subproductos oleaginosos de maní,212AD Subproductos oleaginosos de maní (USD 9.75 M),9746090.0,yes,no,no
-1102,7,FAMIGLIA ROSSI - MOLINOS ROSSI; GRUPO ARCOR; EGRAN; MOLINOS FÉNIX ALIMENTOS - MOLINOS FÉNIX NUTRICIÓN - GRUPO ALIMENTICIO SA; FULL CORN SA,207Z,"Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería","207Z Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería (USD 8.99 M)",8989351.0,yes,no,no
-1103,9,FAMIGLIA ROSSI - MOLINOS ROSSI; GRUPO ARCOR; EGRAN; GRANAM - COMPAÑÍA DE GRANOS AMERICANOS; MOLINOS FÉNIX ALIMENTOS - MOLINOS FÉNIX NUTRICIÓN - GRUPO ALIMENTICIO SA,207Z,"Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería","207Z Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería (USD 8.99 M)",8989351.0,yes,no,no
-1108,2,GRUPO ARCOR; DIMAX ALIMENTOS,207Z,"Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería","207Z Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería (USD 8.99 M)",8989351.0,yes,no,no
-1206,23,Asociación de Cooperativas Argentinas (ACA) — Córdoba; ACEITERA GENERAL DEHEZA SA - AGD; AGRO ARG SRL; BARBALE AGROPECUARIA; BRO FOOD SUPPLIER,107B,Girasol,107B Girasol (USD 8.54 M),8542480.0,yes,no,no
-8413,34,BERTOTTO BOGLIONE; EDGE INSTRUMENTS; GEA GERGOLET AGRÍCOLA; INDUSTRIA JM; INFOREST SRL,312AB,"Bombas, motobombas, turbobombas y sus partes","312AB Bombas, motobombas, turbobombas y sus partes (USD 8.32 M)",8318446.0,yes,no,no
+2936,1,KDIAL,302B,Productos químicos orgánicos,302B Productos químicos orgánicos (USD 11.96 M),11963845.0,yes,yes,no
+2941,1,BIOINSUMOS ALIMENTICIOS,302B,Productos químicos orgánicos,302B Productos químicos orgánicos (USD 11.96 M),11963845.0,yes,yes,no
+8415,2,DENSO MANUFACTURING ARGENTINA SA; ICE SA,312AC,"Material, máquinas y aparatos para la producción de frío y sus partes","312AC Material, máquinas y aparatos para la producción de frío y sus partes (USD 10.43 M)",10430885.0,yes,yes,no
+8418,9,DENSO MANUFACTURING ARGENTINA SA; ETI; FAME SA; FRUSSO; JORVIC,312AC,"Material, máquinas y aparatos para la producción de frío y sus partes","312AC Material, máquinas y aparatos para la producción de frío y sus partes (USD 10.43 M)",10430885.0,yes,yes,no
+2305,12,"Lorenzati, Ruetsch y Cia S.A.; Olega; INDELMA — Insa; ASR - ALIMENTOS SANTA ROSA; GC EXPORT SA - GRUPO CAVIGLIASSO S.A.",212AD,Subproductos oleaginosos de maní,212AD Subproductos oleaginosos de maní (USD 9.75 M),9746090.0,yes,no,no
+1102,12,FAMIGLIA ROSSI - MOLINOS ROSSI; GRUPO ARCOR; CELIDARINA; EGRAN; GRANAM - COMPAÑÍA DE GRANOS AMERICANOS,207Z,"Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería","207Z Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería (USD 8.99 M)",8989351.0,yes,no,no
+1103,10,FAMIGLIA ROSSI - MOLINOS ROSSI; GRUPO ARCOR; EGRAN; GRANAM - COMPAÑÍA DE GRANOS AMERICANOS; MOLINOS FÉNIX ALIMENTOS - MOLINOS FÉNIX NUTRICIÓN - GRUPO ALIMENTICIO SA,207Z,"Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería","207Z Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería (USD 8.99 M)",8989351.0,yes,no,no
+1104,10,AGROSERVICIOS MEDITERRÁNEA; ALIMENTOS TANCACHA SA; ALVICOR / LUCERITO; DER EXPORT SA; GRANAM - COMPAÑÍA DE GRANOS AMERICANOS,207Z,"Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería","207Z Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería (USD 8.99 M)",8989351.0,yes,no,no
+1105,1,DIMAX ALIMENTOS,207Z,"Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería","207Z Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería (USD 8.99 M)",8989351.0,yes,no,no
+1106,8,ACEITES DEL DESIERTO; LA TROJA; MOLINOS FÉNIX ALIMENTOS - MOLINOS FÉNIX NUTRICIÓN - GRUPO ALIMENTICIO SA; NATURAL FOOD; PRAGA ALIMENTOS,207Z,"Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería","207Z Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería (USD 8.99 M)",8989351.0,yes,no,no
+1107,2,CAFÉ VELEZ; JUMALÁ SA,207Z,"Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería","207Z Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería (USD 8.99 M)",8989351.0,yes,no,no
+1108,3,GRUPO ARCOR; DIMAX ALIMENTOS; GRANDIET,207Z,"Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería","207Z Resto de los productos de molinería y de las preparaciones a base de cereales,harina,almidón,fécula o leche,productos de pastelería (USD 8.99 M)",8989351.0,yes,no,no
+1206,23,Asociación de Cooperativas Argentinas (ACA) — Córdoba; AGRO ARG SRL; BARBALE AGROPECUARIA; BRO FOOD SUPPLIER; COTAGRO,107B,Girasol,107B Girasol (USD 8.54 M),8542480.0,yes,no,no
+8413,38,BERTOTTO BOGLIONE; ANTARES SRL; EDGE INSTRUMENTS; IMEGEN; INDUSTRIA JM,312AB,"Bombas, motobombas, turbobombas y sus partes","312AB Bombas, motobombas, turbobombas y sus partes (USD 8.32 M)",8318446.0,yes,no,no
+8414,14,DENIMED EQUIPAMIENTOS ODONTOLÓGICOS; GATTI VENTILACIÓN; INFOREST SRL; LEUCA SISTEMAS DE AIRE; MBA S.A.,312AB,"Bombas, motobombas, turbobombas y sus partes","312AB Bombas, motobombas, turbobombas y sus partes (USD 8.32 M)",8318446.0,yes,no,no
 1003,3,Asociación de Cooperativas Argentinas (ACA) — Córdoba; PAREDES CEREALES S.A.; SAGRA,106ZB,Cebada,106ZB Cebada (USD 7.47 M),7473589.0,yes,no,no
 1512,3,ACEITERA GENERAL DEHEZA SA - AGD; BRO FOOD SUPPLIER; MOLINO CAÑUELAS,208AE,Aceite de girasol,208AE Aceite de girasol (USD 7.00 M),7004708.0,yes,no,no
-8426,4,AXIONLIFT; FERIOLI S.A.; SICA; INDUSTRIA FAMER,312AF,"Máquinas y aparatos para la elevación, carga y descarga","312AF Máquinas y aparatos para la elevación, carga y descarga (USD 6.21 M)",6211003.0,yes,no,no
-8427,1,LINDE RODADOS MEDITERRANEA S.A,312AF,"Máquinas y aparatos para la elevación, carga y descarga","312AF Máquinas y aparatos para la elevación, carga y descarga (USD 6.21 M)",6211003.0,yes,no,no
-8428,10,AXIONLIFT; AGROMEC SA; PIERSANTI - METAL NOET; TRANSFIL; AGRETEQ,312AF,"Máquinas y aparatos para la elevación, carga y descarga","312AF Máquinas y aparatos para la elevación, carga y descarga (USD 6.21 M)",6211003.0,yes,no,no
-7318,18,BARBERO; GRUPO TORREON; METALMED; METALÚRGICA GERBAUDO SA; PELLACANI S.R.L.,311AZ,"Resto de arrabio,fundición,hierro o acero","311AZ Resto de arrabio,fundición,hierro o acero (USD 5.73 M)",5733165.0,yes,no,no
-7320,2,FAESA; SECMAN,311AZ,"Resto de arrabio,fundición,hierro o acero","311AZ Resto de arrabio,fundición,hierro o acero (USD 5.73 M)",5733165.0,yes,no,no
-0703,10,BESSO HNOS; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; AZAFRÁN RUEDO; GARLIC AJO NEGRO; IMPLEMENTOS AGRÍCOLAS ESCAÑUELA,104B,Ajos,104A Cebollas (USD 443.3 K) | 104B Ajos (USD 4.08 M),4075791.0,yes,no,no
-4819,9,ENCAPA SA; GRUPO ARCOR; PAPELERA CUMBRE SA; SOLUCIONES GRÁFICAS; CORRUGADORA CENTRO,306A,"Papel,cartón y sus manufacturas","306A Papel,cartón y sus manufacturas (USD 3.64 M)",3641819.0,yes,no,no
-4823,30,CARTOTECNICA HORES; CONAM SRL; ENCAPA SA; GRAFIN ARGENTINA S.A.; GRUPO ARCOR,306A,"Papel,cartón y sus manufacturas","306A Papel,cartón y sus manufacturas (USD 3.64 M)",3641819.0,yes,no,no
-3002,12,BRIZUELA-LAB; FRIGORÍFICO PAMPA DE VARE; FRIGORÍFICO RIO SEGUNDO; OSCAR DULCE; RDC S.A / RDC LEVADURAS / GRUPO BELTRÁN,302C,Productos farmacéuticos,302C Productos farmacéuticos (USD 3.36 M),3357053.0,yes,no,no
+8425,7,DARIO DELFABRO S.R.L.; FADICAD SA; GAN MAR; PESSOT SRL; HIDRÁULICOS Y HERRAMIENTAS MORANO,312AF,"Máquinas y aparatos para la elevación, carga y descarga","312AF Máquinas y aparatos para la elevación, carga y descarga (USD 6.21 M)",6211003.0,yes,no,no
+8426,7,AXIONLIFT; HIDRO-GRUBERT - PALFINGER; REFIRE; SYRA; FERIOLI S.A.,312AF,"Máquinas y aparatos para la elevación, carga y descarga","312AF Máquinas y aparatos para la elevación, carga y descarga (USD 6.21 M)",6211003.0,yes,no,no
+8427,6,AGROMEC SA; DARIO DELFABRO S.R.L.; FERIOLI S.A.; HIDRÁULICOS Y HERRAMIENTAS MORANO; TORLETTI HIDRÁULICOS,312AF,"Máquinas y aparatos para la elevación, carga y descarga","312AF Máquinas y aparatos para la elevación, carga y descarga (USD 6.21 M)",6211003.0,yes,no,no
+8428,37,AXIONLIFT; AKRON; CONMECA; COSTANTINI; ENVAMEC,312AF,"Máquinas y aparatos para la elevación, carga y descarga","312AF Máquinas y aparatos para la elevación, carga y descarga (USD 6.21 M)",6211003.0,yes,no,no
+8429,5,GEA GERGOLET AGRÍCOLA; INDU-VAL; KUARSO; COR-VIAL SA; TORTONE,312AF,"Máquinas y aparatos para la elevación, carga y descarga","312AF Máquinas y aparatos para la elevación, carga y descarga (USD 6.21 M)",6211003.0,yes,no,no
+8430,14,GROSSPAL; KUARSO; METALURGICA MONTICELLI; OMAR MARTIN; PAUNY,312AF,"Máquinas y aparatos para la elevación, carga y descarga","312AF Máquinas y aparatos para la elevación, carga y descarga (USD 6.21 M)",6211003.0,yes,no,no
+8431,6,COSTANTINI; EVOLUTION CONTROL CABLE; OMAR MARTIN; ESTABLECIMIENTO METALURGICO MF S.R.L.; G&P IMPLEMENTOS,312AF,"Máquinas y aparatos para la elevación, carga y descarga","312AF Máquinas y aparatos para la elevación, carga y descarga (USD 6.21 M)",6211003.0,yes,no,no
+7201,1,METALURGICA RIO III - LIUGONG CÓRDOBA,311AZ,"Resto de arrabio,fundición,hierro o acero","311AZ Resto de arrabio,fundición,hierro o acero (USD 5.73 M)",5733165.0,yes,no,no
+7310,1,TEKNIX,311AZ,"Resto de arrabio,fundición,hierro o acero","311AZ Resto de arrabio,fundición,hierro o acero (USD 5.73 M)",5733165.0,yes,no,no
+7311,2,MBA S.A.; RAPPACHIANI,311AZ,"Resto de arrabio,fundición,hierro o acero","311AZ Resto de arrabio,fundición,hierro o acero (USD 5.73 M)",5733165.0,yes,no,no
+7314,1,METALURGICA RE SRL,311AZ,"Resto de arrabio,fundición,hierro o acero","311AZ Resto de arrabio,fundición,hierro o acero (USD 5.73 M)",5733165.0,yes,no,no
+7317,1,DI TOMASO SRL - ARGENFIX,311AZ,"Resto de arrabio,fundición,hierro o acero","311AZ Resto de arrabio,fundición,hierro o acero (USD 5.73 M)",5733165.0,yes,no,no
+7318,21,METALÚRGICA GERBAUDO SA; PELLACANI S.R.L.; TARANTO SA; BOETTO SH; FERRETERA GENERAL PAZ SRL,311AZ,"Resto de arrabio,fundición,hierro o acero","311AZ Resto de arrabio,fundición,hierro o acero (USD 5.73 M)",5733165.0,yes,no,no
+7320,3,FAESA; RESORTES ARGENTINA; SECMAN,311AZ,"Resto de arrabio,fundición,hierro o acero","311AZ Resto de arrabio,fundición,hierro o acero (USD 5.73 M)",5733165.0,yes,no,no
+7323,3,BARBERO; TEYBO; VASO GÜIRA,311AZ,"Resto de arrabio,fundición,hierro o acero","311AZ Resto de arrabio,fundición,hierro o acero (USD 5.73 M)",5733165.0,yes,no,no
+7325,4,SANCHEZ Y PICCIONI S.A.; BORMAN SRL; CONECTAR; METAL CE SRL,311AZ,"Resto de arrabio,fundición,hierro o acero","311AZ Resto de arrabio,fundición,hierro o acero (USD 5.73 M)",5733165.0,yes,no,no
+7326,12,BESORA HNOS SRL; ELECTRO CORDOBA SA; FUMISCOR; MAGNO; METALURGICA MONTICELLI,311AZ,"Resto de arrabio,fundición,hierro o acero","311AZ Resto de arrabio,fundición,hierro o acero (USD 5.73 M)",5733165.0,yes,no,no
+0703,10,BESSO HNOS; AGROPLANT; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; AZAFRÁN RUEDO; GARLIC AJO NEGRO,104B,Ajos,104A Cebollas (USD 443.3 K) | 104B Ajos (USD 4.08 M),4075791.0,yes,no,no
+2806,1,PETROQUÍMICA RIO TERCERO SA,302A,Productos químicos inorgánicos,302A Productos químicos inorgánicos (USD 4.00 M),4003480.0,yes,no,no
+2811,1,GAS CARBONICO CHIANTORE SAI,302A,Productos químicos inorgánicos,302A Productos químicos inorgánicos (USD 4.00 M),4003480.0,yes,no,no
+2815,1,PETROQUÍMICA RIO TERCERO SA,302A,Productos químicos inorgánicos,302A Productos químicos inorgánicos (USD 4.00 M),4003480.0,yes,no,no
+2827,1,PETROQUÍMICA RIO TERCERO SA,302A,Productos químicos inorgánicos,302A Productos químicos inorgánicos (USD 4.00 M),4003480.0,yes,no,no
+2828,1,PETROQUÍMICA RIO TERCERO SA,302A,Productos químicos inorgánicos,302A Productos químicos inorgánicos (USD 4.00 M),4003480.0,yes,no,no
+2836,4,VERDOL; EL CERRITO SAS; GRIGIONI MINERALES; YUSPE - GRUPO DULCOR,302A,Productos químicos inorgánicos,302A Productos químicos inorgánicos (USD 4.00 M),4003480.0,yes,no,no
+2842,1,RECUPERAR SRL,302A,Productos químicos inorgánicos,302A Productos químicos inorgánicos (USD 4.00 M),4003480.0,yes,no,no
+2849,2,TANTAL TUNGSTEN SOLUTIONS; GRAFITOIL,302A,Productos químicos inorgánicos,302A Productos químicos inorgánicos (USD 4.00 M),4003480.0,yes,no,no
+4802,1,PAPELERA CUMBRE SA,306A,"Papel,cartón y sus manufacturas","306A Papel,cartón y sus manufacturas (USD 3.64 M)",3641819.0,yes,no,no
+4803,1,CLEAN COR S.A.,306A,"Papel,cartón y sus manufacturas","306A Papel,cartón y sus manufacturas (USD 3.64 M)",3641819.0,yes,no,no
+4805,1,COPSI,306A,"Papel,cartón y sus manufacturas","306A Papel,cartón y sus manufacturas (USD 3.64 M)",3641819.0,yes,no,no
+4808,1,PAPELERA CUMBRE SA,306A,"Papel,cartón y sus manufacturas","306A Papel,cartón y sus manufacturas (USD 3.64 M)",3641819.0,yes,no,no
+4814,1,PAPELERA CUMBRE SA,306A,"Papel,cartón y sus manufacturas","306A Papel,cartón y sus manufacturas (USD 3.64 M)",3641819.0,yes,no,no
+4817,1,PAPELERA CUMBRE SA,306A,"Papel,cartón y sus manufacturas","306A Papel,cartón y sus manufacturas (USD 3.64 M)",3641819.0,yes,no,no
+4818,1,CLEAN COR S.A.,306A,"Papel,cartón y sus manufacturas","306A Papel,cartón y sus manufacturas (USD 3.64 M)",3641819.0,yes,no,no
+4819,12,ROTATIVAS CÓRDOBA S.A; CERVENY / TURBOVAC; NEOTRADE; PAPELERA CUMBRE SA; SOLUCIONES GRÁFICAS,306A,"Papel,cartón y sus manufacturas","306A Papel,cartón y sus manufacturas (USD 3.64 M)",3641819.0,yes,no,no
+4820,2,+LATINA; PAPRIKA,306A,"Papel,cartón y sus manufacturas","306A Papel,cartón y sus manufacturas (USD 3.64 M)",3641819.0,yes,no,no
+4821,1,INPAR AUTOADHESIVOS,306A,"Papel,cartón y sus manufacturas","306A Papel,cartón y sus manufacturas (USD 3.64 M)",3641819.0,yes,no,no
+4822,1,CONAM SRL,306A,"Papel,cartón y sus manufacturas","306A Papel,cartón y sus manufacturas (USD 3.64 M)",3641819.0,yes,no,no
+4823,30,CARTOTECNICA HORES; ENCAPA SA; MOLDERIL SA; CONAM SRL; GRAFIN ARGENTINA S.A.,306A,"Papel,cartón y sus manufacturas","306A Papel,cartón y sus manufacturas (USD 3.64 M)",3641819.0,yes,no,no
+3001,2,TISSUM; ECOLAB CRIANZA INTENSIVA DE ABEJAS REINAS Y SUB PRODUCTOS APICOLAS,302C,Productos farmacéuticos,302C Productos farmacéuticos (USD 3.36 M),3357053.0,yes,no,no
+3002,13,BRIZUELA-LAB; NATOCOR; SERVQUIM SA; FACYT; FRIGORÍFICO PAMPA DE VARE,302C,Productos farmacéuticos,302C Productos farmacéuticos (USD 3.36 M),3357053.0,yes,no,no
 3003,2,LABORATORIOS PUEBLA; PILL.AR,302C,Productos farmacéuticos,302C Productos farmacéuticos (USD 3.36 M),3357053.0,yes,no,no
-0701,29,BESSO HNOS; AGROPECUARIA VILLA DOLORES SA; EL RELINCHO PAPAS; EL RELINCHO PRODUCTOS AGRICOLAS; FÁBRICA DE PASTAS BETTINI,104Z,Resto de hortalizas y legumbres sin elaborar ,104Z Resto de hortalizas y legumbres sin elaborar  (USD 2.66 M),2659662.0,yes,no,no
+3004,7,KLONAL; QUIMICA LUAR; SAVANT; TEDEQUIM SRL; TISSUM,302C,Productos farmacéuticos,302C Productos farmacéuticos (USD 3.36 M),3357053.0,yes,no,no
+3005,3,LABORATORIO DERMACOR / OSTOMY; TEDEQUIM SRL; TISSUM,302C,Productos farmacéuticos,302C Productos farmacéuticos (USD 3.36 M),3357053.0,yes,no,no
+3006,2,LABORATORIO DERMACOR / OSTOMY; TEDEQUIM SRL,302C,Productos farmacéuticos,302C Productos farmacéuticos (USD 3.36 M),3357053.0,yes,no,no
+8701,3,METALFOR S.A.; PAUNY; ROLAND H,313BZ,"Resto de vehículos automóviles,tractores,ciclos y otros vehículos terrestres y sus partes","313BZ Resto de vehículos automóviles,tractores,ciclos y otros vehículos terrestres y sus partes (USD 2.84 M)",2835246.0,yes,no,no
+8711,1,KELLER MOTOS,313BZ,"Resto de vehículos automóviles,tractores,ciclos y otros vehículos terrestres y sus partes","313BZ Resto de vehículos automóviles,tractores,ciclos y otros vehículos terrestres y sus partes (USD 2.84 M)",2835246.0,yes,no,no
+8712,2,BICICLETAS ENRIQUE; GRUPO CARLOS KARABITIAN,313BZ,"Resto de vehículos automóviles,tractores,ciclos y otros vehículos terrestres y sus partes","313BZ Resto de vehículos automóviles,tractores,ciclos y otros vehículos terrestres y sus partes (USD 2.84 M)",2835246.0,yes,no,no
+0701,29,BESSO HNOS; AGROPECUARIA VILLA DOLORES SA; EL RELINCHO PAPAS; EL RELINCHO PRODUCTOS AGRICOLAS; LA CERRILLENSE,104Z,Resto de hortalizas y legumbres sin elaborar ,104Z Resto de hortalizas y legumbres sin elaborar  (USD 2.66 M),2659662.0,yes,no,no
 0702,9,FÁBRICA DE PASTAS BETTINI; GRUPO ARCOR; MATERFER; OLIVARES SAN NICOLAS; EL HALLI OBEID LUIS MARIA - GRUPO MUSICAL TOMATES ASESINOS,104Z,Resto de hortalizas y legumbres sin elaborar ,104Z Resto de hortalizas y legumbres sin elaborar  (USD 2.66 M),2659662.0,yes,no,no
-0712,3,AZAFRÁN RUEDO; CHIALVO SRL; HQA PRODUCTOS NATURALES,104Z,Resto de hortalizas y legumbres sin elaborar ,104Z Resto de hortalizas y legumbres sin elaborar  (USD 2.66 M),2659662.0,yes,no,no
-8205,3,ANTARES SRL; EJP HERRAMIENTAS; METALÚRGICA FLUMIGNAN,311F,Herramientas y cuchillería de metal,311F Herramientas y cuchillería de metal (USD 2.05 M),2048782.0,yes,no,no
+0708,3,PRAGA ALIMENTOS; PROME AGRONEGOCIOS; SANTIAGO PRANDI SISTEMAS DE RIEGO S.A.,104Z,Resto de hortalizas y legumbres sin elaborar ,104Z Resto de hortalizas y legumbres sin elaborar  (USD 2.66 M),2659662.0,yes,no,no
+0709,1,HONGOS & FUNGHI,104Z,Resto de hortalizas y legumbres sin elaborar ,104Z Resto de hortalizas y legumbres sin elaborar  (USD 2.66 M),2659662.0,yes,no,no
+0712,5,AZAFRÁN RUEDO; AGROPLANT; CHIALVO SRL; HONGOS & FUNGHI; HQA PRODUCTOS NATURALES,104Z,Resto de hortalizas y legumbres sin elaborar ,104Z Resto de hortalizas y legumbres sin elaborar  (USD 2.66 M),2659662.0,yes,no,no
+8481,7,LIVENZA - SOHIPREN SA; PILMHOR SA; VENTURI HNOS.; BOETTO SH; HYDROM OLEODINAMICA S.R.L,312AM,"Artículos de grifería y similares, y sus partes","312AM Artículos de grifería y similares, y sus partes (USD 2.22 M)",2216941.0,yes,no,no
+8201,1,INFOREST SRL,311F,Herramientas y cuchillería de metal,311F Herramientas y cuchillería de metal (USD 2.05 M),2048782.0,yes,no,no
+8203,1,EJP HERRAMIENTAS,311F,Herramientas y cuchillería de metal,311F Herramientas y cuchillería de metal (USD 2.05 M),2048782.0,yes,no,no
+8205,7,BARBERO; INFOREST SRL; METALMED; EJP HERRAMIENTAS; FERRETERA GENERAL PAZ SRL,311F,Herramientas y cuchillería de metal,311F Herramientas y cuchillería de metal (USD 2.05 M),2048782.0,yes,no,no
+8206,1,MBA S.A.,311F,Herramientas y cuchillería de metal,311F Herramientas y cuchillería de metal (USD 2.05 M),2048782.0,yes,no,no
+8207,6,ANTARES SRL; METALÚRGICA GERBAUDO SA; METALÚRGICA PROGRESO S.R.L.; TANTAL TUNGSTEN SOLUTIONS; ESTABLECIMIENTO METALURGICO MF S.R.L.,311F,Herramientas y cuchillería de metal,311F Herramientas y cuchillería de metal (USD 2.05 M),2048782.0,yes,no,no
 8208,1,FAESA,311F,Herramientas y cuchillería de metal,311F Herramientas y cuchillería de metal (USD 2.05 M),2048782.0,yes,no,no
-1601,17,FRIGORÍFICO SAN ANTONIO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; FRIGORIFICO QUALITA S.A.; OSCAR DULCE; SYSTEL S.A.,201B,Conservas y preparados de carnes,201B Conservas y preparados de carnes (USD 1.91 M),1912129.0,yes,no,no
-1602,12,FRIGORÍFICO SAN ANTONIO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; HAPPY FOOD; LA PIAMONTESA / GRUPO LA PIAMONTESA; CHACINADOS ELISA,201B,Conservas y preparados de carnes,201B Conservas y preparados de carnes (USD 1.91 M),1912129.0,yes,no,no
+8209,1,TANTAL TUNGSTEN SOLUTIONS,311F,Herramientas y cuchillería de metal,311F Herramientas y cuchillería de metal (USD 2.05 M),2048782.0,yes,no,no
+8210,1,BARBERO,311F,Herramientas y cuchillería de metal,311F Herramientas y cuchillería de metal (USD 2.05 M),2048782.0,yes,no,no
+8211,1,INFOREST SRL,311F,Herramientas y cuchillería de metal,311F Herramientas y cuchillería de metal (USD 2.05 M),2048782.0,yes,no,no
+1601,17,FRIGORÍFICO SAN ANTONIO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; FRIGORIFICO QUALITA S.A.; LA PIAMONTESA / GRUPO LA PIAMONTESA; OSCAR DULCE,201B,Conservas y preparados de carnes,201B Conservas y preparados de carnes (USD 1.91 M),1912129.0,yes,no,no
+1602,20,FRIGORÍFICO SAN ANTONIO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORIFICO QUALITA S.A.; FRIGORIFICO SAN FRANCISCO SA / GRUPO BELTRÁN,201B,Conservas y preparados de carnes,201B Conservas y preparados de carnes (USD 1.91 M),1912129.0,yes,no,no
+3821,1,BRIZUELA-LAB,302JZ,Resto de los productos diversos de las industrias químicas,302JZ Resto de los productos diversos de las industrias químicas (USD 1.89 M),1890275.0,yes,no,no
 3822,1,BRIZUELA-LAB,302JZ,Resto de los productos diversos de las industrias químicas,302JZ Resto de los productos diversos de las industrias químicas (USD 1.89 M),1890275.0,yes,no,no
-9403,49,EN BRUTO; MUEBLES GACELA; OSCAR MASSA MUEBLES; ADAMOBILI; AIMARETTI,399E,"Muebles, mobiliarios médicos y quirúrgico, construcciones prefabricadas, etc.","399E Muebles, mobiliarios médicos y quirúrgico, construcciones prefabricadas, etc. (USD 1.67 M)",1670317.0,yes,no,no
-3402,11,ALPHA QUIMICA S.R.L.; MOSAICOS BLANGINO; EQUI CARE; JOSE GUMA S.A.; LEUCA SISTEMAS DE AIRE,302G,"Jabones, productos orgánicos tensoactivos, ceras, ceras para odontología, etc.","302G Jabones, productos orgánicos tensoactivos, ceras, ceras para odontología, etc. (USD 1.48 M)",1476250.0,yes,no,no
+3823,1,ACEITERA GENERAL DEHEZA SA - AGD,302JZ,Resto de los productos diversos de las industrias químicas,302JZ Resto de los productos diversos de las industrias químicas (USD 1.89 M),1890275.0,yes,no,no
+9401,11,DRIFT; EN BRUTO; OSCAR MASSA MUEBLES; TRENDEL; ADAMOBILI,399E,"Muebles, mobiliarios médicos y quirúrgico, construcciones prefabricadas, etc.","399E Muebles, mobiliarios médicos y quirúrgico, construcciones prefabricadas, etc. (USD 1.67 M)",1670317.0,yes,no,no
+9402,3,INFOREST SRL; TRENDEL; SIEC,399E,"Muebles, mobiliarios médicos y quirúrgico, construcciones prefabricadas, etc.","399E Muebles, mobiliarios médicos y quirúrgico, construcciones prefabricadas, etc. (USD 1.67 M)",1670317.0,yes,no,no
+9403,54,DRIFT; EN BRUTO; MUEBLES GACELA; OSCAR MASSA MUEBLES; SCARPATTI AMOBLAMIENTOS,399E,"Muebles, mobiliarios médicos y quirúrgico, construcciones prefabricadas, etc.","399E Muebles, mobiliarios médicos y quirúrgico, construcciones prefabricadas, etc. (USD 1.67 M)",1670317.0,yes,no,no
+9404,2,DYSEM; STARFLEX,399E,"Muebles, mobiliarios médicos y quirúrgico, construcciones prefabricadas, etc.","399E Muebles, mobiliarios médicos y quirúrgico, construcciones prefabricadas, etc. (USD 1.67 M)",1670317.0,yes,no,no
+9405,4,BPB MEDITERRANEA SA; TECNOLOGIAS E INVERSIONES; INGEMAR; KINETIC DECÓ,399E,"Muebles, mobiliarios médicos y quirúrgico, construcciones prefabricadas, etc.","399E Muebles, mobiliarios médicos y quirúrgico, construcciones prefabricadas, etc. (USD 1.67 M)",1670317.0,yes,no,no
+9406,7,BUNGALOFT®; CINZIA VEHÍCULOS; AG GROUP; ASTORI ESTRUCTURAS S.A.; INCOMPANY,399E,"Muebles, mobiliarios médicos y quirúrgico, construcciones prefabricadas, etc.","399E Muebles, mobiliarios médicos y quirúrgico, construcciones prefabricadas, etc. (USD 1.67 M)",1670317.0,yes,no,no
+3401,5,EQUI CARE; JOSE GUMA S.A.; SERVQUIM SA; CLEAN COR S.A.; PASQUALE,302G,"Jabones, productos orgánicos tensoactivos, ceras, ceras para odontología, etc.","302G Jabones, productos orgánicos tensoactivos, ceras, ceras para odontología, etc. (USD 1.48 M)",1476250.0,yes,no,no
+3402,12,ALPHA QUIMICA S.R.L.; MOSAICOS BLANGINO; JOSE GUMA S.A.; CLEAN COR S.A.; FACYT,302G,"Jabones, productos orgánicos tensoactivos, ceras, ceras para odontología, etc.","302G Jabones, productos orgánicos tensoactivos, ceras, ceras para odontología, etc. (USD 1.48 M)",1476250.0,yes,no,no
+3403,1,LATIN MATERIALS,302G,"Jabones, productos orgánicos tensoactivos, ceras, ceras para odontología, etc.","302G Jabones, productos orgánicos tensoactivos, ceras, ceras para odontología, etc. (USD 1.48 M)",1476250.0,yes,no,no
 3404,1,MOSAICOS BLANGINO,302G,"Jabones, productos orgánicos tensoactivos, ceras, ceras para odontología, etc.","302G Jabones, productos orgánicos tensoactivos, ceras, ceras para odontología, etc. (USD 1.48 M)",1476250.0,yes,no,no
-6810,5,MOSAICOS BLANGINO; LA ELENENSE SA; EL CERRITO SAS; CARGNELUTTI MINERALES; EMILIA CÓRDOBA MOSAICOS,309A,Manufacturas de piedra y amianto,309A Manufacturas de piedra y amianto (USD 950.9 K),950883.0,no,no,no
-8422,7,BAG BIO; FRUSSO; CERVENY / TURBOVAC; LA POSTA DEL ÁGUILA; SSM SRL,312AE,"Máquinas y aparatos para limpiar botellas, llenar y cerrar cápsulas y sus partes","312AE Máquinas y aparatos para limpiar botellas, llenar y cerrar cápsulas y sus partes (USD 878.0 K)",878031.0,no,no,no
+3405,1,EQUI CARE,302G,"Jabones, productos orgánicos tensoactivos, ceras, ceras para odontología, etc.","302G Jabones, productos orgánicos tensoactivos, ceras, ceras para odontología, etc. (USD 1.48 M)",1476250.0,yes,no,no
+3406,1,LUZ DEL NORTE,302G,"Jabones, productos orgánicos tensoactivos, ceras, ceras para odontología, etc.","302G Jabones, productos orgánicos tensoactivos, ceras, ceras para odontología, etc. (USD 1.48 M)",1476250.0,yes,no,no
+0410,2,APICOLA JAUREGUI; ECOLAB CRIANZA INTENSIVA DE ABEJAS REINAS Y SUB PRODUCTOS APICOLAS,204,Otros productos de origen animal,204 Otros productos de origen animal (USD 1.41 M),1411692.0,yes,no,no
+0504,4,BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; MENUDENCIAS DEL CENTRO S.A. - GRUPO BELTRÁN; OSCAR DULCE; RDC S.A / RDC LEVADURAS / GRUPO BELTRÁN,204,Otros productos de origen animal,204 Otros productos de origen animal (USD 1.41 M),1411692.0,yes,no,no
+0511,3,BIOGEN ARGENTINA SA; MENUDENCIAS DEL CENTRO S.A. - GRUPO BELTRÁN; EL ATARDECER,204,Otros productos de origen animal,204 Otros productos de origen animal (USD 1.41 M),1411692.0,yes,no,no
+6101,1,EMINTEX S.A. - AF JEANS,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6103,1,EMINTEX S.A. - AF JEANS,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6109,1,MAREA,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6112,2,MAREA; CALYPSONIA,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6115,3,MAREA; OLIVER SOCKS; DURANIL,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6116,3,GAMISOL; ZB ARGENTINA /GUANTEX INDUSTRIAL; FERRETERA GENERAL PAZ SRL,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6201,2,EL TELAR; INFOREST SRL,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6202,1,EMINTEX S.A. - AF JEANS,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6203,1,INFOREST SRL,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6204,1,21 DE SEPTIEMBRE,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6205,2,INFOREST SRL; 21 DE SEPTIEMBRE,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6206,1,21 DE SEPTIEMBRE,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6210,2,INFOREST SRL; ZB ARGENTINA /GUANTEX INDUSTRIAL,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6211,2,DOGOSPORT; INFOREST SRL,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6214,1,21 DE SEPTIEMBRE,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6216,1,GAMISOL,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6217,1,INFOREST SRL,307H,Prendas de vestir y accesorios de tejidos,307H Prendas de vestir y accesorios de tejidos (USD 1.10 M),1104905.0,yes,no,no
+6801,1,LA ELENENSE SA,309A,Manufacturas de piedra y amianto,309A Manufacturas de piedra y amianto (USD 950.9 K),950883.0,no,no,no
+6802,3,ONEMAR S.A.; ALTAMAR; KURSAAL SA,309A,Manufacturas de piedra y amianto,309A Manufacturas de piedra y amianto (USD 950.9 K),950883.0,no,no,no
+6804,1,FUNDARG SRL,309A,Manufacturas de piedra y amianto,309A Manufacturas de piedra y amianto (USD 950.9 K),950883.0,no,no,no
+6806,1,AISLATER,309A,Manufacturas de piedra y amianto,309A Manufacturas de piedra y amianto (USD 950.9 K),950883.0,no,no,no
+6807,1,QUIMEX,309A,Manufacturas de piedra y amianto,309A Manufacturas de piedra y amianto (USD 950.9 K),950883.0,no,no,no
+6809,1,BLOTTING ARGENTINA,309A,Manufacturas de piedra y amianto,309A Manufacturas de piedra y amianto (USD 950.9 K),950883.0,no,no,no
+6810,12,MOSAICOS BLANGINO; LA ELENENSE SA; KARIKAL; MOLDEAR; GRIGIONI MINERALES,309A,Manufacturas de piedra y amianto,309A Manufacturas de piedra y amianto (USD 950.9 K),950883.0,no,no,no
+8412,6,VENTURI HNOS.; WELACT; HIDRÁULICOS Y HERRAMIENTAS MORANO; HYDROM OLEODINAMICA S.R.L; INGENIERÍA HIDRÁULICA,312AZ,"Resto de máquinas,aparatos y artículos mecánicos","312AZ Resto de máquinas,aparatos y artículos mecánicos (USD 943.6 K)",943625.0,no,no,no
+8420,1,METALÚRGICA BEIFFA,312AZ,"Resto de máquinas,aparatos y artículos mecánicos","312AZ Resto de máquinas,aparatos y artículos mecánicos (USD 943.6 K)",943625.0,no,no,no
+8423,8,BALCOPPAN INTERNACIONAL; ENVAMEC; IGB TECNOLOGÍA; INDUMIX; SYSTEL S.A.,312AZ,"Resto de máquinas,aparatos y artículos mecánicos","312AZ Resto de máquinas,aparatos y artículos mecánicos (USD 943.6 K)",943625.0,no,no,no
+8442,1,INDUSTRIAS MEX,312AZ,"Resto de máquinas,aparatos y artículos mecánicos","312AZ Resto de máquinas,aparatos y artículos mecánicos (USD 943.6 K)",943625.0,no,no,no
+8443,6,CYLITEC; GRAFIN ARGENTINA S.A.; INTERSYS; SYSTEL S.A.; COMPUTROL,312AZ,"Resto de máquinas,aparatos y artículos mecánicos","312AZ Resto de máquinas,aparatos y artículos mecánicos (USD 943.6 K)",943625.0,no,no,no
+8451,2,ALOÑA; IPARRAGUIRRE HNOS,312AZ,"Resto de máquinas,aparatos y artículos mecánicos","312AZ Resto de máquinas,aparatos y artículos mecánicos (USD 943.6 K)",943625.0,no,no,no
+8454,1,FUNDARG SRL,312AZ,"Resto de máquinas,aparatos y artículos mecánicos","312AZ Resto de máquinas,aparatos y artículos mecánicos (USD 943.6 K)",943625.0,no,no,no
+8467,5,EVOLUTION CONTROL CABLE; GRUPO TORREON; LASSO SA; VULCANO / VULLETIC; SISTEMAS INDUSTRIALES,312AZ,"Resto de máquinas,aparatos y artículos mecánicos","312AZ Resto de máquinas,aparatos y artículos mecánicos (USD 943.6 K)",943625.0,no,no,no
+8468,1,FERRETERA GENERAL PAZ SRL,312AZ,"Resto de máquinas,aparatos y artículos mecánicos","312AZ Resto de máquinas,aparatos y artículos mecánicos (USD 943.6 K)",943625.0,no,no,no
+8470,2,PROYTEC SRL; CONTROLNET,312AZ,"Resto de máquinas,aparatos y artículos mecánicos","312AZ Resto de máquinas,aparatos y artículos mecánicos (USD 943.6 K)",943625.0,no,no,no
+8472,3,PROYTEC SRL; MEDITERRÁNEA TECNOLÓGICA; WOXI,312AZ,"Resto de máquinas,aparatos y artículos mecánicos","312AZ Resto de máquinas,aparatos y artículos mecánicos (USD 943.6 K)",943625.0,no,no,no
+8477,2,INSICON; TECNVAC,312AZ,"Resto de máquinas,aparatos y artículos mecánicos","312AZ Resto de máquinas,aparatos y artículos mecánicos (USD 943.6 K)",943625.0,no,no,no
+8422,20,ADK; AGROMEC SA; AKRON; BAG BIO; ENVAMEC,312AE,"Máquinas y aparatos para limpiar botellas, llenar y cerrar cápsulas y sus partes","312AE Máquinas y aparatos para limpiar botellas, llenar y cerrar cápsulas y sus partes (USD 878.0 K)",878031.0,no,no,no
+8417,2,PANHEL; TEYBO,312AD,"Aparatos y dispositivos para calentado y cocción de material, y sus partes","312AD Aparatos y dispositivos para calentado y cocción de material, y sus partes (USD 798.0 K)",797976.0,no,no,no
+8419,13,DENIMED EQUIPAMIENTOS ODONTOLÓGICOS; DENSO MANUFACTURING ARGENTINA SA; ETI; FAME SA; FIGMAY,312AD,"Aparatos y dispositivos para calentado y cocción de material, y sus partes","312AD Aparatos y dispositivos para calentado y cocción de material, y sus partes (USD 798.0 K)",797976.0,no,no,no
+0103,5,AXIOM ARGENTINA; GRANJA BUFFA; COOPERATIVA ALBORADA; GRANJA SAN JOSÉ / DON AMÉRICO; LAS CHILCAS,199,Resto de productos primarios,199 Resto de productos primarios (USD 607.4 K),607438.0,no,no,no
 0206,10,BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORIFICO SAN FRANCISCO SA / GRUPO BELTRÁN; MENUDENCIAS DEL CENTRO S.A. - GRUPO BELTRÁN; RDC S.A / RDC LEVADURAS / GRUPO BELTRÁN; FRIGORÍFICO NOVARA SA / GRUPO BELTRÁN,199,Resto de productos primarios,199 Resto de productos primarios (USD 607.4 K),607438.0,no,no,no
+0401,2,LAS TRES NIÑAS - GRUPO ADECOAGRO; LA LÁCTEO,199,Resto de productos primarios,199 Resto de productos primarios (USD 607.4 K),607438.0,no,no,no
 0403,3,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; ARSA / SANCOR; PANINO,199,Resto de productos primarios,199 Resto de productos primarios (USD 607.4 K),607438.0,no,no,no
-2501,10,LA INDUSTRIAL SALINERA S.A.; AZAFRÁN RUEDO; COPETO SNACK; JORVIC; RORUKA,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+0404,3,LACTEAR SA; LACTEOS LA CRISTINA; SOBRERO Y CAGNOLO S.A. / CREMAC,199,Resto de productos primarios,199 Resto de productos primarios (USD 607.4 K),607438.0,no,no,no
+1002,4,ESTABLECIMIENTO SAN PATRICIO SA; PAREDES CEREALES S.A.; SAGRA; SMART CAMPO SEMILLAS,199,Resto de productos primarios,199 Resto de productos primarios (USD 607.4 K),607438.0,no,no,no
+1302,1,ALFA ARGENTINA SA,199,Resto de productos primarios,199 Resto de productos primarios (USD 607.4 K),607438.0,no,no,no
+2501,11,LA INDUSTRIAL SALINERA S.A.; AZAFRÁN RUEDO; GRANDIET; COPETO SNACK; JORVIC,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+2504,1,GRAFITOIL,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+2507,1,LATIN MATERIALS,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+2509,2,LATIN MATERIALS; VERDOL,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+2515,2,EL CERRITO SAS; GRIGIONI MINERALES,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+2518,4,DOLOMITA SAIC; VERDOL; EL CERRITO SAS; GRIGIONI MINERALES,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+2520,1,RECUPERAR SRL,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
 2523,5,INDUMIX; TECNUS; BODEGA TERRA CAMIARE; MARIA TRINIDAD CAMINOS; SCOLARI NANT E HIJOS SRL,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+2525,1,LATIN MATERIALS,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+2526,1,LATIN MATERIALS,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+2529,1,FLUORITA CORDOBA SA,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+3101,1,SUMMABIO,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
 3505,1,VERTRAUEN,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
-3808,6,LANTHER QUIMICA S.A.; Atanor — Planta Río Tercero; METALFOR S.A.; FACYT; AGROHUB,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
-7309,4,BERTOTTO BOGLIONE; INDUMIX; O-TEK; TECNUS,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
-8474,1,INDUMIX,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
-8483,1,DAYCO,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
-8716,15,CINZIA VEHÍCULOS; AKRON; ASCANELLI SA; AGROMEC SA; BTA TOOLS - BARBURY TEAM S.A.,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
-0904,7,AZAFRÁN RUEDO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; CHIALVO SRL; EL VALLISTO; PAPRIKA,206D,Especias,206D Especias (USD 374.2 K),374155.0,no,no,no
+3506,1,TRESOL,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+3703,1,PAPELERA CUMBRE SA,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+3704,1,PAPELERA CUMBRE SA,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+3808,11,LANTHER QUIMICA S.A.; Atanor — Planta Río Tercero; ALPHA QUIMICA S.R.L.; EQUI CARE; AQUAMAR,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+4201,2,BLONDI; JOSE MERCADAL SRL,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+4302,1,CUSCO COWHIDES,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+4303,1,LA OVEJA,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+4403,1,MAYO TRANSFORMADORES,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+4407,1,MUNIC MADERAS,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+4410,1,HAUSE MOBEL S.A.,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+4418,6,KARIKAL; GALLO Y MANCA SRL; MADERPAR; MARETICH ABERTURAS; MATTEUCCI,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+4419,1,BELLO EXPORT S.R.L.,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+4421,4,FIORI SA; APICOLA VAIROLATTI SRL; BORMAN SRL; FERRETERA GENERAL PAZ SRL,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+4707,1,PAPELERA CUMBRE SA,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+5905,1,BLACK OVEJA,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+6506,1,INFOREST SRL,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+6507,1,INFOREST SRL,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+7309,11,BERTOTTO BOGLIONE; INDUMIX; ETI; LEUCA SISTEMAS DE AIRE; TECNUS,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+8421,17,AB FUNDAS; ABELARDO CUFFIA SA; DREAN / AURORA / PATRIOT; FILTROS ALKA; INDUSPLAST,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+8424,15,INDAIRE S.R.L.; INFOREST SRL; METALFOR S.A.; SANTIAGO PRANDI SISTEMAS DE RIEGO S.A.; VULCANO / VULLETIC,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+8450,2,DREAN / AURORA / PATRIOT; ALOÑA,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+8474,10,INDUMIX; CREX EXPORT SA; ECONOVO; LASSO SA; TECNUS,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+8480,9,DIMAT S.R.L.; GIACOBONE; GRAFIN ARGENTINA S.A.; METALÚRGICA PROGRESO S.R.L.; PRODISMO,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+8482,2,BPB MEDITERRANEA SA; BOETTO SH,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+8483,19,DAYCO; CRAVERO REPUESTOS; INGERSOLL ARGENTINA SA; KÜGELLAGER; METALÚRGICA GERBAUDO SA,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+8484,3,PELLACANI S.R.L.; ARGENTOP SRL; RETENES CORDOBA,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+8716,38,CINZIA VEHÍCULOS; AKRON; ASCANELLI SA; AGROMEC SA; COMOFRA,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+9603,2,FERRETERA GENERAL PAZ SRL; LA OVEJA,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+9608,1,INTERSYS,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+9609,1,INTERSYS,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+9617,1,BELLO EXPORT S.R.L.,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+9701,2,ITA ROM - OSA ESTUDIOS; SASHA D ESPACIO DE ARTE,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+9703,2,CASA TALLER EL RANCHO; PABLO SALVADOR ROCAHA,399Z,Resto de MOI,399Z Resto de MOI (USD 421.8 K),421762.0,no,no,no
+0904,8,AZAFRÁN RUEDO; CHIALVO SRL; EL VALLISTO; YUSPE - GRUPO DULCOR; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET,206D,Especias,206D Especias (USD 374.2 K),374155.0,no,no,no
+0908,1,YUSPE - GRUPO DULCOR,206D,Especias,206D Especias (USD 374.2 K),374155.0,no,no,no
 0909,15,AZAFRÁN RUEDO; ALEMAR SA / FUNNY; DESARROLLOS AGRÍCOLAS ARGENTINOS SA; DOS MATES S.A.; F.G GRANOS,206D,Especias,206D Especias (USD 374.2 K),374155.0,no,no,no
-0910,6,AZAFRÁN RUEDO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; YUSPE - GRUPO DULCOR; AZAFRÁN MEDITERRÁNEO; HQA PRODUCTOS NATURALES,206D,Especias,206D Especias (USD 374.2 K),374155.0,no,no,no
+0910,6,AZAFRÁN RUEDO; YUSPE - GRUPO DULCOR; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; AZAFRÁN MEDITERRÁNEO; HQA PRODUCTOS NATURALES,206D,Especias,206D Especias (USD 374.2 K),374155.0,no,no,no
+3203,1,ALFA ARGENTINA SA,213Z,Otros extractos curtientes y tintóreos excluido extracto de quebracho y resto de materias albuminoideas entre otros del cap.35,213Z Otros extractos curtientes y tintóreos excluido extracto de quebracho y resto de materias albuminoideas entre otros del cap.35 (USD 366.3 K),366332.0,no,no,no
 3204,3,VERTRAUEN; ALFA ARGENTINA SA; LE CHARBONNIER,213Z,Otros extractos curtientes y tintóreos excluido extracto de quebracho y resto de materias albuminoideas entre otros del cap.35,213Z Otros extractos curtientes y tintóreos excluido extracto de quebracho y resto de materias albuminoideas entre otros del cap.35 (USD 366.3 K),366332.0,no,no,no
-2007,14,ESNAOLA - GRUPO DULCOR; DULCOR; DULCES ORIETA - GRUPO DULCOR; GRUPO ARCOR; PASTELINO,210B,"Puré, pastas de frutas, etc","210B Puré, pastas de frutas, etc (USD 136.7 K)",136722.0,no,no,no
-1515,2,GRUPO ARCOR; ACA BIO,208AH,Aceite de maíz,208AH Aceite de maíz (USD 110.6 K),110559.0,no,no,no
-3105,10,NANOMIX; LANTHER QUIMICA S.A.; COMOFRA; SERVQUIM SA; CERES DEMETER,302D,Abonos y fertilizantes distintos de los primarios,302D Abonos y fertilizantes distintos de los primarios (USD 106.9 K),106935.0,no,no,no
-0203,47,EXPORK MAG; AXIOM ARGENTINA; FRIGORIFICO QUALITA S.A.; FRIGORIFICO SAN FRANCISCO SA / GRUPO BELTRÁN; GRANJA BUFFA,201AC,Carne porcina,201AC Carne porcina (USD 38.6 K),38568.0,no,no,no
+9503,2,MAR-PLAST; ONDULÉ,399F,"Juguetes, juegos, artículos de recreo y deportes y sus partes","399F Juguetes, juegos, artículos de recreo y deportes y sus partes (USD 320.4 K)",320397.0,no,no,no
+9504,3,ARTEMIO GUSELLA; MAR-PLAST; BONTUS,399F,"Juguetes, juegos, artículos de recreo y deportes y sus partes","399F Juguetes, juegos, artículos de recreo y deportes y sus partes (USD 320.4 K)",320397.0,no,no,no
+9506,6,AURA PISCINAS; INDUSPLAST; MOLDEAR; SIROLO SA; BOOMERANGS VOODOO,399F,"Juguetes, juegos, artículos de recreo y deportes y sus partes","399F Juguetes, juegos, artículos de recreo y deportes y sus partes (USD 320.4 K)",320397.0,no,no,no
+7304,2,METALÚRGICA GERBAUDO SA; OLEOHIDRÁULICA TECNICORD S.A.,311AE,"Tubos y caños de fundición,hierro o acero","311AE Tubos y caños de fundición,hierro o acero (USD 294.8 K)",294837.0,no,no,no
+7306,2,MARCO AURELIO SOSA SACIF; METPAL,311AE,"Tubos y caños de fundición,hierro o acero","311AE Tubos y caños de fundición,hierro o acero (USD 294.8 K)",294837.0,no,no,no
+7307,4,METALMED; CONECTAR; EVER WEAR; OLEOHIDRÁULICA TECNICORD S.A.,311AE,"Tubos y caños de fundición,hierro o acero","311AE Tubos y caños de fundición,hierro o acero (USD 294.8 K)",294837.0,no,no,no
+7601,1,METAL VENETA SA,311C,Aluminio,311C Aluminio (USD 289.4 K),289372.0,no,no,no
+7604,2,ALUWIND; PROFITEAM LATINA S.A.,311C,Aluminio,311C Aluminio (USD 289.4 K),289372.0,no,no,no
+7608,1,FUNDICIÓN ARIENTE,311C,Aluminio,311C Aluminio (USD 289.4 K),289372.0,no,no,no
+7610,2,ANODAL SA; PROFITEAM LATINA S.A.,311C,Aluminio,311C Aluminio (USD 289.4 K),289372.0,no,no,no
+7611,1,RAPPACHIANI,311C,Aluminio,311C Aluminio (USD 289.4 K),289372.0,no,no,no
+7612,1,INFOREST SRL,311C,Aluminio,311C Aluminio (USD 289.4 K),289372.0,no,no,no
+7616,3,ELECTRO CORDOBA SA; FERRETERA GENERAL PAZ SRL; PROFITEAM LATINA S.A.,311C,Aluminio,311C Aluminio (USD 289.4 K),289372.0,no,no,no
+1008,7,CONCI SRL; EL PELUDO SA; F.G GRANOS; GRUPO AGROEMPRESA (ARGENBEAN - AGROEMPRESA SEMILLAS); PAREDES CEREALES S.A.,106ZE,Mijo,106ZD Alpiste (USD 42.0 K) | 106ZE Mijo (USD 254.4 K),254416.0,no,no,no
+8301,2,AMARO & AMARO ENGINEERING SOLUTIONS; FERRETERA GENERAL PAZ SRL,311G,Manufacturas diversas de metales comunes,311G Manufacturas diversas de metales comunes (USD 231.5 K),231521.0,no,no,no
+8302,5,FUMISCOR; METALMED; BORMAN SRL; FERRETERA GENERAL PAZ SRL; SUPERFREN,311G,Manufacturas diversas de metales comunes,311G Manufacturas diversas de metales comunes (USD 231.5 K),231521.0,no,no,no
+8305,1,DI TOMASO SRL - ARGENFIX,311G,Manufacturas diversas de metales comunes,311G Manufacturas diversas de metales comunes (USD 231.5 K),231521.0,no,no,no
+8308,1,FERRETERA GENERAL PAZ SRL,311G,Manufacturas diversas de metales comunes,311G Manufacturas diversas de metales comunes (USD 231.5 K),231521.0,no,no,no
+8311,1,CTS SOLDADURAS ESPECIALES,311G,Manufacturas diversas de metales comunes,311G Manufacturas diversas de metales comunes (USD 231.5 K),231521.0,no,no,no
+1204,2,PAREDES CEREALES S.A.; SYTARI,107C,Lino,107C Lino (USD 159.8 K),159761.0,no,no,no
+8456,3,INTERSYS; CUTTER MACHINE; IPARRAGUIRRE HNOS,312AH,"Máquinas para el trabajo de los metales, carburos metálicos y sus partes","312AH Máquinas para el trabajo de los metales, carburos metálicos y sus partes (USD 155.5 K)",155507.0,no,no,no
+8457,2,IE-MAT; SOLUCIONES METALURGICAS,312AH,"Máquinas para el trabajo de los metales, carburos metálicos y sus partes","312AH Máquinas para el trabajo de los metales, carburos metálicos y sus partes (USD 155.5 K)",155507.0,no,no,no
+8458,3,FADICAD SA; IE-MAT; TEKNIX,312AH,"Máquinas para el trabajo de los metales, carburos metálicos y sus partes","312AH Máquinas para el trabajo de los metales, carburos metálicos y sus partes (USD 155.5 K)",155507.0,no,no,no
+8459,1,BARBERO,312AH,"Máquinas para el trabajo de los metales, carburos metálicos y sus partes","312AH Máquinas para el trabajo de los metales, carburos metálicos y sus partes (USD 155.5 K)",155507.0,no,no,no
+8460,5,BARBERO; GRUPO LINARES; METALÚRGICA CHAVES; RUBÉN GATTI ELECTROMECÁNICA; VARI,312AH,"Máquinas para el trabajo de los metales, carburos metálicos y sus partes","312AH Máquinas para el trabajo de los metales, carburos metálicos y sus partes (USD 155.5 K)",155507.0,no,no,no
+8461,2,METALÚRGICA CHAVES; RUBÉN GATTI ELECTROMECÁNICA,312AH,"Máquinas para el trabajo de los metales, carburos metálicos y sus partes","312AH Máquinas para el trabajo de los metales, carburos metálicos y sus partes (USD 155.5 K)",155507.0,no,no,no
+8462,10,DARIO DELFABRO S.R.L.; IE-MAT; INTERSYS; PELLACANI S.R.L.; CENA SRL,312AH,"Máquinas para el trabajo de los metales, carburos metálicos y sus partes","312AH Máquinas para el trabajo de los metales, carburos metálicos y sus partes (USD 155.5 K)",155507.0,no,no,no
+8464,1,LADRILLERA CONCI,312AH,"Máquinas para el trabajo de los metales, carburos metálicos y sus partes","312AH Máquinas para el trabajo de los metales, carburos metálicos y sus partes (USD 155.5 K)",155507.0,no,no,no
+8465,6,ECONOVO; GRUPO LINARES; CERUTTI; DELBRE SRL; SMB CLEVER,312AH,"Máquinas para el trabajo de los metales, carburos metálicos y sus partes","312AH Máquinas para el trabajo de los metales, carburos metálicos y sus partes (USD 155.5 K)",155507.0,no,no,no
+8466,4,DRI-LEX®; METALMED; METALÚRGICA CHAVES; RMG ARGENTINA,312AH,"Máquinas para el trabajo de los metales, carburos metálicos y sus partes","312AH Máquinas para el trabajo de los metales, carburos metálicos y sus partes (USD 155.5 K)",155507.0,no,no,no
+2007,14,ESNAOLA - GRUPO DULCOR; DULCOR; DULCES ORIETA - GRUPO DULCOR; GRUPO ARCOR; ESTANCIA EL ROSARIO,210B,"Puré, pastas de frutas, etc","210B Puré, pastas de frutas, etc (USD 136.7 K)",136722.0,no,no,no
+1515,5,GRUPO ARCOR; ACA BIO; ACEITES DEL DESIERTO; BIO4; HONGOS & FUNGHI,208AH,Aceite de maíz,208AH Aceite de maíz (USD 110.6 K),110559.0,no,no,no
+3208,2,QUIMEX; PINTURAS PACLIN,302E,"Extractos curtientes y tintóreos, pinturas y tintas","302E Extractos curtientes y tintóreos, pinturas y tintas (USD 107.6 K)",107613.0,no,no,no
+3209,3,QUIMEX; TERSUAVE; PINTURAS PACLIN,302E,"Extractos curtientes y tintóreos, pinturas y tintas","302E Extractos curtientes y tintóreos, pinturas y tintas (USD 107.6 K)",107613.0,no,no,no
+3210,1,QUIMEX,302E,"Extractos curtientes y tintóreos, pinturas y tintas","302E Extractos curtientes y tintóreos, pinturas y tintas (USD 107.6 K)",107613.0,no,no,no
+3212,1,QUIMEX,302E,"Extractos curtientes y tintóreos, pinturas y tintas","302E Extractos curtientes y tintóreos, pinturas y tintas (USD 107.6 K)",107613.0,no,no,no
+3214,3,MOSAICOS BLANGINO; TERSUAVE; AQUAMAR,302E,"Extractos curtientes y tintóreos, pinturas y tintas","302E Extractos curtientes y tintóreos, pinturas y tintas (USD 107.6 K)",107613.0,no,no,no
+3102,3,NANOMIX; CERES DEMETER; FACYT,302D,Abonos y fertilizantes distintos de los primarios,302D Abonos y fertilizantes distintos de los primarios (USD 106.9 K),106935.0,no,no,no
+3105,12,NANOMIX; LANTHER QUIMICA S.A.; INNOQUIM; RECUPERAR SRL; SERVQUIM SA,302D,Abonos y fertilizantes distintos de los primarios,302D Abonos y fertilizantes distintos de los primarios (USD 106.9 K),106935.0,no,no,no
+7007,2,ANODAL SA; VIDPIA - VIDRIOS PIAZZE,309C,Vidrio y sus manufacturas,309C Vidrio y sus manufacturas (USD 104.9 K),104892.0,no,no,no
+8438,10,BALCAMI; ETI; IMPLEMENTOS AGRÍCOLAS ESCAÑUELA; METALÚRGICA BEIFFA; PANHEL,312AG,"Máquinas y aparatos n.c.o.p. para la preparación o fabricación de alimentos, bebidas y sus partes","312AG Máquinas y aparatos n.c.o.p. para la preparación o fabricación de alimentos, bebidas y sus partes (USD 56.7 K)",56668.0,no,no,no
+8439,1,INDUSTRIAS MEX,312AG,"Máquinas y aparatos n.c.o.p. para la preparación o fabricación de alimentos, bebidas y sus partes","312AG Máquinas y aparatos n.c.o.p. para la preparación o fabricación de alimentos, bebidas y sus partes (USD 56.7 K)",56668.0,no,no,no
+8440,2,GRAFIN ARGENTINA S.A.; INDUSTRIAS MEX,312AG,"Máquinas y aparatos n.c.o.p. para la preparación o fabricación de alimentos, bebidas y sus partes","312AG Máquinas y aparatos n.c.o.p. para la preparación o fabricación de alimentos, bebidas y sus partes (USD 56.7 K)",56668.0,no,no,no
+8441,2,GRAFIN ARGENTINA S.A.; INDUSTRIAS MEX,312AG,"Máquinas y aparatos n.c.o.p. para la preparación o fabricación de alimentos, bebidas y sus partes","312AG Máquinas y aparatos n.c.o.p. para la preparación o fabricación de alimentos, bebidas y sus partes (USD 56.7 K)",56668.0,no,no,no
+4901,7,EDITORIAL BRUJAS - ENCUENTRO GRUPO EDITOR; +LATINA; ECOVAL EDICIONES; EMPORIO EDICIONES Y EMPORIO LIBROS; GRÁFICA DEL SUR,306B,"Productos editoriales de la prensa o de otras industrias gráficas, textos manuscritos o mecanografiados y planos","306B Productos editoriales de la prensa o de otras industrias gráficas, textos manuscritos o mecanografiados y planos (USD 45.3 K)",45321.0,no,no,no
+4902,1,SERMA,306B,"Productos editoriales de la prensa o de otras industrias gráficas, textos manuscritos o mecanografiados y planos","306B Productos editoriales de la prensa o de otras industrias gráficas, textos manuscritos o mecanografiados y planos (USD 45.3 K)",45321.0,no,no,no
+4907,1,+LATINA,306B,"Productos editoriales de la prensa o de otras industrias gráficas, textos manuscritos o mecanografiados y planos","306B Productos editoriales de la prensa o de otras industrias gráficas, textos manuscritos o mecanografiados y planos (USD 45.3 K)",45321.0,no,no,no
+4911,1,+LATINA,306B,"Productos editoriales de la prensa o de otras industrias gráficas, textos manuscritos o mecanografiados y planos","306B Productos editoriales de la prensa o de otras industrias gráficas, textos manuscritos o mecanografiados y planos (USD 45.3 K)",45321.0,no,no,no
+0203,47,EXPORK MAG; FRIGORIFICO QUALITA S.A.; FRIGORIFICO SAN FRANCISCO SA / GRUPO BELTRÁN; LA PIAMONTESA / GRUPO LA PIAMONTESA; MAGRET,201AC,Carne porcina,201AC Carne porcina (USD 38.6 K),38568.0,no,no,no
+3302,1,ALFA ARGENTINA SA,302F,"Aceites esenciales y reisnoides (perfume, cosmética, tocador)","302F Aceites esenciales y reisnoides (perfume, cosmética, tocador) (USD 22.3 K)",22346.0,no,no,no
 3303,11,KLOCKNER PENTAPLAST DE ARGENTINA; FIORDOLIVA; ALPHA & OMEGA; FITONATURE; LABORATORIO PROYAR,302F,"Aceites esenciales y reisnoides (perfume, cosmética, tocador)","302F Aceites esenciales y reisnoides (perfume, cosmética, tocador) (USD 22.3 K)",22346.0,no,no,no
-6907,5,CASA TALLER EL RANCHO; CEMENTADOS JUAN NADALIN E HIJOS S.A / NADALIN SA; INDEF; INSTRELEC; KOKESHI CREATIVA,309B,Productos cerámicos,309B Productos cerámicos (USD 3.9 K),3931.0,no,no,no
-0207,15,INFOREST SRL; PAMPA COMPAÑÍA DE CARNES - DUO SILVESTRE ESCABECHES; VASQUETTO NUTRICIÓN ANIMAL; EL PRODUCTOR; INDACOR SA,201AE,Carne de Ave,201AE Carne de Ave (USD 0),0.0,no,no,no
-0802,10,CROPPERS - GRUPO MANIAGRO; ACEITES DEL DESIERTO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; NATFOOD SAS; PALMESANO - GRUPO PALMESANO,105Z,Resto de frutas frescas ,105Z Resto de frutas frescas  (USD 0),0.0,no,no,no
-0806,6,CROPPERS - GRUPO MANIAGRO; PALMESANO - GRUPO PALMESANO; PASAFRE; PRODUCTOS DON ROGELIO; TRONADOR PANIFICADOS,105D,Uvas de mesa,105D Uvas de mesa (USD 0),0.0,no,no,no
-0810,10,DULCOR; EASYFRUT; ESNAOLA - GRUPO DULCOR; GRUPO ARCOR; PASTELINO,105Z,Resto de frutas frescas ,105Z Resto de frutas frescas  (USD 0),0.0,no,no,no
-1006,14,Asociación de Cooperativas Argentinas (ACA) — Córdoba; AZAFRÁN RUEDO; EGRAN; PIERSANTI - METAL NOET; SYTARI,106ZF,Arroz,106ZF Arroz (USD 0),0.0,no,no,no
+3304,3,JOSE GUMA S.A.; LINFAR S.R.L; GENNUINE / YORKER,302F,"Aceites esenciales y reisnoides (perfume, cosmética, tocador)","302F Aceites esenciales y reisnoides (perfume, cosmética, tocador) (USD 22.3 K)",22346.0,no,no,no
+3305,1,JOSE GUMA S.A.,302F,"Aceites esenciales y reisnoides (perfume, cosmética, tocador)","302F Aceites esenciales y reisnoides (perfume, cosmética, tocador) (USD 22.3 K)",22346.0,no,no,no
+3306,1,TEDEQUIM SRL,302F,"Aceites esenciales y reisnoides (perfume, cosmética, tocador)","302F Aceites esenciales y reisnoides (perfume, cosmética, tocador) (USD 22.3 K)",22346.0,no,no,no
+3307,1,EQUI CARE,302F,"Aceites esenciales y reisnoides (perfume, cosmética, tocador)","302F Aceites esenciales y reisnoides (perfume, cosmética, tocador) (USD 22.3 K)",22346.0,no,no,no
+9306,1,FÁBRICA DE BALINES APOLO,399D,"Armas, municiones y sus partes","399D Armas, municiones y sus partes (USD 21.5 K)",21488.0,no,no,no
+4202,9,ATILIOF; BIANCHI CUEROS ARGENTINOS; CHENNA; INFOREST SRL; NATALIA SIRIUS,305,"Manufacturas de cuero, marroquinería, etc.","305 Manufacturas de cuero, marroquinería, etc. (USD 20.0 K)",19994.0,no,no,no
+4203,7,ATILIOF; BIANCHI CUEROS ARGENTINOS; GAMISOL; INFOREST SRL; SIRINGO,305,"Manufacturas de cuero, marroquinería, etc.","305 Manufacturas de cuero, marroquinería, etc. (USD 20.0 K)",19994.0,no,no,no
+4205,1,VMZ CUERO ARGENTINO,305,"Manufacturas de cuero, marroquinería, etc.","305 Manufacturas de cuero, marroquinería, etc. (USD 20.0 K)",19994.0,no,no,no
+7308,3,IMBAL SA; METALURGICA RE SRL; PROMETVA,311AF,"Estructuras, hangares, etc.de hiero o acero","311AF Estructuras, hangares, etc.de hiero o acero (USD 17.9 K)",17866.0,no,no,no
+6301,2,EL TELAR; BONOMI RESISTENCIAS ELÉCTRICAS,307I,Otros artículos de tejidos confeccionados,307I Otros artículos de tejidos confeccionados (USD 11.7 K),11697.0,no,no,no
+6305,2,BAG BIO; RAPPACHIANI,307I,Otros artículos de tejidos confeccionados,307I Otros artículos de tejidos confeccionados (USD 11.7 K),11697.0,no,no,no
+6306,1,RAPPACHIANI,307I,Otros artículos de tejidos confeccionados,307I Otros artículos de tejidos confeccionados (USD 11.7 K),11697.0,no,no,no
+5609,1,INFOREST SRL,307F,"Guatas y filtros, cordelería, tejidos especiales","307F Guatas y filtros, cordelería, tejidos especiales (USD 11.4 K)",11368.0,no,no,no
+0101,1,HARAS CORRAL DE ARROYO,101,Animales Vivos,101 Animales Vivos (USD 10.7 K),10674.0,no,no,no
+0102,4,ESTABLECIMIENTO SAN PATRICIO SA; COMPAÑIA ANGLO CORDOBA DE TIERRAS SA; EL ATARDECER; LAS CHILCAS,101,Animales Vivos,101 Animales Vivos (USD 10.7 K),10674.0,no,no,no
+0106,2,APICOLA VAIROLATTI SRL; ECOLAB CRIANZA INTENSIVA DE ABEJAS REINAS Y SUB PRODUCTOS APICOLAS,101,Animales Vivos,101 Animales Vivos (USD 10.7 K),10674.0,no,no,no
+1004,4,PAREDES CEREALES S.A.; PRAGA ALIMENTOS; SAGRA; SMART CAMPO SEMILLAS,106ZA,Avena,106ZA Avena (USD 6.1 K),6099.0,no,no,no
+6904,1,FANTINI LADRILLOS CERÁMICOS,309B,Productos cerámicos,309B Productos cerámicos (USD 3.9 K),3931.0,no,no,no
+6905,1,FANTINI LADRILLOS CERÁMICOS,309B,Productos cerámicos,309B Productos cerámicos (USD 3.9 K),3931.0,no,no,no
+6907,6,LA ELENENSE SA; CASA TALLER EL RANCHO; CEMENTADOS JUAN NADALIN E HIJOS S.A / NADALIN SA; INDEF; INSTRELEC,309B,Productos cerámicos,309B Productos cerámicos (USD 3.9 K),3931.0,no,no,no
+6909,1,CEMENTADOS JUAN NADALIN E HIJOS S.A / NADALIN SA,309B,Productos cerámicos,309B Productos cerámicos (USD 3.9 K),3931.0,no,no,no
+5704,1,BLACK OVEJA,307E,"Alfombras, tapices, terciopelo, felpas, etc.","307E Alfombras, tapices, terciopelo, felpas, etc. (USD 2.1 K)",2060.0,no,no,no
+0204,2,PAMPA COMPAÑÍA DE CARNES - DUO SILVESTRE ESCABECHES; SAN JAVIER CAPRINOS SRL,201AB,Carne ovina o caprina,201AB Carne ovina o caprina (USD 0),0.0,no,no,no
+0207,15,INDACOR SA; INFOREST SRL; PAMPA COMPAÑÍA DE CARNES - DUO SILVESTRE ESCABECHES; VASQUETTO NUTRICIÓN ANIMAL; EL PRODUCTOR,201AE,Carne de Ave,201AE Carne de Ave (USD 0),0.0,no,no,no
+0208,1,PAMPA COMPAÑÍA DE CARNES - DUO SILVESTRE ESCABECHES,201AZ,"Carnes frescas refrigeradas o congeladas excluido las bovinas,ovinas,caprinas,porcinas.aves,liebres y conejos","201AZ Carnes frescas refrigeradas o congeladas excluido las bovinas,ovinas,caprinas,porcinas.aves,liebres y conejos (USD 0)",0.0,no,no,no
+0210,2,ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; LA PIAMONTESA / GRUPO LA PIAMONTESA,201AZ,"Carnes frescas refrigeradas o congeladas excluido las bovinas,ovinas,caprinas,porcinas.aves,liebres y conejos","201AZ Carnes frescas refrigeradas o congeladas excluido las bovinas,ovinas,caprinas,porcinas.aves,liebres y conejos (USD 0)",0.0,no,no,no
+0802,11,CROPPERS - GRUPO MANIAGRO; COTAGRO; NATFOOD SAS; ACEITES DEL DESIERTO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET,105Z,Resto de frutas frescas ,105Z Resto de frutas frescas  (USD 0),0.0,no,no,no
+0806,6,CROPPERS - GRUPO MANIAGRO; PASAFRE; PRODUCTOS DON ROGELIO; PALMESANO - GRUPO PALMESANO; TRONADOR PANIFICADOS,105D,Uvas de mesa,105D Uvas de mesa (USD 0),0.0,no,no,no
+0807,1,OLIVARES SAN NICOLAS,105Z,Resto de frutas frescas ,105Z Resto de frutas frescas  (USD 0),0.0,no,no,no
+0810,11,GRANADAS ARGENTINAS; DULCOR; EASYFRUT; ESNAOLA - GRUPO DULCOR; GRUPO ARCOR,105Z,Resto de frutas frescas ,105Z Resto de frutas frescas  (USD 0),0.0,no,no,no
+0811,1,EASYFRUT,105Z,Resto de frutas frescas ,105Z Resto de frutas frescas  (USD 0),0.0,no,no,no
+0813,1,FRUNAT,205,Frutas secas o procesadas,205 Frutas secas o procesadas (USD 0),0.0,no,no,no
+0901,2,CAFÉ VELEZ; JUMALÁ SA,206C,Café,206C Café (USD 0),0.0,no,no,no
+0902,5,BONAFE / MÁS SABOR; CAFÉ VELEZ; CURA TÉ ALMA - MATE AMOS; JUMALÁ SA; PIPERPOL,206A,Té,206A Té (USD 0),0.0,no,no,no
+0903,8,BONAFE / MÁS SABOR; VERDEFLOR; CAFÉ VELEZ; CURA TÉ ALMA - MATE AMOS; ESTANCIA EL ROSARIO,206B,Yerba mate,206B Yerba mate (USD 0),0.0,no,no,no
+1006,14,Asociación de Cooperativas Argentinas (ACA) — Córdoba; AZAFRÁN RUEDO; SYTARI; EGRAN; PIERSANTI - METAL NOET,106ZF,Arroz,106ZF Arroz (USD 0),0.0,no,no,no
 1509,15,ACEITUNAS ALVAREZ; AIMURAI S.A.; GARLIC AJO NEGRO; VG AGRONEGOCIOS - FAMILIA GIORDANA OLIVARES; OLIVARES SAN NICOLAS,208AD,Aceite de oliva,208AD Aceite de oliva (USD 0),0.0,no,no,no
+1516,2,RDC S.A / RDC LEVADURAS / GRUPO BELTRÁN; WILBEY TENSOACTIVOS ARGENTINOS SRL,208AZ,Otros aceites,208AZ Otros aceites (USD 0),0.0,no,no,no
+1517,4,ASR - ALIMENTOS SANTA ROSA; MOLINO CAÑUELAS; PRONOR; RDC S.A / RDC LEVADURAS / GRUPO BELTRÁN,208AZ,Otros aceites,208AZ Otros aceites (USD 0),0.0,no,no,no
+1518,2,ALIMENTOS TANCACHA SA; ASR - ALIMENTOS SANTA ROSA,208AZ,Otros aceites,208AZ Otros aceites (USD 0),0.0,no,no,no
 1701,9,GRUPO ARCOR; Jose Minetti y Cía. (Molino San José); DOBLE TT GLOBAL; GRANDIET; HAPPY FOOD,209A,Azúcar de caña en bruto,209A Azúcar de caña en bruto (USD 0),0.0,no,no,no
-1702,1,GRUPO ARCOR,209Z,Resto de azúcar  y artículos de confitería ,209Z Resto de azúcar  y artículos de confitería  (USD 0),0.0,no,no,no
-2005,22,ACEITUNAS ALVAREZ; DULCOR; AIMURAI S.A.; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; GARLIC AJO NEGRO,210A,Aceitunas,210A Aceitunas (USD 0),0.0,no,no,no
-2204,3,LA CAROYENSE SA; OLIVARES VERDICCHIO; DRUSA DISEÑO,211A,Vino de uva,211A Vino de uva (USD 0),0.0,no,no,no
-2306,1,ACEITERA GENERAL DEHEZA SA - AGD,212AB,Subproductos oleaginosos de girasol,212AB Subproductos oleaginosos de girasol (USD 0),0.0,no,no,no
+1702,2,GRUPO ARCOR; JAMER Y BUEN PAN,209Z,Resto de azúcar  y artículos de confitería ,209Z Resto de azúcar  y artículos de confitería  (USD 0),0.0,no,no,no
+1703,1,GRUPO ARCOR,209Z,Resto de azúcar  y artículos de confitería ,209Z Resto de azúcar  y artículos de confitería  (USD 0),0.0,no,no,no
+1900,1,GRUPO ARCOR,,(no rubro),,0.0,no,no,no
+2005,24,ACEITUNAS ALVAREZ; DULCOR; AIMURAI S.A.; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; GARLIC AJO NEGRO,210A,Aceitunas,210A Aceitunas (USD 0),0.0,no,no,no
+2009,1,LA CAROYENSE SA,210D,Jugos de frutas y hortalizas,210D Jugos de frutas y hortalizas (USD 0),0.0,no,no,no
+2204,5,BODEGA Y VIÑEDOS LAS CAÑITAS; FAMIGLIA FURFARO; LA CAROYENSE SA; OLIVARES VERDICCHIO; DRUSA DISEÑO,211A,Vino de uva,211A Vino de uva (USD 0),0.0,no,no,no
+2306,3,ACEITERA GENERAL DEHEZA SA - AGD; BRO FOOD SUPPLIER; GRUPO ARCOR,212AB,Subproductos oleaginosos de girasol,212AB Subproductos oleaginosos de girasol (USD 0),0.0,no,no,no
 2401,2,SAYRI TABACOS; PUNTO Y BANCA,108A,Tabaco sin elaborar en hojas,108A Tabaco sin elaborar en hojas (USD 0),0.0,no,no,no
-4104,35,ATILIOF; BIANCHI CUEROS ARGENTINOS; CHENNA; CURTIEMBRE RÍO TERCERO SA; CUSCO COWHIDES,214B,Pieles y cueros preparados,214B Pieles y cueros preparados (USD 0),0.0,no,no,no
-5101,6,LANAS MELODY; BLACK OVEJA; COOPERATIVA ALBORADA; CORUJA; MISS PIKY,109,Lanas sucias,109 Lanas sucias (USD 0),0.0,no,no,no
+2403,2,SAYRI TABACOS; PUNTO Y BANCA,108Z,Resto de tabaco sin elaborar,108Z Resto de tabaco sin elaborar (USD 0),0.0,no,no,no
+2710,1,GRAFITOIL,402A,Naftas,402A Naftas (USD 0) | 402B Gasolinas (USD 0) | 403 Grasas y aceites lubricantes (USD 0),0.0,no,no,no
+3504,1,LINFAR S.R.L,213B,"Caseína,albúminas,gelatinas y sus derivados","213B Caseína,albúminas,gelatinas y sus derivados (USD 0)",0.0,no,no,no
+3824,5,ALPHA QUIMICA S.R.L.; NANOMIX; AQUAMAR; CLEAN COR S.A.; FACYT,,(no rubro),,0.0,no,no,no
+4101,1,BARRACA CORDOBA SRL,214A,Pieles y cueros en bruto,214A Pieles y cueros en bruto (USD 0),0.0,no,no,no
+4102,1,BARRACA CORDOBA SRL,214A,Pieles y cueros en bruto,214A Pieles y cueros en bruto (USD 0),0.0,no,no,no
+4103,3,BARRACA CORDOBA SRL; ZANIN HNOS.; SAN JAVIER CAPRINOS SRL,214A,Pieles y cueros en bruto,214A Pieles y cueros en bruto (USD 0),0.0,no,no,no
+4104,35,CURTIEMBRE RÍO TERCERO SA; ATILIOF; BIANCHI CUEROS ARGENTINOS; CHENNA; CUSCO COWHIDES,214B,Pieles y cueros preparados,214B Pieles y cueros preparados (USD 0),0.0,no,no,no
+4106,1,BARRACA CORDOBA SRL,214B,Pieles y cueros preparados,214B Pieles y cueros preparados (USD 0),0.0,no,no,no
+4107,1,ZANIN HNOS.,214B,Pieles y cueros preparados,214B Pieles y cueros preparados (USD 0),0.0,no,no,no
+4114,1,BARRACA CORDOBA SRL,,(no rubro),,0.0,no,no,no
+5101,6,LANAS MELODY; COOPERATIVA ALBORADA; BLACK OVEJA; CORUJA; MISS PIKY,109,Lanas sucias,109 Lanas sucias (USD 0),0.0,no,no,no
+5105,1,CORUJA,215,Lanas elaboradas,215 Lanas elaboradas (USD 0),0.0,no,no,no
 5106,4,LACTEOS CDS - LACNAT - LOMBARDE; LANAS MELODY; CORUJA; LÁCTEOS LAS TRES,215,Lanas elaboradas,215 Lanas elaboradas (USD 0),0.0,no,no,no
 5107,1,LANAS MELODY,215,Lanas elaboradas,215 Lanas elaboradas (USD 0),0.0,no,no,no
+5109,2,LANAS MELODY; CORUJA,215,Lanas elaboradas,215 Lanas elaboradas (USD 0),0.0,no,no,no
+5205,1,CORUJA,307C,Hilados y tejidos de algodón,307C Hilados y tejidos de algodón (USD 0),0.0,no,no,no
+5402,1,LANAS MELODY,307A,Textiles sintéticos o artificiales continuos,307A Textiles sintéticos o artificiales continuos (USD 0),0.0,no,no,no
+5406,1,LANAS MELODY,307A,Textiles sintéticos o artificiales continuos,307A Textiles sintéticos o artificiales continuos (USD 0),0.0,no,no,no
 5509,1,LANAS MELODY,307D,Textiles sintéticos o artificiales discontinuos,307D Textiles sintéticos o artificiales discontinuos (USD 0),0.0,no,no,no
-6403,30,CURTIEMBRE RÍO TERCERO SA; FLEXIMAR - INDIAN; SERMA; ZANIN HNOS.; DAS LUZ CALZADOS,308,Calzado y sus componentes,308 Calzado y sus componentes (USD 0),0.0,no,no,no
+6006,1,HAUSE MOBEL S.A.,,(no rubro),,0.0,no,no,no
+6402,1,DAS LUZ CALZADOS,308,Calzado y sus componentes,308 Calzado y sus componentes (USD 0),0.0,no,no,no
+6403,31,INFOREST SRL; KARAMELHO; CURTIEMBRE RÍO TERCERO SA; FLEXIMAR - INDIAN; SERMA,308,Calzado y sus componentes,308 Calzado y sus componentes (USD 0),0.0,no,no,no
+6404,3,FLEXIMAR - INDIAN; JANUA; KARAMELHO,308,Calzado y sus componentes,308 Calzado y sus componentes (USD 0),0.0,no,no,no
+6405,1,FLEXIMAR - INDIAN,308,Calzado y sus componentes,308 Calzado y sus componentes (USD 0),0.0,no,no,no
+6406,2,MOPLEX; GOMAS GASPAR,308,Calzado y sus componentes,308 Calzado y sus componentes (USD 0),0.0,no,no,no
+7117,2,SIETE MILLAS; VANESA DURAN,310A,Piedras y metales preciosos,310A Piedras y metales preciosos (USD 0),0.0,no,no,no
+7217,1,SANTIAGO PALLAS,311AB,"Perfiles estructurales de fundición,hierro o acero","311AB Perfiles estructurales de fundición,hierro o acero (USD 0)",0.0,no,no,no
+7220,1,BOETTO SH,311AD,Aceros especiales,311AD Aceros especiales (USD 0),0.0,no,no,no
+7226,2,ELECTROPART CORDOBA; MAYO TRANSFORMADORES,311AD,Aceros especiales,311AD Aceros especiales (USD 0),0.0,no,no,no
+7228,1,ESTABLECIMIENTO METALURGICO MF S.R.L.,311AD,Aceros especiales,311AD Aceros especiales (USD 0),0.0,no,no,no
+7321,2,FOGONEGROS; ORMAY,311AG,"Estufas, cocinas, etc.de fundición,hierro o acero","311AG Estufas, cocinas, etc.de fundición,hierro o acero (USD 0)",0.0,no,no,no
+7801,1,ITHURBIDE,311D,Plomo,311D Plomo (USD 0),0.0,no,no,no
+8101,1,TANTAL TUNGSTEN SOLUTIONS,311E,Otros metales comunes,311E Otros metales comunes (USD 0),0.0,no,no,no
+8113,1,TANTAL TUNGSTEN SOLUTIONS,311E,Otros metales comunes,311E Otros metales comunes (USD 0),0.0,no,no,no
+8471,3,CONTROL GLOBAL; PRÓCER TECNOLOGÍAS; WOXI,312AJ,Máquinas automáticas para el procesamiento de datos,312AJ Máquinas automáticas para el procesamiento de datos (USD 0),0.0,no,no,no
+8473,1,GRAFIN ARGENTINA S.A.,312AK,"Piezas y accesorios para máquina de escribir, calcular, estadística y otras máquinas de oficina","312AK Piezas y accesorios para máquina de escribir, calcular, estadística y otras máquinas de oficina (USD 0)",0.0,no,no,no
+8487,2,KÜGELLAGER; HYDROM OLEODINAMICA S.R.L,,(no rubro),,0.0,no,no,no
+8601,1,MATERFER,313A,Vehículos y materiales para vías férreas y sus partes,313A Vehículos y materiales para vías férreas y sus partes (USD 0),0.0,no,no,no
+8607,1,FUNDARG SRL,313A,Vehículos y materiales para vías férreas y sus partes,313A Vehículos y materiales para vías férreas y sus partes (USD 0),0.0,no,no,no
+8609,1,SCORZA,313A,Vehículos y materiales para vías férreas y sus partes,313A Vehículos y materiales para vías férreas y sus partes (USD 0),0.0,no,no,no
+8802,1,FADEA S.A.,314A,"Vehículos de navegación aérea, aeronaves, vehículos espaciales y sus partes","314A Vehículos de navegación aérea, aeronaves, vehículos espaciales y sus partes (USD 0)",0.0,no,no,no
+8803,1,FIXVIEW SRL,314A,"Vehículos de navegación aérea, aeronaves, vehículos espaciales y sus partes","314A Vehículos de navegación aérea, aeronaves, vehículos espaciales y sus partes (USD 0)",0.0,no,no,no
+9208,1,VASO GÜIRA,399C,"Instrumentos de música, partes y accesorios","399C Instrumentos de música, partes y accesorios (USD 0)",0.0,no,no,no
+9209,1,ORUGA,399C,"Instrumentos de música, partes y accesorios","399C Instrumentos de música, partes y accesorios (USD 0)",0.0,no,no,no
