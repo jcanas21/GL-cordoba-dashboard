@@ -751,7 +751,7 @@ def page_firmas():
     cols = [
         "firm_name", "razon_social", "hs4_label", "rubro_indec_nombre_final",
         "evidence_layer", "confidence",
-        "opex_avg_m", "opex_2024_m",
+        "opex_avg_m",
         "attribution_type", "evidence_text", "evidence_url", "source_url",
     ]
     display = f[[c for c in cols if c in f.columns]].copy()
@@ -769,12 +769,11 @@ def page_firmas():
 | **Razón social** | Nombre legal de la firma. |
 | **HS4 ancla** | HS4 (HS 1992) + nombre corto en español al que la firma está atribuida. Todos los HS4 aquí pertenecen al set de 125 anclas evidenciadas. |
 | **Rubro INDEC** | Rubro CCOD_RUBRO (clasificación INDEC "Grandes Rubros / Capítulos") al que el HS4 fold-up en el panel OPEX provincial. |
-| **Capa** | Origen de la evidencia firma↔HS4. `curated` = revisión manual con `evidence_text` + URL fuente específica al HS4 (66 firmas, 152 pares); `registry-keyword` = match automático de keyword en `products_text` vía PRODUCT_PATTERNS del script 07 (~899 firmas). Sin fallback ciego. |
-| **Confianza** | Nivel de confianza reportado por el pipeline (`high` / `medium` / `low`). `curated` suele ser `high`. |
+| **Capa** | Origen y grado de curación del vínculo firma↔HS4. **`curated`** (66 firmas, 152 pares): revisión analítica manual — un curador inspeccionó `products_text` + sitio web + notas de prensa y asignó el HS4 explícitamente, dejando el razonamiento en `Evidencia (texto)` y una URL primaria en `Evidencia URL`. Es el subset más confiable. **`registry-keyword`** (~899 firmas): atribución automática por match de regex sobre `products_text` en el pipeline (`scripts/07_full_registry_pass.py`). Sin fallback ciego — si el texto no matchea ningún pattern específico, la firma no recibe HS4. Confiable a nivel individual pero sin curación por analista. |
+| **Confianza** | Nivel de certeza sobre el vínculo firma↔HS4. **`high`**: evidencia clara y explícita (texto de producto es un match exacto del HS4, o análisis manual concluyente). **`medium`**: match plausible pero con ambigüedad (ej. firma multiproducto donde el HS4 es sólo uno de varios candidatos). **`low`**: señal débil — históricamente se usaba para atribuciones por rubro amplio; en el pipeline actual sin fallback ciego, este valor debería ser raro. Para la capa `curated` casi todo es `high` porque sólo se registran filas donde hay certeza. |
 | **OPEX rubro (USD M, prom 2023-2025)** | Monto exportado por Córdoba en el rubro INDEC, promedio anual 2023-2025 en USD millones. Es del **rubro entero**, no de la firma individual — una firma en un rubro grande no representa necesariamente una porción grande del monto. |
-| **OPEX rubro 2024 (USD M)** | Idem pero sólo el año 2024. |
-| **Tipo de atribución** | Cómo el HS4 mapea al rubro INDEC: `clean` (rubro específico → 1-2 HS4), `named-aggregate` (rubro nombrado con varios HS4), `broad-chapter` (rubro cubre un capítulo HS entero), `confidential` (rubro censurado por Ley 17.622), `resto` (categoría residual). |
-| **Evidencia (texto)** | Justificación del vínculo firma↔HS4: prosa curada para `curated`, o el keyword exacto que matcheó para `registry-keyword`. |
+| **Tipo de atribución** | Cómo el HS4 evidenciado en la firma fold-up al rubro INDEC. Ordenados de más a menos preciso: **`clean`** — el rubro mapea limpiamente a 1-2 HS4 (ej. `106B Maíz → HS 1005`), sin ambigüedad; **`named-aggregate`** — rubro nombrado que agrupa varios HS4 del mismo dominio (ej. `313BB Vehículos automóviles terrestres → HS 8702/8703/8704`); **`broad-chapter`** — rubro cubre un capítulo HS entero (ej. `312B Máq. eléctricas → HS 8501-8548`), el HS4 específico viene del lado firm; **`resto`** — rubro residual dentro de un grupo (ej. `107Z Resto semillas y frutos oleaginosos`), cubre HS4 no clasificados en categorías nombradas; **`confidential`** — rubro INDEC censurado por Ley 17.622 (códigos terminados en `899`): el monto agregado está publicado pero la composición interna no, así que el HS4 sólo puede establecerse desde el lado firm. |
+| **Evidencia (texto)** | Justificación en prosa del vínculo firma↔HS4. En **`curated`**: texto humano explicando por qué se asignó ese HS4, típicamente citando el producto declarado y su correspondencia con la definición HS4 (ej. *"Products CHORIZO DE CERDO, MORCILLA, SALCHICHA, SALAME → HS 1601 'sausages and similar products'"*). En **`registry-keyword`**: nota generada por el pipeline indicando el pattern regex que matcheó (ej. *"keyword 'trigo' matched in product/description text"*). En ambos casos permite auditar la fila: si el texto no parece justificar el HS4 mostrado, hay razón para dudar de esa atribución. |
 | **Evidencia URL** | URL pública que evidencia el vínculo (notas de prensa, sitio corporativo, cámara, etc.). |
 | **Página registro** | Link a la ficha de la firma en `exportadoresdecordoba.com`. |
 
@@ -800,10 +799,6 @@ sector/rubro coincida. Click en el fondo del treemap para limpiar.
             "opex_avg_m": st.column_config.NumberColumn(
                 "OPEX rubro (USD M, prom 2023-2025)", format="%.1f",
                 help="Monto exportado por Córdoba en el rubro INDEC del lado de la firma, en millones de USD.",
-            ),
-            "opex_2024_m": st.column_config.NumberColumn(
-                "OPEX rubro 2024 (USD M)", format="%.1f",
-                help="Monto exportado por Córdoba en el rubro INDEC en 2024, en millones de USD.",
             ),
             "attribution_type": st.column_config.TextColumn("Tipo de atribución"),
             "evidence_text": st.column_config.TextColumn("Evidencia (texto)", width="large"),
