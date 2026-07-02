@@ -467,6 +467,14 @@ C_{z,y} \;=\; \frac{X_{z,y} / M_y}{X_z / WT}
   tiene una presencia importadora relativamente superior a su peso global;
   valores menores que 1 significan que la demanda se concentra donde
   Argentina tiene una presencia relativamente débil.
+- **Ventana temporal**: todos los flujos ($X_{z,y}$, $M_{i,y}$, $X_z$, $WT$)
+  corresponden a **BACI 2024** exclusivamente — no es un promedio de años,
+  a diferencia de la distancia recorrida.
+- **Set de comparación para el percentil**: `dai_percentile` no es un
+  percentil global sobre ~200 países. Argentina se compara contra los
+  **top-30 exportadores** del mismo producto (+ Argentina, dedupeado) y el
+  ranking se expresa como percentil sobre ese set. Fuente:
+  `data_processing.ipynb` (celda 13).
     """)
 
     st.caption(
