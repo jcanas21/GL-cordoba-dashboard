@@ -83,6 +83,7 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 1703,HS92,209Z,Resto de azúcar  y artículos de confitería ,aggregate-resto,yes,1,GRUPO ARCOR,registry-declared
 1704,HS92,209B,Artículos de confitería sin cacao,clean,yes,9,DULCOR; GEORGALOS; CHOCOLATES BARILOCHE - GRUPO PALMESANO; GRUPO ARCOR; JL PRODUCTOS ALIMENTICIOS,targeted+registry-declared
 1806,HS92,209CB,Preparaciones de cacao,clean,yes,9,ESNAOLA - GRUPO DULCOR; GEORGALOS; CERRO AZUL; CHOCOLATES BARILOCHE - GRUPO PALMESANO; GRUPO ARCOR,targeted+registry-declared
+1900,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,1,GRUPO ARCOR,registry-declared
 1901,HS92,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,yes,18,LA BLANCA SA; FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; DULCOR; CAPYC; CELIDARINA,targeted+registry-declared
 1902,HS92,207CB,"Pastas alimenticias, productos de panadería...",clean,yes,10,FAMIGLIA ROSSI - MOLINOS ROSSI; FÁBRICA DE PASTAS BETTINI; AZAFRÁN RUEDO; LA ITALIANA; LEGUME,targeted+registry-declared
 1904,HS92,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,yes,7,GEORGALOS; CROPPERS - GRUPO MANIAGRO; EGRAN; SYTARI; CROCCANTO,targeted+registry-declared
