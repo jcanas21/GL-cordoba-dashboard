@@ -84,6 +84,18 @@ UMAP_TO_CLUSTER = {
     "Textile and Home Goods": "Textile & Home Goods",
 }
 
+# Legend labels in Spanish (for the product-space scatter legend below page 2)
+CLUSTER_ES_LABEL: dict[str, str] = {
+    "Agricultural Goods":       "Bienes agrícolas",
+    "Construction Goods":       "Bienes de construcción",
+    "Electronics":              "Electrónica",
+    "Chemicals & Basic Metals": "Químicos y metales básicos",
+    "Metalworking Machinery":   "Maquinaria metalmecánica",
+    "Minerals":                 "Minerales",
+    "Textile & Home Goods":     "Textiles y hogar",
+    "Apparel":                  "Indumentaria",
+}
+
 NATURAL_RESOURCE_HS4 = ["2711", "2710", "7108", "2709", "2713", "2701", "2603", "2616"]
 
 HS_SECTIONS = [
@@ -1422,7 +1434,7 @@ def page_analisis():
     ank = umap_plot[umap_plot["in_anchor"]].copy()
     ank_by_cluster = ank.groupby("cluster_std", sort=True)
     for cluster_name, group in ank_by_cluster:
-        display_name = cluster_name if cluster_name else "Otros"
+        display_name = CLUSTER_ES_LABEL.get(cluster_name, cluster_name) if cluster_name else "Otros"
         color = cluster_color.get(cluster_name, "#e0e0e3") if cluster_name else "#e0e0e3"
         fig_ps.add_trace(go.Scatter(
             x=group["product_space_x"], y=group["product_space_y"], mode="markers",
@@ -1440,7 +1452,7 @@ def page_analisis():
             orientation="h",
             yanchor="top", y=-0.02,
             xanchor="center", x=0.5,
-            title_text="Cluster del espacio de productos",
+            title_text="Sector del espacio de productos",
             title_font=dict(size=13),
             font=dict(size=12),
             itemsizing="constant",
