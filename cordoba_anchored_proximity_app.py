@@ -1297,7 +1297,24 @@ def page_analisis():
 
     trade_lookup = dict(zip(trade_2024["product_hs92_code"], trade_2024["export_value"]))
     name_es_lookup = dict(zip(names["hs4"], names["product_name_es"]))
+    # Rubro INDEC + Match lookup (Directo / Residual) per anchor HS4
+    _presence_indexed = presence.copy()
+    _presence_indexed["hs4"] = _presence_indexed["hs4"].astype(str).str.zfill(4)
+    _presence_indexed["primary_ccod_rubro"] = _presence_indexed["primary_ccod_rubro"].astype(str).str.strip()
+    rubro_code_lookup = dict(zip(_presence_indexed["hs4"], _presence_indexed["primary_ccod_rubro"]))
+    rubro_name_lookup = dict(zip(_presence_indexed["hs4"], _presence_indexed["primary_rubro_name"].astype(str)))
 
+    def _match_type(ccod: str) -> str:
+        return "Residual" if str(ccod).strip().endswith("899") else "Directo"
+
+    def _anchor_hover(h: str, name: str) -> str:
+        ccod = rubro_code_lookup.get(h, "")
+        rname = rubro_name_lookup.get(h, "")
+        lines = [f"<b>HS {h}</b> · {name}", "Ancla"]
+        if ccod:
+            lines.append(f"Rubro INDEC: {ccod} — {rname}")
+            lines.append(f"Match: {_match_type(ccod)}")
+        return "<br>".join(lines)
 
     def dot_radius(v: float) -> float:
         """log10-based radius. Same formula for all dots: presence is signalled
@@ -1330,7 +1347,7 @@ def page_analisis():
         x=ank["product_space_x"], y=ank["product_space_y"], mode="markers",
         marker=dict(size=ank["radius"], color=ank["color"],
                     line=dict(width=0.6, color="#ffffff"), opacity=0.92),
-        text=[f"<b>HS {h}</b> · {n}<br>Ancla" for h, n in zip(ank["product_hs92_code"], ank["product_name_es"])],
+        text=[_anchor_hover(h, n) for h, n in zip(ank["product_hs92_code"], ank["product_name_es"])],
         hoverinfo="text", name="Anclas", showlegend=False,
     ))
     fig_ps.update_layout(
