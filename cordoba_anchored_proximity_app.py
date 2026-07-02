@@ -381,10 +381,19 @@ _ISO3_TO_CONTINENT: dict[str, str] = {
         "AUS","NZL","PNG","FJI","SLB","VUT","WSM","TON","KIR","MHL","PLW","FSM","NRU","TUV"]},
 }
 
+CONTINENT_COLORS: dict[str, str] = {
+    "África": "#773bd8",
+    "América": "#9e4643",
+    "Asia": "#6bc285",
+    "Europa": "#5780b7",
+    "Oceanía": "#f2bc67",
+    "Otros": "#2f5d74",
+}
+
 
 @st.cache_data
 def load_accessible_market(_signature: str = ""):
-    df = pd.read_csv(DATA_DIR / "accessible_market_arg.csv", dtype={{"hs92": str}})
+    df = pd.read_csv(DATA_DIR / "accessible_market_arg.csv", dtype={"hs92": str})
     df["hs92"] = df["hs92"].str.zfill(4)
     df["continente"] = df["iso3_d"].map(_ISO3_TO_CONTINENT).fillna("Otros")
     return df
@@ -1824,24 +1833,26 @@ def page_mercado_accesible():
         st.info("Sin destinos accesibles para este producto.")
         return
 
-    # Treemap — tile per destination country, single-colour matching page-2 sector palette 'Other'
+    # Treemap — tile per (continente, destino), colored por continente
     sub["participacion"] = sub["mercado_b"] / total_b
-    sub["tile_label"] = sub["iso3_d"] + "<br>$" + (sub["total_imports"] / 1e6).map(lambda v: f"{v:,.0f}M")
+    sub["continente"] = sub["iso3_d"].map(_ISO3_TO_CONTINENT).fillna("Otros")
     fig = px.treemap(
         sub,
-        path=["iso3_d"],
+        path=["continente", "iso3_d"],
         values="mercado_b",
-        color_discrete_sequence=["#a03e3e"],
+        color="continente",
+        color_discrete_map=CONTINENT_COLORS,
         hover_data={
             "mercado_b": ":.3f",
             "mercado_m": ":.1f",
             "participacion": ":.1%",
             "iso3_d": False,
+            "continente": False,
         },
         title=(
             f"Mercado accesible para {picked_label} "
             f"(n = {n_dest} destinos | total = {total_b:,.2f} USD mil M) "
-            f"| tamaño = importaciones totales del destino"
+            f"| tamaño = importaciones totales del destino · color = continente"
         ),
     )
     fig.update_traces(
@@ -1850,7 +1861,14 @@ def page_mercado_accesible():
         textfont=dict(size=16, color="#ffffff"),
         marker=dict(line=dict(width=1, color="rgba(255,255,255,0.45)")),
     )
-    fig.update_layout(margin=dict(t=60, l=10, r=10, b=10), height=560)
+    fig.update_layout(
+        margin=dict(t=60, l=10, r=10, b=95),
+        height=620,
+        legend=dict(
+            orientation="h", yanchor="top", y=-0.05, xanchor="center", x=0.5,
+            title_text="Continente",
+        ),
+    )
     st.plotly_chart(fig, use_container_width=True)
 
     # Table
