@@ -381,71 +381,83 @@ componente son configurables en el sidebar.
 | Variable | Significado |
 |---|---|
 | **HS4** | Sistema Armonizado a 4 dígitos, revisión 1992 (convención Atlas / Growth Lab). |
-| **Ancla** (anchor) | HS4 donde Córdoba tiene presencia exportadora **evidenciada por firmas reales** (registry + chambers). 125 HS4 en total (set actual; el universo se re-genera al limpiar la lógica de atribución). |
-| **Candidato** | HS4 sin presencia evidenciada que aparece en el top-1% de proximidad de al menos un ancla, **o** un HS4 evidenciado cuyo OPEX cayó por debajo del umbral del slider (en cuyo caso queda flageado `posible_ancla = 1`). |
-| **OPEX** | Exportaciones de Córdoba por rubro INDEC (CCOD_RUBRO), promedio 2023–2025. Filtrá anclas por umbral OPEX. |
-| **RUBRO** | "Grandes Rubros / Capítulos" de INDEC (clasificación ICA); 100 rubros en el panel OPEX usado acá. **No es lo mismo que NCM ni que Complejos Exportadores Rev. 2018**. |
+| **Ancla** | HS4 donde Córdoba tiene presencia exportadora **evidenciada por firmas reales** (registry + cámaras). 125 HS4 en total (set actual). |
+| **Candidato** | HS4 sin presencia evidenciada que aparece en el top-1% de proximidad de al menos un ancla, **o** un HS4 evidenciado cuyo OPEX cayó por debajo del umbral del slider (se flaguea como *posible ancla*). |
+| **OPEX** | Exportaciones de Córdoba por rubro INDEC (CCOD_RUBRO), promedio 2023–2025. El slider de umbral OPEX filtra el set de anclas. |
+| **Rubro** | "Grandes Rubros / Capítulos" de INDEC (clasificación ICA); 100 rubros en el panel OPEX. **No es lo mismo que NCM ni que Complejos Exportadores Rev. 2018**. |
 | **Proximidad** | Probabilidad condicional `min(P(p₁\|p₂), P(p₂\|p₁))` de que un país exporte ambos productos con RCA, suavizada con `rca / (rca + 1)`. Está en [0, 1]. |
-| **PCI** | Product Complexity Index — sofisticación productiva implícita de un HS4. |
-| **DAI** | Demand Alignment Index — ver fórmula abajo. |
-| **Distance Travelled** | Distancia geográfica promedio (km) que viaja cada HS4 a nivel global, ponderada por flujos bilaterales. Mayor = producto globalmente tradeable. |
-| **Accessible Market** | Tamaño y crecimiento del mercado al que un país tiene "acceso natural" — ver fórmula abajo. |
-| **Factibilidad** | `(w·DAI + w·dist_pctile + w·anchor_count) / Σw` (todos en [0, 1]). |
-| **Atractividad** | `(w·PCI + w·acc_size + w·acc_growth) / Σw`. |
-| **Score combinado** | `(1 − balance) · factibilidad + balance · atractividad`. |
-| **`posible_ancla`** | Dummy 1/0: el candidato pertenece al set de evidenciadas pero su OPEX no llegó al umbral. |
-| **`anchors`** | HS4 (separados por ·) de las anclas que tienen al candidato en su top-1% de proximidad. |
+| **PCI** *(Product Complexity Index)* | Sofisticación productiva implícita de un HS4 — más alto = más complejo. |
+| **DAI** *(Índice de alineación de demanda)* | Qué tanto la demanda externa por un producto se alinea con la canasta exportadora del país. Ver fórmula abajo. |
+| **Distancia recorrida** *(distance_travelled)* | Distancia geográfica promedio (km) que recorre cada HS4 a nivel global, ponderada por valor exportado en cada par bilateral. **Atributo del producto** — no depende del país exportador. Ver fórmula abajo. |
+| **Mercado accesible** *(accessible_market_size)* | Suma de las importaciones mundiales del producto por parte de los destinos que están dentro de la distancia recorrida del producto, o que ya reciben flujo grande desde el origen. Ver fórmula abajo. |
+| **Factibilidad** | Promedio ponderado del DAI, del percentil de distancia recorrida y del número normalizado de anclas del candidato. Todos en [0, 1]. |
+| **Atractividad** | Promedio ponderado del PCI, del tamaño del mercado accesible y del crecimiento a 5 años del mercado accesible. |
+| **Puntaje combinado** | `(1 − balance) · factibilidad + balance · atractividad`, donde `balance` es el dial estratégico del sidebar. |
+| **Posible ancla** | Dummy 1/0: el candidato pertenece al set de HS4 evidenciados pero su OPEX no llegó al umbral. |
+| **Anclas del candidato** | HS4 (separados por ·) de las anclas que tienen al candidato en su top-1% de proximidad. |
     """)
 
     st.subheader("Fórmulas — variables clave")
 
-    st.markdown("**DAI — Demand Alignment Index**")
-    st.markdown("""
+    st.markdown("**Distancia recorrida** — atributo del producto")
+    st.markdown(r"""
+Distancia geográfica promedio que recorre el producto $p$ a nivel global,
+ponderada por el valor exportado en cada par bilateral. **Se calcula sobre
+el panel bilateral BACI 2020-2024 (promediado)** y es un atributo del
+producto: no depende del país exportador de origen. Fuente:
+`data_processing.ipynb` (celda 7).
+    """)
+    st.latex(r"""
+\mathrm{DistanceTravelled}_p \;=\; \frac{\sum_{(c,c')} d_{c,c'} \cdot X_{c,c',p}}{\sum_{(c,c')} X_{c,c',p}}
+""")
+    st.markdown(r"""
+donde $X_{c,c',p}$ son las exportaciones bilaterales del producto $p$ del
+país $c$ al país $c'$ y $d_{c,c'}$ la distancia geográfica entre ambos.
+**Mayor distancia = el producto viaja lejos globalmente = es un bien
+tradeable**, y en este tablero se interpreta como mayor factibilidad
+para Córdoba.
+    """)
+
+    st.markdown("**Mercado accesible**")
+    st.markdown(r"""
+Suma de las importaciones mundiales del producto $p$ por parte de los
+destinos $c'$ que satisfacen al menos una de dos condiciones — cercanía
+respecto de la distancia típica del producto, **o** flujo existente grande
+desde el origen $c$:
+    """)
+    st.latex(r"""
+\mathrm{AccessibleMarket}_{c,p} \;=\; \sum_{c' \in \mathcal{A}_{c,p}} M_{c',p}
+""")
+    st.latex(r"""
+\mathcal{A}_{c,p} \;=\; \bigl\{\, c' : d_{c,c'} \le \mathrm{DistanceTravelled}_p \;\;\lor\;\; X_{c,c',p} \ge 100\,\mathrm{M\,USD} \,\bigr\}
+""")
+    st.markdown(r"""
+donde $M_{c',p} = \sum_c X_{c,c',p}$ son las importaciones totales del
+producto $p$ por parte del país $c'$, y $X_{c,c',p}$ son las exportaciones
+bilaterales del origen $c$ al destino $c'$. **El umbral es binario, no un
+decay continuo**: el destino entra al conjunto accesible sí o no, y su
+importación total se agrega en su totalidad. El **crecimiento a 5 años**
+del mercado accesible se calcula como CAGR entre 2020 y 2024:
+    """)
+    st.latex(r"""
+\mathrm{AccessibleMarketGrowth5y}_p \;=\; \left(\frac{\mathrm{AccessibleMarket}_{p,2024}}{\mathrm{AccessibleMarket}_{p,2020}}\right)^{1/5} - 1
+""")
+
+    st.markdown("**DAI — Índice de alineación de demanda**")
+    st.markdown(r"""
 Mide qué tanto la **demanda externa** por un producto $p$ se alinea con
-la **oferta exportable** del país (proximidad a su base productiva).
-Formalmente, para país $c$ y producto $p$:
+la **oferta exportable** del país $c$ (proximidad a su base productiva).
+Para país $c$ y producto $p$:
     """)
     st.latex(r"""
 \mathrm{DAI}_{c,p} \;=\; \sum_{p'} \omega_{p,p'} \cdot M^{rel}_{p'}
 """)
     st.markdown(r"""
 donde $\omega_{p,p'}$ es la proximidad normalizada entre $p$ y $p'$, y
-$M^{rel}_{p'}$ es el peso relativo de $p'$ en las **importaciones del
-resto del mundo** (mide la demanda global por $p'$). Productos cercanos
-a $p$ con alta demanda externa elevan el DAI. El percentil mostrado en
-el tablero es la posición del HS4 en la distribución del set filtrado.
-    """)
-
-    st.markdown("**Accessible Market**")
-    st.markdown("""
-Tamaño del mercado al que un país tiene "acceso natural" para un
-producto, ponderando los flujos bilaterales por la distancia y por la
-proximidad de la canasta exportadora del país destino.
-    """)
-    st.latex(r"""
-\mathrm{AccessibleMarket}_{c,p} \;=\; \sum_{c'} \frac{\mathrm{Imports}_{c',p}}{1 + d_{c,c'} / d_0}
-""")
-    st.markdown(r"""
-donde $\mathrm{Imports}_{c',p}$ son las importaciones del país $c'$ del
-producto $p$, $d_{c,c'}$ la distancia geográfica entre $c$ y $c'$, y $d_0$
-una constante de escala. Países más cercanos contribuyen más al mercado
-accesible. El **crecimiento** de 5 años usa la misma definición sobre
-ventanas comparables.
-    """)
-
-    st.markdown("**Distance Travelled**")
-    st.markdown("""
-Distancia geográfica promedio que recorre el producto $p$ a nivel
-global, ponderada por el valor exportado de cada par bilateral:
-    """)
-    st.latex(r"""
-\mathrm{DistanceTravelled}_p \;=\; \frac{\sum_{(c,c')} d_{c,c'} \cdot X_{c,c',p}}{\sum_{(c,c')} X_{c,c',p}}
-""")
-    st.markdown("""
-donde $X_{c,c',p}$ son las exportaciones bilaterales del producto $p$ de
-$c$ a $c'$ y $d_{c,c'}$ la distancia. **Mayor distancia = el producto se
-mueve globalmente = más tradeable**, lo que en este tablero se interpreta
-como mayor factibilidad para Córdoba.
+$M^{rel}_{p'}$ es el peso relativo de $p'$ en las importaciones del
+resto del mundo (mide la demanda global por $p'$). Productos cercanos
+a $p$ con alta demanda externa elevan el DAI. El **percentil** mostrado
+en el tablero es la posición del HS4 en la distribución del set filtrado.
     """)
 
     st.caption(
