@@ -335,11 +335,19 @@ def load_firms_data(_signature: str = ""):
 
 
 def page_inicio():
-    st.title("Diversificación productiva — Córdoba")
-    st.caption(
-        "Tablero exploratorio para la agenda de diversificación productiva "
-        "de la Provincia de Córdoba, Argentina."
-    )
+    _assets = Path(__file__).resolve().parent / "assets"
+    col_flag, col_title, col_gl = st.columns([1, 4, 2], vertical_alignment="center")
+    with col_flag:
+        st.image(str(_assets / "bandera_cordoba.svg"), width=130)
+    with col_title:
+        st.title("Diversificación productiva — Córdoba")
+        st.caption(
+            "Tablero exploratorio para la agenda de diversificación productiva "
+            "de la Provincia de Córdoba, Argentina."
+        )
+    with col_gl:
+        st.image(str(_assets / "growth_lab_logo.png"), width=220)
+    st.markdown("---")
 
     st.markdown("""
 ### Qué hace este tablero
