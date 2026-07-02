@@ -547,7 +547,7 @@ componente son configurables en el sidebar.
 - **Análisis de Proximidad**: el tablero interactivo principal con todos
   los filtros, el espacio de productos, el Sankey, la tabla de
   candidatos rankeados y el treemap.
-- **Mercado Accesible por Producto**: para cada uno de los top-40
+- **Mercado Accesible por Producto**: para cada uno de los top-30
   candidatos del preset Recomendado, la composición geográfica del
   mercado accesible (países destino con sus importaciones).
     """)
@@ -568,6 +568,16 @@ El código aduanero declarado es la evidencia más fuerte: no interpretamos
 descripciones de texto, tomamos el HS4 directamente de los primeros 4
 dígitos del NCM que la firma reportó a la aduana. El curado manual
 complementa esto con los exportadores grandes que faltaban del registro.
+
+**Firmas multiproducto — por qué una firma puede aparecer varias veces.**
+La tabla en *Firmas y Rubros* muestra pares **firma × HS4**, no firmas.
+Una firma que exporta varios productos aparece con una fila por HS4. Por
+ejemplo, ESNAOLA (Grupo Dulcor) figura tres veces: HS 2007 (mermeladas)
+y HS 1806 (chocolate) desde el curado manual, y HS 1901 (extractos de
+malta) desde el NCM declarado. Los HS4 que existen en las dos capas
+para la misma firma se deduplican y el analista humano gana; los HS4
+adicionales de cada capa se conservan porque documentan porciones
+distintas del portafolio.
 
 Los 462 HS4 son ~37 % del universo HS 1992 (1.243 códigos). El resto se
 analiza como **candidatos** vía proximidad al set ancla en la página **Análisis de Proximidad**.
@@ -1145,7 +1155,7 @@ def page_analisis():
     )
     proximity_rank_max = int(pd.to_numeric(df["proximity_rank"], errors="coerce").max())
     accessible_market_max = float(df["accessible_market_size_b"].max()) if not df.empty else 0.0
-    top_n_default = min(40, max(10, int(df["candidate_hs4"].nunique())))
+    top_n_default = min(30, max(10, int(df["candidate_hs4"].nunique())))
     excluded_hs4_preset_codes = {x for x in NATURAL_RESOURCE_HS4} | {x for x in PRESET_EXCLUDED_HS4}
     excluded_labels_by_code = (
         candidate_products_df[candidate_products_df["candidate_hs4"].isin(excluded_hs4_preset_codes)]
@@ -1215,7 +1225,7 @@ def page_analisis():
             st.session_state["c4_w_dai"] = 0.40
             st.session_state["c4_w_distance"] = 0.40
             st.session_state["c4_w_anchor_count"] = 0.20
-            st.session_state["c4_candidates_to_display"] = 40
+            st.session_state["c4_candidates_to_display"] = 30
             st.session_state["c4_selected_anchor_sections"] = anchor_sections_excluding_123
             st.session_state["c4_selected_candidate_sections"] = candidate_sections_excluding_123
             st.session_state["c4_excluded_product_labels"] = excluded_labels_by_code
@@ -2056,7 +2066,7 @@ Al mover el slider **Umbral OPEX** del sidebar, la tabla se restringe a los HS4 
 @st.cache_data
 def _recomendado_top_candidates(
     _signature: str = "",
-    top_n: int = 40,
+    top_n: int = 30,
     profiles: tuple[str, ...] = DEFAULT_ANCHOR_PROFILES,
 ) -> list[str]:
     """Return the candidate HS4s (zfilled) that would appear in the
@@ -2135,7 +2145,7 @@ def page_mercado_accesible():
     am = load_accessible_market(_data_signature() if "_data_signature" in globals() else "")
 
     # Cross-page filter: inherit the exporter_profile selection from Firmas y
-    # Rubros so the top-40 shown here matches the anchor universe upstream.
+    # Rubros so the top-30 shown here matches the anchor universe upstream.
     selected_profiles = _selected_anchor_profiles()
     if set(selected_profiles) != set(DEFAULT_ANCHOR_PROFILES):
         st.info(
@@ -2144,10 +2154,10 @@ def page_mercado_accesible():
             "*Firmas y Rubros*)."
         )
 
-    # Product universe: top-40 candidates from the 'Recomendado' preset on
+    # Product universe: top-30 candidates from the 'Recomendado' preset on
     # the Análisis de Proximidad page. Ordered by combined score desc.
     st.caption(
-        "Los productos disponibles corresponden a los **top-40 candidatos** que "
+        "Los productos disponibles corresponden a los **top-30 candidatos** que "
         "el preset **Recomendado** de la página **Análisis de Proximidad** "
         "produce con los filtros y pesos por defecto."
     )
