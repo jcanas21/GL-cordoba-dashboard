@@ -471,10 +471,14 @@ C_{z,y} \;=\; \frac{X_{z,y} / M_y}{X_z / WT}
   corresponden a **BACI 2024** exclusivamente — no es un promedio de años,
   a diferencia de la distancia recorrida.
 - **Set de comparación para el percentil**: `dai_percentile` no es un
-  percentil global sobre ~200 países. Argentina se compara contra los
-  **top-30 exportadores** del mismo producto (+ Argentina, dedupeado) y el
-  ranking se expresa como percentil sobre ese set. Fuente:
-  `data_processing.ipynb` (celda 13).
+  percentil global sobre ~200 países — es un **benchmark competitivo**.
+  Argentina se rankea contra los **top-30 exportadores** del mismo producto
+  (por valor exportado en BACI 2024) + Argentina, dedupeado, y el ranking
+  se expresa como percentil sobre ese set. La pregunta que responde es:
+  *"¿Qué tan bien alineada está la red comercial de Argentina para este
+  producto frente a sus principales competidores globales?"*. Incluir a
+  todos los países diluiría la señal con exportadores marginales o nulos.
+  Fuente: `data_processing.ipynb` (celda 13).
     """)
 
     st.caption(
