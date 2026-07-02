@@ -1298,6 +1298,74 @@ def page_analisis():
     st.plotly_chart(fig_ps, use_container_width=True)
 
     # ---------------------------------------------------------------------------
+    # 4b. HS4 anclas del set actual — tabla vinculada al umbral OPEX
+    # ---------------------------------------------------------------------------
+    st.subheader("HS4 anclas del set actual")
+    st.caption(
+        f"HS4 con presencia evidenciada cuya OPEX supera el umbral seleccionado "
+        f"({OPEX_LABELS[opex_threshold]}) — {len(anchor_universe)} códigos de un total de {len(presence)}."
+    )
+    _hs4_sector = load_hs4_sector_map(_data_signature() if "_data_signature" in globals() else "")
+    _anchor_tbl = (
+        presence[presence["hs4"].isin(anchor_universe)]
+        .assign(
+            hs4=lambda d: d["hs4"].astype(str).str.zfill(4),
+        )
+        .copy()
+    )
+    _anchor_tbl["Producto"] = _anchor_tbl["hs4"].map(lambda h: SPANISH_OVERRIDES.get(h, ""))
+    _anchor_tbl["Sector"] = _anchor_tbl["hs4"].map(lambda h: _hs4_sector.get(h, "Other"))
+    _anchor_tbl["OPEX rubro (USD M)"] = _anchor_tbl["max_rubro_opex_2023_2025_avg_usd"] / 1e6
+    _anchor_tbl = _anchor_tbl.rename(columns={
+        "hs4": "HS4",
+        "primary_ccod_rubro": "CCOD_RUBRO",
+        "primary_rubro_name": "Rubro INDEC",
+        "n_firms": "# firmas",
+        "evidencing_firms_sample": "Firmas ejemplo",
+    }).sort_values("OPEX rubro (USD M)", ascending=False)
+
+    with st.expander("Diccionario de columnas — HS4 anclas"):
+        st.markdown(r"""
+| Columna | Significado |
+|---|---|
+| **HS4** | Código HS4 (HS 1992) del ancla. |
+| **Producto** | Nombre corto del HS4 en español (curado). |
+| **Sector** | Sector Atlas / Growth Lab del HS4. |
+| **CCOD_RUBRO** | Rubro INDEC (código) al que el HS4 fold-up en el panel OPEX. |
+| **Rubro INDEC** | Nombre del rubro INDEC. |
+| **OPEX rubro (USD M)** | Monto exportado por Córdoba en ese rubro, promedio anual 2023-2025 (USD millones). Es del **rubro entero**. |
+| **# firmas** | Cantidad de firmas del registro que evidencian el HS4 (curated + registry-keyword combinadas). |
+| **Firmas ejemplo** | Sample de hasta 5 nombres de firmas evidenciando este HS4. |
+
+Al mover el slider **Umbral OPEX** del sidebar, la tabla se restringe a los HS4 cuyo rubro cumple el umbral.
+        """)
+
+    st.dataframe(
+        _anchor_tbl[[
+            "HS4", "Producto", "Sector", "CCOD_RUBRO", "Rubro INDEC",
+            "OPEX rubro (USD M)", "# firmas", "Firmas ejemplo",
+        ]],
+        use_container_width=True,
+        hide_index=True,
+        column_config={
+            "HS4": st.column_config.TextColumn("HS4", width="small"),
+            "Producto": st.column_config.TextColumn("Producto", width="medium"),
+            "Sector": st.column_config.TextColumn("Sector"),
+            "CCOD_RUBRO": st.column_config.TextColumn("CCOD_RUBRO", width="small"),
+            "Rubro INDEC": st.column_config.TextColumn("Rubro INDEC", width="medium"),
+            "OPEX rubro (USD M)": st.column_config.NumberColumn(
+                "OPEX rubro (USD M)", format="%.1f",
+                help="Monto exportado por Córdoba en el rubro INDEC, promedio 2023-2025.",
+            ),
+            "# firmas": st.column_config.NumberColumn("# firmas", format="%.0f"),
+            "Firmas ejemplo": st.column_config.TextColumn("Firmas ejemplo", width="large"),
+        },
+    )
+    _csv = _anchor_tbl.to_csv(index=False).encode("utf-8")
+    st.download_button("⬇ Descargar tabla de anclas (CSV)", _csv,
+                       "cordoba_anclas.csv", "text/csv")
+
+    # ---------------------------------------------------------------------------
     # 5. Sankey diagram (anchor → candidate)
     # ---------------------------------------------------------------------------
     st.subheader("Sankey — anclas → candidatos")
