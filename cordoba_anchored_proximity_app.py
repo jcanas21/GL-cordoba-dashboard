@@ -137,7 +137,22 @@ CLUSTER_ES_LABEL: dict[str, str] = {
     "Apparel":                  "Indumentaria",
 }
 
-NATURAL_RESOURCE_HS4 = ["2711", "2710", "7108", "2709", "2713", "2701", "2603", "2616"]
+NATURAL_RESOURCE_HS4 = [
+    # Ch. 25 — Salt, sulfur, earths, stone; plaster, cement (28 códigos)
+    "2501", "2502", "2503", "2504", "2505", "2506", "2507", "2508",
+    "2509", "2510", "2511", "2512", "2513", "2514", "2515", "2516",
+    "2517", "2518", "2519", "2520", "2521", "2524", "2525", "2526",
+    "2527", "2528", "2529", "2530",
+    # Ch. 26 — Minerales, escorias y cenizas (17 códigos)
+    "2601", "2602", "2603", "2604", "2605", "2606", "2607", "2608",
+    "2609", "2610", "2611", "2612", "2613", "2614", "2615", "2616",
+    "2617",
+    # Ch. 27 — Combustibles minerales, petróleo, gas (16 códigos)
+    "2701", "2702", "2703", "2704", "2705", "2706", "2707", "2708",
+    "2709", "2710", "2711", "2712", "2713", "2714", "2715", "2716",
+    # Ch. 71 — Piedras, metales preciosos (4 códigos)
+    "7101", "7102", "7103", "7108",
+]
 
 # Additional HS4 excluded from the "Recomendado" preset by hand — plausible
 # via proximity but not realistic diversification targets for Córdoba.
@@ -573,9 +588,9 @@ adyacentes.
 **El punto de partida: las anclas.** Llamamos *anclas* al conjunto de
 HS4 donde Córdoba ya tiene presencia exportadora evidenciada por firmas
 reales (soja, autopartes, maní, cueros, medicamentos, maquinaria
-agrícola, etc.). No son aspiraciones — son capacidades demostradas por
-empresas que hoy exportan. Esos productos anclan el análisis: fijan un
-piso realista sobre el mapa de posibilidades.
+agrícola, etc.). Capacidades vinculadas a empresas que hoy exportan.
+Esos productos anclan el análisis: fijan un piso sobre el mapa de
+posibilidades de diversificación.
 
 **La medida de cercanía: proximidad en el espacio de productos.** El
 espacio de productos (Hidalgo, Hausmann et al.) es un mapa empírico
@@ -584,10 +599,10 @@ exportarlos con ventaja competitiva. Producir uno requiere capacidades
 —conocimientos técnicos, redes de proveedores, logística, regulación—
 que suelen ser útiles para el otro. Esas capacidades son **pegajosas**:
 los países diversifican hacia productos cercanos, casi nunca hacia
-saltos aleatorios. El *biodiesel* está cerca del *aceite de soja*; los
-*motores eléctricos* están cerca de las *piezas de vehículos*. La
-proximidad convierte una intuición sobre similitud productiva en un
-número entre 0 y 1.
+saltos aleatorios. Los *rodamientos y ejes de transmisión* están cerca
+de las *autopartes*; los *medicamentos formulados* están cerca de los
+*principios activos farmacéuticos*. La proximidad convierte una
+intuición sobre similitud productiva en un número entre 0 y 1.
 
 **El resultado: candidatos anclados.** Para cada ancla de Córdoba
 extraemos su top-1 % de productos más cercanos en el espacio global.
@@ -1227,7 +1242,11 @@ def page_analisis():
     proximity_rank_max = int(pd.to_numeric(df["proximity_rank"], errors="coerce").max())
     accessible_market_max = float(df["accessible_market_size_b"].max()) if not df.empty else 0.0
     top_n_default = min(30, max(10, int(df["candidate_hs4"].nunique())))
-    excluded_hs4_preset_codes = {x for x in NATURAL_RESOURCE_HS4} | {x for x in PRESET_EXCLUDED_HS4}
+    # Only hand-curated non-realistic candidates go through the multiselect
+    # label mechanism. Natural-resource exclusion is now controlled by a
+    # dedicated toggle (see 'Excluir recursos naturales' below) and applied
+    # to BOTH anchors and candidates instead of only candidates.
+    excluded_hs4_preset_codes = {x for x in PRESET_EXCLUDED_HS4}
     excluded_labels_by_code = (
         candidate_products_df[candidate_products_df["candidate_hs4"].isin(excluded_hs4_preset_codes)]
         .sort_values("candidate_hs4")["candidate_label"]
@@ -1274,6 +1293,7 @@ def page_analisis():
     st.session_state.setdefault("c4_selected_candidate_sections", candidate_sections)
     st.session_state.setdefault("c4_selected_anchor_sections", anchor_sections)
     st.session_state.setdefault("c4_excluded_product_labels", [])
+    st.session_state.setdefault("c4_exclude_nat_resources", True)
     st.session_state.setdefault("c4_proximity_rank_range", (1, min(100, max(1, proximity_rank_max))))
 
 
@@ -1286,6 +1306,7 @@ def page_analisis():
         st.session_state["c4_selected_candidate_sections"] = candidate_sections
         st.session_state["c4_selected_anchor_sections"] = anchor_sections
         st.session_state["c4_excluded_product_labels"] = []
+        st.session_state["c4_exclude_nat_resources"] = True
         st.session_state["c4_proximity_rank_range"] = (1, min(100, max(1, proximity_rank_max)))
 
         if profile_name == "top_candidates":
@@ -1300,6 +1321,7 @@ def page_analisis():
             st.session_state["c4_selected_anchor_sections"] = anchor_sections_excluding_123
             st.session_state["c4_selected_candidate_sections"] = candidate_sections_excluding_123
             st.session_state["c4_excluded_product_labels"] = excluded_labels_by_code
+            st.session_state["c4_exclude_nat_resources"] = True
             st.session_state["c4_proximity_rank_range"] = (1, min(10, max(1, proximity_rank_max)))
             st.session_state["c4_opex_threshold"] = 10_000_000
 
@@ -1313,6 +1335,7 @@ def page_analisis():
         st.session_state["c4_selected_candidate_sections"] = candidate_sections
         st.session_state["c4_selected_anchor_sections"] = anchor_sections
         st.session_state["c4_excluded_product_labels"] = []
+        st.session_state["c4_exclude_nat_resources"] = True
         st.session_state["c4_proximity_rank_range"] = (1, min(100, max(1, proximity_rank_max)))
 
 
@@ -1356,6 +1379,20 @@ def page_analisis():
                 "curated combinadas). Subir el mínimo elimina HS4 con evidencia "
                 "frágil (una sola firma) y se propaga a Sankey, tabla, treemap "
                 "y product space."
+            ),
+        )
+        exclude_nat_resources = st.checkbox(
+            "Excluir recursos naturales",
+            value=bool(st.session_state.get("c4_exclude_nat_resources", True)),
+            key="c4_exclude_nat_resources",
+            help=(
+                "Excluye del análisis (tanto anclas como candidatos) los "
+                f"{len(NATURAL_RESOURCE_HS4)} HS4 de recursos naturales: "
+                "capítulos 25 (sal, azufre, cementos, cal, piedras), "
+                "26 (minerales, escorias), 27 (combustibles minerales, "
+                "petróleo, gas) y códigos 7101–7103 y 7108 (piedras y "
+                "metales preciosos). Estos productos son commodities de "
+                "extracción — no representan diversificación productiva."
             ),
         )
 
@@ -1487,10 +1524,12 @@ def page_analisis():
     # anchors — they're flagged `posible_ancla = 1` so users can spot them.
     evidenced_set = set(presence["hs4"].astype(str).str.zfill(4))
     _n_firms_series = pd.to_numeric(presence.get("n_firms"), errors="coerce").fillna(0)
+    _nat_res_set = set(NATURAL_RESOURCE_HS4) if exclude_nat_resources else set()
     anchor_universe = set(
         presence.loc[
             (presence["max_rubro_opex_2023_2025_avg_usd"].fillna(0) >= opex_threshold)
-            & (_n_firms_series >= min_firmas_ancla),
+            & (_n_firms_series >= min_firmas_ancla)
+            & (~presence["hs4"].astype(str).str.zfill(4).isin(_nat_res_set)),
             "hs4",
         ]
     )
@@ -1498,6 +1537,9 @@ def page_analisis():
         df["anchor_hs4"].isin(anchor_universe)
         & ~df["candidate_hs4"].isin(anchor_universe)
     ].copy()
+    if _nat_res_set:
+        # Also drop natural-resource candidates on the right-hand side.
+        flt = flt[~flt["candidate_hs4"].astype(str).str.zfill(4).isin(_nat_res_set)]
     flt["posible_ancla"] = flt["candidate_hs4"].isin(evidenced_set).astype(int)
 
     if selected_anchor_sectors:
@@ -2114,7 +2156,7 @@ Al mover el slider **Umbral OPEX** del sidebar, la tabla se restringe a los HS4 
         textfont=dict(size=18, color="#ffffff"),
         marker=dict(line=dict(width=1, color="rgba(255,255,255,0.45)")),
     )
-    treemap.update_layout(margin=dict(t=60, l=10, r=10, b=95))
+    treemap.update_layout(margin=dict(t=60, l=10, r=10, b=95), height=720)
     if treemap_color_label == "Sector":
         treemap.update_layout(
             legend=dict(
@@ -2163,15 +2205,21 @@ def _recomendado_top_candidates(
     df, presence, _, _, _, _ = load_data()
 
     # Restrict the anchor universe to HS4 that have at least one firm in
-    # the selected exporter_profile set (cross-page filter).
+    # the selected exporter_profile set (cross-page filter). Natural
+    # resources are excluded from BOTH sides — the Recomendado preset
+    # semantics dictate it, and this fallback should mirror them.
     n_firms_dyn = anchor_firms_per_hs4(_signature, profiles)
     profile_ok = {h for h, n in n_firms_dyn.items() if n > 0}
-    anchor_universe = set(
-        presence.loc[
-            presence["max_rubro_opex_2023_2025_avg_usd"].fillna(0) >= 10_000_000,
-            "hs4",
-        ].astype(str).str.zfill(4)
-    ) & profile_ok
+    _nat_res_set = set(NATURAL_RESOURCE_HS4)
+    anchor_universe = (
+        set(
+            presence.loc[
+                presence["max_rubro_opex_2023_2025_avg_usd"].fillna(0) >= 10_000_000,
+                "hs4",
+            ].astype(str).str.zfill(4)
+        )
+        & profile_ok
+    ) - _nat_res_set
     za = df["anchor_hs4"].astype(str).str.zfill(4)
     zc = df["candidate_hs4"].astype(str).str.zfill(4)
     flt = df[za.isin(anchor_universe) & ~zc.isin(anchor_universe)].copy()
