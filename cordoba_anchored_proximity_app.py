@@ -319,21 +319,18 @@ st.set_page_config(
 # ---------------------------------------------------------------------------
 @st.cache_data
 def load_firms_data(_signature: str = ""):
-    """Union 03 (curated) + 04 (registry-keyword) firm-HS4 evidence."""
+    """Union of two firm-HS4 evidence layers:
+       - curated:      hand-verified attributions with URL (03).
+       - declared-ncm: NCM codes declared by firms in their Procórdoba
+                       'Oferta exportable' table, filtered to real
+                       exporters (Habitual + Ocasional) (06).
+       Curated wins over declared-ncm on conflict."""
     curated = pd.read_csv(
         _data("output", "03_firm_hs4_evidence.csv"),
         dtype={"firm_id": "string", "hs4": str, "supports_top50_line": str},
     )
     curated["hs4"] = curated["hs4"].astype(str).str.zfill(4)
     curated["supports_top50_line"] = curated["supports_top50_line"].astype(str).str.strip()
-
-    reg = pd.read_csv(
-        _data("output", "04_registry_full.csv"),
-        dtype={"firm_id": "string", "code": str, "opex_line": str},
-    )
-    reg = reg[reg["classification"] == "HS4"].copy()
-    reg["code"] = reg["code"].astype(str).str.zfill(4)
-    reg["opex_line"] = reg["opex_line"].astype(str).str.strip()
 
     curated_norm = pd.DataFrame({
         "firm_id": curated["firm_id"].astype(str),
@@ -350,23 +347,6 @@ def load_firms_data(_signature: str = ""):
         "evidence_layer": "curated",
     })
 
-    reg_norm = pd.DataFrame({
-        "firm_id": reg["firm_id"].astype(str),
-        "firm_name": reg["firm_name"].astype(str),
-        "razon_social": reg["razon_social"].astype(str),
-        "hs4": reg["code"],
-        "rubro_indec": reg["opex_line"],
-        "rubro_indec_nombre": reg["opex_line_name"].astype(str),
-        "attribution_type": reg["attribution_type"].astype(str),
-        "confidence": reg["confidence"].astype(str),
-        "evidence_text": reg["evidence"].astype(str),
-        "evidence_url": reg["source_url"].astype(str),
-        "source_url": reg["source_url"].astype(str),
-        "evidence_layer": "registry-keyword",
-    })
-
-    # Third layer: NCM codes declared by firms in their Procórdoba profile,
-    # filtered to firms whose exporter_profile is Habitual or Ocasional.
     declared = pd.read_csv(
         _data("output", "06_registry_ncm_declared.csv"),
         dtype={"firm_id": "string", "hs4": str, "ncm": str},
@@ -392,14 +372,8 @@ def load_firms_data(_signature: str = ""):
     })
 
     curated_pairs = set(curated_norm["firm_id"] + "|" + curated_norm["hs4"])
-    reg_dedup = reg_norm[~(reg_norm["firm_id"] + "|" + reg_norm["hs4"]).isin(curated_pairs)].copy()
-    # Declared wins over registry-keyword on conflict (stronger evidence).
-    seen_after_curated = curated_pairs | set(reg_dedup["firm_id"] + "|" + reg_dedup["hs4"])
     dec_dedup = declared_norm[~(declared_norm["firm_id"] + "|" + declared_norm["hs4"]).isin(curated_pairs)].copy()
-    reg_dedup_after_declared = reg_dedup[~(reg_dedup["firm_id"] + "|" + reg_dedup["hs4"]).isin(
-        set(dec_dedup["firm_id"] + "|" + dec_dedup["hs4"])
-    )].copy()
-    firm_ev = pd.concat([curated_norm, dec_dedup, reg_dedup_after_declared], ignore_index=True)
+    firm_ev = pd.concat([curated_norm, dec_dedup], ignore_index=True)
 
     opex = pd.read_csv(
         _data("input", "exportaciones_opex_cordoba.csv"),
@@ -530,69 +504,30 @@ componente son configurables en el sidebar.
   mercado accesible (países destino con sus importaciones).
     """)
 
-    st.subheader("De dónde salen los HS4 anclas evidenciados")
+    st.subheader("De dónde salen los HS4 evidenciados")
     st.markdown(r"""
-El set de **468 HS4 evidenciados** es el resultado de una cadena de
-filtros sobre el registro provincial. Cada paso descarta o consolida
-firmas hasta quedarse con lo verificable:
+Los **461 HS4 evidenciados** son productos que sabemos que Córdoba
+exporta porque hay al menos una firma real que los declaró o que
+verificamos exportándolos. Se combinan dos fuentes independientes:
 
-| Etapa | # firmas | # HS4 |
-|---|---|---|
-| 1. Registro Procórdoba scrapeado | 2.678 | — |
-| 2. Firmas curadas manualmente (URL + evidencia textual) | **66** | 95 |
-| 3. Firmas con `products_text` que matchea patterns del script 07 | **943** | 114 |
-| 4. Firmas con **NCM declarada** en su ficha (`Oferta exportable`, filtradas a exportadores Habituales + Ocasionales) | **857** | 458 |
-| **Unión anclas = HS4 en (2) ∪ (3) ∪ (4)** | ~1.240 firmas únicas | **468** |
-
-La capa **NCM declarada** (etapa 4, re-scrape autenticado del registro)
-es la evidencia más fuerte: no es keyword-match sobre prosa, sino la
-lista **oficial de códigos aduaneros** que cada firma declaró exportar.
-De los 468 HS4, **457** aparecen en esta capa, y **343** proceden
-exclusivamente de ella (no habían sido detectados por curado ni por
-keywords).
-
-El set efectivo de **anclas** en Página 2 depende de los sliders del
-sidebar: umbral OPEX del rubro y mínimo # de firmas evidenciando el HS4.
-Los HS4 evidenciados que **no** entran al set ancla pueden reaparecer
-como candidatos flaguados como *posible ancla*.
-
-**Los 468 son ~38% del universo HS 1992** (1.243 códigos). El resto se
-analiza como **candidatos** vía proximidad al set ancla.
-    """)
-
-    st.subheader("Las tres capas de evidencia firma↔HS4")
-    st.markdown(r"""
-Cada fila firma↔HS4 viene de una de tres capas, con prioridad
-`curated > declared-ncm > registry-keyword` en el deduplicado:
-
-**`curated`** (66 firmas, 152 pares · `03_firm_hs4_evidence.csv`)
-Analista humano revisó firma por firma la ficha del registro, sitio web,
-notas de prensa. Cada par firma-HS4 confirmado incluye texto de
-evidencia, URL fuente específica, nivel de confianza (`high`).
-
-**`declared-ncm`** (857 firmas, 2.007 pares · `06_registry_ncm_declared.csv`)
-Re-scrape autenticado del registro, extracción de la tabla **"Oferta
-exportable"** de cada ficha. Cada fila es un código **NCM 8-dígitos**
-oficialmente declarado por la firma; NCM→HS4 = primeros 4 dígitos.
-Filtrado a firmas con `exporter_profile ∈ {Habitual, Ocasional}` (reales
-exportadoras), excluyendo aspirantes.
-
-**`registry-keyword`** (943 firmas, 1.745 pares · `04_registry_full.csv`)
-Atribución automática por regex sobre `products_text` de la ficha. El
-pipeline (`scripts/07_full_registry_pass.py`) tiene ~130 patterns tipo
-`\btrigo\b → HS 1001`. Cobertura amplia pero puede confundir palabras
-polisémicas (aceite motor vs aceite soja).
-
-| | curated | declared-ncm | registry-keyword |
+| Fuente | Qué es | Firmas | HS4 |
 |---|---|---|---|
-| **Fuente** | Análisis humano | NCM declarado en registro | Regex sobre texto |
-| **Precisión** | Muy alta | Alta (código aduanero oficial) | Media (ambigüedad léxica) |
-| **Puede desambiguar?** | Sí | Sí (a nivel de NCM) | No |
-| **Cobertura firmas** | 66 | 857 | 943 |
-| **Cobertura HS4** | 95 | 458 | 114 |
+| **Códigos aduaneros declarados** | Códigos NCM que cada firma cargó en su ficha del registro Procórdoba (sección "Oferta exportable"). Es la lista oficial que la firma reporta como su canasta exportable. Filtramos a firmas que efectivamente exportan (perfil Habitual u Ocasional). | 857 | 457 |
+| **Curado manual** | Búsqueda dirigida de los principales exportadores de Córdoba que **no** figuraban en el registro Procórdoba — plantas industriales grandes como Renault, Stellantis, VW, Iveco, Quilmes, Petroquímica Río Tercero, Atanor — más 52 firmas del registro donde el analista verificó a mano la atribución producto→HS4 con URL fuente. | 66 | 95 |
+| **Unión** | (después de deduplicar) | ~1.240 | **461** |
 
-Cada fila en la Página 3 muestra su capa para que puedas auditar el
-nivel de evidencia detrás.
+El código aduanero declarado es la evidencia más fuerte: no interpretamos
+descripciones de texto, tomamos el HS4 directamente de los primeros 4
+dígitos del NCM que la firma reportó a la aduana. El curado manual
+complementa esto con los exportadores grandes que faltaban del registro.
+
+Los 461 HS4 son ~37 % del universo HS 1992 (1.243 códigos). El resto se
+analiza como **candidatos** vía proximidad al set ancla en la Página 2.
+
+El set efectivo de **anclas** depende de los dos sliders del sidebar:
+umbral OPEX del rubro y mínimo # de firmas evidenciando el HS4. Un HS4
+evidenciado que no entra al set ancla puede reaparecer como candidato
+marcado como *posible ancla*.
     """)
 
     st.subheader("Glosario")
@@ -600,7 +535,7 @@ nivel de evidencia detrás.
 | Variable | Significado |
 |---|---|
 | **HS4** | Sistema Armonizado a 4 dígitos, revisión 1992 (convención Atlas / Growth Lab). |
-| **Ancla** | HS4 donde Córdoba tiene presencia exportadora **evidenciada por firmas reales** (curated + declared-ncm + registry-keyword). 468 HS4 evidenciados en total; el set ancla activo se restringe con los sliders OPEX y # firmas del sidebar. |
+| **Ancla** | HS4 donde Córdoba tiene presencia exportadora **evidenciada por firmas reales** (código NCM declarado en registro + curado manual). 461 HS4 evidenciados en total; el set ancla activo se restringe con los sliders OPEX y # firmas del sidebar. |
 | **Candidato** | HS4 sin presencia evidenciada que aparece en el top-1% de proximidad de al menos un ancla, **o** un HS4 evidenciado cuyo OPEX cayó por debajo del umbral del slider (se flaguea como *posible ancla*). |
 | **OPEX** | Exportaciones de Córdoba por rubro INDEC (CCOD_RUBRO), promedio 2023–2025. El slider de umbral OPEX filtra el set de anclas. |
 | **Rubro** | "Grandes Rubros / Capítulos" de INDEC (clasificación ICA); 100 rubros en el panel OPEX. **No es lo mismo que NCM ni que Complejos Exportadores Rev. 2018**. |
@@ -727,10 +662,11 @@ def load_hs4_sector_map(_signature: str = ""):
 def page_firmas():
     _page_header(
         "Firmas → anclas",
-        "Firmas del registro de Córdoba con evidencia de atribución HS4. "
-        "Dos capas: curated (rows con evidencia HS4 explícita + URL fuente, "
-        "curados a mano) y registry-keyword (atribución vía match de keyword "
-        "en products_text, post-fix sin fallback ciego)."
+        "Firmas de Córdoba con su atribución HS4. Dos fuentes: "
+        "**código NCM declarado** en la ficha del registro Procórdoba "
+        "(la evidencia más fuerte — código aduanero oficial) y "
+        "**curado manual** de los grandes exportadores que no figuran en "
+        "el registro más verificaciones a mano con URL fuente."
     )
 
     firm_ev, opex = load_firms_data(_data_signature() if "_data_signature" in globals() else "")
@@ -978,13 +914,13 @@ def page_firmas():
 |---|---|
 | **Firma (alias)** | Nombre comercial de la firma según el registro `exportadoresdecordoba.com`. |
 | **Razón social** | Nombre legal de la firma. |
-| **HS4 ancla** | HS4 (HS 1992) + nombre corto en español al que la firma está atribuida. Todos los HS4 aquí pertenecen al set de 468 HS4 evidenciados. |
+| **HS4 ancla** | HS4 (HS 1992) + nombre corto en español al que la firma está atribuida. Todos los HS4 aquí pertenecen al set de 461 HS4 evidenciados. |
 | **Rubro INDEC** | Rubro CCOD_RUBRO (clasificación INDEC "Grandes Rubros / Capítulos") al que el HS4 fold-up en el panel OPEX provincial. |
-| **Capa** | Origen y grado de curación del vínculo firma↔HS4. **`curated`** (66 firmas, 152 pares): revisión analítica manual — un curador inspeccionó `products_text` + sitio web + notas de prensa y asignó el HS4 explícitamente, dejando el razonamiento en `Evidencia (texto)` y una URL primaria en `Evidencia URL`. Es el subset más confiable. **`registry-keyword`** (~899 firmas): atribución automática por match de regex sobre `products_text` en el pipeline (`scripts/07_full_registry_pass.py`). Sin fallback ciego — si el texto no matchea ningún pattern específico, la firma no recibe HS4. Confiable a nivel individual pero sin curación por analista. |
-| **Confianza** | Nivel de certeza sobre el vínculo firma↔HS4. **`high`**: evidencia clara y explícita (texto de producto es un match exacto del HS4, o análisis manual concluyente). **`medium`**: match plausible pero con ambigüedad (ej. firma multiproducto donde el HS4 es sólo uno de varios candidatos). **`low`**: señal débil — históricamente se usaba para atribuciones por rubro amplio; en el pipeline actual sin fallback ciego, este valor debería ser raro. Para la capa `curated` casi todo es `high` porque sólo se registran filas donde hay certeza. |
+| **Capa** | Fuente del vínculo firma↔HS4. **`declared-ncm`** (857 firmas): la firma cargó explícitamente un código NCM en su ficha del registro Procórdoba (sección "Oferta exportable"). Los primeros 4 dígitos del NCM son el HS4 — es el mismo código con el que la firma exporta ante Aduana, así que hay poca ambigüedad. Filtramos a firmas con perfil Habitual u Ocasional (exportan de verdad, no aspirantes). **`curated`** (66 firmas): revisión manual — cubre los grandes exportadores que no están en el registro (Renault, Stellantis, VW, Iveco, Quilmes, plantas petroquímicas de Río Tercero…) más firmas del registro donde se verificó la atribución HS4 con URL fuente. |
+| **Confianza** | Nivel de certeza sobre el vínculo firma↔HS4. **`high`**: evidencia clara y explícita (código NCM oficialmente declarado, o análisis manual concluyente). **`medium`**: match plausible pero con ambigüedad. **`low`**: señal débil. La capa `declared-ncm` es siempre `high` (código aduanero). Para `curated` casi todo es `high` porque sólo se registran filas donde hay certeza. |
 | **OPEX rubro (USD M, prom 2023-2025)** | Monto exportado por Córdoba en el rubro INDEC, promedio anual 2023-2025 en USD millones. Es del **rubro entero**, no de la firma individual — una firma en un rubro grande no representa necesariamente una porción grande del monto. |
 | **Tipo de atribución** | Cómo el HS4 evidenciado en la firma fold-up al rubro INDEC. Ordenados de más a menos preciso: **`clean`** — el rubro mapea limpiamente a 1-2 HS4 (ej. `106B Maíz → HS 1005`), sin ambigüedad; **`named-aggregate`** — rubro nombrado que agrupa varios HS4 del mismo dominio (ej. `313BB Vehículos automóviles terrestres → HS 8702/8703/8704`); **`broad-chapter`** — rubro cubre un capítulo HS entero (ej. `312B Máq. eléctricas → HS 8501-8548`), el HS4 específico viene del lado firm; **`resto`** — rubro residual dentro de un grupo (ej. `107Z Resto semillas y frutos oleaginosos`), cubre HS4 no clasificados en categorías nombradas; **`confidential`** — rubro INDEC censurado por Ley 17.622 (códigos terminados en `899`): el monto agregado está publicado pero la composición interna no, así que el HS4 sólo puede establecerse desde el lado firm. |
-| **Evidencia (texto)** | Justificación en prosa del vínculo firma↔HS4. En **`curated`**: texto humano explicando por qué se asignó ese HS4, típicamente citando el producto declarado y su correspondencia con la definición HS4 (ej. *"Products CHORIZO DE CERDO, MORCILLA, SALCHICHA, SALAME → HS 1601 'sausages and similar products'"*). En **`registry-keyword`**: nota generada por el pipeline indicando el pattern regex que matcheó (ej. *"keyword 'trigo' matched in product/description text"*). En ambos casos permite auditar la fila: si el texto no parece justificar el HS4 mostrado, hay razón para dudar de esa atribución. |
+| **Evidencia (texto)** | Justificación del vínculo firma↔HS4. En **`declared-ncm`**: el código NCM completo + descripción del producto tal como la firma lo declaró en su ficha del registro (ej. *"NCM 1601.00.00 — CHORIZO PARRILLERO · perfil: Habitual"*). En **`curated`**: texto humano explicando por qué se asignó ese HS4 (ej. *"Products CHORIZO DE CERDO, MORCILLA, SALCHICHA, SALAME → HS 1601 'sausages and similar products'"*). Sirve para auditar: si el texto no parece justificar el HS4, hay razón para dudar. |
 | **Evidencia URL** | URL pública que evidencia el vínculo (notas de prensa, sitio corporativo, cámara, etc.). |
 | **Página registro** | Link a la ficha de la firma en `exportadoresdecordoba.com`. |
 
@@ -1004,7 +940,7 @@ sector/rubro coincida. Click en el fondo del treemap para limpiar.
             "rubro_indec_nombre_final": st.column_config.TextColumn("Rubro INDEC", width="medium"),
             "evidence_layer": st.column_config.TextColumn(
                 "Capa",
-                help="`curated` = evidencia manual con URL · `registry-keyword` = match de keyword en products_text",
+                help="`declared-ncm` = código NCM oficial declarado por la firma en el registro · `curated` = evidencia manual con URL",
             ),
             "confidence": st.column_config.TextColumn("Confianza"),
             "opex_avg_m": st.column_config.NumberColumn(
@@ -1028,12 +964,14 @@ sector/rubro coincida. Click en el fondo del treemap para limpiar.
 
     with st.expander("Notas metodológicas"):
         st.markdown("""
-- **`curated`** (66 firmas, 152 pares firm-HS4): cada par tiene evidencia
-  HS4 manual + URL fuente.
-- **`registry-keyword`** (~899 firmas adicionales): atribución vía match
-  de keyword en `products_text` (regex sobre términos específicos como
-  "soja" → HS 1201, "biodiesel" → HS 3826). Si el products_text no
-  matchea ningún pattern, la firma no recibe HS4 — sin fallback ciego.
+- **`declared-ncm`** (857 firmas): la firma cargó códigos NCM
+  específicos en su ficha del registro Procórdoba (sección "Oferta
+  exportable"). El HS4 son los primeros 4 dígitos del NCM. Filtramos a
+  firmas con perfil `Habitual` u `Ocasional`.
+- **`curated`** (66 firmas): revisión manual con URL fuente. Cubre
+  grandes exportadores fuera del registro (plantas automotrices,
+  cervecería, petroquímica, etc.) y verificaciones a mano.
+- Curated tiene prioridad sobre declared-ncm en caso de conflicto.
 - El monto OPEX corresponde al rubro INDEC entero (no a la firma).
         """)
 
@@ -1208,10 +1146,10 @@ def page_analisis():
             key="c4_min_firmas_ancla",
             help=(
                 "Refuerza el set de anclas: sólo entran al universo los HS4 con "
-                "al menos esta cantidad de firmas del registro evidenciando "
-                "(curated + declared-ncm + registry-keyword combinadas). "
-                "Subir el mínimo elimina HS4 con evidencia frágil (una sola firma) "
-                "y se propaga a Sankey, tabla, treemap y product space."
+                "al menos esta cantidad de firmas evidenciando (declared-ncm + "
+                "curated combinadas). Subir el mínimo elimina HS4 con evidencia "
+                "frágil (una sola firma) y se propaga a Sankey, tabla, treemap "
+                "y product space."
             ),
         )
 
@@ -1337,7 +1275,7 @@ def page_analisis():
     # ---------------------------------------------------------------------------
     # 1. Derive anchor universe from OPEX threshold + apply filters
     # ---------------------------------------------------------------------------
-    # evidenced_set is the firm-evidenced HS4 universe (currently 468 HS4). The anchor universe
+    # evidenced_set is the firm-evidenced HS4 universe (currently 461 HS4). The anchor universe
     # is the subset of those whose OPEX clears the threshold. Evidenced HS4 that
     # fall BELOW the threshold can resurface as candidates of the surviving
     # anchors — they're flagged `posible_ancla = 1` so users can spot them.
@@ -1622,7 +1560,7 @@ def page_analisis():
 | **Rubro INDEC** | Nombre del rubro INDEC. |
 | **Match** | Tipo de correspondencia entre el HS4 y su rubro INDEC. **`Directo`**: el rubro es específico y publicado — clean (1-2 HS4), named-aggregate, broad-chapter o resto. **`Residual`**: el rubro es confidencial INDEC (código terminado en `899`); el HS4 sólo puede establecerse desde el lado firm porque la composición interna no está publicada por Ley 17.622. |
 | **OPEX rubro (USD M)** | Monto exportado por Córdoba en ese rubro, promedio anual 2023-2025 (USD millones). Es del **rubro entero**. |
-| **# firmas** | Cantidad de firmas del registro que evidencian el HS4 (curated + registry-keyword combinadas). |
+| **# firmas** | Cantidad de firmas que evidencian el HS4 (declared-ncm + curated combinadas). |
 | **Firmas ejemplo** | Sample de hasta 5 nombres de firmas evidenciando este HS4. |
 
 Al mover el slider **Umbral OPEX** del sidebar, la tabla se restringe a los HS4 cuyo rubro cumple el umbral.
@@ -1809,7 +1747,7 @@ Al mover el slider **Umbral OPEX** del sidebar, la tabla se restringe a los HS4 
 | **HS4** | Código HS4 del candidato (HS 1992). |
 | **Producto** | Nombre corto del HS4 en español (curado, ~1.240 entradas). |
 | **Sector** | Sector Atlas / Growth Lab del HS4. |
-| **Posible ancla** | Dummy 1/0. `1` = el candidato pertenece al set de 468 HS4 evidenciados pero su OPEX o su # firmas quedó por debajo del umbral del slider — es una ex-ancla reaparecida como candidato. Ver Inicio → glosario. |
+| **Posible ancla** | Dummy 1/0. `1` = el candidato pertenece al set de 461 HS4 evidenciados pero su OPEX o su # firmas quedó por debajo del umbral del slider — es una ex-ancla reaparecida como candidato. Ver Inicio → glosario. |
 | **Puntaje combinado** | `(1 − balance) · Factibilidad + balance · Atractivo`, normalizado 0-1 dentro del set filtrado. `balance` es el dial del sidebar. |
 | **Índice de atractivo** | Promedio ponderado del PCI, tamaño del mercado accesible y crecimiento a 5 años del mercado accesible, normalizado 0-1. |
 | **Índice de factibilidad** | Promedio ponderado del DAI, percentil de distancia recorrida y # de anclas normalizado, normalizado 0-1. |

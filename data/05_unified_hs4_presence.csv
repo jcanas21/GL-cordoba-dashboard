@@ -3,98 +3,97 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 0102,HS92,101,Animales Vivos,clean,yes,4,ESTABLECIMIENTO SAN PATRICIO SA; COMPAÑIA ANGLO CORDOBA DE TIERRAS SA; EL ATARDECER; LAS CHILCAS,registry-declared
 0103,HS92,199,Resto de productos primarios,confidential,no,5,AXIOM ARGENTINA; GRANJA BUFFA; COOPERATIVA ALBORADA; GRANJA SAN JOSÉ / DON AMÉRICO; LAS CHILCAS,registry-declared
 0106,HS92,101,Animales Vivos,clean,yes,2,APICOLA VAIROLATTI SRL; ECOLAB CRIANZA INTENSIVA DE ABEJAS REINAS Y SUB PRODUCTOS APICOLAS,registry-declared
-0201,HS92,201AA,Carne bovina,clean,yes,28,BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORÍFICO PAMPA DE VARE; FRIGORÍFICO RIO SEGUNDO; LA PASTORIL; PILAGÁ CARNES,targeted+registry-keyword+registry-declared
-0202,HS92,201AA,Carne bovina,clean,yes,8,BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORÍFICO PAMPA DE VARE; FRIGORÍFICO RIO SEGUNDO; LA PASTORIL; PILAGÁ CARNES,targeted+registry-keyword+registry-declared
-0203,HS92,201AC,Carne porcina,clean,yes,47,EXPORK MAG; FRIGORIFICO QUALITA S.A.; FRIGORIFICO SAN FRANCISCO SA / GRUPO BELTRÁN; LA PIAMONTESA / GRUPO LA PIAMONTESA; MAGRET,targeted+registry-keyword+registry-declared
+0201,HS92,201AA,Carne bovina,clean,yes,6,BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORÍFICO PAMPA DE VARE; FRIGORÍFICO RIO SEGUNDO; LA PASTORIL; PILAGÁ CARNES,targeted+registry-declared
+0202,HS92,201AA,Carne bovina,clean,yes,8,BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORÍFICO PAMPA DE VARE; FRIGORÍFICO RIO SEGUNDO; LA PASTORIL; PILAGÁ CARNES,targeted+registry-declared
+0203,HS92,201AC,Carne porcina,clean,yes,6,EXPORK MAG; FRIGORIFICO QUALITA S.A.; FRIGORIFICO SAN FRANCISCO SA / GRUPO BELTRÁN; LA PIAMONTESA / GRUPO LA PIAMONTESA; MAGRET,targeted+registry-declared
 0204,HS92,201AB,Carne ovina o caprina,clean,yes,2,PAMPA COMPAÑÍA DE CARNES - DUO SILVESTRE ESCABECHES; SAN JAVIER CAPRINOS SRL,registry-declared
-0206,HS92,199,Resto de productos primarios,confidential,no,10,BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORIFICO SAN FRANCISCO SA / GRUPO BELTRÁN; MENUDENCIAS DEL CENTRO S.A. - GRUPO BELTRÁN; RDC S.A / RDC LEVADURAS / GRUPO BELTRÁN; FRIGORÍFICO NOVARA SA / GRUPO BELTRÁN,targeted+registry-keyword+registry-declared
-0207,HS92,201AE,Carne de Ave,clean,yes,15,INDACOR SA; INFOREST SRL; PAMPA COMPAÑÍA DE CARNES - DUO SILVESTRE ESCABECHES; VASQUETTO NUTRICIÓN ANIMAL; EL PRODUCTOR,registry-keyword+registry-declared
+0206,HS92,199,Resto de productos primarios,confidential,no,5,BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORIFICO SAN FRANCISCO SA / GRUPO BELTRÁN; MENUDENCIAS DEL CENTRO S.A. - GRUPO BELTRÁN; RDC S.A / RDC LEVADURAS / GRUPO BELTRÁN; FRIGORÍFICO NOVARA SA / GRUPO BELTRÁN,targeted+registry-declared
+0207,HS92,201AE,Carne de Ave,clean,yes,1,INDACOR SA,registry-declared
 0208,HS92,201AZ,"Carnes frescas refrigeradas o congeladas excluido las bovinas,ovinas,caprinas,porcinas.aves,liebres y conejos",aggregate-resto,yes,1,PAMPA COMPAÑÍA DE CARNES - DUO SILVESTRE ESCABECHES,registry-declared
 0210,HS92,201AZ,"Carnes frescas refrigeradas o congeladas excluido las bovinas,ovinas,caprinas,porcinas.aves,liebres y conejos",aggregate-resto,yes,2,ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; LA PIAMONTESA / GRUPO LA PIAMONTESA,registry-declared
 0401,HS92,199,Resto de productos primarios,confidential,no,2,LAS TRES NIÑAS - GRUPO ADECOAGRO; LA LÁCTEO,registry-declared
-0402,HS92,203A,Leches preparadas,clean,yes,16,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; LA VARENSE; LACTEAR SA; LAS TRES NIÑAS - GRUPO ADECOAGRO; MANFREY,targeted+registry-keyword+registry-declared
-0403,HS92,199,Resto de productos primarios,confidential,no,3,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; ARSA / SANCOR; PANINO,targeted+registry-keyword+registry-declared
+0402,HS92,203A,Leches preparadas,clean,yes,10,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; LA VARENSE; LACTEAR SA; LAS TRES NIÑAS - GRUPO ADECOAGRO; MANFREY,targeted+registry-declared
+0403,HS92,199,Resto de productos primarios,confidential,no,1,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.,targeted+registry-declared
 0404,HS92,199,Resto de productos primarios,confidential,no,3,LACTEAR SA; LACTEOS LA CRISTINA; SOBRERO Y CAGNOLO S.A. / CREMAC,registry-declared
-0405,HS92,203B,Manteca,clean,yes,15,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; TONADITA; EL CRAIKENSE; BRO FOOD SUPPLIER; JL PRODUCTOS ALIMENTICIOS,targeted+registry-keyword+registry-declared
-0406,HS92,203C,Quesos,clean,yes,32,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; ESTILO REAL – ARROYO CABRAL; LACTEAR SA; LACTEOS CDS - LACNAT - LOMBARDE,targeted+registry-keyword+registry-declared
-0409,HS92,103,Miel,clean,yes,25,DULCOR; CAPYC; FEDERACIÓN DE JÓVENES AGRARIOS COOP. Y MUTUALISTAS; MIEL DE MONTE; APICOLA JAUREGUI,targeted+registry-keyword+registry-declared
+0405,HS92,203B,Manteca,clean,yes,3,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; TONADITA; EL CRAIKENSE,targeted+registry-declared
+0406,HS92,203C,Quesos,clean,yes,15,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; ESTILO REAL – ARROYO CABRAL; LACTEAR SA; LACTEOS CDS - LACNAT - LOMBARDE,targeted+registry-declared
+0409,HS92,103,Miel,clean,yes,9,DULCOR; CAPYC; FEDERACIÓN DE JÓVENES AGRARIOS COOP. Y MUTUALISTAS; MIEL DE MONTE; APICOLA JAUREGUI,targeted+registry-declared
 0410,HS92,204,Otros productos de origen animal,clean,yes,2,APICOLA JAUREGUI; ECOLAB CRIANZA INTENSIVA DE ABEJAS REINAS Y SUB PRODUCTOS APICOLAS,registry-declared
 0504,HS92,204,Otros productos de origen animal,clean,yes,4,BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; MENUDENCIAS DEL CENTRO S.A. - GRUPO BELTRÁN; OSCAR DULCE; RDC S.A / RDC LEVADURAS / GRUPO BELTRÁN,registry-declared
 0511,HS92,204,Otros productos de origen animal,clean,yes,3,BIOGEN ARGENTINA SA; MENUDENCIAS DEL CENTRO S.A. - GRUPO BELTRÁN; EL ATARDECER,registry-declared
-0701,HS92,104Z,Resto de hortalizas y legumbres sin elaborar,resto,yes,29,BESSO HNOS; AGROPECUARIA VILLA DOLORES SA; EL RELINCHO PAPAS; EL RELINCHO PRODUCTOS AGRICOLAS; LA CERRILLENSE,targeted+registry-keyword+registry-declared
-0702,HS92,104Z,Resto de hortalizas y legumbres sin elaborar,resto,yes,9,FÁBRICA DE PASTAS BETTINI; GRUPO ARCOR; MATERFER; OLIVARES SAN NICOLAS; EL HALLI OBEID LUIS MARIA - GRUPO MUSICAL TOMATES ASESINOS,registry-keyword
-0703,HS92,104A,Cebollas,clean,yes,10,BESSO HNOS; AGROPLANT; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; AZAFRÁN RUEDO; GARLIC AJO NEGRO,targeted+registry-keyword+registry-declared
+0701,HS92,104Z,Resto de hortalizas y legumbres sin elaborar,resto,yes,12,BESSO HNOS; AGROPECUARIA VILLA DOLORES SA; EL RELINCHO PAPAS; EL RELINCHO PRODUCTOS AGRICOLAS; LA CERRILLENSE,targeted+registry-declared
+0703,HS92,104A,Cebollas,clean,yes,2,BESSO HNOS; AGROPLANT,targeted+registry-declared
 0708,HS92,104Z,Resto de hortalizas y legumbres sin elaborar,resto,yes,3,PRAGA ALIMENTOS; PROME AGRONEGOCIOS; SANTIAGO PRANDI SISTEMAS DE RIEGO S.A.,registry-declared
 0709,HS92,104Z,Resto de hortalizas y legumbres sin elaborar,resto,yes,1,HONGOS & FUNGHI,registry-declared
-0712,HS92,104Z,Resto de hortalizas y legumbres sin elaborar,resto,yes,5,AZAFRÁN RUEDO; AGROPLANT; CHIALVO SRL; HONGOS & FUNGHI; HQA PRODUCTOS NATURALES,targeted+registry-keyword+registry-declared
-0713,HS92,104C,Legumbres,clean,yes,75,FAMIGLIA ROSSI - MOLINOS ROSSI; ALEMAR SA / FUNNY; BARBALE AGROPECUARIA; BRO FOOD SUPPLIER; CAMPO YAQUICHO,targeted+registry-keyword+registry-declared
-0802,HS92,105Z,Resto de frutas frescas ,aggregate-resto,yes,11,CROPPERS - GRUPO MANIAGRO; COTAGRO; NATFOOD SAS; ACEITES DEL DESIERTO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET,targeted+registry-keyword+registry-declared
-0806,HS92,105D,Uvas de mesa,clean,yes,6,CROPPERS - GRUPO MANIAGRO; PASAFRE; PRODUCTOS DON ROGELIO; PALMESANO - GRUPO PALMESANO; TRONADOR PANIFICADOS,targeted+registry-keyword+registry-declared
+0712,HS92,104Z,Resto de hortalizas y legumbres sin elaborar,resto,yes,4,AZAFRÁN RUEDO; AGROPLANT; CHIALVO SRL; HONGOS & FUNGHI,targeted+registry-declared
+0713,HS92,104C,Legumbres,clean,yes,47,FAMIGLIA ROSSI - MOLINOS ROSSI; ALEMAR SA / FUNNY; BARBALE AGROPECUARIA; BRO FOOD SUPPLIER; CAMPO YAQUICHO,targeted+registry-declared
+0802,HS92,105Z,Resto de frutas frescas ,aggregate-resto,yes,3,CROPPERS - GRUPO MANIAGRO; COTAGRO; NATFOOD SAS,targeted+registry-declared
+0806,HS92,105D,Uvas de mesa,clean,yes,3,CROPPERS - GRUPO MANIAGRO; PASAFRE; PRODUCTOS DON ROGELIO,targeted+registry-declared
 0807,HS92,105Z,Resto de frutas frescas ,aggregate-resto,yes,1,OLIVARES SAN NICOLAS,registry-declared
-0810,HS92,105Z,Resto de frutas frescas ,aggregate-resto,yes,11,GRANADAS ARGENTINAS; DULCOR; EASYFRUT; ESNAOLA - GRUPO DULCOR; GRUPO ARCOR,registry-keyword+registry-declared
+0810,HS92,105Z,Resto de frutas frescas ,aggregate-resto,yes,1,GRANADAS ARGENTINAS,registry-declared
 0811,HS92,105Z,Resto de frutas frescas ,aggregate-resto,yes,1,EASYFRUT,registry-declared
 0813,HS92,205,Frutas secas o procesadas,clean,yes,1,FRUNAT,registry-declared
 0901,HS92,206C,Café,clean,yes,2,CAFÉ VELEZ; JUMALÁ SA,registry-declared
 0902,HS92,206A,Té,clean,yes,5,BONAFE / MÁS SABOR; CAFÉ VELEZ; CURA TÉ ALMA - MATE AMOS; JUMALÁ SA; PIPERPOL,registry-declared
 0903,HS92,206B,Yerba mate,clean,yes,8,BONAFE / MÁS SABOR; VERDEFLOR; CAFÉ VELEZ; CURA TÉ ALMA - MATE AMOS; ESTANCIA EL ROSARIO,registry-declared
-0904,HS92,206D,Especias,clean,yes,8,AZAFRÁN RUEDO; CHIALVO SRL; EL VALLISTO; YUSPE - GRUPO DULCOR; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET,targeted+registry-keyword+registry-declared
+0904,HS92,206D,Especias,clean,yes,4,AZAFRÁN RUEDO; CHIALVO SRL; EL VALLISTO; YUSPE - GRUPO DULCOR,targeted+registry-declared
 0908,HS92,206D,Especias,clean,yes,1,YUSPE - GRUPO DULCOR,registry-declared
-0909,HS92,206D,Especias,clean,yes,15,AZAFRÁN RUEDO; ALEMAR SA / FUNNY; DESARROLLOS AGRÍCOLAS ARGENTINOS SA; DOS MATES S.A.; F.G GRANOS,targeted+registry-keyword+registry-declared
-0910,HS92,206D,Especias,clean,yes,6,AZAFRÁN RUEDO; YUSPE - GRUPO DULCOR; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; AZAFRÁN MEDITERRÁNEO; HQA PRODUCTOS NATURALES,targeted+registry-keyword+registry-declared
-1001,HS92,106A,Trigo,clean,yes,64,ACEITERA GENERAL DEHEZA SA - AGD; ESTABLECIMIENTO SAN PATRICIO SA; GEVAL SA; NATURAL CROPS; PAREDES CEREALES S.A.,targeted+registry-keyword+registry-declared
+0909,HS92,206D,Especias,clean,yes,13,AZAFRÁN RUEDO; ALEMAR SA / FUNNY; DESARROLLOS AGRÍCOLAS ARGENTINOS SA; DOS MATES S.A.; F.G GRANOS,targeted+registry-declared
+0910,HS92,206D,Especias,clean,yes,2,AZAFRÁN RUEDO; YUSPE - GRUPO DULCOR,targeted+registry-declared
+1001,HS92,106A,Trigo,clean,yes,17,ACEITERA GENERAL DEHEZA SA - AGD; ESTABLECIMIENTO SAN PATRICIO SA; GEVAL SA; NATURAL CROPS; PAREDES CEREALES S.A.,targeted+registry-declared
 1002,HS92,199,Resto de productos primarios,confidential,no,4,ESTABLECIMIENTO SAN PATRICIO SA; PAREDES CEREALES S.A.; SAGRA; SMART CAMPO SEMILLAS,registry-declared
-1003,HS92,106ZB,Cebada,clean,yes,3,Asociación de Cooperativas Argentinas (ACA) — Córdoba; PAREDES CEREALES S.A.; SAGRA,targeted+registry-keyword+registry-declared
+1003,HS92,106ZB,Cebada,clean,yes,3,Asociación de Cooperativas Argentinas (ACA) — Córdoba; PAREDES CEREALES S.A.; SAGRA,targeted+registry-declared
 1004,HS92,106ZA,Avena,clean,yes,4,PAREDES CEREALES S.A.; PRAGA ALIMENTOS; SAGRA; SMART CAMPO SEMILLAS,registry-declared
-1005,HS92,106B,Maíz,clean,yes,121,ACEITERA GENERAL DEHEZA SA - AGD; FAMIGLIA ROSSI - MOLINOS ROSSI; GASTALDI HNOS. S.A.I Y C.F.E.I; GRUPO ARCOR; AGRÍCOLA PIQUILLÍN,targeted+registry-keyword+registry-declared
-1006,HS92,106ZF,Arroz,clean,yes,14,Asociación de Cooperativas Argentinas (ACA) — Córdoba; AZAFRÁN RUEDO; SYTARI; EGRAN; PIERSANTI - METAL NOET,targeted+registry-keyword+registry-declared
-1007,HS92,106C,Sorgo granífero,clean,yes,12,ACEITERA GENERAL DEHEZA SA - AGD; CAVERZASI ORTIN SEMILLAS; EDUARDO LUSSO S.A.; LOS ALGARROBOS SEMILLAS HÍBRIDAS; PAREDES CEREALES S.A.,targeted+registry-keyword+registry-declared
+1005,HS92,106B,Maíz,clean,yes,62,ACEITERA GENERAL DEHEZA SA - AGD; FAMIGLIA ROSSI - MOLINOS ROSSI; GASTALDI HNOS. S.A.I Y C.F.E.I; GRUPO ARCOR; AGRÍCOLA PIQUILLÍN,targeted+registry-declared
+1006,HS92,106ZF,Arroz,clean,yes,3,Asociación de Cooperativas Argentinas (ACA) — Córdoba; AZAFRÁN RUEDO; SYTARI,targeted+registry-declared
+1007,HS92,106C,Sorgo granífero,clean,yes,8,ACEITERA GENERAL DEHEZA SA - AGD; CAVERZASI ORTIN SEMILLAS; EDUARDO LUSSO S.A.; LOS ALGARROBOS SEMILLAS HÍBRIDAS; PAREDES CEREALES S.A.,targeted+registry-declared
 1008,HS92,106ZD,Alpiste,clean,yes,7,CONCI SRL; EL PELUDO SA; F.G GRANOS; GRUPO AGROEMPRESA (ARGENBEAN - AGROEMPRESA SEMILLAS); PAREDES CEREALES S.A.,registry-declared
-1101,HS92,207A,Harina de trigo,clean,yes,29,FAMIGLIA ROSSI - MOLINOS ROSSI; COOPERATIVA AGRICOLA GANADERA DE JUSTINIANO POSSE; GASTALDI HNOS. S.A.I Y C.F.E.I; Jose Minetti y Cía. (Molino San José); MARIMBO,targeted+registry-keyword+registry-declared
-1102,HS92,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,yes,12,FAMIGLIA ROSSI - MOLINOS ROSSI; GRUPO ARCOR; CELIDARINA; EGRAN; GRANAM - COMPAÑÍA DE GRANOS AMERICANOS,targeted+registry-keyword+registry-declared
-1103,HS92,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,yes,10,FAMIGLIA ROSSI - MOLINOS ROSSI; GRUPO ARCOR; EGRAN; GRANAM - COMPAÑÍA DE GRANOS AMERICANOS; MOLINOS FÉNIX ALIMENTOS - MOLINOS FÉNIX NUTRICIÓN - GRUPO ALIMENTICIO SA,targeted+registry-keyword+registry-declared
+1101,HS92,207A,Harina de trigo,clean,yes,16,FAMIGLIA ROSSI - MOLINOS ROSSI; COOPERATIVA AGRICOLA GANADERA DE JUSTINIANO POSSE; GASTALDI HNOS. S.A.I Y C.F.E.I; Jose Minetti y Cía. (Molino San José); MARIMBO,targeted+registry-declared
+1102,HS92,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,yes,11,FAMIGLIA ROSSI - MOLINOS ROSSI; GRUPO ARCOR; CELIDARINA; EGRAN; GRANAM - COMPAÑÍA DE GRANOS AMERICANOS,targeted+registry-declared
+1103,HS92,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,yes,8,FAMIGLIA ROSSI - MOLINOS ROSSI; GRUPO ARCOR; EGRAN; GRANAM - COMPAÑÍA DE GRANOS AMERICANOS; MOLINOS FÉNIX ALIMENTOS - MOLINOS FÉNIX NUTRICIÓN - GRUPO ALIMENTICIO SA,targeted+registry-declared
 1104,HS92,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,yes,10,AGROSERVICIOS MEDITERRÁNEA; ALIMENTOS TANCACHA SA; ALVICOR / LUCERITO; DER EXPORT SA; GRANAM - COMPAÑÍA DE GRANOS AMERICANOS,registry-declared
 1105,HS92,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,yes,1,DIMAX ALIMENTOS,registry-declared
 1106,HS92,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,yes,8,ACEITES DEL DESIERTO; LA TROJA; MOLINOS FÉNIX ALIMENTOS - MOLINOS FÉNIX NUTRICIÓN - GRUPO ALIMENTICIO SA; NATURAL FOOD; PRAGA ALIMENTOS,registry-declared
 1107,HS92,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,yes,2,CAFÉ VELEZ; JUMALÁ SA,registry-declared
-1108,HS92,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,yes,3,GRUPO ARCOR; DIMAX ALIMENTOS; GRANDIET,targeted+registry-keyword+registry-declared
-1201,HS92,107A,Soja,clean,yes,89,Asociación de Cooperativas Argentinas (ACA) — Córdoba; AGRÍCOLA PIQUILLÍN; AGROSERVICIOS MEDITERRÁNEA; ALIMENTOS TANCACHA SA; BRO FOOD SUPPLIER,targeted+registry-keyword+registry-declared
-1202,HS92,107D,Maní,clean,yes,56,INCHIK; ACEITERA GENERAL DEHEZA SA - AGD; GASTALDI HNOS. S.A.I Y C.F.E.I; GEORGALOS; AGRO TRANSPORTES S.A.,targeted+registry-keyword+registry-declared
+1108,HS92,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,yes,3,GRUPO ARCOR; DIMAX ALIMENTOS; GRANDIET,targeted+registry-declared
+1201,HS92,107A,Soja,clean,yes,32,Asociación de Cooperativas Argentinas (ACA) — Córdoba; AGRÍCOLA PIQUILLÍN; AGROSERVICIOS MEDITERRÁNEA; ALIMENTOS TANCACHA SA; BRO FOOD SUPPLIER,targeted+registry-declared
+1202,HS92,107D,Maní,clean,yes,47,INCHIK; ACEITERA GENERAL DEHEZA SA - AGD; GASTALDI HNOS. S.A.I Y C.F.E.I; GEORGALOS; AGRO TRANSPORTES S.A.,targeted+registry-declared
 1204,HS92,107C,Lino,clean,yes,2,PAREDES CEREALES S.A.; SYTARI,registry-declared
 1205,HS92,107Z,Resto semillas y frutos oleaginosos,aggregate-resto,yes,2,BRO FOOD SUPPLIER; GRUPO AGROEMPRESA (ARGENBEAN - AGROEMPRESA SEMILLAS),registry-declared
-1206,HS92,107B,Girasol,clean,yes,23,Asociación de Cooperativas Argentinas (ACA) — Córdoba; AGRO ARG SRL; BARBALE AGROPECUARIA; BRO FOOD SUPPLIER; COTAGRO,targeted+registry-keyword+registry-declared
+1206,HS92,107B,Girasol,clean,yes,13,Asociación de Cooperativas Argentinas (ACA) — Córdoba; AGRO ARG SRL; BARBALE AGROPECUARIA; BRO FOOD SUPPLIER; COTAGRO,targeted+registry-declared
 1207,HS92,107Z,Resto semillas y frutos oleaginosos,aggregate-resto,yes,12,BRO FOOD SUPPLIER; CAPYC; CONCI SRL; CONO GROUP; DESARROLLOS AGRÍCOLAS ARGENTINOS SA,registry-declared
 1208,HS92,107Z,Resto semillas y frutos oleaginosos,aggregate-resto,yes,6,GEPSA; INDELMA - INSA; INSA MANÍ; LA TROJA; NATFOOD SAS,registry-declared
 1209,HS92,107Z,Resto semillas y frutos oleaginosos,aggregate-resto,yes,4,CAVERZASI ORTIN SEMILLAS; PEMAN SEMILLAS; SAGRA; SMART CAMPO SEMILLAS,registry-declared
 1211,HS92,107Z,Resto semillas y frutos oleaginosos,aggregate-resto,yes,1,AZAFRÁN RUEDO,registry-declared
-1214,HS92,107Z,Resto semillas y frutos oleaginosos,resto-or-broad,yes,43,PELLFOOD; ALFABAN SRL; ALFALFAR; ALFALFAS LIMENTOS; ALFASOUTH SAS,targeted+registry-keyword+registry-declared
+1214,HS92,107Z,Resto semillas y frutos oleaginosos,resto-or-broad,yes,16,PELLFOOD; ALFABAN SRL; ALFALFAR; ALFALFAS LIMENTOS; ALFASOUTH SAS,targeted+registry-declared
 1302,HS92,199,Resto de productos primarios,confidential,no,1,ALFA ARGENTINA SA,registry-declared
-1507,HS92,208AA,Aceite de soja,clean,yes,23,ACEITERA GENERAL DEHEZA SA - AGD; ALIMENTOS TANCACHA SA; ASR - ALIMENTOS SANTA ROSA; BIOFARMA; COOPERATIVA AGRICULTORES DEL SUR LTDA.,targeted+registry-keyword+registry-declared
-1508,HS92,208AC,Aceite de maní,clean,yes,13,"ACEITERA GENERAL DEHEZA SA - AGD; Lorenzati, Ruetsch y Cia S.A.; Olega; ACEITES DEL DESIERTO; ASR - ALIMENTOS SANTA ROSA",targeted+registry-keyword+registry-declared
-1509,HS92,208AD,Aceite de oliva,clean,yes,15,ACEITUNAS ALVAREZ; AIMURAI S.A.; GARLIC AJO NEGRO; VG AGRONEGOCIOS - FAMILIA GIORDANA OLIVARES; OLIVARES SAN NICOLAS,targeted+registry-keyword+registry-declared
-1512,HS92,208AE,Aceite de girasol,clean,yes,3,ACEITERA GENERAL DEHEZA SA - AGD; BRO FOOD SUPPLIER; MOLINO CAÑUELAS,targeted+registry-keyword+registry-declared
-1515,HS92,208AH,Aceite de maíz,clean,yes,5,GRUPO ARCOR; ACA BIO; ACEITES DEL DESIERTO; BIO4; HONGOS & FUNGHI,targeted+registry-keyword+registry-declared
+1507,HS92,208AA,Aceite de soja,clean,yes,11,ACEITERA GENERAL DEHEZA SA - AGD; ALIMENTOS TANCACHA SA; ASR - ALIMENTOS SANTA ROSA; BIOFARMA; COOPERATIVA AGRICULTORES DEL SUR LTDA.,targeted+registry-declared
+1508,HS92,208AC,Aceite de maní,clean,yes,12,"ACEITERA GENERAL DEHEZA SA - AGD; Lorenzati, Ruetsch y Cia S.A.; Olega; ACEITES DEL DESIERTO; ASR - ALIMENTOS SANTA ROSA",targeted+registry-declared
+1509,HS92,208AD,Aceite de oliva,clean,yes,7,ACEITUNAS ALVAREZ; AIMURAI S.A.; GARLIC AJO NEGRO; VG AGRONEGOCIOS - FAMILIA GIORDANA OLIVARES; OLIVARES SAN NICOLAS,targeted+registry-declared
+1512,HS92,208AE,Aceite de girasol,clean,yes,3,ACEITERA GENERAL DEHEZA SA - AGD; BRO FOOD SUPPLIER; MOLINO CAÑUELAS,targeted+registry-declared
+1515,HS92,208AH,Aceite de maíz,clean,yes,5,GRUPO ARCOR; ACA BIO; ACEITES DEL DESIERTO; BIO4; HONGOS & FUNGHI,targeted+registry-declared
 1516,HS92,208AZ,Otros aceites,aggregate-resto,yes,2,RDC S.A / RDC LEVADURAS / GRUPO BELTRÁN; WILBEY TENSOACTIVOS ARGENTINOS SRL,registry-declared
 1517,HS92,208AZ,Otros aceites,aggregate-resto,yes,4,ASR - ALIMENTOS SANTA ROSA; MOLINO CAÑUELAS; PRONOR; RDC S.A / RDC LEVADURAS / GRUPO BELTRÁN,registry-declared
 1518,HS92,208AZ,Otros aceites,aggregate-resto,yes,2,ALIMENTOS TANCACHA SA; ASR - ALIMENTOS SANTA ROSA,registry-declared
 1521,HS92,208Z,Resto de grasas y aceites,aggregate-resto,yes,3,APICOLA JAUREGUI; APICOLA VAIROLATTI SRL; ECOLAB CRIANZA INTENSIVA DE ABEJAS REINAS Y SUB PRODUCTOS APICOLAS,registry-declared
-1601,HS92,201B,Conservas y preparados de carnes,clean,yes,17,FRIGORÍFICO SAN ANTONIO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; FRIGORIFICO QUALITA S.A.; LA PIAMONTESA / GRUPO LA PIAMONTESA; OSCAR DULCE,targeted+registry-keyword+registry-declared
-1602,HS92,201B,Conservas y preparados de carnes,clean,yes,20,FRIGORÍFICO SAN ANTONIO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORIFICO QUALITA S.A.; FRIGORIFICO SAN FRANCISCO SA / GRUPO BELTRÁN,targeted+registry-keyword+registry-declared
-1701,HS92,209A,Azúcar de caña en bruto,clean,yes,9,GRUPO ARCOR; Jose Minetti y Cía. (Molino San José); DOBLE TT GLOBAL; GRANDIET; HAPPY FOOD,targeted+registry-keyword+registry-declared
-1702,HS92,209Z,Resto de azúcar  y artículos de confitería ,aggregate-resto,yes,2,GRUPO ARCOR; JAMER Y BUEN PAN,targeted+registry-keyword+registry-declared
+1601,HS92,201B,Conservas y preparados de carnes,clean,yes,4,FRIGORÍFICO SAN ANTONIO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; FRIGORIFICO QUALITA S.A.; LA PIAMONTESA / GRUPO LA PIAMONTESA,targeted+registry-declared
+1602,HS92,201B,Conservas y preparados de carnes,clean,yes,11,FRIGORÍFICO SAN ANTONIO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORIFICO QUALITA S.A.; FRIGORIFICO SAN FRANCISCO SA / GRUPO BELTRÁN,targeted+registry-declared
+1701,HS92,209A,Azúcar de caña en bruto,clean,yes,2,GRUPO ARCOR; Jose Minetti y Cía. (Molino San José),targeted+registry-declared
+1702,HS92,209Z,Resto de azúcar  y artículos de confitería ,aggregate-resto,yes,2,GRUPO ARCOR; JAMER Y BUEN PAN,targeted+registry-declared
 1703,HS92,209Z,Resto de azúcar  y artículos de confitería ,aggregate-resto,yes,1,GRUPO ARCOR,registry-declared
-1704,HS92,209B,Artículos de confitería sin cacao,clean,yes,15,DULCOR; GEORGALOS; CHOCOLATES BARILOCHE - GRUPO PALMESANO; GRUPO ARCOR; JL PRODUCTOS ALIMENTICIOS,targeted+registry-keyword+registry-declared
-1806,HS92,209CB,Preparaciones de cacao,clean,yes,26,ESNAOLA - GRUPO DULCOR; GEORGALOS; CERRO AZUL; CHOCOLATES BARILOCHE - GRUPO PALMESANO; GRUPO ARCOR,targeted+registry-keyword+registry-declared
-1901,HS92,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,yes,34,LA BLANCA SA; FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; DULCOR; CAPYC; CELIDARINA,targeted+registry-keyword+registry-declared
-1902,HS92,207CB,"Pastas alimenticias, productos de panadería...",clean,yes,13,FAMIGLIA ROSSI - MOLINOS ROSSI; FÁBRICA DE PASTAS BETTINI; AZAFRÁN RUEDO; LA ITALIANA; LEGUME,targeted+registry-keyword+registry-declared
-1904,HS92,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,yes,9,GEORGALOS; CROPPERS - GRUPO MANIAGRO; EGRAN; SYTARI; CROCCANTO,targeted+registry-keyword+registry-declared
-1905,HS92,207CB,"Pastas alimenticias, productos de panadería...",clean,yes,54,DULCOR; CERRO AZUL; BOMPANING; FÁBRICA DE PASTAS BETTINI; FIRENZE S.R.L.,targeted+registry-keyword+registry-declared
+1704,HS92,209B,Artículos de confitería sin cacao,clean,yes,9,DULCOR; GEORGALOS; CHOCOLATES BARILOCHE - GRUPO PALMESANO; GRUPO ARCOR; JL PRODUCTOS ALIMENTICIOS,targeted+registry-declared
+1806,HS92,209CB,Preparaciones de cacao,clean,yes,9,ESNAOLA - GRUPO DULCOR; GEORGALOS; CERRO AZUL; CHOCOLATES BARILOCHE - GRUPO PALMESANO; GRUPO ARCOR,targeted+registry-declared
+1901,HS92,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,yes,18,LA BLANCA SA; FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; DULCOR; CAPYC; CELIDARINA,targeted+registry-declared
+1902,HS92,207CB,"Pastas alimenticias, productos de panadería...",clean,yes,10,FAMIGLIA ROSSI - MOLINOS ROSSI; FÁBRICA DE PASTAS BETTINI; AZAFRÁN RUEDO; LA ITALIANA; LEGUME,targeted+registry-declared
+1904,HS92,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,yes,7,GEORGALOS; CROPPERS - GRUPO MANIAGRO; EGRAN; SYTARI; CROCCANTO,targeted+registry-declared
+1905,HS92,207CB,"Pastas alimenticias, productos de panadería...",clean,yes,24,DULCOR; CERRO AZUL; BOMPANING; FÁBRICA DE PASTAS BETTINI; FIRENZE S.R.L.,targeted+registry-declared
 2001,HS92,210Z,"Resto de preparados de legumbres,hortalizas y frutas",aggregate-resto,yes,3,GRUPO ARCOR; PAMPA COMPAÑÍA DE CARNES - DUO SILVESTRE ESCABECHES; VANOLI - GRUPO DULCOR,registry-declared
 2002,HS92,210Z,"Resto de preparados de legumbres,hortalizas y frutas",aggregate-resto,yes,2,GRUPO ARCOR; OLIVARES SAN NICOLAS,registry-declared
 2004,HS92,210Z,"Resto de preparados de legumbres,hortalizas y frutas",aggregate-resto,yes,1,NUTRICIÓN PROFESIONAL S.R.L.,registry-declared
-2005,HS92,210A,Aceitunas,clean,yes,24,ACEITUNAS ALVAREZ; DULCOR; AIMURAI S.A.; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; GARLIC AJO NEGRO,targeted+registry-keyword+registry-declared
+2005,HS92,210A,Aceitunas,clean,yes,11,ACEITUNAS ALVAREZ; DULCOR; AIMURAI S.A.; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; GARLIC AJO NEGRO,targeted+registry-declared
 2006,HS92,210Z,"Resto de preparados de legumbres,hortalizas y frutas",aggregate-resto,yes,3,DULCES ORIETA - GRUPO DULCOR; DULCOR; FRUNAT,registry-declared
-2007,HS92,210B,"Puré, pastas de frutas, etc",clean,yes,14,ESNAOLA - GRUPO DULCOR; DULCOR; DULCES ORIETA - GRUPO DULCOR; GRUPO ARCOR; ESTANCIA EL ROSARIO,targeted+registry-keyword+registry-declared
-2008,HS92,210C,Duraznos conservados,clean,yes,40,INCHIK; DULCOR; GEORGALOS; DULCES ORIETA - GRUPO DULCOR; CROPPERS - GRUPO MANIAGRO,targeted+registry-keyword+registry-declared
+2007,HS92,210B,"Puré, pastas de frutas, etc",clean,yes,5,ESNAOLA - GRUPO DULCOR; DULCOR; DULCES ORIETA - GRUPO DULCOR; GRUPO ARCOR; ESTANCIA EL ROSARIO,targeted+registry-declared
+2008,HS92,210C,Duraznos conservados,clean,yes,34,INCHIK; DULCOR; GEORGALOS; DULCES ORIETA - GRUPO DULCOR; CROPPERS - GRUPO MANIAGRO,targeted+registry-declared
 2009,HS92,210D,Jugos de frutas y hortalizas,clean,yes,1,LA CAROYENSE SA,registry-declared
 2101,HS92,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,yes,2,VERDEFLOR; LA CUMBRECITA,registry-declared
 2102,HS92,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,yes,2,RDC S.A / RDC LEVADURAS / GRUPO BELTRÁN; LINCE S.A.,registry-declared
@@ -103,29 +102,27 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 2105,HS92,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,yes,1,GRIDO,registry-declared
 2106,HS92,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,yes,21,VERTRAUEN; ACEITERA GENERAL DEHEZA SA - AGD; CAVOUR DESARROLLOS; COREX; GRUPO ARCOR,targeted+registry-declared
 2201,HS92,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,yes,1,LA POSTA DEL ÁGUILA,registry-declared
-2202,HS92,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,yes,12,Pritty; GRUPO ARCOR; BIOSA LATAM; ILEX NATURAL ENERGY / PRODUCTOS ESENCIALES; LA POSTA DEL ÁGUILA,targeted+registry-keyword+registry-declared
-2203,HS92,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,yes,9,Cervecería Quilmes — Planta Córdoba; PEÑÓN DEL ÁGUILA; METALURGICA VZ; ATON BEER; BUENAS MALTAS / TRAUMER BIER,targeted+registry-keyword+registry-declared
-2204,HS92,211A,Vino de uva,clean,yes,5,BODEGA Y VIÑEDOS LAS CAÑITAS; FAMIGLIA FURFARO; LA CAROYENSE SA; OLIVARES VERDICCHIO; DRUSA DISEÑO,registry-keyword+registry-declared
+2202,HS92,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,yes,4,Pritty; GRUPO ARCOR; BIOSA LATAM; ILEX NATURAL ENERGY / PRODUCTOS ESENCIALES,targeted+registry-declared
+2203,HS92,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,yes,2,Cervecería Quilmes — Planta Córdoba; PEÑÓN DEL ÁGUILA,targeted+registry-declared
+2204,HS92,211A,Vino de uva,clean,yes,3,BODEGA Y VIÑEDOS LAS CAÑITAS; FAMIGLIA FURFARO; LA CAROYENSE SA,registry-declared
 2207,HS92,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,yes,3,ACA BIO; BIO4; PORTA HNOS S.A.,registry-declared
-2208,HS92,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,yes,9,PORTA HNOS S.A.; PEÑÓN DEL ÁGUILA; ALQUIMISTA; ÁNGELES Y DEMONIOS GIN; AUSTRAL DESTILERÍA,registry-keyword+registry-declared
+2208,HS92,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,yes,2,PORTA HNOS S.A.; PEÑÓN DEL ÁGUILA,registry-declared
 2209,HS92,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,yes,2,PORTA HNOS S.A.; OLIVARES VERDICCHIO,registry-declared
-2302,HS92,212B,"Afrecho, afrechillo, pellets (trigo, maíz, sorgo, mijo)",clean,yes,7,Jose Minetti y Cía. (Molino San José); GRANAM - COMPAÑÍA DE GRANOS AMERICANOS; GRUPO ARCOR; MOLINOS FÉNIX ALIMENTOS - MOLINOS FÉNIX NUTRICIÓN - GRUPO ALIMENTICIO SA; LINCE S.A.,targeted+registry-keyword+registry-declared
+2302,HS92,212B,"Afrecho, afrechillo, pellets (trigo, maíz, sorgo, mijo)",clean,yes,5,Jose Minetti y Cía. (Molino San José); GRANAM - COMPAÑÍA DE GRANOS AMERICANOS; GRUPO ARCOR; MOLINOS FÉNIX ALIMENTOS - MOLINOS FÉNIX NUTRICIÓN - GRUPO ALIMENTICIO SA; LINCE S.A.,targeted+registry-declared
 2303,HS92,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,yes,3,ACA BIO; BIO4; PORTA HNOS S.A.,registry-declared
-2304,HS92,212AE,Subproductos oleaginosos de soja,clean,yes,14,ACEITERA GENERAL DEHEZA SA - AGD; AGROSERVICIOS MEDITERRÁNEA; ALIMENTOS TANCACHA SA; ASR - ALIMENTOS SANTA ROSA; COOPERATIVA AGRICULTORES DEL SUR LTDA.,targeted+registry-keyword+registry-declared
-2305,HS92,212AD,Subproductos oleaginosos de maní,clean,yes,12,"Lorenzati, Ruetsch y Cia S.A.; Olega; INDELMA — Insa; ASR - ALIMENTOS SANTA ROSA; GC EXPORT SA - GRUPO CAVIGLIASSO S.A.",targeted+registry-keyword+registry-declared
+2304,HS92,212AE,Subproductos oleaginosos de soja,clean,yes,12,ACEITERA GENERAL DEHEZA SA - AGD; AGROSERVICIOS MEDITERRÁNEA; ALIMENTOS TANCACHA SA; ASR - ALIMENTOS SANTA ROSA; COOPERATIVA AGRICULTORES DEL SUR LTDA.,targeted+registry-declared
+2305,HS92,212AD,Subproductos oleaginosos de maní,clean,yes,7,"Lorenzati, Ruetsch y Cia S.A.; Olega; INDELMA — Insa; ASR - ALIMENTOS SANTA ROSA; GC EXPORT SA - GRUPO CAVIGLIASSO S.A.",targeted+registry-declared
 2306,HS92,212AB,Subproductos oleaginosos de girasol,clean,yes,3,ACEITERA GENERAL DEHEZA SA - AGD; BRO FOOD SUPPLIER; GRUPO ARCOR,targeted+registry-declared
 2308,HS92,212Z,Resto de residuos alimenticios y preparados para animales,aggregate-resto,yes,3,ALIMENTOS TANCACHA SA; PRONOR; COOP. AGRÍCOLA DE MONTE MAÍZ,registry-declared
-2309,HS92,212Z,Resto de residuos alimenticios y preparados para animales,aggregate-resto,yes,42,ALIMENTOS TANCACHA SA; ALVICOR / LUCERITO; BIOFARMA; COOPERATIVA AGRICULTORES DEL SUR LTDA.; DER EXPORT SA,registry-keyword+registry-declared
-2401,HS92,108A,Tabaco sin elaborar en hojas,clean,yes,2,SAYRI TABACOS; PUNTO Y BANCA,registry-keyword
+2309,HS92,212Z,Resto de residuos alimenticios y preparados para animales,aggregate-resto,yes,24,ALIMENTOS TANCACHA SA; ALVICOR / LUCERITO; BIOFARMA; COOPERATIVA AGRICULTORES DEL SUR LTDA.; DER EXPORT SA,registry-declared
 2403,HS92,108Z,Resto de tabaco sin elaborar,aggregate-resto,yes,2,SAYRI TABACOS; PUNTO Y BANCA,registry-declared
-2501,HS92,399Z,Resto de MOI,aggregate-resto,yes,11,LA INDUSTRIAL SALINERA S.A.; AZAFRÁN RUEDO; GRANDIET; COPETO SNACK; JORVIC,targeted+registry-keyword+registry-declared
+2501,HS92,399Z,Resto de MOI,aggregate-resto,yes,3,LA INDUSTRIAL SALINERA S.A.; AZAFRÁN RUEDO; GRANDIET,targeted+registry-declared
 2504,HS92,399Z,Resto de MOI,aggregate-resto,yes,1,GRAFITOIL,registry-declared
 2507,HS92,399Z,Resto de MOI,aggregate-resto,yes,1,LATIN MATERIALS,registry-declared
 2509,HS92,399Z,Resto de MOI,aggregate-resto,yes,2,LATIN MATERIALS; VERDOL,registry-declared
 2515,HS92,399Z,Resto de MOI,aggregate-resto,yes,2,EL CERRITO SAS; GRIGIONI MINERALES,registry-declared
 2518,HS92,399Z,Resto de MOI,aggregate-resto,yes,4,DOLOMITA SAIC; VERDOL; EL CERRITO SAS; GRIGIONI MINERALES,registry-declared
 2520,HS92,399Z,Resto de MOI,aggregate-resto,yes,1,RECUPERAR SRL,registry-declared
-2523,HS92,399Z,Resto de MOI,aggregate-resto,yes,5,INDUMIX; TECNUS; BODEGA TERRA CAMIARE; MARIA TRINIDAD CAMINOS; SCOLARI NANT E HIJOS SRL,registry-keyword
 2525,HS92,399Z,Resto de MOI,aggregate-resto,yes,1,LATIN MATERIALS,registry-declared
 2526,HS92,399Z,Resto de MOI,aggregate-resto,yes,1,LATIN MATERIALS,registry-declared
 2529,HS92,399Z,Resto de MOI,aggregate-resto,yes,1,FLUORITA CORDOBA SA,registry-declared
@@ -140,34 +137,32 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 2849,HS92,302A,Productos químicos inorgánicos,aggregate-broad-chapter,yes,2,TANTAL TUNGSTEN SOLUTIONS; GRAFITOIL,registry-declared
 2904,HS92,302B,Productos químicos orgánicos,aggregate-broad-chapter,yes,2,SERVQUIM SA; FACYT,registry-declared
 2921,HS92,302B,Productos químicos orgánicos,aggregate-broad-chapter,yes,1,PETROQUÍMICA RIO TERCERO SA,registry-declared
-2923,HS92,302B,Productos químicos orgánicos,aggregate-broad-chapter,yes,2,ACEITERA GENERAL DEHEZA SA - AGD; WILBEY TENSOACTIVOS ARGENTINOS SRL,targeted+registry-keyword+registry-declared
-2929,HS92,302B,Productos químicos orgánicos,aggregate-broad-chapter,yes,2,Petroquímica Río Tercero; PETROQUÍMICA RIO TERCERO SA,targeted+registry-keyword+registry-declared
+2923,HS92,302B,Productos químicos orgánicos,aggregate-broad-chapter,yes,2,ACEITERA GENERAL DEHEZA SA - AGD; WILBEY TENSOACTIVOS ARGENTINOS SRL,targeted+registry-declared
+2929,HS92,302B,Productos químicos orgánicos,aggregate-broad-chapter,yes,2,Petroquímica Río Tercero; PETROQUÍMICA RIO TERCERO SA,targeted+registry-declared
 2936,HS92,302B,Productos químicos orgánicos,aggregate-broad-chapter,yes,1,KDIAL,registry-declared
 2941,HS92,302B,Productos químicos orgánicos,aggregate-broad-chapter,yes,1,BIOINSUMOS ALIMENTICIOS,registry-declared
 3001,HS92,302C,Productos farmacéuticos,aggregate-broad-chapter,yes,2,TISSUM; ECOLAB CRIANZA INTENSIVA DE ABEJAS REINAS Y SUB PRODUCTOS APICOLAS,registry-declared
-3002,HS92,302C,Productos farmacéuticos,aggregate-broad-chapter,yes,13,BRIZUELA-LAB; NATOCOR; SERVQUIM SA; FACYT; FRIGORÍFICO PAMPA DE VARE,targeted+registry-keyword+registry-declared
-3003,HS92,302C,Productos farmacéuticos,aggregate-broad-chapter,yes,2,LABORATORIOS PUEBLA; PILL.AR,registry-keyword
+3002,HS92,302C,Productos farmacéuticos,aggregate-broad-chapter,yes,4,BRIZUELA-LAB; NATOCOR; SERVQUIM SA; FACYT,targeted+registry-declared
 3004,HS92,302C,Productos farmacéuticos,aggregate-broad-chapter,yes,7,KLONAL; QUIMICA LUAR; SAVANT; TEDEQUIM SRL; TISSUM,registry-declared
 3005,HS92,302C,Productos farmacéuticos,aggregate-broad-chapter,yes,3,LABORATORIO DERMACOR / OSTOMY; TEDEQUIM SRL; TISSUM,registry-declared
 3006,HS92,302C,Productos farmacéuticos,aggregate-broad-chapter,yes,2,LABORATORIO DERMACOR / OSTOMY; TEDEQUIM SRL,registry-declared
 3101,HS92,399Z,Resto de MOI,aggregate-resto,yes,1,SUMMABIO,registry-declared
 3102,HS92,302D,Abonos y fertilizantes distintos de los primarios,clean,yes,3,NANOMIX; CERES DEMETER; FACYT,registry-declared
-3105,HS92,302D,Abonos y fertilizantes distintos de los primarios,clean,yes,12,NANOMIX; LANTHER QUIMICA S.A.; INNOQUIM; RECUPERAR SRL; SERVQUIM SA,targeted+registry-keyword+registry-declared
+3105,HS92,302D,Abonos y fertilizantes distintos de los primarios,clean,yes,6,NANOMIX; LANTHER QUIMICA S.A.; INNOQUIM; RECUPERAR SRL; SERVQUIM SA,targeted+registry-declared
 3203,HS92,213Z,Otros extractos curtientes y tintóreos excluido extracto de quebracho,clean,yes,1,ALFA ARGENTINA SA,registry-declared
-3204,HS92,213Z,Otros extractos curtientes y tintóreos excluido extracto de quebracho,clean,yes,3,VERTRAUEN; ALFA ARGENTINA SA; LE CHARBONNIER,targeted+registry-keyword
+3204,HS92,213Z,Otros extractos curtientes y tintóreos excluido extracto de quebracho,clean,yes,1,VERTRAUEN,targeted
 3208,HS92,302E,"Extractos curtientes y tintóreos, pinturas y tintas",clean,yes,2,QUIMEX; PINTURAS PACLIN,registry-declared
 3209,HS92,302E,"Extractos curtientes y tintóreos, pinturas y tintas",clean,yes,3,QUIMEX; TERSUAVE; PINTURAS PACLIN,registry-declared
 3210,HS92,302E,"Extractos curtientes y tintóreos, pinturas y tintas",clean,yes,1,QUIMEX,registry-declared
 3212,HS92,302E,"Extractos curtientes y tintóreos, pinturas y tintas",clean,yes,1,QUIMEX,registry-declared
 3214,HS92,302E,"Extractos curtientes y tintóreos, pinturas y tintas",clean,yes,3,MOSAICOS BLANGINO; TERSUAVE; AQUAMAR,registry-declared
 3302,HS92,302F,"Aceites esenciales y resinoides (perfume, cosmética, tocador)",clean,yes,1,ALFA ARGENTINA SA,registry-declared
-3303,HS92,302F,"Aceites esenciales y resinoides (perfume, cosmética, tocador)",clean,yes,11,KLOCKNER PENTAPLAST DE ARGENTINA; FIORDOLIVA; ALPHA & OMEGA; FITONATURE; LABORATORIO PROYAR,registry-keyword
 3304,HS92,302F,"Aceites esenciales y resinoides (perfume, cosmética, tocador)",clean,yes,3,JOSE GUMA S.A.; LINFAR S.R.L; GENNUINE / YORKER,registry-declared
 3305,HS92,302F,"Aceites esenciales y resinoides (perfume, cosmética, tocador)",clean,yes,1,JOSE GUMA S.A.,registry-declared
 3306,HS92,302F,"Aceites esenciales y resinoides (perfume, cosmética, tocador)",clean,yes,1,TEDEQUIM SRL,registry-declared
 3307,HS92,302F,"Aceites esenciales y resinoides (perfume, cosmética, tocador)",clean,yes,1,EQUI CARE,registry-declared
 3401,HS92,302G,"Jabones, productos orgánicos tensoactivos, ceras",clean,yes,5,EQUI CARE; JOSE GUMA S.A.; SERVQUIM SA; CLEAN COR S.A.; PASQUALE,registry-declared
-3402,HS92,302G,"Jabones, productos orgánicos tensoactivos, ceras",clean,yes,12,ALPHA QUIMICA S.R.L.; MOSAICOS BLANGINO; JOSE GUMA S.A.; CLEAN COR S.A.; FACYT,targeted+registry-keyword+registry-declared
+3402,HS92,302G,"Jabones, productos orgánicos tensoactivos, ceras",clean,yes,5,ALPHA QUIMICA S.R.L.; MOSAICOS BLANGINO; JOSE GUMA S.A.; CLEAN COR S.A.; FACYT,targeted+registry-declared
 3403,HS92,302G,"Jabones, productos orgánicos tensoactivos, ceras",clean,yes,1,LATIN MATERIALS,registry-declared
 3404,HS92,302G,"Jabones, productos orgánicos tensoactivos, ceras",clean,yes,1,MOSAICOS BLANGINO,targeted+registry-declared
 3405,HS92,302G,"Jabones, productos orgánicos tensoactivos, ceras",clean,yes,1,EQUI CARE,registry-declared
@@ -177,39 +172,38 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 3506,HS92,399Z,Resto de MOI,aggregate-resto,yes,1,TRESOL,registry-declared
 3703,HS92,399Z,Resto de MOI,aggregate-resto,yes,1,PAPELERA CUMBRE SA,registry-declared
 3704,HS92,399Z,Resto de MOI,aggregate-resto,yes,1,PAPELERA CUMBRE SA,registry-declared
-3808,HS92,399Z,Resto de MOI,aggregate-resto,yes,11,LANTHER QUIMICA S.A.; Atanor — Planta Río Tercero; ALPHA QUIMICA S.R.L.; EQUI CARE; AQUAMAR,targeted+registry-keyword+registry-declared
+3808,HS92,399Z,Resto de MOI,aggregate-resto,yes,8,LANTHER QUIMICA S.A.; Atanor — Planta Río Tercero; ALPHA QUIMICA S.R.L.; EQUI CARE; AQUAMAR,targeted+registry-declared
 3821,HS92,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,yes,1,BRIZUELA-LAB,registry-declared
-3822,HS92,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,yes,1,BRIZUELA-LAB,targeted+registry-keyword+registry-declared
+3822,HS92,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,yes,1,BRIZUELA-LAB,targeted+registry-declared
 3823,HS92,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,yes,1,ACEITERA GENERAL DEHEZA SA - AGD,registry-declared
 3824,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,5,ALPHA QUIMICA S.R.L.; NANOMIX; AQUAMAR; CLEAN COR S.A.; FACYT,registry-declared
-3901,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,38,LATIN MATERIALS; BERTOTTO BOGLIONE; MISTER PET PREMIUM; VITOPEL ARGENTINA SA; ARO PLASTYC,registry-keyword+registry-declared
+3901,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,1,LATIN MATERIALS,registry-declared
 3902,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,1,ITHURBIDE,registry-declared
 3905,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,1,ALPHA QUIMICA S.R.L.,registry-declared
 3906,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,1,INDUSTRIA LAM,registry-declared
 3910,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,1,LATIN MATERIALS,registry-declared
 3912,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,1,MAGOAL,registry-declared
 3916,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,1,ELDA / TP3D / TP S. R. L.,registry-declared
-3917,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,19,AKWEL CORDOBA ARGENTINA SA; GOMACORD S.A.; INFOREST SRL; O-TEK; PLASTICOS SAN FRANCISCO SRL,registry-keyword+registry-declared
+3917,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,9,AKWEL CORDOBA ARGENTINA SA; GOMACORD S.A.; INFOREST SRL; O-TEK; PLASTICOS SAN FRANCISCO SRL,registry-declared
 3918,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,1,O.H.F.,registry-declared
 3919,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,2,ESTINDHER SA; FERRETERA GENERAL PAZ SRL,registry-declared
 3920,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,6,KARIKAL; KLOCKNER PENTAPLAST DE ARGENTINA; PLÁSTICOS DEL PACÍFICO; VITOPEL ARGENTINA SA; FOBOS - CLIPSAR,registry-declared
 3921,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,1,KARIKAL,registry-declared
 3922,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,1,TRESOL,registry-declared
-3923,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,46,BERTOTTO BOGLIONE; CAPYC; DIMAT S.R.L.; EXTRUSYSTEM - GRUPO IN PACK; INFOREST SRL,registry-keyword+registry-declared
+3923,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,17,BERTOTTO BOGLIONE; CAPYC; DIMAT S.R.L.; EXTRUSYSTEM - GRUPO IN PACK; INFOREST SRL,registry-declared
 3924,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,2,BUENACEPA; ANGEMAN,registry-declared
-3925,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,8,BERTOTTO BOGLIONE; MOLDEAR; ROTOR TANQUES; VULCANO; O.H.F.,targeted+registry-keyword+registry-declared
+3925,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,6,BERTOTTO BOGLIONE; MOLDEAR; ROTOR TANQUES; VULCANO; O.H.F.,targeted+registry-declared
 3926,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,16,AKWEL CORDOBA ARGENTINA SA; BAG BIO; BESORA HNOS SRL; CAPEMI; EMBALPHARMA S.A,registry-declared
 4001,HS92,304,Cauchos y sus manufacturas,aggregate-broad-chapter,yes,1,GOMACORD S.A.,registry-declared
 4005,HS92,304,Cauchos y sus manufacturas,aggregate-broad-chapter,yes,2,MULTICOR SA; RUBBER,registry-declared
 4008,HS92,304,Cauchos y sus manufacturas,aggregate-broad-chapter,yes,1,RUBBER,registry-declared
 4009,HS92,304,Cauchos y sus manufacturas,aggregate-broad-chapter,yes,3,CAUPLAS; HYDROM OLEODINAMICA S.R.L; OLEOHIDRÁULICA TECNICORD S.A.,registry-declared
-4010,HS92,304,Cauchos y sus manufacturas,aggregate-broad-chapter,yes,6,DAYCO; KÜGELLAGER; AGRETEQ; SMB CLEVER; MECANIZADOS DEL CENTRO,targeted+registry-keyword+registry-declared
-4011,HS92,304,Cauchos y sus manufacturas,aggregate-broad-chapter,yes,22,AKWEL CORDOBA ARGENTINA SA; BTI AGRI; GACELA DENTAL; GRUPO TORREON; INFAS GROUP,registry-keyword
+4010,HS92,304,Cauchos y sus manufacturas,aggregate-broad-chapter,yes,2,DAYCO; KÜGELLAGER,targeted+registry-declared
 4016,HS92,304,Cauchos y sus manufacturas,aggregate-broad-chapter,yes,6,CAPEMI; EMEGOM; GOMACORD S.A.; BOETTO SH; DGH SRL,registry-declared
 4101,HS92,214A,Pieles y cueros en bruto,clean,yes,1,BARRACA CORDOBA SRL,registry-declared
 4102,HS92,214A,Pieles y cueros en bruto,clean,yes,1,BARRACA CORDOBA SRL,registry-declared
 4103,HS92,214A,Pieles y cueros en bruto,clean,yes,3,BARRACA CORDOBA SRL; ZANIN HNOS.; SAN JAVIER CAPRINOS SRL,registry-declared
-4104,HS92,214B,Pieles y cueros preparados,clean,yes,35,CURTIEMBRE RÍO TERCERO SA; ATILIOF; BIANCHI CUEROS ARGENTINOS; CHENNA; CUSCO COWHIDES,registry-keyword+registry-declared
+4104,HS92,214B,Pieles y cueros preparados,clean,yes,1,CURTIEMBRE RÍO TERCERO SA,registry-declared
 4106,HS92,214B,Pieles y cueros preparados,clean,yes,1,BARRACA CORDOBA SRL,registry-declared
 4107,HS92,214B,Pieles y cueros preparados,clean,yes,1,ZANIN HNOS.,registry-declared
 4114,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,1,BARRACA CORDOBA SRL,registry-declared
@@ -233,18 +227,17 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 4814,HS92,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,yes,1,PAPELERA CUMBRE SA,registry-declared
 4817,HS92,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,yes,1,PAPELERA CUMBRE SA,registry-declared
 4818,HS92,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,yes,1,CLEAN COR S.A.,registry-declared
-4819,HS92,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,yes,12,ROTATIVAS CÓRDOBA S.A; CERVENY / TURBOVAC; NEOTRADE; PAPELERA CUMBRE SA; SOLUCIONES GRÁFICAS,registry-keyword+registry-declared
+4819,HS92,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,yes,5,ROTATIVAS CÓRDOBA S.A; CERVENY / TURBOVAC; NEOTRADE; PAPELERA CUMBRE SA; SOLUCIONES GRÁFICAS,registry-declared
 4820,HS92,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,yes,2,+LATINA; PAPRIKA,registry-declared
 4821,HS92,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,yes,1,INPAR AUTOADHESIVOS,registry-declared
 4822,HS92,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,yes,1,CONAM SRL,registry-declared
-4823,HS92,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,yes,30,CARTOTECNICA HORES; ENCAPA SA; MOLDERIL SA; CONAM SRL; GRAFIN ARGENTINA S.A.,targeted+registry-keyword+registry-declared
+4823,HS92,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,yes,3,CARTOTECNICA HORES; ENCAPA SA; MOLDERIL SA,targeted+registry-declared
 4901,HS92,306B,Productos editoriales y otras industrias gráficas,clean,yes,7,EDITORIAL BRUJAS - ENCUENTRO GRUPO EDITOR; +LATINA; ECOVAL EDICIONES; EMPORIO EDICIONES Y EMPORIO LIBROS; GRÁFICA DEL SUR,registry-declared
 4902,HS92,306B,Productos editoriales y otras industrias gráficas,clean,yes,1,SERMA,registry-declared
 4907,HS92,306B,Productos editoriales y otras industrias gráficas,clean,yes,1,+LATINA,registry-declared
 4911,HS92,306B,Productos editoriales y otras industrias gráficas,clean,yes,1,+LATINA,registry-declared
-5101,HS92,109,Lanas sucias,clean,yes,6,LANAS MELODY; COOPERATIVA ALBORADA; BLACK OVEJA; CORUJA; MISS PIKY,registry-keyword+registry-declared
+5101,HS92,109,Lanas sucias,clean,yes,2,LANAS MELODY; COOPERATIVA ALBORADA,registry-declared
 5105,HS92,215,Lanas elaboradas,clean,yes,1,CORUJA,registry-declared
-5106,HS92,215,Lanas elaboradas,clean,yes,4,LACTEOS CDS - LACNAT - LOMBARDE; LANAS MELODY; CORUJA; LÁCTEOS LAS TRES,registry-keyword
 5107,HS92,215,Lanas elaboradas,clean,yes,1,LANAS MELODY,targeted
 5109,HS92,215,Lanas elaboradas,clean,yes,2,LANAS MELODY; CORUJA,registry-declared
 5205,HS92,307C,Hilados y tejidos de algodón,clean,yes,1,CORUJA,registry-declared
@@ -276,7 +269,7 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 6305,HS92,307I,Otros artículos de tejidos confeccionados,clean,yes,2,BAG BIO; RAPPACHIANI,registry-declared
 6306,HS92,307I,Otros artículos de tejidos confeccionados,clean,yes,1,RAPPACHIANI,registry-declared
 6402,HS92,308,Calzado y sus componentes,clean,yes,1,DAS LUZ CALZADOS,registry-declared
-6403,HS92,308,Calzado y sus componentes,clean,yes,31,INFOREST SRL; KARAMELHO; CURTIEMBRE RÍO TERCERO SA; FLEXIMAR - INDIAN; SERMA,registry-keyword+registry-declared
+6403,HS92,308,Calzado y sus componentes,clean,yes,2,INFOREST SRL; KARAMELHO,registry-declared
 6404,HS92,308,Calzado y sus componentes,clean,yes,3,FLEXIMAR - INDIAN; JANUA; KARAMELHO,registry-declared
 6405,HS92,308,Calzado y sus componentes,clean,yes,1,FLEXIMAR - INDIAN,registry-declared
 6406,HS92,308,Calzado y sus componentes,clean,yes,2,MOPLEX; GOMAS GASPAR,registry-declared
@@ -288,10 +281,10 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 6806,HS92,309A,Manufacturas de piedra y amianto,clean,yes,1,AISLATER,registry-declared
 6807,HS92,309A,Manufacturas de piedra y amianto,clean,yes,1,QUIMEX,registry-declared
 6809,HS92,309A,Manufacturas de piedra y amianto,clean,yes,1,BLOTTING ARGENTINA,registry-declared
-6810,HS92,309A,Manufacturas de piedra y amianto,clean,yes,12,MOSAICOS BLANGINO; LA ELENENSE SA; KARIKAL; MOLDEAR; GRIGIONI MINERALES,targeted+registry-keyword+registry-declared
+6810,HS92,309A,Manufacturas de piedra y amianto,clean,yes,9,MOSAICOS BLANGINO; LA ELENENSE SA; KARIKAL; MOLDEAR; GRIGIONI MINERALES,targeted+registry-declared
 6904,HS92,309B,Productos cerámicos,clean,yes,1,FANTINI LADRILLOS CERÁMICOS,registry-declared
 6905,HS92,309B,Productos cerámicos,clean,yes,1,FANTINI LADRILLOS CERÁMICOS,registry-declared
-6907,HS92,309B,Productos cerámicos,clean,yes,6,LA ELENENSE SA; CASA TALLER EL RANCHO; CEMENTADOS JUAN NADALIN E HIJOS S.A / NADALIN SA; INDEF; INSTRELEC,registry-keyword+registry-declared
+6907,HS92,309B,Productos cerámicos,clean,yes,1,LA ELENENSE SA,registry-declared
 6909,HS92,309B,Productos cerámicos,clean,yes,1,CEMENTADOS JUAN NADALIN E HIJOS S.A / NADALIN SA,registry-declared
 7007,HS92,309C,Vidrio y sus manufacturas,clean,yes,2,ANODAL SA; VIDPIA - VIDRIOS PIAZZE,registry-declared
 7117,HS92,310A,Piedras y metales preciosos,clean,yes,2,SIETE MILLAS; VANESA DURAN,registry-declared
@@ -304,13 +297,13 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 7306,HS92,311AE,"Tubos y caños de fundición, hierro o acero",clean,yes,2,MARCO AURELIO SOSA SACIF; METPAL,registry-declared
 7307,HS92,311AE,"Tubos y caños de fundición, hierro o acero",clean,yes,4,METALMED; CONECTAR; EVER WEAR; OLEOHIDRÁULICA TECNICORD S.A.,registry-declared
 7308,HS92,311AF,"Estructuras, hangares, etc. de hierro o acero",clean,yes,3,IMBAL SA; METALURGICA RE SRL; PROMETVA,registry-declared
-7309,HS92,399Z,Resto de MOI,aggregate-resto,yes,11,BERTOTTO BOGLIONE; INDUMIX; ETI; LEUCA SISTEMAS DE AIRE; TECNUS,targeted+registry-keyword+registry-declared
+7309,HS92,399Z,Resto de MOI,aggregate-resto,yes,10,BERTOTTO BOGLIONE; INDUMIX; ETI; LEUCA SISTEMAS DE AIRE; TECNUS,targeted+registry-declared
 7310,HS92,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,yes,1,TEKNIX,registry-declared
 7311,HS92,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,yes,2,MBA S.A.; RAPPACHIANI,registry-declared
 7314,HS92,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,yes,1,METALURGICA RE SRL,registry-declared
 7317,HS92,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,yes,1,DI TOMASO SRL - ARGENFIX,registry-declared
-7318,HS92,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,yes,21,METALÚRGICA GERBAUDO SA; PELLACANI S.R.L.; TARANTO SA; BOETTO SH; FERRETERA GENERAL PAZ SRL,registry-keyword+registry-declared
-7320,HS92,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,yes,3,FAESA; RESORTES ARGENTINA; SECMAN,targeted+registry-keyword+registry-declared
+7318,HS92,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,yes,7,METALÚRGICA GERBAUDO SA; PELLACANI S.R.L.; TARANTO SA; BOETTO SH; FERRETERA GENERAL PAZ SRL,registry-declared
+7320,HS92,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,yes,3,FAESA; RESORTES ARGENTINA; SECMAN,targeted+registry-declared
 7321,HS92,311AG,"Estufas, cocinas, etc.de fundición,hierro o acero",clean,yes,2,FOGONEGROS; ORMAY,registry-declared
 7323,HS92,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,yes,3,BARBERO; TEYBO; VASO GÜIRA,registry-declared
 7325,HS92,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,yes,4,SANCHEZ Y PICCIONI S.A.; BORMAN SRL; CONECTAR; METAL CE SRL,registry-declared
@@ -327,7 +320,7 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 8113,HS92,311E,Otros metales comunes,clean,yes,1,TANTAL TUNGSTEN SOLUTIONS,registry-declared
 8201,HS92,311F,Herramientas y cuchillería de metal,clean,yes,1,INFOREST SRL,registry-declared
 8203,HS92,311F,Herramientas y cuchillería de metal,clean,yes,1,EJP HERRAMIENTAS,registry-declared
-8205,HS92,311F,Herramientas y cuchillería de metal,clean,yes,7,BARBERO; INFOREST SRL; METALMED; EJP HERRAMIENTAS; FERRETERA GENERAL PAZ SRL,registry-keyword+registry-declared
+8205,HS92,311F,Herramientas y cuchillería de metal,clean,yes,5,BARBERO; INFOREST SRL; METALMED; EJP HERRAMIENTAS; FERRETERA GENERAL PAZ SRL,registry-declared
 8206,HS92,311F,Herramientas y cuchillería de metal,clean,yes,1,MBA S.A.,registry-declared
 8207,HS92,311F,Herramientas y cuchillería de metal,clean,yes,6,ANTARES SRL; METALÚRGICA GERBAUDO SA; METALÚRGICA PROGRESO S.R.L.; TANTAL TUNGSTEN SOLUTIONS; ESTABLECIMIENTO METALURGICO MF S.R.L.,registry-declared
 8208,HS92,311F,Herramientas y cuchillería de metal,clean,yes,1,FAESA,targeted+registry-declared
@@ -343,29 +336,29 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 8408,HS92,312AA,"Motores de explosión o de combustión interna, de émbolos y sus partes",aggregate-broad,yes,2,"FPT Industrial (Planta Ferreyra, Córdoba); ORESTE BERTA SA",targeted+registry-declared
 8409,HS92,312AA,"Motores de explosión o de combustión interna, de émbolos y sus partes",aggregate-broad,yes,9,AKWEL CORDOBA ARGENTINA SA; DAYCO; FUNDICIÓN ARIENTE; PERNOS PESCARA; PERTRAK,registry-declared
 8412,HS92,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,yes,6,VENTURI HNOS.; WELACT; HIDRÁULICOS Y HERRAMIENTAS MORANO; HYDROM OLEODINAMICA S.R.L; INGENIERÍA HIDRÁULICA,registry-declared
-8413,HS92,312AB,"Bombas, motobombas, turbobombas y sus partes",aggregate-broad,yes,38,BERTOTTO BOGLIONE; ANTARES SRL; EDGE INSTRUMENTS; IMEGEN; INDUSTRIA JM,targeted+registry-keyword+registry-declared
+8413,HS92,312AB,"Bombas, motobombas, turbobombas y sus partes",aggregate-broad,yes,18,BERTOTTO BOGLIONE; ANTARES SRL; EDGE INSTRUMENTS; IMEGEN; INDUSTRIA JM,targeted+registry-declared
 8414,HS92,312AB,"Bombas, motobombas, turbobombas y sus partes",aggregate-broad,yes,14,DENIMED EQUIPAMIENTOS ODONTOLÓGICOS; GATTI VENTILACIÓN; INFOREST SRL; LEUCA SISTEMAS DE AIRE; MBA S.A.,registry-declared
 8415,HS92,312AC,"Material, máquinas y aparatos para la producción de frío y sus partes",aggregate-broad,yes,2,DENSO MANUFACTURING ARGENTINA SA; ICE SA,targeted+registry-declared
 8417,HS92,312AD,Aparatos y dispositivos para calentado y cocción,clean,yes,2,PANHEL; TEYBO,registry-declared
-8418,HS92,312AC,"Material, máquinas y aparatos para la producción de frío y sus partes",aggregate-broad,yes,9,DENSO MANUFACTURING ARGENTINA SA; ETI; FAME SA; FRUSSO; JORVIC,registry-keyword+registry-declared
+8418,HS92,312AC,"Material, máquinas y aparatos para la producción de frío y sus partes",aggregate-broad,yes,5,DENSO MANUFACTURING ARGENTINA SA; ETI; FAME SA; FRUSSO; JORVIC,registry-declared
 8419,HS92,312AD,Aparatos y dispositivos para calentado y cocción,clean,yes,13,DENIMED EQUIPAMIENTOS ODONTOLÓGICOS; DENSO MANUFACTURING ARGENTINA SA; ETI; FAME SA; FIGMAY,registry-declared
 8420,HS92,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,yes,1,METALÚRGICA BEIFFA,registry-declared
 8421,HS92,399Z,Resto de MOI,aggregate-resto,yes,17,AB FUNDAS; ABELARDO CUFFIA SA; DREAN / AURORA / PATRIOT; FILTROS ALKA; INDUSPLAST,registry-declared
-8422,HS92,312AE,Máquinas para limpiar/llenar/cerrar botellas,clean,yes,20,ADK; AGROMEC SA; AKRON; BAG BIO; ENVAMEC,registry-keyword+registry-declared
+8422,HS92,312AE,Máquinas para limpiar/llenar/cerrar botellas,clean,yes,18,ADK; AGROMEC SA; AKRON; BAG BIO; ENVAMEC,registry-declared
 8423,HS92,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,yes,8,BALCOPPAN INTERNACIONAL; ENVAMEC; IGB TECNOLOGÍA; INDUMIX; SYSTEL S.A.,registry-declared
 8424,HS92,399Z,Resto de MOI,aggregate-resto,yes,15,INDAIRE S.R.L.; INFOREST SRL; METALFOR S.A.; SANTIAGO PRANDI SISTEMAS DE RIEGO S.A.; VULCANO / VULLETIC,registry-declared
 8425,HS92,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,yes,7,DARIO DELFABRO S.R.L.; FADICAD SA; GAN MAR; PESSOT SRL; HIDRÁULICOS Y HERRAMIENTAS MORANO,registry-declared
-8426,HS92,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,yes,7,AXIONLIFT; HIDRO-GRUBERT - PALFINGER; REFIRE; SYRA; FERIOLI S.A.,targeted+registry-keyword+registry-declared
-8427,HS92,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,yes,6,AGROMEC SA; DARIO DELFABRO S.R.L.; FERIOLI S.A.; HIDRÁULICOS Y HERRAMIENTAS MORANO; TORLETTI HIDRÁULICOS,registry-keyword+registry-declared
-8428,HS92,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,yes,37,AXIONLIFT; AKRON; CONMECA; COSTANTINI; ENVAMEC,targeted+registry-keyword+registry-declared
+8426,HS92,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,yes,6,AXIONLIFT; HIDRO-GRUBERT - PALFINGER; REFIRE; SYRA; FERIOLI S.A.,targeted+registry-declared
+8427,HS92,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,yes,5,AGROMEC SA; DARIO DELFABRO S.R.L.; FERIOLI S.A.; HIDRÁULICOS Y HERRAMIENTAS MORANO; TORLETTI HIDRÁULICOS,registry-declared
+8428,HS92,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,yes,32,AXIONLIFT; AKRON; CONMECA; COSTANTINI; ENVAMEC,targeted+registry-declared
 8429,HS92,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,yes,5,GEA GERGOLET AGRÍCOLA; INDU-VAL; KUARSO; COR-VIAL SA; TORTONE,registry-declared
 8430,HS92,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,yes,14,GROSSPAL; KUARSO; METALURGICA MONTICELLI; OMAR MARTIN; PAUNY,registry-declared
 8431,HS92,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,yes,6,COSTANTINI; EVOLUTION CONTROL CABLE; OMAR MARTIN; ESTABLECIMIENTO METALURGICO MF S.R.L.; G&P IMPLEMENTOS,registry-declared
-8432,HS92,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios",aggregate-broad,yes,32,AGROMETAL SAI; AKRON; ASCANELLI SA; AGROMEC SA; BTI AGRI,targeted+registry-keyword+registry-declared
-8433,HS92,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios",aggregate-broad,yes,37,AGROMEC SA; AMADAS; EVOLUTION CONTROL CABLE; FRANCO FABRIL; GEA GERGOLET AGRÍCOLA,registry-keyword+registry-declared
+8432,HS92,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios",aggregate-broad,yes,30,AGROMETAL SAI; AKRON; ASCANELLI SA; AGROMEC SA; BTI AGRI,targeted+registry-declared
+8433,HS92,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios",aggregate-broad,yes,35,AGROMEC SA; AMADAS; EVOLUTION CONTROL CABLE; FRANCO FABRIL; GEA GERGOLET AGRÍCOLA,registry-declared
 8434,HS92,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios",aggregate-broad,yes,5,EL MAESTRO QUESERO; ETI; CGM EQUIPAMIENTOS; COMPUTROL; JORVIC,registry-declared
-8436,HS92,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios",aggregate-broad,yes,25,AKRON; ASCANELLI SA; AGROMEC SA; BLADE TUNGSTEN; GEA GERGOLET AGRÍCOLA,targeted+registry-keyword+registry-declared
-8437,HS92,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios",aggregate-broad,yes,25,AKRON; ASCANELLI SA; GESSI; LEUCA SISTEMAS DE AIRE; SELECA TECNOLOGÍA SRL,targeted+registry-keyword+registry-declared
+8436,HS92,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios",aggregate-broad,yes,16,AKRON; ASCANELLI SA; AGROMEC SA; BLADE TUNGSTEN; GEA GERGOLET AGRÍCOLA,targeted+registry-declared
+8437,HS92,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios",aggregate-broad,yes,11,AKRON; ASCANELLI SA; GESSI; LEUCA SISTEMAS DE AIRE; SELECA TECNOLOGÍA SRL,targeted+registry-declared
 8438,HS92,312AG,Máquinas n.c.o.p. para preparación/fabricación,clean,yes,10,BALCAMI; ETI; IMPLEMENTOS AGRÍCOLAS ESCAÑUELA; METALÚRGICA BEIFFA; PANHEL,registry-declared
 8439,HS92,312AG,Máquinas n.c.o.p. para preparación/fabricación,clean,yes,1,INDUSTRIAS MEX,registry-declared
 8440,HS92,312AG,Máquinas n.c.o.p. para preparación/fabricación,clean,yes,2,GRAFIN ARGENTINA S.A.; INDUSTRIAS MEX,registry-declared
@@ -400,11 +393,11 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 8483,HS92,399Z,Resto de MOI,aggregate-resto,yes,19,DAYCO; CRAVERO REPUESTOS; INGERSOLL ARGENTINA SA; KÜGELLAGER; METALÚRGICA GERBAUDO SA,targeted+registry-declared
 8484,HS92,399Z,Resto de MOI,aggregate-resto,yes,3,PELLACANI S.R.L.; ARGENTOP SRL; RETENES CORDOBA,registry-declared
 8487,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,2,KÜGELLAGER; HYDROM OLEODINAMICA S.R.L,registry-declared
-8501,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,8,ADAS SRL; MOTORES Y SERVICIOS SA; ROSSUAR; E SOLUTIONS; GIACOBONE,registry-keyword+registry-declared
+8501,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,3,ADAS SRL; MOTORES Y SERVICIOS SA; ROSSUAR,registry-declared
 8502,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,2,GIACOBONE; ROSSUAR,registry-declared
-8504,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,13,ARTECHE; ELECTROPART CORDOBA; MAYO TRANSFORMADORES; NOSSO; SERVELEC SRL,targeted+registry-keyword+registry-declared
+8504,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,10,ARTECHE; ELECTROPART CORDOBA; MAYO TRANSFORMADORES; NOSSO; SERVELEC SRL,targeted+registry-declared
 8507,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,3,SERVELEC SRL; BATERIAS AMSA; ITHURBIDE,registry-declared
-8511,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,2,FABRICA DE COLECTORES; NOSSO,targeted+registry-keyword+registry-declared
+8511,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,2,FABRICA DE COLECTORES; NOSSO,targeted+registry-declared
 8514,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,3,PANHEL; FUNDARG SRL; INDEF,registry-declared
 8515,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,2,COSTANTINI; ROSSUAR,registry-declared
 8516,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,4,TEYBO; BONOMI RESISTENCIAS ELÉCTRICAS; DYSEM; ORMAY,registry-declared
@@ -415,32 +408,32 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 8531,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,2,CEM ALARMAS; SEI - SOLUCIONES ELECTRÓNICAS INTEGRALES,registry-declared
 8535,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,1,METAL CE SRL,registry-declared
 8536,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,4,NOSSO; COMPUTROL; FERRETERA GENERAL PAZ SRL; METAL CE SRL,registry-declared
-8537,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,6,GEDING AUTOMATISMOS Y CONTROL S.R.L.; NOSSO; ELECTROINGENIERIA ICS SA; SLICETEX ELECTRONICS; CYRUS SRL,registry-keyword+registry-declared
+8537,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,4,GEDING AUTOMATISMOS Y CONTROL S.R.L.; NOSSO; ELECTROINGENIERIA ICS SA; SLICETEX ELECTRONICS,registry-declared
 8539,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,1,INDUSTRIAS MEX,registry-declared
 8541,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,2,GIACOBONE; TRV ECO ENERGY,registry-declared
 8543,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,3,CIS GROUP; TRV ECO ENERGY; COMPUTROL,registry-declared
-8544,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,6,CIS GROUP; ABEL CHASCO; COMPUTROL; MAP SA; EVOLUTION CONTROL CABLE,registry-keyword+registry-declared
+8544,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,4,CIS GROUP; ABEL CHASCO; COMPUTROL; MAP SA,registry-declared
 8547,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,1,AKWEL CORDOBA ARGENTINA SA,registry-declared
 8601,HS92,313A,Vehículos y materiales para vías férreas y sus partes,clean,yes,1,MATERFER,registry-declared
 8607,HS92,313A,Vehículos y materiales para vías férreas y sus partes,clean,yes,1,FUNDARG SRL,registry-declared
 8609,HS92,313A,Vehículos y materiales para vías férreas y sus partes,clean,yes,1,SCORZA,registry-declared
 8701,HS92,313BZ,Resto de vehículos automóviles/tractores/ciclos,clean,yes,3,METALFOR S.A.; PAUNY; ROLAND H,registry-declared
-8703,HS92,313BB,Vehículos automóviles terrestres,aggregate-broad-chapter,yes,6,"CINZIA VEHÍCULOS; Renault Argentina (Planta Santa Isabel, Córdoba); Stellantis (Complejo Industrial Ferreyra, Córdoba); FIAT ARGENTINA; DAYCO",targeted+registry-keyword+registry-declared
-8704,HS92,313BB,Vehículos automóviles terrestres,aggregate-broad-chapter,yes,25,"Stellantis (Complejo Industrial Ferreyra, Córdoba); Iveco Argentina (Planta Ferreyra, Córdoba); METALÚRGICA ROGER; CRAVERO REPUESTOS; DRI-LEX®",targeted+registry-keyword+registry-declared
-8705,HS92,313BB,Vehículos automóviles terrestres,aggregate-broad-chapter,yes,3,INDUMIX; ECONOVO; TZR BOMBAS Y EQUIPOS PARA HORMIGÓN,targeted+registry-keyword+registry-declared
+8703,HS92,313BB,Vehículos automóviles terrestres,aggregate-broad-chapter,yes,4,"CINZIA VEHÍCULOS; Renault Argentina (Planta Santa Isabel, Córdoba); Stellantis (Complejo Industrial Ferreyra, Córdoba); FIAT ARGENTINA",targeted+registry-declared
+8704,HS92,313BB,Vehículos automóviles terrestres,aggregate-broad-chapter,yes,3,"Stellantis (Complejo Industrial Ferreyra, Córdoba); Iveco Argentina (Planta Ferreyra, Córdoba); METALÚRGICA ROGER",targeted+registry-declared
+8705,HS92,313BB,Vehículos automóviles terrestres,aggregate-broad-chapter,yes,2,INDUMIX; ECONOVO,targeted+registry-declared
 8707,HS92,313BC,Partes y piezas de vehículos y tractores,aggregate-broad,yes,6,ECONOVO; SCORZA; FERIOLI S.A.; METALÚRGICA ROGER; SICA,registry-declared
-8708,HS92,313BC,Partes y piezas de vehículos y tractores,aggregate-broad,yes,55,DENSO MANUFACTURING ARGENTINA SA; Volkswagen Argentina (Centro Industrial Córdoba); AIMAR FRENOS; AKWEL CORDOBA ARGENTINA SA; CAPEMI,targeted+registry-keyword+registry-declared
+8708,HS92,313BC,Partes y piezas de vehículos y tractores,aggregate-broad,yes,39,DENSO MANUFACTURING ARGENTINA SA; Volkswagen Argentina (Centro Industrial Córdoba); AIMAR FRENOS; AKWEL CORDOBA ARGENTINA SA; CAPEMI,targeted+registry-declared
 8711,HS92,313BZ,Resto de vehículos automóviles/tractores/ciclos,clean,yes,1,KELLER MOTOS,registry-declared
 8712,HS92,313BZ,Resto de vehículos automóviles/tractores/ciclos,clean,yes,2,BICICLETAS ENRIQUE; GRUPO CARLOS KARABITIAN,registry-declared
 8714,HS92,313BC,Partes y piezas de vehículos y tractores,aggregate-broad,yes,6,AB FUNDAS; EVOLUTION CONTROL CABLE; GRUPO CARLOS KARABITIAN; HP REPUESTOS; KRAFTEC / DIRT RACE,registry-declared
-8716,HS92,399Z,Resto de MOI,aggregate-resto,yes,38,CINZIA VEHÍCULOS; AKRON; ASCANELLI SA; AGROMEC SA; COMOFRA,targeted+registry-keyword+registry-declared
+8716,HS92,399Z,Resto de MOI,aggregate-resto,yes,34,CINZIA VEHÍCULOS; AKRON; ASCANELLI SA; AGROMEC SA; COMOFRA,targeted+registry-declared
 8802,HS92,314A,"Vehículos de navegación aérea, aeronaves, vehículos espaciales y sus partes",clean,yes,1,FADEA S.A.,registry-declared
 8803,HS92,314A,"Vehículos de navegación aérea, aeronaves, vehículos espaciales y sus partes",clean,yes,1,FIXVIEW SRL,registry-declared
 9013,HS92,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,yes,1,ACCME,registry-declared
 9015,HS92,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,yes,1,OMIXOM,registry-declared
-9018,HS92,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,yes,13,FEAS ELECTRONICA; CEC; DENIMED EQUIPAMIENTOS ODONTOLÓGICOS; GACELA DENTAL; LEISTUNG INGENIERÍA,targeted+registry-keyword+registry-declared
+9018,HS92,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,yes,13,FEAS ELECTRONICA; CEC; DENIMED EQUIPAMIENTOS ODONTOLÓGICOS; GACELA DENTAL; LEISTUNG INGENIERÍA,targeted+registry-declared
 9019,HS92,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,yes,6,LEISTUNG INGENIERÍA; TECME S.A.; ACCME; BIARTIC SA; DYSEM,registry-declared
-9021,HS92,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,yes,7,PROMEDON S.A.; INFOREST SRL; RAOMED SA; SILMAG SA; IMPLANT ARGENTINA - YNMO,targeted+registry-keyword+registry-declared
+9021,HS92,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,yes,5,PROMEDON S.A.; INFOREST SRL; RAOMED SA; SILMAG SA; IMPLANT ARGENTINA - YNMO,targeted+registry-declared
 9022,HS92,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,yes,1,DENIMED EQUIPAMIENTOS ODONTOLÓGICOS,registry-declared
 9026,HS92,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,yes,3,ALTOS TECHNOLOGIES; KR DEVICES; COMPUTROL,registry-declared
 9027,HS92,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,yes,2,SPINLOCK; OMIXOM,registry-declared
@@ -454,7 +447,7 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 9306,HS92,399D,Armas y municiones,clean,yes,1,FÁBRICA DE BALINES APOLO,registry-declared
 9401,HS92,399E,"Muebles, equipo médico-quirúrgico, construcciones prefabricadas",clean,yes,11,DRIFT; EN BRUTO; OSCAR MASSA MUEBLES; TRENDEL; ADAMOBILI,registry-declared
 9402,HS92,399E,"Muebles, equipo médico-quirúrgico, construcciones prefabricadas",clean,yes,3,INFOREST SRL; TRENDEL; SIEC,registry-declared
-9403,HS92,399E,"Muebles, equipo médico-quirúrgico, construcciones prefabricadas",clean,yes,54,DRIFT; EN BRUTO; MUEBLES GACELA; OSCAR MASSA MUEBLES; SCARPATTI AMOBLAMIENTOS,registry-keyword+registry-declared
+9403,HS92,399E,"Muebles, equipo médico-quirúrgico, construcciones prefabricadas",clean,yes,22,DRIFT; EN BRUTO; MUEBLES GACELA; OSCAR MASSA MUEBLES; SCARPATTI AMOBLAMIENTOS,registry-declared
 9404,HS92,399E,"Muebles, equipo médico-quirúrgico, construcciones prefabricadas",clean,yes,2,DYSEM; STARFLEX,registry-declared
 9405,HS92,399E,"Muebles, equipo médico-quirúrgico, construcciones prefabricadas",clean,yes,4,BPB MEDITERRANEA SA; TECNOLOGIAS E INVERSIONES; INGEMAR; KINETIC DECÓ,registry-declared
 9406,HS92,399E,"Muebles, equipo médico-quirúrgico, construcciones prefabricadas",clean,yes,7,BUNGALOFT®; CINZIA VEHÍCULOS; AG GROUP; ASTORI ESTRUCTURAS S.A.; INCOMPANY,registry-declared
