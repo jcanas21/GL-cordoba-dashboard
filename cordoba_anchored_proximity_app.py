@@ -139,6 +139,12 @@ CLUSTER_ES_LABEL: dict[str, str] = {
 
 NATURAL_RESOURCE_HS4 = ["2711", "2710", "7108", "2709", "2713", "2701", "2603", "2616"]
 
+# Additional HS4 excluded from the "Recomendado" preset by hand — plausible
+# via proximity but not realistic diversification targets for Córdoba.
+#   8473 — Partes y accesorios para máquinas de oficina / cómputo
+#   8542 — Circuitos integrados electrónicos (semiconductores)
+PRESET_EXCLUDED_HS4 = ["8473", "8542"]
+
 HS_SECTIONS = [
     (1,  1,  5,  "1. Live animals; animal products"),
     (2,  6,  14, "2. Vegetable products"),
@@ -1021,7 +1027,7 @@ def page_analisis():
     proximity_rank_max = int(pd.to_numeric(df["proximity_rank"], errors="coerce").max())
     accessible_market_max = float(df["accessible_market_size_b"].max()) if not df.empty else 0.0
     top_n_default = min(40, max(10, int(df["candidate_hs4"].nunique())))
-    excluded_hs4_preset_codes = {x for x in NATURAL_RESOURCE_HS4}
+    excluded_hs4_preset_codes = {x for x in NATURAL_RESOURCE_HS4} | {x for x in PRESET_EXCLUDED_HS4}
     excluded_labels_by_code = (
         candidate_products_df[candidate_products_df["candidate_hs4"].isin(excluded_hs4_preset_codes)]
         .sort_values("candidate_hs4")["candidate_label"]
@@ -1090,7 +1096,7 @@ def page_analisis():
             st.session_state["c4_w_dai"] = 0.40
             st.session_state["c4_w_distance"] = 0.40
             st.session_state["c4_w_anchor_count"] = 0.20
-            st.session_state["c4_candidates_to_display"] = 30
+            st.session_state["c4_candidates_to_display"] = 40
             st.session_state["c4_selected_anchor_sections"] = anchor_sections_excluding_123
             st.session_state["c4_selected_candidate_sections"] = candidate_sections_excluding_123
             st.session_state["c4_excluded_product_labels"] = excluded_labels_by_code
@@ -1929,14 +1935,15 @@ Al mover el slider **Umbral OPEX** del sidebar, la tabla se restringe a los HS4 
 # Multi-page navigation
 # ---------------------------------------------------------------------------
 @st.cache_data
-def _recomendado_top_candidates(_signature: str = "", top_n: int = 30) -> list[str]:
+def _recomendado_top_candidates(_signature: str = "", top_n: int = 40) -> list[str]:
     """Return the candidate HS4s (zfilled) that would appear in page 2's
     'Recomendado' preset ranking, top-N by combined score.
 
     Mirrors _apply_profile("top_candidates"): anchor OPEX ≥ USD 10 M,
-    sections 1/2/3 excluded on both sides, natural-resource HS4 excluded,
-    proximity rank ∈ [1, 10], market ≥ USD 0.5 B, growth > 0, strategic
-    balance 0.50, weights (0.40/0.40/0.20 feas; 0.50/0.25/0.25 attr).
+    sections 1/2/3 excluded on both sides, natural-resource + manually
+    excluded HS4 dropped, proximity rank ∈ [1, 10], market ≥ USD 0.5 B,
+    growth > 0, strategic balance 0.50, weights (0.40/0.40/0.20 feas;
+    0.50/0.25/0.25 attr).
     """
     df, presence, _, _, _, _ = load_data()
 
@@ -1951,7 +1958,8 @@ def _recomendado_top_candidates(_signature: str = "", top_n: int = 30) -> list[s
     flt = df[za.isin(anchor_universe) & ~zc.isin(anchor_universe)].copy()
     for col in ("anchor_hs_section_name", "candidate_hs_section_name"):
         flt = flt[~flt[col].astype(str).str.match(r"^[123]\.")]
-    flt = flt[~flt["candidate_hs4"].astype(str).str.zfill(4).isin(NATURAL_RESOURCE_HS4)]
+    _excluded = set(NATURAL_RESOURCE_HS4) | set(PRESET_EXCLUDED_HS4)
+    flt = flt[~flt["candidate_hs4"].astype(str).str.zfill(4).isin(_excluded)]
     flt = flt[
         pd.to_numeric(flt["proximity_rank"], errors="coerce").between(1, 10)
         & (pd.to_numeric(flt["accessible_market_size_b"], errors="coerce") >= 0.5)
@@ -1994,10 +2002,10 @@ def page_mercado_accesible():
 
     am = load_accessible_market(_data_signature() if "_data_signature" in globals() else "")
 
-    # Product universe: top-30 candidates from the 'Recomendado' preset on
+    # Product universe: top-40 candidates from the 'Recomendado' preset on
     # page 2. Ordered by combined score desc.
     st.caption(
-        "Los productos disponibles corresponden a los **top-30 candidatos** que "
+        "Los productos disponibles corresponden a los **top-40 candidatos** que "
         "el preset **Recomendado** de la página 2 (Análisis de Proximidad) "
         "produce con los filtros y pesos por defecto."
     )
