@@ -440,6 +440,64 @@ componente son configurables en el sidebar.
 - **Firmas y Rubros**: catálogo de las firmas con evidencia explícita de
   exportar productos ancla, con el rubro INDEC al que se atribuyen y el
   monto de exportaciones del rubro en OPEX.
+- **Mercado Accesible por Producto**: para cada uno de los top-30
+  candidatos del preset Recomendado, la composición geográfica del
+  mercado accesible (países destino con sus importaciones).
+    """)
+
+    st.subheader("De dónde salen los 125 HS4 anclas")
+    st.markdown(r"""
+El set de **125 HS4 anclas** es el resultado de una cadena de filtros
+sobre el registro provincial. Cada paso descarta o consolida firmas hasta
+quedarse con lo verificable:
+
+| Etapa | # firmas | # HS4 |
+|---|---|---|
+| 1. Registro Procórdoba scrapeado | 2.678 | — |
+| 2. Menos servicios (EBOPS) — bancos, consultoras, marketing… | −1.035 | — |
+| 3. Firmas de bienes con `products_text` que matchea al menos un pattern del script 07 | **943** | **114** |
+| 4. Firmas curadas manualmente (URL + evidencia textual) | 66 | 95 |
+| **Unión anclas = HS4 en (3) ∪ (4)** | **~1.000** | **125** |
+
+Las 943 firmas de la etapa 3 se concentran en la canasta real de Córdoba
+(soja, maíz, maní, carnes, muebles, polímeros, autopartes…), por eso 943
+firmas producen sólo 114 HS4 distintos — muchas firmas comparten el mismo
+puñado de productos dominantes.
+
+**Los 125 son ~10% del universo HS 1992** (1.243 códigos). El otro ~40%
+se analiza como **candidatos** vía proximidad al set ancla. El ~50%
+restante son productos alejados de la base productiva provincial.
+    """)
+
+    st.subheader("¿Qué significa `curated` vs `registry-keyword`?")
+    st.markdown(r"""
+Cada fila firma↔HS4 viene de una de dos capas de evidencia:
+
+**`curated`** (66 firmas, 152 pares en `03_firm_hs4_evidence.csv`)
+Un analista humano revisó firma por firma su ficha en el registro, sitio
+web, notas de prensa. Para cada par firma-HS4 confirmado registró:
+- **texto de evidencia** en prosa (ej. *"Products CHORIZO DE CERDO,
+  MORCILLA, SALCHICHA → HS 1601 sausages and similar products"*)
+- **URL fuente** específica donde verificó
+- **nivel de confianza** (casi siempre `high` — sólo se registra cuando
+  hay certeza)
+
+**`registry-keyword`** (~899 firmas adicionales, en `04_registry_full.csv`)
+Atribución automática por regex sobre el `products_text` de la firma en
+el registro. El pipeline (`scripts/07_full_registry_pass.py`) tiene ~130
+patterns tipo `\btrigo\b → HS 1001`, `\baceite de soja\b → HS 1507`,
+`\bautomóvil\b → HS 8703`. Si el texto matchea, se asigna el HS4.
+
+| | curated | registry-keyword |
+|---|---|---|
+| **Quién decide** | Humano con lupa | Regex sobre texto |
+| **Puede desambiguar?** | Sí (aceite motor ≠ aceite soja) | No |
+| **Cobertura** | 66 firmas curadas a mano | 943 firmas matchean patterns |
+| **Costo** | Alto (minutos por firma) | Cero |
+
+Las dos capas se **unen** para producir el set de anclas (125 HS4). Cada
+fila en Página 3 muestra su `Capa` para que puedas auditar el nivel de
+evidencia detrás.
     """)
 
     st.subheader("Glosario")
