@@ -21,6 +21,7 @@ Córdoba's manually-defined presence set:
 Run:    streamlit run app/cordoba_anchored_proximity_app.py
 """
 from __future__ import annotations
+import importlib.util
 import math
 import re
 from pathlib import Path
@@ -31,10 +32,23 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
-from hs4_names_es import HS4_NAMES_ES as SPANISH_OVERRIDES
+ROOT = Path(__file__).resolve().parent.parent
 
-ROOT = Path(__file__).resolve().parent
-DATA_DIR = ROOT / "data"
+# Spanish HS4 short names. Start from the script-13 curated dict (covers the
+# anchored HS4 universe — ~180 entries) and extend with `app/hs4_names_es.py`
+# for the wider candidate universe (~1100 additional entries). Script-13
+# entries win on conflict, so changes there propagate everywhere.
+_s13_spec = importlib.util.spec_from_file_location(
+    "s13", ROOT / "scripts" / "13_filter_and_visualize_by_opex.py"
+)
+_s13 = importlib.util.module_from_spec(_s13_spec)
+_s13_spec.loader.exec_module(_s13)
+_cand_spec = importlib.util.spec_from_file_location(
+    "hs4_names_es", Path(__file__).resolve().parent / "hs4_names_es.py"
+)
+_cand_mod = importlib.util.module_from_spec(_cand_spec)
+_cand_spec.loader.exec_module(_cand_mod)
+SPANISH_OVERRIDES: dict[str, str] = {**_cand_mod.HS4_NAMES_ES, **_s13.SPANISH_OVERRIDES}
 
 
 def hs4_name_es(hs4: str, fallback_en: str = "") -> str:
@@ -195,7 +209,7 @@ def fmt_usd(v: float) -> str:
 @st.cache_data
 def load_data():
     links = pd.read_csv(
-        DATA_DIR / "cordoba_anchored_proximity.csv",
+        ROOT / "data/output/cordoba_anchored_proximity.csv",
         dtype={"anchor_hs4": str, "candidate_hs4": str},
     )
     links["anchor_hs4"] = links["anchor_hs4"].astype(str).str.zfill(4)
@@ -226,7 +240,7 @@ def load_data():
     )
 
     presence = pd.read_csv(
-        DATA_DIR / "hs4_presence_by_opex_threshold.csv",
+        ROOT / "data/intermediate/hs4_presence_by_opex_threshold.csv",
         dtype={"hs4": str},
     )
     presence["hs4"] = presence["hs4"].str.zfill(4)
@@ -234,20 +248,20 @@ def load_data():
         presence["max_rubro_opex_2023_2025_avg_usd"], errors="coerce"
     )
 
-    umap = pd.read_csv(DATA_DIR / "umap_layout_hs92.csv",
+    umap = pd.read_csv(ROOT / "data/input/umap_layout_hs92.csv",
                        dtype={"product_hs92_code": str})
     umap["product_hs92_code"] = umap["product_hs92_code"].str.zfill(4)
 
-    trade = pd.read_csv(DATA_DIR / "hs92_product_year_4.csv",
+    trade = pd.read_csv(ROOT / "data/input/hs92_product_year_4.csv",
                         dtype={"product_hs92_code": str})
     trade["product_hs92_code"] = trade["product_hs92_code"].str.zfill(4)
     trade_2024 = trade[trade["year"] == 2024][["product_hs92_code", "export_value"]].copy()
     trade_2024["export_value"] = pd.to_numeric(trade_2024["export_value"], errors="coerce").fillna(0)
 
-    clusters = pd.read_csv(DATA_DIR / "product_space_clusters.csv")
+    clusters = pd.read_csv(ROOT / "data/input/product_space_clusters.csv")
     cluster_color = dict(zip(clusters["Name"], clusters["Hex Code"]))
 
-    names = pd.read_csv(DATA_DIR / "product_hs92.csv",
+    names = pd.read_csv(ROOT / "data/input/product_hs92.csv",
                         dtype={"product_hs92_code": str, "product_level": str})
     names = names[names["product_level"] == "4"][
         ["product_hs92_code", "product_name", "product_name_short"]
@@ -280,14 +294,14 @@ st.set_page_config(
 def load_firms_data(_signature: str = ""):
     """Union 03 (curated) + 04 (registry-keyword) firm-HS4 evidence."""
     curated = pd.read_csv(
-        DATA_DIR / "03_firm_hs4_evidence.csv",
+        ROOT / "data/output/03_firm_hs4_evidence.csv",
         dtype={"firm_id": "string", "hs4": str, "supports_top50_line": str},
     )
     curated["hs4"] = curated["hs4"].astype(str).str.zfill(4)
     curated["supports_top50_line"] = curated["supports_top50_line"].astype(str).str.strip()
 
     reg = pd.read_csv(
-        DATA_DIR / "04_registry_full.csv",
+        ROOT / "data/output/04_registry_full.csv",
         dtype={"firm_id": "string", "code": str, "opex_line": str},
     )
     reg = reg[reg["classification"] == "HS4"].copy()
@@ -327,7 +341,7 @@ def load_firms_data(_signature: str = ""):
     # Third layer: NCM codes declared by firms in their Procórdoba profile,
     # filtered to firms whose exporter_profile is Habitual or Ocasional.
     declared = pd.read_csv(
-        DATA_DIR / "06_registry_ncm_declared.csv",
+        ROOT / "data/output/06_registry_ncm_declared.csv",
         dtype={"firm_id": "string", "hs4": str, "ncm": str},
     )
     declared["hs4"] = declared["hs4"].astype(str).str.zfill(4)
@@ -352,6 +366,8 @@ def load_firms_data(_signature: str = ""):
 
     curated_pairs = set(curated_norm["firm_id"] + "|" + curated_norm["hs4"])
     reg_dedup = reg_norm[~(reg_norm["firm_id"] + "|" + reg_norm["hs4"]).isin(curated_pairs)].copy()
+    # Declared wins over registry-keyword on conflict (stronger evidence).
+    seen_after_curated = curated_pairs | set(reg_dedup["firm_id"] + "|" + reg_dedup["hs4"])
     dec_dedup = declared_norm[~(declared_norm["firm_id"] + "|" + declared_norm["hs4"]).isin(curated_pairs)].copy()
     reg_dedup_after_declared = reg_dedup[~(reg_dedup["firm_id"] + "|" + reg_dedup["hs4"]).isin(
         set(dec_dedup["firm_id"] + "|" + dec_dedup["hs4"])
@@ -359,7 +375,7 @@ def load_firms_data(_signature: str = ""):
     firm_ev = pd.concat([curated_norm, dec_dedup, reg_dedup_after_declared], ignore_index=True)
 
     opex = pd.read_csv(
-        DATA_DIR / "exportaciones_opex_cordoba.csv",
+        ROOT / "data/input/exportaciones_opex_cordoba.csv",
         dtype={"CCOD_RUBRO": str},
     )
     opex.columns = [c.lstrip("\ufeff").strip() for c in opex.columns]
@@ -435,7 +451,7 @@ CONTINENT_COLORS: dict[str, str] = {
 
 @st.cache_data
 def load_accessible_market(_signature: str = ""):
-    df = pd.read_csv(DATA_DIR / "accessible_market_arg.csv", dtype={"hs92": str})
+    df = pd.read_csv(ROOT / "data/intermediate/accessible_market_arg.csv", dtype={"hs92": str})
     df["hs92"] = df["hs92"].str.zfill(4)
     df["continente"] = df["iso3_d"].map(_ISO3_TO_CONTINENT).fillna("Otros")
     return df
@@ -660,7 +676,7 @@ def load_hs4_sector_map(_signature: str = ""):
     that file already attaches `anchor_sector` and `candidate_sector` to
     each HS4 (product_hs92.csv has no sector column)."""
     df = pd.read_csv(
-        DATA_DIR / "cordoba_anchored_proximity.csv",
+        ROOT / "data/output/cordoba_anchored_proximity.csv",
         dtype={"anchor_hs4": str, "candidate_hs4": str},
         usecols=["anchor_hs4", "anchor_sector", "candidate_hs4", "candidate_sector"],
     )
@@ -1061,6 +1077,7 @@ def page_analisis():
     # Session-state defaults
     # ---------------------------------------------------------------------------
     st.session_state.setdefault("c4_opex_threshold", 1_000_000)
+    st.session_state.setdefault("c4_min_firmas_ancla", 1)
     st.session_state.setdefault("c4_accessible_market_min", 0.0)
     st.session_state.setdefault("c4_am_cagr_only", False)
     st.session_state.setdefault("c4_strategic_balance", 0.50)
@@ -1141,6 +1158,23 @@ def page_analisis():
                 "Define el set de anclas (anchors) para Córdoba. Sólo los HS4 con "
                 "presencia evidenciada cuya CCOD_RUBRO de destino tiene un promedio "
                 "anual ≥ este umbral se consideran anclas."
+            ),
+        )
+        _presence_max_firms = int(pd.to_numeric(presence.get("n_firms"), errors="coerce").fillna(0).max()) if "n_firms" in presence.columns else 1
+        _presence_max_firms = max(_presence_max_firms, 1)
+        min_firmas_ancla = st.slider(
+            "Mínimo # de firmas por HS4",
+            min_value=1,
+            max_value=_presence_max_firms,
+            value=min(int(st.session_state["c4_min_firmas_ancla"]), _presence_max_firms),
+            step=1,
+            key="c4_min_firmas_ancla",
+            help=(
+                "Refuerza el set de anclas: sólo entran al universo los HS4 con "
+                "al menos esta cantidad de firmas del registro evidenciando "
+                "(curated + declared-ncm + registry-keyword combinadas). "
+                "Subir el mínimo elimina HS4 con evidencia frágil (una sola firma) "
+                "y se propaga a Sankey, tabla, treemap y product space."
             ),
         )
 
@@ -1271,9 +1305,12 @@ def page_analisis():
     # fall BELOW the threshold can resurface as candidates of the surviving
     # anchors — they're flagged `posible_ancla = 1` so users can spot them.
     evidenced_set = set(presence["hs4"].astype(str).str.zfill(4))
+    _n_firms_series = pd.to_numeric(presence.get("n_firms"), errors="coerce").fillna(0)
     anchor_universe = set(
         presence.loc[
-            presence["max_rubro_opex_2023_2025_avg_usd"].fillna(0) >= opex_threshold, "hs4"
+            (presence["max_rubro_opex_2023_2025_avg_usd"].fillna(0) >= opex_threshold)
+            & (_n_firms_series >= min_firmas_ancla),
+            "hs4",
         ]
     )
     flt = df[
@@ -1414,7 +1451,7 @@ def page_analisis():
     rubro_name_lookup = dict(zip(_presence_indexed["hs4"], _presence_indexed["primary_rubro_name"].astype(str)))
 
     _attr_map_hover_df = pd.read_csv(
-        DATA_DIR / "05_unified_hs4_presence.csv",
+        ROOT / "data/output/05_unified_hs4_presence.csv",
         dtype={"hs4": str},
         usecols=["hs4", "attribution_type"],
     )
@@ -1515,7 +1552,7 @@ def page_analisis():
     # Fuente: attribution_type en 05_unified_hs4_presence.csv, no el
     # primary_ccod_rubro de la presence-file (que muestra el rubro nombrado
     # equivalente aún cuando la data cae en un rubro confidencial).
-    _attribution = pd.read_csv(DATA_DIR / "05_unified_hs4_presence.csv", dtype={"hs4": str}, usecols=["hs4","attribution_type"])
+    _attribution = pd.read_csv(ROOT / "data/output/05_unified_hs4_presence.csv", dtype={"hs4": str}, usecols=["hs4","attribution_type"])
     _attribution["hs4"] = _attribution["hs4"].str.zfill(4)
     _attr_map = dict(zip(_attribution["hs4"], _attribution["attribution_type"].astype(str)))
     _anchor_tbl["_attr"] = _anchor_tbl["hs4"].astype(str).str.zfill(4).map(_attr_map).fillna("")
@@ -1531,30 +1568,10 @@ def page_analisis():
         "evidencing_firms_sample": "Firmas ejemplo",
     }).sort_values("OPEX rubro (USD M)", ascending=False)
 
-    # Slider: mínimo # firmas para incluir el HS4 en la tabla
-    _max_firms = int(_anchor_tbl["# firmas"].max()) if len(_anchor_tbl) else 1
-    _min_firms_default = int(st.session_state.get("c4_min_firmas_ancla", 1))
-    _min_firms_default = max(1, min(_min_firms_default, max(_max_firms, 1)))
-    _min_firmas = st.slider(
-        "Mínimo # de firmas evidenciando el HS4",
-        min_value=1,
-        max_value=max(_max_firms, 1),
-        value=_min_firms_default,
-        step=1,
-        key="c4_min_firmas_ancla",
-        help=(
-            "Filtra la tabla y sus KPIs a HS4 con al menos esta cantidad de "
-            "firmas del registro evidenciando (curated + declared-ncm + "
-            "registry-keyword combinadas). Subir el mínimo elimina HS4 con "
-            "evidencia frágil (una sola firma)."
-        ),
-    )
-    _n_before = len(_anchor_tbl)
-    _anchor_tbl = _anchor_tbl[_anchor_tbl["# firmas"] >= _min_firmas]
-    if _min_firmas > 1:
+    if min_firmas_ancla > 1:
         st.caption(
-            f"→ Mostrando **{len(_anchor_tbl)}** HS4 con ≥ {_min_firmas} firmas "
-            f"(de {_n_before} en el set filtrado por OPEX)."
+            f"→ Mostrando **{len(_anchor_tbl)}** HS4 con ≥ {min_firmas_ancla} firmas "
+            f"(controlado por el slider en el sidebar)."
         )
 
     with st.expander("Diccionario de columnas — HS4 anclas"):

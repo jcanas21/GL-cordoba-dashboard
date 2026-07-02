@@ -84,7 +84,6 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 1703,HS92,209Z,Resto de azúcar  y artículos de confitería ,aggregate-resto,yes,1,GRUPO ARCOR,registry-declared
 1704,HS92,209B,Artículos de confitería sin cacao,clean,yes,15,DULCOR; GEORGALOS; CHOCOLATES BARILOCHE - GRUPO PALMESANO; GRUPO ARCOR; JL PRODUCTOS ALIMENTICIOS,targeted+registry-keyword+registry-declared
 1806,HS92,209CB,Preparaciones de cacao,clean,yes,26,ESNAOLA - GRUPO DULCOR; GEORGALOS; CERRO AZUL; CHOCOLATES BARILOCHE - GRUPO PALMESANO; GRUPO ARCOR,targeted+registry-keyword+registry-declared
-1900,HS92,,,,no,1,GRUPO ARCOR,registry-declared
 1901,HS92,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,yes,34,LA BLANCA SA; FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; DULCOR; CAPYC; CELIDARINA,targeted+registry-keyword+registry-declared
 1902,HS92,207CB,"Pastas alimenticias, productos de panadería...",clean,yes,13,FAMIGLIA ROSSI - MOLINOS ROSSI; FÁBRICA DE PASTAS BETTINI; AZAFRÁN RUEDO; LA ITALIANA; LEGUME,targeted+registry-keyword+registry-declared
 1904,HS92,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,yes,9,GEORGALOS; CROPPERS - GRUPO MANIAGRO; EGRAN; SYTARI; CROCCANTO,targeted+registry-keyword+registry-declared
@@ -182,7 +181,7 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 3821,HS92,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,yes,1,BRIZUELA-LAB,registry-declared
 3822,HS92,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,yes,1,BRIZUELA-LAB,targeted+registry-keyword+registry-declared
 3823,HS92,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,yes,1,ACEITERA GENERAL DEHEZA SA - AGD,registry-declared
-3824,HS92,,,,no,5,ALPHA QUIMICA S.R.L.; NANOMIX; AQUAMAR; CLEAN COR S.A.; FACYT,registry-declared
+3824,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,5,ALPHA QUIMICA S.R.L.; NANOMIX; AQUAMAR; CLEAN COR S.A.; FACYT,registry-declared
 3901,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,38,LATIN MATERIALS; BERTOTTO BOGLIONE; MISTER PET PREMIUM; VITOPEL ARGENTINA SA; ARO PLASTYC,registry-keyword+registry-declared
 3902,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,1,ITHURBIDE,registry-declared
 3905,HS92,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,yes,1,ALPHA QUIMICA S.R.L.,registry-declared
@@ -213,7 +212,7 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 4104,HS92,214B,Pieles y cueros preparados,clean,yes,35,CURTIEMBRE RÍO TERCERO SA; ATILIOF; BIANCHI CUEROS ARGENTINOS; CHENNA; CUSCO COWHIDES,registry-keyword+registry-declared
 4106,HS92,214B,Pieles y cueros preparados,clean,yes,1,BARRACA CORDOBA SRL,registry-declared
 4107,HS92,214B,Pieles y cueros preparados,clean,yes,1,ZANIN HNOS.,registry-declared
-4114,HS92,,,,no,1,BARRACA CORDOBA SRL,registry-declared
+4114,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,1,BARRACA CORDOBA SRL,registry-declared
 4201,HS92,399Z,Resto de MOI,aggregate-resto,yes,2,BLONDI; JOSE MERCADAL SRL,registry-declared
 4202,HS92,305,"Manufacturas de cuero, marroquinería, etc.",clean,yes,9,ATILIOF; BIANCHI CUEROS ARGENTINOS; CHENNA; INFOREST SRL; NATALIA SIRIUS,registry-declared
 4203,HS92,305,"Manufacturas de cuero, marroquinería, etc.",clean,yes,7,ATILIOF; BIANCHI CUEROS ARGENTINOS; GAMISOL; INFOREST SRL; SIRINGO,registry-declared
@@ -255,7 +254,7 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 5609,HS92,307F,"Guatas y filtros, cordelería, tejidos especiales",clean,yes,1,INFOREST SRL,registry-declared
 5704,HS92,307E,"Alfombras, tapices, terciopelo, felpas",clean,yes,1,BLACK OVEJA,registry-declared
 5905,HS92,399Z,Resto de MOI,aggregate-resto,yes,1,BLACK OVEJA,registry-declared
-6006,HS92,,,,no,1,HAUSE MOBEL S.A.,registry-declared
+6006,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,1,HAUSE MOBEL S.A.,registry-declared
 6101,HS92,307H,Prendas de vestir y accesorios de tejidos,clean,yes,1,EMINTEX S.A. - AF JEANS,registry-declared
 6103,HS92,307H,Prendas de vestir y accesorios de tejidos,clean,yes,1,EMINTEX S.A. - AF JEANS,registry-declared
 6109,HS92,307H,Prendas de vestir y accesorios de tejidos,clean,yes,1,MAREA,registry-declared
@@ -400,7 +399,7 @@ hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_nam
 8482,HS92,399Z,Resto de MOI,aggregate-resto,yes,2,BPB MEDITERRANEA SA; BOETTO SH,registry-declared
 8483,HS92,399Z,Resto de MOI,aggregate-resto,yes,19,DAYCO; CRAVERO REPUESTOS; INGERSOLL ARGENTINA SA; KÜGELLAGER; METALÚRGICA GERBAUDO SA,targeted+registry-declared
 8484,HS92,399Z,Resto de MOI,aggregate-resto,yes,3,PELLACANI S.R.L.; ARGENTOP SRL; RETENES CORDOBA,registry-declared
-8487,HS92,,,,no,2,KÜGELLAGER; HYDROM OLEODINAMICA S.R.L,registry-declared
+8487,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,2,KÜGELLAGER; HYDROM OLEODINAMICA S.R.L,registry-declared
 8501,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,8,ADAS SRL; MOTORES Y SERVICIOS SA; ROSSUAR; E SOLUTIONS; GIACOBONE,registry-keyword+registry-declared
 8502,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,2,GIACOBONE; ROSSUAR,registry-declared
 8504,HS92,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,yes,13,ARTECHE; ELECTROPART CORDOBA; MAYO TRANSFORMADORES; NOSSO; SERVELEC SRL,targeted+registry-keyword+registry-declared
