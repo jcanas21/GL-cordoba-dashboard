@@ -34,6 +34,30 @@ import streamlit as st
 
 ROOT = Path(__file__).resolve().parent.parent
 
+
+def _data(subdir: str, name: str) -> Path:
+    """Locate a data file across two layouts:
+
+      • Monorepo:  Oportunidades/data/{output,intermediate,input}/{name}
+                   (ROOT = Oportunidades/)
+      • Standalone (gl-cordoba-dashboard on Streamlit Cloud):
+                   gl-cordoba-dashboard/data/{name}   (flat)
+
+    Tries monorepo first (subdir-aware), then the flat layout beside the app.
+    Returns the monorepo path as fallback so the natural FileNotFoundError
+    message is informative.
+    """
+    p_mono = ROOT / "data" / subdir / name
+    if p_mono.exists():
+        return p_mono
+    p_flat = Path(__file__).resolve().parent / "data" / name
+    if p_flat.exists():
+        return p_flat
+    p_root_flat = ROOT / "data" / name
+    if p_root_flat.exists():
+        return p_root_flat
+    return p_mono
+
 # Spanish HS4 short names. `hs4_names_es.py` (~1,240 entries) already covers
 # the anchor + candidate universe. When running inside the monorepo, we still
 # layer script-13's dict on top (canonical source) so any edits there
@@ -212,7 +236,7 @@ def fmt_usd(v: float) -> str:
 @st.cache_data
 def load_data():
     links = pd.read_csv(
-        ROOT / "data/output/cordoba_anchored_proximity.csv",
+        _data("output", "cordoba_anchored_proximity.csv"),
         dtype={"anchor_hs4": str, "candidate_hs4": str},
     )
     links["anchor_hs4"] = links["anchor_hs4"].astype(str).str.zfill(4)
@@ -243,7 +267,7 @@ def load_data():
     )
 
     presence = pd.read_csv(
-        ROOT / "data/intermediate/hs4_presence_by_opex_threshold.csv",
+        _data("intermediate", "hs4_presence_by_opex_threshold.csv"),
         dtype={"hs4": str},
     )
     presence["hs4"] = presence["hs4"].str.zfill(4)
@@ -251,20 +275,20 @@ def load_data():
         presence["max_rubro_opex_2023_2025_avg_usd"], errors="coerce"
     )
 
-    umap = pd.read_csv(ROOT / "data/input/umap_layout_hs92.csv",
+    umap = pd.read_csv(_data("input", "umap_layout_hs92.csv"),
                        dtype={"product_hs92_code": str})
     umap["product_hs92_code"] = umap["product_hs92_code"].str.zfill(4)
 
-    trade = pd.read_csv(ROOT / "data/input/hs92_product_year_4.csv",
+    trade = pd.read_csv(_data("input", "hs92_product_year_4.csv"),
                         dtype={"product_hs92_code": str})
     trade["product_hs92_code"] = trade["product_hs92_code"].str.zfill(4)
     trade_2024 = trade[trade["year"] == 2024][["product_hs92_code", "export_value"]].copy()
     trade_2024["export_value"] = pd.to_numeric(trade_2024["export_value"], errors="coerce").fillna(0)
 
-    clusters = pd.read_csv(ROOT / "data/input/product_space_clusters.csv")
+    clusters = pd.read_csv(_data("input", "product_space_clusters.csv"))
     cluster_color = dict(zip(clusters["Name"], clusters["Hex Code"]))
 
-    names = pd.read_csv(ROOT / "data/input/product_hs92.csv",
+    names = pd.read_csv(_data("input", "product_hs92.csv"),
                         dtype={"product_hs92_code": str, "product_level": str})
     names = names[names["product_level"] == "4"][
         ["product_hs92_code", "product_name", "product_name_short"]
@@ -297,14 +321,14 @@ st.set_page_config(
 def load_firms_data(_signature: str = ""):
     """Union 03 (curated) + 04 (registry-keyword) firm-HS4 evidence."""
     curated = pd.read_csv(
-        ROOT / "data/output/03_firm_hs4_evidence.csv",
+        _data("output", "03_firm_hs4_evidence.csv"),
         dtype={"firm_id": "string", "hs4": str, "supports_top50_line": str},
     )
     curated["hs4"] = curated["hs4"].astype(str).str.zfill(4)
     curated["supports_top50_line"] = curated["supports_top50_line"].astype(str).str.strip()
 
     reg = pd.read_csv(
-        ROOT / "data/output/04_registry_full.csv",
+        _data("output", "04_registry_full.csv"),
         dtype={"firm_id": "string", "code": str, "opex_line": str},
     )
     reg = reg[reg["classification"] == "HS4"].copy()
@@ -344,7 +368,7 @@ def load_firms_data(_signature: str = ""):
     # Third layer: NCM codes declared by firms in their Procórdoba profile,
     # filtered to firms whose exporter_profile is Habitual or Ocasional.
     declared = pd.read_csv(
-        ROOT / "data/output/06_registry_ncm_declared.csv",
+        _data("output", "06_registry_ncm_declared.csv"),
         dtype={"firm_id": "string", "hs4": str, "ncm": str},
     )
     declared["hs4"] = declared["hs4"].astype(str).str.zfill(4)
@@ -378,7 +402,7 @@ def load_firms_data(_signature: str = ""):
     firm_ev = pd.concat([curated_norm, dec_dedup, reg_dedup_after_declared], ignore_index=True)
 
     opex = pd.read_csv(
-        ROOT / "data/input/exportaciones_opex_cordoba.csv",
+        _data("input", "exportaciones_opex_cordoba.csv"),
         dtype={"CCOD_RUBRO": str},
     )
     opex.columns = [c.lstrip("\ufeff").strip() for c in opex.columns]
@@ -454,7 +478,7 @@ CONTINENT_COLORS: dict[str, str] = {
 
 @st.cache_data
 def load_accessible_market(_signature: str = ""):
-    df = pd.read_csv(ROOT / "data/intermediate/accessible_market_arg.csv", dtype={"hs92": str})
+    df = pd.read_csv(_data("intermediate", "accessible_market_arg.csv"), dtype={"hs92": str})
     df["hs92"] = df["hs92"].str.zfill(4)
     df["continente"] = df["iso3_d"].map(_ISO3_TO_CONTINENT).fillna("Otros")
     return df
@@ -506,59 +530,69 @@ componente son configurables en el sidebar.
   mercado accesible (países destino con sus importaciones).
     """)
 
-    st.subheader("De dónde salen los 125 HS4 anclas")
+    st.subheader("De dónde salen los HS4 anclas evidenciados")
     st.markdown(r"""
-El set de **125 HS4 anclas** es el resultado de una cadena de filtros
-sobre el registro provincial. Cada paso descarta o consolida firmas hasta
-quedarse con lo verificable:
+El set de **468 HS4 evidenciados** es el resultado de una cadena de
+filtros sobre el registro provincial. Cada paso descarta o consolida
+firmas hasta quedarse con lo verificable:
 
 | Etapa | # firmas | # HS4 |
 |---|---|---|
 | 1. Registro Procórdoba scrapeado | 2.678 | — |
-| 2. Menos servicios (EBOPS) — bancos, consultoras, marketing… | −1.035 | — |
-| 3. Firmas de bienes con `products_text` que matchea al menos un pattern del script 07 | **943** | **114** |
-| 4. Firmas curadas manualmente (URL + evidencia textual) | 66 | 95 |
-| **Unión anclas = HS4 en (3) ∪ (4)** | **~1.000** | **125** |
+| 2. Firmas curadas manualmente (URL + evidencia textual) | **66** | 95 |
+| 3. Firmas con `products_text` que matchea patterns del script 07 | **943** | 114 |
+| 4. Firmas con **NCM declarada** en su ficha (`Oferta exportable`, filtradas a exportadores Habituales + Ocasionales) | **857** | 458 |
+| **Unión anclas = HS4 en (2) ∪ (3) ∪ (4)** | ~1.240 firmas únicas | **468** |
 
-Las 943 firmas de la etapa 3 se concentran en la canasta real de Córdoba
-(soja, maíz, maní, carnes, muebles, polímeros, autopartes…), por eso 943
-firmas producen sólo 114 HS4 distintos — muchas firmas comparten el mismo
-puñado de productos dominantes.
+La capa **NCM declarada** (etapa 4, re-scrape autenticado del registro)
+es la evidencia más fuerte: no es keyword-match sobre prosa, sino la
+lista **oficial de códigos aduaneros** que cada firma declaró exportar.
+De los 468 HS4, **457** aparecen en esta capa, y **343** proceden
+exclusivamente de ella (no habían sido detectados por curado ni por
+keywords).
 
-**Los 125 son ~10% del universo HS 1992** (1.243 códigos). El otro ~40%
-se analiza como **candidatos** vía proximidad al set ancla. El ~50%
-restante son productos alejados de la base productiva provincial.
+El set efectivo de **anclas** en Página 2 depende de los sliders del
+sidebar: umbral OPEX del rubro y mínimo # de firmas evidenciando el HS4.
+Los HS4 evidenciados que **no** entran al set ancla pueden reaparecer
+como candidatos flaguados como *posible ancla*.
+
+**Los 468 son ~38% del universo HS 1992** (1.243 códigos). El resto se
+analiza como **candidatos** vía proximidad al set ancla.
     """)
 
-    st.subheader("¿Qué significa `curated` vs `registry-keyword`?")
+    st.subheader("Las tres capas de evidencia firma↔HS4")
     st.markdown(r"""
-Cada fila firma↔HS4 viene de una de dos capas de evidencia:
+Cada fila firma↔HS4 viene de una de tres capas, con prioridad
+`curated > declared-ncm > registry-keyword` en el deduplicado:
 
-**`curated`** (66 firmas, 152 pares en `03_firm_hs4_evidence.csv`)
-Un analista humano revisó firma por firma su ficha en el registro, sitio
-web, notas de prensa. Para cada par firma-HS4 confirmado registró:
-- **texto de evidencia** en prosa (ej. *"Products CHORIZO DE CERDO,
-  MORCILLA, SALCHICHA → HS 1601 sausages and similar products"*)
-- **URL fuente** específica donde verificó
-- **nivel de confianza** (casi siempre `high` — sólo se registra cuando
-  hay certeza)
+**`curated`** (66 firmas, 152 pares · `03_firm_hs4_evidence.csv`)
+Analista humano revisó firma por firma la ficha del registro, sitio web,
+notas de prensa. Cada par firma-HS4 confirmado incluye texto de
+evidencia, URL fuente específica, nivel de confianza (`high`).
 
-**`registry-keyword`** (~899 firmas adicionales, en `04_registry_full.csv`)
-Atribución automática por regex sobre el `products_text` de la firma en
-el registro. El pipeline (`scripts/07_full_registry_pass.py`) tiene ~130
-patterns tipo `\btrigo\b → HS 1001`, `\baceite de soja\b → HS 1507`,
-`\bautomóvil\b → HS 8703`. Si el texto matchea, se asigna el HS4.
+**`declared-ncm`** (857 firmas, 2.007 pares · `06_registry_ncm_declared.csv`)
+Re-scrape autenticado del registro, extracción de la tabla **"Oferta
+exportable"** de cada ficha. Cada fila es un código **NCM 8-dígitos**
+oficialmente declarado por la firma; NCM→HS4 = primeros 4 dígitos.
+Filtrado a firmas con `exporter_profile ∈ {Habitual, Ocasional}` (reales
+exportadoras), excluyendo aspirantes.
 
-| | curated | registry-keyword |
-|---|---|---|
-| **Quién decide** | Humano con lupa | Regex sobre texto |
-| **Puede desambiguar?** | Sí (aceite motor ≠ aceite soja) | No |
-| **Cobertura** | 66 firmas curadas a mano | 943 firmas matchean patterns |
-| **Costo** | Alto (minutos por firma) | Cero |
+**`registry-keyword`** (943 firmas, 1.745 pares · `04_registry_full.csv`)
+Atribución automática por regex sobre `products_text` de la ficha. El
+pipeline (`scripts/07_full_registry_pass.py`) tiene ~130 patterns tipo
+`\btrigo\b → HS 1001`. Cobertura amplia pero puede confundir palabras
+polisémicas (aceite motor vs aceite soja).
 
-Las dos capas se **unen** para producir el set de anclas (125 HS4). Cada
-fila en Página 3 muestra su `Capa` para que puedas auditar el nivel de
-evidencia detrás.
+| | curated | declared-ncm | registry-keyword |
+|---|---|---|---|
+| **Fuente** | Análisis humano | NCM declarado en registro | Regex sobre texto |
+| **Precisión** | Muy alta | Alta (código aduanero oficial) | Media (ambigüedad léxica) |
+| **Puede desambiguar?** | Sí | Sí (a nivel de NCM) | No |
+| **Cobertura firmas** | 66 | 857 | 943 |
+| **Cobertura HS4** | 95 | 458 | 114 |
+
+Cada fila en la Página 3 muestra su capa para que puedas auditar el
+nivel de evidencia detrás.
     """)
 
     st.subheader("Glosario")
@@ -566,7 +600,7 @@ evidencia detrás.
 | Variable | Significado |
 |---|---|
 | **HS4** | Sistema Armonizado a 4 dígitos, revisión 1992 (convención Atlas / Growth Lab). |
-| **Ancla** | HS4 donde Córdoba tiene presencia exportadora **evidenciada por firmas reales** (registry + cámaras). 125 HS4 en total (set actual). |
+| **Ancla** | HS4 donde Córdoba tiene presencia exportadora **evidenciada por firmas reales** (curated + declared-ncm + registry-keyword). 468 HS4 evidenciados en total; el set ancla activo se restringe con los sliders OPEX y # firmas del sidebar. |
 | **Candidato** | HS4 sin presencia evidenciada que aparece en el top-1% de proximidad de al menos un ancla, **o** un HS4 evidenciado cuyo OPEX cayó por debajo del umbral del slider (se flaguea como *posible ancla*). |
 | **OPEX** | Exportaciones de Córdoba por rubro INDEC (CCOD_RUBRO), promedio 2023–2025. El slider de umbral OPEX filtra el set de anclas. |
 | **Rubro** | "Grandes Rubros / Capítulos" de INDEC (clasificación ICA); 100 rubros en el panel OPEX. **No es lo mismo que NCM ni que Complejos Exportadores Rev. 2018**. |
@@ -679,7 +713,7 @@ def load_hs4_sector_map(_signature: str = ""):
     that file already attaches `anchor_sector` and `candidate_sector` to
     each HS4 (product_hs92.csv has no sector column)."""
     df = pd.read_csv(
-        ROOT / "data/output/cordoba_anchored_proximity.csv",
+        _data("output", "cordoba_anchored_proximity.csv"),
         dtype={"anchor_hs4": str, "candidate_hs4": str},
         usecols=["anchor_hs4", "anchor_sector", "candidate_hs4", "candidate_sector"],
     )
@@ -944,7 +978,7 @@ def page_firmas():
 |---|---|
 | **Firma (alias)** | Nombre comercial de la firma según el registro `exportadoresdecordoba.com`. |
 | **Razón social** | Nombre legal de la firma. |
-| **HS4 ancla** | HS4 (HS 1992) + nombre corto en español al que la firma está atribuida. Todos los HS4 aquí pertenecen al set de 125 anclas evidenciadas. |
+| **HS4 ancla** | HS4 (HS 1992) + nombre corto en español al que la firma está atribuida. Todos los HS4 aquí pertenecen al set de 468 HS4 evidenciados. |
 | **Rubro INDEC** | Rubro CCOD_RUBRO (clasificación INDEC "Grandes Rubros / Capítulos") al que el HS4 fold-up en el panel OPEX provincial. |
 | **Capa** | Origen y grado de curación del vínculo firma↔HS4. **`curated`** (66 firmas, 152 pares): revisión analítica manual — un curador inspeccionó `products_text` + sitio web + notas de prensa y asignó el HS4 explícitamente, dejando el razonamiento en `Evidencia (texto)` y una URL primaria en `Evidencia URL`. Es el subset más confiable. **`registry-keyword`** (~899 firmas): atribución automática por match de regex sobre `products_text` en el pipeline (`scripts/07_full_registry_pass.py`). Sin fallback ciego — si el texto no matchea ningún pattern específico, la firma no recibe HS4. Confiable a nivel individual pero sin curación por analista. |
 | **Confianza** | Nivel de certeza sobre el vínculo firma↔HS4. **`high`**: evidencia clara y explícita (texto de producto es un match exacto del HS4, o análisis manual concluyente). **`medium`**: match plausible pero con ambigüedad (ej. firma multiproducto donde el HS4 es sólo uno de varios candidatos). **`low`**: señal débil — históricamente se usaba para atribuciones por rubro amplio; en el pipeline actual sin fallback ciego, este valor debería ser raro. Para la capa `curated` casi todo es `high` porque sólo se registran filas donde hay certeza. |
@@ -1303,7 +1337,7 @@ def page_analisis():
     # ---------------------------------------------------------------------------
     # 1. Derive anchor universe from OPEX threshold + apply filters
     # ---------------------------------------------------------------------------
-    # evidenced_set is the firm-evidenced HS4 universe (currently 125 HS4). The anchor universe
+    # evidenced_set is the firm-evidenced HS4 universe (currently 468 HS4). The anchor universe
     # is the subset of those whose OPEX clears the threshold. Evidenced HS4 that
     # fall BELOW the threshold can resurface as candidates of the surviving
     # anchors — they're flagged `posible_ancla = 1` so users can spot them.
@@ -1454,7 +1488,7 @@ def page_analisis():
     rubro_name_lookup = dict(zip(_presence_indexed["hs4"], _presence_indexed["primary_rubro_name"].astype(str)))
 
     _attr_map_hover_df = pd.read_csv(
-        ROOT / "data/output/05_unified_hs4_presence.csv",
+        _data("output", "05_unified_hs4_presence.csv"),
         dtype={"hs4": str},
         usecols=["hs4", "attribution_type"],
     )
@@ -1555,7 +1589,7 @@ def page_analisis():
     # Fuente: attribution_type en 05_unified_hs4_presence.csv, no el
     # primary_ccod_rubro de la presence-file (que muestra el rubro nombrado
     # equivalente aún cuando la data cae en un rubro confidencial).
-    _attribution = pd.read_csv(ROOT / "data/output/05_unified_hs4_presence.csv", dtype={"hs4": str}, usecols=["hs4","attribution_type"])
+    _attribution = pd.read_csv(_data("output", "05_unified_hs4_presence.csv"), dtype={"hs4": str}, usecols=["hs4","attribution_type"])
     _attribution["hs4"] = _attribution["hs4"].str.zfill(4)
     _attr_map = dict(zip(_attribution["hs4"], _attribution["attribution_type"].astype(str)))
     _anchor_tbl["_attr"] = _anchor_tbl["hs4"].astype(str).str.zfill(4).map(_attr_map).fillna("")
@@ -1775,7 +1809,7 @@ Al mover el slider **Umbral OPEX** del sidebar, la tabla se restringe a los HS4 
 | **HS4** | Código HS4 del candidato (HS 1992). |
 | **Producto** | Nombre corto del HS4 en español (curado, ~1.240 entradas). |
 | **Sector** | Sector Atlas / Growth Lab del HS4. |
-| **Posible ancla** | Dummy 1/0. `1` = el candidato pertenece al set de 125 HS4 evidenciados pero su OPEX quedó por debajo del umbral del slider — es una ex-ancla reaparecida como candidato. Ver Inicio → glosario. |
+| **Posible ancla** | Dummy 1/0. `1` = el candidato pertenece al set de 468 HS4 evidenciados pero su OPEX o su # firmas quedó por debajo del umbral del slider — es una ex-ancla reaparecida como candidato. Ver Inicio → glosario. |
 | **Puntaje combinado** | `(1 − balance) · Factibilidad + balance · Atractivo`, normalizado 0-1 dentro del set filtrado. `balance` es el dial del sidebar. |
 | **Índice de atractivo** | Promedio ponderado del PCI, tamaño del mercado accesible y crecimiento a 5 años del mercado accesible, normalizado 0-1. |
 | **Índice de factibilidad** | Promedio ponderado del DAI, percentil de distancia recorrida y # de anclas normalizado, normalizado 0-1. |
