@@ -443,21 +443,30 @@ del mercado accesible se calcula como CAGR entre 2020 y 2024:
 \mathrm{AccessibleMarketGrowth5y}_p \;=\; \left(\frac{\mathrm{AccessibleMarket}_{p,2024}}{\mathrm{AccessibleMarket}_{p,2020}}\right)^{1/5} - 1
 """)
 
-    st.markdown("**DAI — Índice de alineación de demanda**")
-    st.markdown(r"""
-Mide qué tanto la **demanda externa** por un producto $p$ se alinea con
-la **oferta exportable** del país $c$ (proximidad a su base productiva).
-Para país $c$ y producto $p$:
-    """)
+    st.markdown("**DAI (Índice de Alineación de la Demanda)**")
     st.latex(r"""
-\mathrm{DAI}_{c,p} \;=\; \sum_{p'} \omega_{p,p'} \cdot M^{rel}_{p'}
+\mathrm{DAI}_{z,i} \;=\; \sum_{y} C_{z,y} \, \omega_{i,y}
+""")
+    st.latex(r"""
+C_{z,y} \;=\; \frac{X_{z,y} / M_y}{X_z / WT}
+""")
+    st.latex(r"""
+\omega_{i,y} \;=\; \frac{M_{i,y}}{\sum_{y'} M_{i,y'}}
 """)
     st.markdown(r"""
-donde $\omega_{p,p'}$ es la proximidad normalizada entre $p$ y $p'$, y
-$M^{rel}_{p'}$ es el peso relativo de $p'$ en las importaciones del
-resto del mundo (mide la demanda global por $p'$). Productos cercanos
-a $p$ con alta demanda externa elevan el DAI. El **percentil** mostrado
-en el tablero es la posición del HS4 en la distribución del set filtrado.
+- `z`: exportador (Argentina en este tablero), `i`: producto, `y`: mercado socio.
+- `C_{z,y}` mide **afinidad comercial revelada**: compara la participación
+  de Argentina en las importaciones totales del mercado `y` con la
+  participación global de Argentina en el comercio mundial.
+- `ω_{i,y}` mide el **peso de demanda específico del producto**: la
+  proporción de las importaciones mundiales del producto `i` que compra
+  el mercado `y`.
+- **Interpretación**: el DAI es un promedio ponderado por demanda de las
+  afinidades comerciales de Argentina. Valores mayores que 1 significan
+  que la demanda del producto `i` se concentra en mercados donde Argentina
+  tiene una presencia importadora relativamente superior a su peso global;
+  valores menores que 1 significan que la demanda se concentra donde
+  Argentina tiene una presencia relativamente débil.
     """)
 
     st.caption(
