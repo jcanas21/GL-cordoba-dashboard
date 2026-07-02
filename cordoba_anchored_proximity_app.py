@@ -1313,10 +1313,14 @@ def page_analisis():
     rubro_code_lookup = dict(zip(_presence_indexed["hs4"], _presence_indexed["primary_ccod_rubro"]))
     rubro_name_lookup = dict(zip(_presence_indexed["hs4"], _presence_indexed["primary_rubro_name"].astype(str)))
 
+    _attr_map_hover_df = pd.read_csv(
+        DATA_DIR / "05_unified_hs4_presence.csv",
+        dtype={"hs4": str},
+        usecols=["hs4", "attribution_type"],
+    )
     _attr_map_hover = dict(zip(
-        pd.read_csv(DATA_DIR / "05_unified_hs4_presence.csv", dtype={"hs4": str}, usecols=["hs4","attribution_type"])
-          .assign(hs4=lambda d: d["hs4"].str.zfill(4))
-          .set_index("hs4")["attribution_type"].astype(str)
+        _attr_map_hover_df["hs4"].astype(str).str.zfill(4),
+        _attr_map_hover_df["attribution_type"].astype(str),
     ))
     def _match_type(hs4: str) -> str:
         return "Residual" if _attr_map_hover.get(hs4, "") == "confidential" else "Directo"
