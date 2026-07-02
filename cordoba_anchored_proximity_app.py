@@ -496,16 +496,16 @@ componente son configurables en el sidebar.
     """)
 
     st.markdown("""
-### Tres páginas
+### Cuatro páginas
 
 - **Inicio** (acá): contexto, glosario, fórmulas.
-- **Análisis de Proximidad**: el tablero interactivo principal con todos
-  los filtros, el espacio de productos, el Sankey, la tabla de
-  candidatos rankeados y el treemap.
 - **Firmas y Rubros**: catálogo de las firmas con evidencia explícita de
   exportar productos ancla, con el rubro INDEC al que se atribuyen y el
   monto de exportaciones del rubro en OPEX.
-- **Mercado Accesible por Producto**: para cada uno de los top-30
+- **Análisis de Proximidad**: el tablero interactivo principal con todos
+  los filtros, el espacio de productos, el Sankey, la tabla de
+  candidatos rankeados y el treemap.
+- **Mercado Accesible por Producto**: para cada uno de los top-40
   candidatos del preset Recomendado, la composición geográfica del
   mercado accesible (países destino con sus importaciones).
     """)
@@ -528,7 +528,7 @@ dígitos del NCM que la firma reportó a la aduana. El curado manual
 complementa esto con los exportadores grandes que faltaban del registro.
 
 Los 461 HS4 son ~37 % del universo HS 1992 (1.243 códigos). El resto se
-analiza como **candidatos** vía proximidad al set ancla en la Página 2.
+analiza como **candidatos** vía proximidad al set ancla en la página **Análisis de Proximidad**.
 
 El set efectivo de **anclas** depende de los dos sliders del sidebar:
 umbral OPEX del rubro y mínimo # de firmas evidenciando el HS4. Un HS4
@@ -2003,10 +2003,10 @@ def page_mercado_accesible():
     am = load_accessible_market(_data_signature() if "_data_signature" in globals() else "")
 
     # Product universe: top-40 candidates from the 'Recomendado' preset on
-    # page 2. Ordered by combined score desc.
+    # the Análisis de Proximidad page. Ordered by combined score desc.
     st.caption(
         "Los productos disponibles corresponden a los **top-40 candidatos** que "
-        "el preset **Recomendado** de la página 2 (Análisis de Proximidad) "
+        "el preset **Recomendado** de la página **Análisis de Proximidad** "
         "produce con los filtros y pesos por defecto."
     )
     hs4_in_am = set(am["hs92"].unique())
@@ -2139,4 +2139,4 @@ inicio = st.Page(page_inicio, title="Inicio", icon=":material/home:", default=Tr
 analisis = st.Page(page_analisis, title="Análisis de Proximidad", icon=":material/insights:")
 firmas = st.Page(page_firmas, title="Firmas y Rubros", icon=":material/business:")
 mercado = st.Page(page_mercado_accesible, title="Mercado Accesible por Producto", icon=":material/public:")
-st.navigation([inicio, analisis, firmas, mercado]).run()
+st.navigation([inicio, firmas, analisis, mercado]).run()
