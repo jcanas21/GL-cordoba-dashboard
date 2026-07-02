@@ -1892,6 +1892,12 @@ Al mover el slider **Umbral OPEX** del sidebar, la tabla se restringe a los HS4 
             distance_pctile=lambda d: d["distance_pctile"] * 100,
         )
     )
+    # Publish the exact top-N displayed here so Página 4 (Mercado Accesible)
+    # can mirror this ranking rather than recompute a preset. Preserves the
+    # user's slider/weight choices — the list stays live-linked.
+    st.session_state["p3_displayed_candidates"] = (
+        candidate_display["candidate_hs4"].astype(str).str.zfill(4).tolist()
+    )
 
     with st.expander("Diccionario de columnas — Tabla de candidatos"):
         st.markdown(r"""
@@ -2173,23 +2179,41 @@ def page_mercado_accesible():
             "*Firmas y Rubros*)."
         )
 
-    # Product universe: top-30 candidates from the 'Recomendado' preset on
-    # the Análisis de Proximidad page. Ordered by combined score desc.
-    st.caption(
-        "Los productos disponibles corresponden a los **top-30 candidatos** que "
-        "el preset **Recomendado** de la página **Análisis de Proximidad** "
-        "produce con los filtros y pesos por defecto."
-    )
+    # Product universe: mirror EXACTLY the top-N shown on Análisis de Proximidad
+    # (whatever sliders/weights/filters the user has active there). Fall back to
+    # the Recomendado preset if the user hasn't opened that page yet in this
+    # session, so a first-visit-to-Page-4 doesn't crash empty.
+    p3_live = st.session_state.get("p3_displayed_candidates")
     hs4_in_am = set(am["hs92"].unique())
-    recomendado_top = _recomendado_top_candidates(
-        _data_signature() if "_data_signature" in globals() else "",
-        profiles=selected_profiles,
+    if p3_live:
+        source_label = "vivo desde **Análisis de Proximidad**"
+        candidates_ordered = [str(h).zfill(4) for h in p3_live]
+    else:
+        source_label = "preset **Recomendado**"
+        candidates_ordered = _recomendado_top_candidates(
+            _data_signature() if "_data_signature" in globals() else "",
+            profiles=selected_profiles,
+        )
+
+    st.caption(
+        f"Los productos disponibles reflejan la tabla de candidatos de la "
+        f"página **Análisis de Proximidad** ({source_label}), en el mismo "
+        f"orden en que aparecen allí. Cambiá sliders, pesos o filtros en esa "
+        f"página y la lista acá se actualiza."
     )
-    # Preserve Recomendado ranking order, but only keep HS4 with accessible-market data
-    product_universe = [h for h in recomendado_top if h in hs4_in_am]
+
+    # Preserve the ranking order, but only keep HS4 with accessible-market data
+    product_universe = [h for h in candidates_ordered if h in hs4_in_am]
     if not product_universe:
-        st.info("El preset Recomendado no produjo candidatos con datos de mercado accesible.")
+        st.info("La tabla de candidatos de Análisis de Proximidad no tiene "
+                "productos con datos de mercado accesible bajo los filtros actuales.")
         return
+    n_dropped = len(candidates_ordered) - len(product_universe)
+    if n_dropped:
+        st.caption(
+            f"({n_dropped} HS4 del ranking no tienen datos de mercado accesible "
+            f"y quedaron fuera del selector.)"
+        )
 
     # Label as "HS4 - Producto (Spanish)"
     label_by_hs4 = {
