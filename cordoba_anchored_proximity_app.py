@@ -1408,29 +1408,43 @@ def page_analisis():
     umap_plot["product_name_es"] = umap_plot["product_hs92_code"].map(lambda h: name_es_lookup.get(h, ""))
 
     fig_ps = go.Figure()
-    # Background: HS4 NOT in the current anchor set — same size, light grey
+    # Background: HS4 NOT in the current anchor set — light grey
     bg = umap_plot[~umap_plot["in_anchor"]]
     fig_ps.add_trace(go.Scatter(
         x=bg["product_space_x"], y=bg["product_space_y"], mode="markers",
         marker=dict(size=bg["radius"], color="#eeeef2",
                     line=dict(width=0.4, color="#d0d0d6")),
         text=[f"HS {h} · {n} · no es ancla" for h, n in zip(bg["product_hs92_code"], bg["product_name_es"])],
-        hoverinfo="text", name="Otros", showlegend=False,
+        hoverinfo="text", name="Sin evidencia (no ancla)", showlegend=True,
     ))
-    # Anchors — same size as background, coloured by cluster (presence = colour)
-    ank = umap_plot[umap_plot["in_anchor"]]
-    fig_ps.add_trace(go.Scatter(
-        x=ank["product_space_x"], y=ank["product_space_y"], mode="markers",
-        marker=dict(size=ank["radius"], color=ank["color"],
-                    line=dict(width=0.6, color="#ffffff"), opacity=0.92),
-        text=[_anchor_hover(h, n) for h, n in zip(ank["product_hs92_code"], ank["product_name_es"])],
-        hoverinfo="text", name="Anclas", showlegend=False,
-    ))
+    # Anchors split into one trace per cluster so Plotly renders an
+    # interactive legend below the plot.
+    ank = umap_plot[umap_plot["in_anchor"]].copy()
+    ank_by_cluster = ank.groupby("cluster_std", sort=True)
+    for cluster_name, group in ank_by_cluster:
+        display_name = cluster_name if cluster_name else "Otros"
+        color = cluster_color.get(cluster_name, "#e0e0e3") if cluster_name else "#e0e0e3"
+        fig_ps.add_trace(go.Scatter(
+            x=group["product_space_x"], y=group["product_space_y"], mode="markers",
+            marker=dict(size=group["radius"], color=color,
+                        line=dict(width=0.6, color="#ffffff"), opacity=0.92),
+            text=[_anchor_hover(h, n) for h, n in zip(group["product_hs92_code"], group["product_name_es"])],
+            hoverinfo="text", name=display_name, showlegend=True,
+        ))
     fig_ps.update_layout(
-        height=620, margin=dict(l=20, r=20, t=20, b=20),
+        height=680, margin=dict(l=20, r=20, t=20, b=110),
         xaxis=dict(visible=False), yaxis=dict(visible=False, scaleanchor="x"),
         plot_bgcolor="white",
         hoverlabel=dict(bgcolor="rgba(16,24,44,0.95)", font_color="white"),
+        legend=dict(
+            orientation="h",
+            yanchor="top", y=-0.02,
+            xanchor="center", x=0.5,
+            title_text="Cluster del espacio de productos",
+            title_font=dict(size=13),
+            font=dict(size=12),
+            itemsizing="constant",
+        ),
     )
     st.plotly_chart(fig_ps, use_container_width=True)
 
