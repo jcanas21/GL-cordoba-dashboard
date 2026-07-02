@@ -1,0 +1,126 @@
+hs4,hs_revision,supports_top50_line,top50_line_name,attribution_type,in_opex_named,n_firms,evidencing_firms_sample,evidence_sources
+0201,HS92,201AA,Carne bovina,clean,yes,26,BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORÍFICO PAMPA DE VARE; CHENNA; CUSCO COWHIDES; FRIGORÍFICO RIO SEGUNDO,targeted+registry-full
+0202,HS92,201AA,Carne bovina,clean,yes,2,BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORÍFICO PAMPA DE VARE,targeted+registry-full
+0203,HS92,19899,Productos primarios (confidencial),confidential,no,47,EXPORK MAG; AXIOM ARGENTINA; FRIGORIFICO QUALITA S.A.; FRIGORIFICO SAN FRANCISCO SA / GRUPO BELTRÁN; GRANJA BUFFA,targeted+registry-full
+0206,HS92,19899,Productos primarios (confidencial),confidential,no,10,BUSTOS Y BELTRAN S.A. / GRUPO BELTRÁN; FRIGORIFICO SAN FRANCISCO SA / GRUPO BELTRÁN; MENUDENCIAS DEL CENTRO S.A. - GRUPO BELTRÁN; RDC S.A / RDC LEVADURAS / GRUPO BELTRÁN; FRIGORÍFICO NOVARA SA / GRUPO BELTRÁN,targeted+registry-full
+0207,HS92,19899,Productos primarios (confidencial),confidential,no,15,INFOREST SRL; PAMPA COMPAÑÍA DE CARNES - DUO SILVESTRE ESCABECHES; VASQUETTO NUTRICIÓN ANIMAL; EL PRODUCTOR; INDACOR SA,registry-full
+0402,HS92,203A,Leches preparadas,clean,yes,15,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; LA VARENSE; JAMER Y BUEN PAN; LACTEAR SA; LAS TRES NIÑAS - GRUPO ADECOAGRO,targeted+registry-full
+0403,HS92,19899,Productos primarios (confidencial),confidential,no,3,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; ARSA / SANCOR; PANINO,targeted+registry-full
+0405,HS92,203B,Manteca,clean,yes,15,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; BRO FOOD SUPPLIER; JL PRODUCTOS ALIMENTICIOS; MANIAGRO ARGENTINA; NUTRIN S.A.,targeted+registry-full
+0406,HS92,203C,Quesos,clean,yes,31,FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; EL MAESTRO QUESERO; ESTILO REAL – ARROYO CABRAL; LACTEAR SA,targeted+registry-full
+0409,HS92,103,Miel,clean,yes,25,DULCOR; CAPYC; CROPPERS - GRUPO MANIAGRO; FEDERACIÓN DE JÓVENES AGRARIOS COOP. Y MUTUALISTAS; MIEL DE MONTE,targeted+registry-full
+0701,HS92,19899,Productos primarios (confidencial),confidential,no,29,BESSO HNOS; AGROPECUARIA VILLA DOLORES SA; EL RELINCHO PAPAS; EL RELINCHO PRODUCTOS AGRICOLAS; FÁBRICA DE PASTAS BETTINI,targeted+registry-full
+0702,HS92,19899,Productos primarios (confidencial),confidential,no,9,FÁBRICA DE PASTAS BETTINI; GRUPO ARCOR; MATERFER; OLIVARES SAN NICOLAS; EL HALLI OBEID LUIS MARIA - GRUPO MUSICAL TOMATES ASESINOS,registry-full
+0703,HS92,104B,Ajos,clean,yes,10,BESSO HNOS; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; AZAFRÁN RUEDO; GARLIC AJO NEGRO; IMPLEMENTOS AGRÍCOLAS ESCAÑUELA,targeted+registry-full
+0712,HS92,19899,Productos primarios (confidencial),confidential,no,3,AZAFRÁN RUEDO; CHIALVO SRL; HQA PRODUCTOS NATURALES,targeted+registry-full
+0713,HS92,104C,Legumbres,clean,yes,75,FAMIGLIA ROSSI - MOLINOS ROSSI; AGRO ARG SRL; ALEMAR SA / FUNNY; BARBALE AGROPECUARIA; BRO FOOD SUPPLIER,targeted+registry-full
+0802,HS92,19899,Productos primarios (confidencial),confidential,no,10,CROPPERS - GRUPO MANIAGRO; ACEITES DEL DESIERTO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; NATFOOD SAS; PALMESANO - GRUPO PALMESANO,targeted+registry-full
+0806,HS92,19899,Productos primarios (confidencial),confidential,no,6,CROPPERS - GRUPO MANIAGRO; PALMESANO - GRUPO PALMESANO; PASAFRE; PRODUCTOS DON ROGELIO; TRONADOR PANIFICADOS,targeted+registry-full
+0810,HS92,19899,Productos primarios (confidencial),confidential,no,10,DULCOR; EASYFRUT; ESNAOLA - GRUPO DULCOR; GRUPO ARCOR; PASTELINO,registry-full
+0904,HS92,19899,Productos primarios (confidencial),confidential,no,7,AZAFRÁN RUEDO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; CHIALVO SRL; EL VALLISTO; PAPRIKA,targeted+registry-full
+0909,HS92,19899,Productos primarios (confidencial),confidential,no,15,AZAFRÁN RUEDO; ALEMAR SA / FUNNY; DESARROLLOS AGRÍCOLAS ARGENTINOS SA; DOS MATES S.A.; F.G GRANOS,targeted+registry-full
+0910,HS92,19899,Productos primarios (confidencial),confidential,no,6,AZAFRÁN RUEDO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; YUSPE - GRUPO DULCOR; AZAFRÁN MEDITERRÁNEO; HQA PRODUCTOS NATURALES,targeted+registry-full
+1001,HS92,106A,Trigo,clean,yes,64,ACEITERA GENERAL DEHEZA SA - AGD; COOPERATIVA AGRICOLA GANADERA DE JUSTINIANO POSSE; EGRAN; ESTABLECIMIENTO SAN PATRICIO SA; FAMIGLIA ROSSI - MOLINOS ROSSI,targeted+registry-full
+1003,HS92,106ZB,Cebada,clean,yes,3,Asociación de Cooperativas Argentinas (ACA) — Córdoba; PAREDES CEREALES S.A.; SAGRA,targeted+registry-full
+1005,HS92,106B,Maíz,clean,yes,121,ACEITERA GENERAL DEHEZA SA - AGD; FAMIGLIA ROSSI - MOLINOS ROSSI; GASTALDI HNOS. S.A.I Y C.F.E.I; ACA BIO; AGRÍCOLA PIQUILLÍN,targeted+registry-full
+1006,HS92,19899,Productos primarios (confidencial),confidential,no,14,Asociación de Cooperativas Argentinas (ACA) — Córdoba; AZAFRÁN RUEDO; EGRAN; PIERSANTI - METAL NOET; SYTARI,targeted+registry-full
+1007,HS92,106C,Sorgo granífero,clean,yes,12,ACEITERA GENERAL DEHEZA SA - AGD; CAVERZASI ORTIN SEMILLAS; EDUARDO LUSSO S.A.; LOS ALGARROBOS SEMILLAS HÍBRIDAS; PAREDES CEREALES S.A.,targeted+registry-full
+1101,HS92,207A,Harina de trigo,clean,yes,27,FAMIGLIA ROSSI - MOLINOS ROSSI; COOPERATIVA AGRICOLA GANADERA DE JUSTINIANO POSSE; GASTALDI HNOS. S.A.I Y C.F.E.I; MARIMBO; MOLINO CAÑUELAS,targeted+registry-full
+1102,HS92,207Z,Resto productos de molinería,resto,yes,7,FAMIGLIA ROSSI - MOLINOS ROSSI; GRUPO ARCOR; EGRAN; MOLINOS FÉNIX ALIMENTOS - MOLINOS FÉNIX NUTRICIÓN - GRUPO ALIMENTICIO SA; FULL CORN SA,targeted+registry-full
+1103,HS92,207Z,Resto productos de molinería,resto,yes,9,FAMIGLIA ROSSI - MOLINOS ROSSI; GRUPO ARCOR; EGRAN; GRANAM - COMPAÑÍA DE GRANOS AMERICANOS; MOLINOS FÉNIX ALIMENTOS - MOLINOS FÉNIX NUTRICIÓN - GRUPO ALIMENTICIO SA,targeted+registry-full
+1108,HS92,207Z,Resto productos de molinería,resto,yes,2,GRUPO ARCOR; DIMAX ALIMENTOS,targeted+registry-full
+1201,HS92,107A,Soja,clean,yes,89,Asociación de Cooperativas Argentinas (ACA) — Córdoba; ACEITERA GENERAL DEHEZA SA - AGD; AGRÍCOLA PIQUILLÍN; AGROSERVICIOS MEDITERRÁNEA; ALIMENTOS TANCACHA SA,targeted+registry-full
+1202,HS92,107D,Maní,clean,yes,51,INCHIK; ACEITERA GENERAL DEHEZA SA - AGD; GASTALDI HNOS. S.A.I Y C.F.E.I; AGRO ARG SRL; AGRO TRANSPORTES S.A.,targeted+registry-full
+1206,HS92,107B,Girasol,clean,yes,23,Asociación de Cooperativas Argentinas (ACA) — Córdoba; ACEITERA GENERAL DEHEZA SA - AGD; AGRO ARG SRL; BARBALE AGROPECUARIA; BRO FOOD SUPPLIER,targeted+registry-full
+1214,HS92,107Z,Resto semillas y frutos oleaginosos,resto,yes,43,PELLFOOD; ALFABAN SRL; ALFALFAR; ALFALFAS LIMENTOS; ALFASOUTH SAS,targeted+registry-full
+1507,HS92,208AA,Aceite de soja,clean,yes,22,ACEITERA GENERAL DEHEZA SA - AGD; ALIMENTOS TANCACHA SA; ASR - ALIMENTOS SANTA ROSA; BIOFARMA; DIEZ INDUSTRIA DE ALIMENTOS,targeted+registry-full
+1508,HS92,208AC,Aceite de maní,clean,yes,13,"ACEITERA GENERAL DEHEZA SA - AGD; Lorenzati, Ruetsch y Cia S.A.; Olega; ACEITES DEL DESIERTO; ASR - ALIMENTOS SANTA ROSA",targeted+registry-full
+1509,HS92,208Z,Resto grasas y aceites,resto,yes,15,ACEITUNAS ALVAREZ; AIMURAI S.A.; GARLIC AJO NEGRO; VG AGRONEGOCIOS - FAMILIA GIORDANA OLIVARES; OLIVARES SAN NICOLAS,targeted+registry-full
+1512,HS92,208Z,Resto grasas y aceites,resto,yes,3,ACEITERA GENERAL DEHEZA SA - AGD; BRO FOOD SUPPLIER; MOLINO CAÑUELAS,targeted+registry-full
+1515,HS92,208Z,Resto grasas y aceites,resto,yes,2,GRUPO ARCOR; ACA BIO,targeted+registry-full
+1601,HS92,29899,Manufacturas de origen agropecuario (confidencial),confidential,no,17,FRIGORÍFICO SAN ANTONIO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; FRIGORIFICO QUALITA S.A.; OSCAR DULCE; SYSTEL S.A.,targeted+registry-full
+1602,HS92,29899,Manufacturas de origen agropecuario (confidencial),confidential,no,12,FRIGORÍFICO SAN ANTONIO; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; HAPPY FOOD; LA PIAMONTESA / GRUPO LA PIAMONTESA; CHACINADOS ELISA,targeted+registry-full
+1701,HS92,29899,Manufacturas de origen agropecuario (confidencial),confidential,no,9,GRUPO ARCOR; Jose Minetti y Cía. (Molino San José); DOBLE TT GLOBAL; GRANDIET; HAPPY FOOD,targeted+registry-full
+1702,HS92,29899,Manufacturas de origen agropecuario (confidencial),confidential,no,1,GRUPO ARCOR,targeted+registry-full
+1704,HS92,209B,Confitería sin cacao,clean,yes,11,DULCOR; GEORGALOS; CAVOUR DESARROLLOS; CHOCOLATES BARILOCHE - GRUPO PALMESANO; EGRAN,targeted+registry-full
+1806,HS92,209CB,Preparaciones de cacao,clean,yes,25,ESNAOLA - GRUPO DULCOR; GEORGALOS; CERRO AZUL; CACAO; CHOCOLATES BARILOCHE - GRUPO PALMESANO,targeted+registry-full
+1901,HS92,29899,Manufacturas de origen agropecuario (confidencial),confidential,no,28,LA BLANCA SA; FÁBRICA DE ALIMENTOS SANTA CLARA S.A.; DULCOR; CAPYC; ESNAOLA - GRUPO DULCOR,targeted+registry-full
+1902,HS92,207CB,Pastas alimenticias y productos de panadería,clean,yes,9,FAMIGLIA ROSSI - MOLINOS ROSSI; FÁBRICA DE PASTAS BETTINI; AZAFRÁN RUEDO; LA ITALIANA; MOLINOS RÍO SEGUNDO - GRUPO VARAS,targeted+registry-full
+1904,HS92,29899,Manufacturas de origen agropecuario (confidencial),confidential,no,5,GEORGALOS; CROPPERS - GRUPO MANIAGRO; CROCCANTO; FERMAR; SNACKS DANAL,targeted+registry-full
+1905,HS92,207CB,Pastas alimenticias y productos de panadería,clean,yes,46,DULCOR; CERRO AZUL; BOMPANING; CARTOTECNICA HORES; CAVOUR DESARROLLOS,targeted+registry-full
+2005,HS92,210Z,"Resto preparados de legumbres, hortalizas y frutas",resto,yes,22,ACEITUNAS ALVAREZ; DULCOR; AIMURAI S.A.; ARTE & SABORES DELICATESSEN / CALEUFU GOURMET; GARLIC AJO NEGRO,targeted+registry-full
+2007,HS92,210Z,"Resto preparados de legumbres, hortalizas y frutas",resto,yes,14,ESNAOLA - GRUPO DULCOR; DULCOR; DULCES ORIETA - GRUPO DULCOR; GRUPO ARCOR; PASTELINO,targeted+registry-full
+2008,HS92,210Z,"Resto preparados de legumbres, hortalizas y frutas",resto,yes,33,INCHIK; DULCOR; GEORGALOS; ARGENUT FOOD SAS; BRO FOOD SUPPLIER,targeted+registry-full
+2106,HS92,29899,Manufacturas de origen agropecuario (confidencial),confidential,no,1,VERTRAUEN,targeted
+2202,HS92,211Z,Resto bebidas (excl. vino),resto,yes,9,Pritty; LA POSTA DEL ÁGUILA; AGUA MINERAL ELLA; CENTRAL DISTRIBUCIONES; CUNAGUA,targeted+registry-full
+2203,HS92,211Z,Resto bebidas (excl. vino),resto,yes,9,Cervecería Quilmes — Planta Córdoba; METALURGICA VZ; PEÑÓN DEL ÁGUILA; ATON BEER; BUENAS MALTAS / TRAUMER BIER,targeted+registry-full
+2204,HS92,211Z,Resto bebidas (excl. vino),resto,yes,3,LA CAROYENSE SA; OLIVARES VERDICCHIO; DRUSA DISEÑO,registry-full
+2208,HS92,211Z,Resto bebidas (excl. vino),resto,yes,9,PORTA HNOS S.A.; PEÑÓN DEL ÁGUILA; ALQUIMISTA; ÁNGELES Y DEMONIOS GIN; AUSTRAL DESTILERÍA,registry-full
+2302,HS92,212B,"Afrecho, afrechillo, pellets",clean,yes,4,Jose Minetti y Cía. (Molino San José); GRANAM - COMPAÑÍA DE GRANOS AMERICANOS; HARINA FINEZZA; MOLINO SAN PEDRO,targeted+registry-full
+2304,HS92,212AE,Subproductos oleaginosos de soja,clean,yes,3,ACEITERA GENERAL DEHEZA SA - AGD; LA TROJA; ALPRO,targeted+registry-full
+2305,HS92,212AD,Subproductos oleaginosos de maní,clean,yes,11,"Lorenzati, Ruetsch y Cia S.A.; Olega; INDELMA — Insa; GC EXPORT SA - GRUPO CAVIGLIASSO S.A.; INDELMA - INSA",targeted+registry-full
+2306,HS92,212Z,Resto residuos alimenticios y prep. para animales,resto,yes,1,ACEITERA GENERAL DEHEZA SA - AGD,targeted
+2309,HS92,212Z,Resto residuos alimenticios y prep. para animales,resto,yes,31,ALIMENTOS TANCACHA SA; ALVICOR / LUCERITO; BIOFARMA; COOPERATIVA AGRICULTORES DEL SUR LTDA.; GEPSA,registry-full
+2401,HS92,29899,Manufacturas de origen agropecuario (confidencial),confidential,no,2,SAYRI TABACOS; PUNTO Y BANCA,registry-full
+2501,HS92,19899,Productos primarios (confidencial),confidential,no,10,LA INDUSTRIAL SALINERA S.A.; AZAFRÁN RUEDO; COPETO SNACK; JORVIC; RORUKA,targeted+registry-full
+2523,HS92,19899,Productos primarios (confidencial),confidential,no,5,INDUMIX; TECNUS; BODEGA TERRA CAMIARE; MARIA TRINIDAD CAMINOS; SCOLARI NANT E HIJOS SRL,registry-full
+2923,HS92,302B,Productos químicos orgánicos,broad-chapter,yes,2,ACEITERA GENERAL DEHEZA SA - AGD; WILBEY TENSOACTIVOS ARGENTINOS SRL,targeted+registry-full
+2929,HS92,302B,Productos químicos orgánicos,broad-chapter,yes,2,Petroquímica Río Tercero; PETROQUÍMICA RIO TERCERO SA,targeted+registry-full
+3002,HS92,302C,Productos farmacéuticos,broad-chapter,yes,12,BRIZUELA-LAB; FRIGORÍFICO PAMPA DE VARE; FRIGORÍFICO RIO SEGUNDO; OSCAR DULCE; RDC S.A / RDC LEVADURAS / GRUPO BELTRÁN,targeted+registry-full
+3003,HS92,302C,Productos farmacéuticos,broad-chapter,yes,2,LABORATORIOS PUEBLA; PILL.AR,registry-full
+3105,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,10,NANOMIX; LANTHER QUIMICA S.A.; COMOFRA; SERVQUIM SA; CERES DEMETER,targeted+registry-full
+3204,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,3,VERTRAUEN; ALFA ARGENTINA SA; LE CHARBONNIER,targeted+registry-full
+3303,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,11,KLOCKNER PENTAPLAST DE ARGENTINA; FIORDOLIVA; ALPHA & OMEGA; FITONATURE; LABORATORIO PROYAR,registry-full
+3402,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,11,ALPHA QUIMICA S.R.L.; MOSAICOS BLANGINO; EQUI CARE; JOSE GUMA S.A.; LEUCA SISTEMAS DE AIRE,targeted+registry-full
+3404,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,1,MOSAICOS BLANGINO,targeted
+3505,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,1,VERTRAUEN,targeted
+3808,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,6,LANTHER QUIMICA S.A.; Atanor — Planta Río Tercero; METALFOR S.A.; FACYT; AGROHUB,targeted+registry-full
+3822,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,1,BRIZUELA-LAB,targeted+registry-full
+3901,HS92,303,Materias plásticas y sus manufacturas,broad-chapter,yes,37,BERTOTTO BOGLIONE; MISTER PET PREMIUM; VITOPEL ARGENTINA SA; ARO PLASTYC; BLONDI,registry-full
+3917,HS92,303,Materias plásticas y sus manufacturas,broad-chapter,yes,10,FUNDICIÓN ARIENTE; AIMARETTI; METPAL; OLEOHIDRÁULICA TECNICORD S.A.; TALPE,registry-full
+3923,HS92,303,Materias plásticas y sus manufacturas,broad-chapter,yes,30,CONAM SRL; INFOREST SRL; KLOCKNER PENTAPLAST DE ARGENTINA; ROTOR TANQUES; VITOPEL ARGENTINA SA,registry-full
+3925,HS92,303,Materias plásticas y sus manufacturas,broad-chapter,yes,5,BERTOTTO BOGLIONE; LASSO SA; ROTOR TANQUES; TALPE; SCOLARI NANT E HIJOS SRL,targeted+registry-full
+4010,HS92,304,Cauchos y sus manufacturas,broad-chapter,yes,5,DAYCO; AGRETEQ; SMB CLEVER; MECANIZADOS DEL CENTRO; PINDARO INDUSTRIAL,targeted+registry-full
+4011,HS92,304,Cauchos y sus manufacturas,broad-chapter,yes,22,AKWEL CORDOBA ARGENTINA SA; BTI AGRI; GACELA DENTAL; GRUPO TORREON; INFAS GROUP,registry-full
+4104,HS92,29899,Manufacturas de origen agropecuario (confidencial),confidential,no,35,ATILIOF; BIANCHI CUEROS ARGENTINOS; CHENNA; CURTIEMBRE RÍO TERCERO SA; CUSCO COWHIDES,registry-full
+4819,HS92,306A,"Papel, cartón y sus manufacturas",broad-chapter,yes,9,ENCAPA SA; GRUPO ARCOR; PAPELERA CUMBRE SA; SOLUCIONES GRÁFICAS; CORRUGADORA CENTRO,registry-full
+4823,HS92,306A,"Papel, cartón y sus manufacturas",broad-chapter,yes,30,CARTOTECNICA HORES; CONAM SRL; ENCAPA SA; GRAFIN ARGENTINA S.A.; GRUPO ARCOR,targeted+registry-full
+5101,HS92,29899,Manufacturas de origen agropecuario (confidencial),confidential,no,6,LANAS MELODY; BLACK OVEJA; COOPERATIVA ALBORADA; CORUJA; MISS PIKY,registry-full
+5106,HS92,29899,Manufacturas de origen agropecuario (confidencial),confidential,no,4,LACTEOS CDS - LACNAT - LOMBARDE; LANAS MELODY; CORUJA; LÁCTEOS LAS TRES,registry-full
+5107,HS92,29899,Manufacturas de origen agropecuario (confidencial),confidential,no,1,LANAS MELODY,targeted
+5509,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,1,LANAS MELODY,targeted
+6403,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,30,CURTIEMBRE RÍO TERCERO SA; FLEXIMAR - INDIAN; SERMA; ZANIN HNOS.; DAS LUZ CALZADOS,registry-full
+6810,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,5,MOSAICOS BLANGINO; LA ELENENSE SA; EL CERRITO SAS; CARGNELUTTI MINERALES; EMILIA CÓRDOBA MOSAICOS,targeted+registry-full
+6907,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,5,CASA TALLER EL RANCHO; CEMENTADOS JUAN NADALIN E HIJOS S.A / NADALIN SA; INDEF; INSTRELEC; KOKESHI CREATIVA,registry-full
+7309,HS92,311AZ,Resto arrabio/fundición/hierro/acero,resto,yes,4,BERTOTTO BOGLIONE; INDUMIX; O-TEK; TECNUS,targeted+registry-full
+7318,HS92,311AZ,Resto arrabio/fundición/hierro/acero,resto,yes,18,BARBERO; GRUPO TORREON; METALMED; METALÚRGICA GERBAUDO SA; PELLACANI S.R.L.,registry-full
+7320,HS92,311AZ,Resto arrabio/fundición/hierro/acero,resto,yes,2,FAESA; SECMAN,targeted+registry-full
+8205,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,3,ANTARES SRL; EJP HERRAMIENTAS; METALÚRGICA FLUMIGNAN,registry-full
+8208,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,1,FAESA,targeted
+8408,HS92,312AA,Motores de explosión y partes,named-aggregate,yes,1,"FPT Industrial (Planta Ferreyra, Córdoba)",targeted
+8413,HS92,312AB,"Bombas, motobombas, turbobombas y partes",named-aggregate,yes,34,BERTOTTO BOGLIONE; EDGE INSTRUMENTS; GEA GERGOLET AGRÍCOLA; INDUSTRIA JM; INFOREST SRL,targeted+registry-full
+8415,HS92,312AC,Material para producción de frío y partes,named-aggregate,yes,1,DENSO MANUFACTURING ARGENTINA SA,targeted
+8418,HS92,312AC,Material para producción de frío y partes,named-aggregate,yes,5,DENSO MANUFACTURING ARGENTINA SA; ICE SA; TECNOAIR; MICRO GREEN SA; SIMSA,registry-full
+8422,HS92,312AL,Otras máquinas y aparatos mecánicos,broad-chapter,yes,7,BAG BIO; FRUSSO; CERVENY / TURBOVAC; LA POSTA DEL ÁGUILA; SSM SRL,registry-full
+8426,HS92,312AF,"Máquinas para elevación, carga y descarga",named-aggregate,yes,4,AXIONLIFT; FERIOLI S.A.; SICA; INDUSTRIA FAMER,targeted+registry-full
+8427,HS92,312AF,"Máquinas para elevación, carga y descarga",named-aggregate,yes,1,LINDE RODADOS MEDITERRANEA S.A,registry-full
+8428,HS92,312AF,"Máquinas para elevación, carga y descarga",named-aggregate,yes,10,AXIONLIFT; AGROMEC SA; PIERSANTI - METAL NOET; TRANSFIL; AGRETEQ,targeted+registry-full
+8432,HS92,312AL,Otras máquinas y aparatos mecánicos,broad-chapter,yes,11,AGROMETAL SAI; AKRON; ASCANELLI SA; BTI AGRI; IMPLEMENTOS AGRÍCOLAS ESCAÑUELA,targeted+registry-full
+8433,HS92,312AL,Otras máquinas y aparatos mecánicos,broad-chapter,yes,7,IMPLEMENTOS AGRÍCOLAS ESCAÑUELA; METALFOR S.A.; BOMBASSEI ARGENTINA SA; JLS AGROMAQUINARIAS; MATERFER,registry-full
+8436,HS92,312AL,Otras máquinas y aparatos mecánicos,broad-chapter,yes,18,AKRON; ASCANELLI SA; AGROMEC SA; BTA TOOLS - BARBURY TEAM S.A.; COMOFRA,targeted+registry-full
+8437,HS92,312AL,Otras máquinas y aparatos mecánicos,broad-chapter,yes,18,AKRON; ASCANELLI SA; AGROMEC SA; GEA GERGOLET AGRÍCOLA; IGB TECNOLOGÍA,targeted+registry-full
+8474,HS92,312AL,Otras máquinas y aparatos mecánicos,broad-chapter,yes,1,INDUMIX,targeted
+8483,HS92,312AL,Otras máquinas y aparatos mecánicos,broad-chapter,yes,1,DAYCO,targeted
+8501,HS92,312B,Máquinas y aparatos eléctricos y electrónicos,broad-chapter,yes,6,E SOLUTIONS; GIACOBONE; KÜGELLAGER; PERTRAK; ADAS SRL,registry-full
+8504,HS92,312B,Máquinas y aparatos eléctricos y electrónicos,broad-chapter,yes,8,ARTECHE; ELECTROPART CORDOBA; MAYO TRANSFORMADORES; SERVELEC SRL; TTE,targeted+registry-full
+8511,HS92,312B,Máquinas y aparatos eléctricos y electrónicos,broad-chapter,yes,1,FABRICA DE COLECTORES,targeted+registry-full
+8537,HS92,312B,Máquinas y aparatos eléctricos y electrónicos,broad-chapter,yes,2,CYRUS SRL; MICRO GREEN SA,registry-full
+8544,HS92,312B,Máquinas y aparatos eléctricos y electrónicos,broad-chapter,yes,3,EVOLUTION CONTROL CABLE; MAP SA; CABLESCOM,registry-full
+8703,HS92,313BB,Vehículos automóviles terrestres,named-aggregate,yes,5,"CINZIA VEHÍCULOS; Renault Argentina (Planta Santa Isabel, Córdoba); Stellantis (Complejo Industrial Ferreyra, Córdoba); DAYCO; TODO SUSPENSION SA",targeted+registry-full
+8704,HS92,313BB,Vehículos automóviles terrestres,named-aggregate,yes,24,"Stellantis (Complejo Industrial Ferreyra, Córdoba); Iveco Argentina (Planta Ferreyra, Córdoba); CRAVERO REPUESTOS; DRI-LEX®; FAESA",targeted+registry-full
+8705,HS92,313BB,Vehículos automóviles terrestres,broad-chapter,yes,2,INDUMIX; TZR BOMBAS Y EQUIPOS PARA HORMIGÓN,targeted+registry-full
+8708,HS92,313BC,Partes y piezas de vehículos y tractores,named-aggregate,yes,27,DENSO MANUFACTURING ARGENTINA SA; Volkswagen Argentina (Centro Industrial Córdoba); CAUPLAS; CRAVERO REPUESTOS; DAYCO,targeted+registry-full
+8716,HS92,313BB,Vehículos automóviles terrestres,broad-chapter,yes,15,CINZIA VEHÍCULOS; AKRON; ASCANELLI SA; AGROMEC SA; BTA TOOLS - BARBURY TEAM S.A.,targeted+registry-full
+9018,HS92,399A,Instrumentos óptica/fotografía/medicoquirúrgico,broad-chapter,yes,4,FEAS ELECTRONICA; DENIMED EQUIPAMIENTOS ODONTOLÓGICOS; GACELA DENTAL; TEMIS TECH / ATRIAMEDICA,targeted+registry-full
+9021,HS92,399A,Instrumentos óptica/fotografía/medicoquirúrgico,broad-chapter,yes,5,PROMEDON S.A.; RAOMED SA; IMPLANT ARGENTINA - YNMO; FERNÁNDEZ BODEREAU ODONTOLOGÍA DE AVANZADA; INSTRELEC,targeted+registry-full
+9403,HS92,39899,Manufacturas de origen industrial (confidencial),confidential,no,49,EN BRUTO; MUEBLES GACELA; OSCAR MASSA MUEBLES; ADAMOBILI; AIMARETTI,registry-full

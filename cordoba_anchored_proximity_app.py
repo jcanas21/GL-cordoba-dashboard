@@ -1313,8 +1313,13 @@ def page_analisis():
     rubro_code_lookup = dict(zip(_presence_indexed["hs4"], _presence_indexed["primary_ccod_rubro"]))
     rubro_name_lookup = dict(zip(_presence_indexed["hs4"], _presence_indexed["primary_rubro_name"].astype(str)))
 
-    def _match_type(ccod: str) -> str:
-        return "Residual" if str(ccod).strip().endswith("899") else "Directo"
+    _attr_map_hover = dict(zip(
+        pd.read_csv(DATA_DIR / "05_unified_hs4_presence.csv", dtype={"hs4": str}, usecols=["hs4","attribution_type"])
+          .assign(hs4=lambda d: d["hs4"].str.zfill(4))
+          .set_index("hs4")["attribution_type"].astype(str)
+    ))
+    def _match_type(hs4: str) -> str:
+        return "Residual" if _attr_map_hover.get(hs4, "") == "confidential" else "Directo"
 
     def _anchor_hover(h: str, name: str) -> str:
         ccod = rubro_code_lookup.get(h, "")
@@ -1322,7 +1327,7 @@ def page_analisis():
         lines = [f"<b>HS {h}</b> · {name}", "Ancla"]
         if ccod:
             lines.append(f"Rubro INDEC: {ccod} — {rname}")
-            lines.append(f"Match: {_match_type(ccod)}")
+            lines.append(f"Match: {_match_type(h)}")
         return "<br>".join(lines)
 
     def dot_radius(v: float) -> float:
@@ -1386,11 +1391,20 @@ def page_analisis():
     _anchor_tbl["Producto"] = _anchor_tbl["hs4"].map(lambda h: SPANISH_OVERRIDES.get(h, ""))
     _anchor_tbl["Sector"] = _anchor_tbl["hs4"].map(lambda h: _hs4_sector.get(h, "Other"))
     _anchor_tbl["OPEX rubro (USD M)"] = _anchor_tbl["max_rubro_opex_2023_2025_avg_usd"] / 1e6
-    # Match = 'Residual' si el rubro INDEC termina en '899' (confidencial);
-    # 'Directo' en cualquier otro caso (clean / named-aggregate / broad-chapter / resto).
-    _anchor_tbl["Match"] = _anchor_tbl["primary_ccod_rubro"].astype(str).str.strip().apply(
-        lambda c: "Residual" if c.endswith("899") else "Directo"
+    # Match = 'Residual' cuando la atribución OPEX del HS4 es a un rubro
+    # confidencial (INDEC Ley 17.622, códigos terminados en 899); 'Directo'
+    # cuando el rubro es clean / named-aggregate / broad-chapter / resto.
+    # Fuente: attribution_type en 05_unified_hs4_presence.csv, no el
+    # primary_ccod_rubro de la presence-file (que muestra el rubro nombrado
+    # equivalente aún cuando la data cae en un rubro confidencial).
+    _attribution = pd.read_csv(DATA_DIR / "05_unified_hs4_presence.csv", dtype={"hs4": str}, usecols=["hs4","attribution_type"])
+    _attribution["hs4"] = _attribution["hs4"].str.zfill(4)
+    _attr_map = dict(zip(_attribution["hs4"], _attribution["attribution_type"].astype(str)))
+    _anchor_tbl["_attr"] = _anchor_tbl["hs4"].astype(str).str.zfill(4).map(_attr_map).fillna("")
+    _anchor_tbl["Match"] = _anchor_tbl["_attr"].apply(
+        lambda a: "Residual" if a == "confidential" else "Directo"
     )
+    _anchor_tbl = _anchor_tbl.drop(columns=["_attr"])
     _anchor_tbl = _anchor_tbl.rename(columns={
         "hs4": "HS4",
         "primary_ccod_rubro": "CCOD_RUBRO",
