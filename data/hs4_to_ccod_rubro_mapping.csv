@@ -1,0 +1,1253 @@
+hs4,cordoba_evidenced,n_firms_with_hs4,ccod_rubro,rubro_name,attribution_type,routing,ambiguous_at_hs4,opex_2023_2025_avg_usd
+0101,yes,8,101,Animales Vivos,clean,direct,no,10674.0
+0102,yes,8,101,Animales Vivos,clean,direct,no,10674.0
+0103,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0104,no,0,101,Animales Vivos,clean,direct,no,10674.0
+0105,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0106,no,0,101,Animales Vivos,clean,direct,no,10674.0
+0201,yes,35,201AA,Carne bovina,clean,direct,no,20793101.0
+0202,yes,11,201AA,Carne bovina,clean,direct,no,20793101.0
+0203,yes,47,201AC,Carne porcina,clean,direct,no,38568.0
+0204,no,0,201AB,Carne ovina o caprina,clean,direct,no,
+0205,no,0,201AZ,"Carnes frescas refrigeradas o congeladas excluido las bovinas,ovinas,caprinas,porcinas.aves,liebres y conejos",aggregate-resto,direct,no,
+0206,yes,10,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0207,yes,15,201AE,Carne de Ave,clean,direct,no,
+0208,no,0,201AZ,"Carnes frescas refrigeradas o congeladas excluido las bovinas,ovinas,caprinas,porcinas.aves,liebres y conejos",aggregate-resto,direct,no,
+0209,no,0,201AZ,"Carnes frescas refrigeradas o congeladas excluido las bovinas,ovinas,caprinas,porcinas.aves,liebres y conejos",aggregate-resto,direct,no,
+0210,no,0,201AZ,"Carnes frescas refrigeradas o congeladas excluido las bovinas,ovinas,caprinas,porcinas.aves,liebres y conejos",aggregate-resto,direct,no,
+0301,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0302,no,0,102A,Pescados,clean,direct,no,
+0303,no,0,102A,Pescados,clean,direct,no,
+0304,no,0,102A,Pescados,clean,direct,yes,
+0304,no,0,202AA,Filetes de pescado,clean,direct,yes,
+0305,no,0,102A,Pescados,clean,direct,yes,
+0305,no,0,202AZ,Resto de carnes de pescado excluido filetes,aggregate-resto,direct,yes,
+0306,no,0,102B,Mariscos,clean,direct,no,
+0307,no,0,102B,Mariscos,clean,direct,no,
+0401,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0402,yes,20,203A,Leches preparadas,clean,direct,no,227591221.0
+0403,yes,8,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0404,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0405,yes,15,203B,Manteca,clean,direct,no,53737731.0
+0406,yes,31,203C,Quesos,clean,direct,no,38885250.0
+0407,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0408,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0409,yes,27,103,Miel,clean,direct,no,22777523.0
+0410,no,0,204,Otros productos de origen animal,clean,direct,no,1411692.0
+0501,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0502,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0503,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0504,no,0,204,Otros productos de origen animal,clean,direct,no,1411692.0
+0505,no,0,204,Otros productos de origen animal,clean,direct,no,1411692.0
+0506,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0507,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0508,no,0,204,Otros productos de origen animal,clean,direct,no,1411692.0
+0509,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0510,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0511,yes,5,204,Otros productos de origen animal,clean,direct,no,1411692.0
+0601,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0602,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0603,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0604,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+0701,yes,29,104Z,Resto de hortalizas y legumbres sin elaborar,resto,direct,no,2659662.0
+0702,yes,9,104Z,Resto de hortalizas y legumbres sin elaborar,resto,direct,no,2659662.0
+0703,yes,13,104A,Cebollas,clean,direct,yes,443335.0
+0703,yes,13,104B,Ajos,clean,direct,yes,4075791.0
+0704,no,0,104Z,Resto de hortalizas y legumbres sin elaborar,resto,direct,no,2659662.0
+0705,no,0,104Z,Resto de hortalizas y legumbres sin elaborar,resto,direct,no,2659662.0
+0706,no,0,104Z,Resto de hortalizas y legumbres sin elaborar,resto,direct,no,2659662.0
+0707,yes,2,104Z,Resto de hortalizas y legumbres sin elaborar,resto,direct,no,2659662.0
+0708,no,0,104Z,Resto de hortalizas y legumbres sin elaborar,resto,direct,no,2659662.0
+0709,no,0,104Z,Resto de hortalizas y legumbres sin elaborar,resto,direct,no,2659662.0
+0710,no,0,104Z,Resto de hortalizas y legumbres sin elaborar,resto,direct,no,2659662.0
+0711,no,0,104Z,Resto de hortalizas y legumbres sin elaborar,resto,direct,no,2659662.0
+0712,yes,4,104Z,Resto de hortalizas y legumbres sin elaborar,resto,direct,no,2659662.0
+0713,yes,75,104C,Legumbres,clean,direct,no,28177292.0
+0714,no,0,104Z,Resto de hortalizas y legumbres sin elaborar,resto,direct,no,2659662.0
+0801,yes,3,105Z,Resto de frutas frescas ,aggregate-resto,direct,no,
+0802,yes,11,105Z,Resto de frutas frescas ,aggregate-resto,direct,no,
+0803,no,0,105Z,Resto de frutas frescas ,aggregate-resto,direct,no,
+0804,no,0,105Z,Resto de frutas frescas ,aggregate-resto,direct,no,
+0805,yes,2,105C,Cítricos,clean,direct,no,
+0806,yes,6,105D,Uvas de mesa,clean,direct,no,
+0807,no,0,105Z,Resto de frutas frescas ,aggregate-resto,direct,no,
+0808,no,0,105A,Manzanas,clean,direct,yes,
+0808,no,0,105B,Peras,clean,direct,yes,
+0809,no,0,105E,Frutas de carozo,clean,direct,no,3864.0
+0810,yes,10,105Z,Resto de frutas frescas ,aggregate-resto,direct,no,
+0811,no,0,105Z,Resto de frutas frescas ,aggregate-resto,direct,no,
+0812,no,0,105Z,Resto de frutas frescas ,aggregate-resto,direct,no,
+0813,yes,1,205,Frutas secas o procesadas,clean,direct,no,
+0814,no,0,105Z,Resto de frutas frescas ,aggregate-resto,direct,no,
+0901,no,0,206C,Café,clean,direct,no,
+0902,yes,14,206A,Té,clean,direct,no,
+0903,no,0,206B,Yerba mate,clean,direct,no,
+0904,yes,21,206D,Especias,clean,direct,no,374155.0
+0905,no,0,206D,Especias,clean,direct,no,374155.0
+0906,no,0,206D,Especias,clean,direct,no,374155.0
+0907,no,0,206D,Especias,clean,direct,no,374155.0
+0908,no,0,206D,Especias,clean,direct,no,374155.0
+0909,yes,15,206D,Especias,clean,direct,no,374155.0
+0910,yes,6,206D,Especias,clean,direct,no,374155.0
+1001,yes,68,106A,Trigo,clean,direct,no,258287630.0
+1002,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+1003,yes,7,106ZB,Cebada,clean,direct,no,7473589.0
+1004,no,0,106ZA,Avena,clean,direct,no,6099.0
+1005,yes,121,106B,Maíz,clean,direct,no,2320526635.0
+1006,yes,14,106ZF,Arroz,clean,direct,no,
+1007,yes,12,106C,Sorgo granífero,clean,direct,no,69267815.0
+1008,no,0,106ZD,Alpiste,clean,direct,yes,42000.0
+1008,no,0,106ZE,Mijo,clean,direct,yes,254416.0
+1101,yes,30,207A,Harina de trigo,clean,direct,no,18158265.0
+1102,yes,10,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,direct,no,8989351.0
+1103,yes,9,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,direct,no,8989351.0
+1104,no,0,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,direct,no,8989351.0
+1105,no,0,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,direct,no,8989351.0
+1106,no,0,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,direct,no,8989351.0
+1107,no,0,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,direct,no,8989351.0
+1108,yes,2,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,direct,no,8989351.0
+1109,no,0,207Z,"Resto de los productos de molinería y preparaciones a base de cereales,harina,almidón,fécula o leche,pastelería",aggregate-resto,direct,no,8989351.0
+1201,yes,95,107A,Soja,clean,direct,no,715701214.0
+1202,yes,57,107D,Maní,clean,direct,no,696067763.0
+1203,no,0,107Z,Resto semillas y frutos oleaginosos,aggregate-resto,direct,no,19944852.0
+1204,no,0,107C,Lino,clean,direct,no,159761.0
+1205,no,0,107Z,Resto semillas y frutos oleaginosos,aggregate-resto,direct,no,19944852.0
+1206,yes,23,107B,Girasol,clean,direct,no,8542480.0
+1207,no,0,107Z,Resto semillas y frutos oleaginosos,aggregate-resto,direct,no,19944852.0
+1208,no,0,107Z,Resto semillas y frutos oleaginosos,aggregate-resto,direct,no,19944852.0
+1209,no,0,107Z,Resto semillas y frutos oleaginosos,aggregate-resto,direct,no,19944852.0
+1210,no,0,107Z,Resto semillas y frutos oleaginosos,aggregate-resto,direct,no,19944852.0
+1211,yes,5,107Z,Resto semillas y frutos oleaginosos,aggregate-resto,direct,no,19944852.0
+1212,no,0,107Z,Resto semillas y frutos oleaginosos,aggregate-resto,direct,no,19944852.0
+1213,no,0,107Z,Resto semillas y frutos oleaginosos,aggregate-resto,direct,no,19944852.0
+1214,yes,53,107Z,Resto semillas y frutos oleaginosos,resto-or-broad,chapter-rule,no,19944852.0
+1301,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+1302,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+1401,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+1402,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+1403,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+1404,no,0,199,Resto de productos primarios,confidential,chapter-rule,no,607438.0
+1501,no,0,208B,Grasas y sebos,clean,direct,no,
+1502,no,0,208B,Grasas y sebos,clean,direct,no,
+1503,no,0,208B,Grasas y sebos,clean,direct,no,
+1504,no,0,208B,Grasas y sebos,clean,direct,no,
+1505,no,0,208B,Grasas y sebos,clean,direct,no,
+1506,no,0,208B,Grasas y sebos,clean,direct,no,
+1507,yes,25,208AA,Aceite de soja,clean,direct,no,46086702.0
+1508,yes,16,208AC,Aceite de maní,clean,direct,no,69181724.0
+1509,yes,15,208AD,Aceite de oliva,clean,direct,no,
+1510,no,0,208AD,Aceite de oliva,clean,direct,no,
+1511,no,0,208AZ,Otros aceites,aggregate-resto,direct,no,
+1512,yes,3,208AE,Aceite de girasol,clean,direct,no,7004708.0
+1513,no,0,208AZ,Otros aceites,aggregate-resto,direct,no,
+1514,no,0,208AZ,Otros aceites,aggregate-resto,direct,no,
+1515,yes,2,208AH,Aceite de maíz,clean,direct,no,110559.0
+1516,no,0,208AZ,Otros aceites,aggregate-resto,direct,no,
+1517,no,0,208AZ,Otros aceites,aggregate-resto,direct,no,
+1518,no,0,208AZ,Otros aceites,aggregate-resto,direct,no,
+1519,no,0,208Z,Resto de grasas y aceites,aggregate-resto,direct,no,23128438.0
+1520,no,0,208Z,Resto de grasas y aceites,aggregate-resto,direct,no,23128438.0
+1521,no,0,208Z,Resto de grasas y aceites,aggregate-resto,direct,no,23128438.0
+1522,no,0,208Z,Resto de grasas y aceites,aggregate-resto,direct,no,23128438.0
+1601,yes,17,201B,Conservas y preparados de carnes,clean,direct,no,1912129.0
+1602,yes,12,201B,Conservas y preparados de carnes,clean,direct,no,1912129.0
+1603,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+1604,no,0,202B,Pescado conservado,clean,direct,no,
+1605,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+1701,yes,9,209A,Azúcar de caña en bruto,clean,direct,no,
+1702,yes,1,209Z,Resto de azúcar  y artículos de confitería ,aggregate-resto,direct,no,
+1703,no,0,209Z,Resto de azúcar  y artículos de confitería ,aggregate-resto,direct,no,
+1704,yes,17,209B,Artículos de confitería sin cacao,clean,direct,no,17045737.0
+1801,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+1802,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+1803,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+1804,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+1805,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+1806,yes,31,209CB,Preparaciones de cacao,clean,direct,no,21890351.0
+1901,yes,28,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+1902,yes,17,207CB,"Pastas alimenticias, productos de panadería...",clean,direct,no,29405508.0
+1903,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+1904,yes,25,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+1905,yes,110,207CB,"Pastas alimenticias, productos de panadería...",clean,direct,no,29405508.0
+2001,no,0,210Z,"Resto de preparados de legumbres,hortalizas y frutas",aggregate-resto,direct,no,81476882.0
+2002,no,0,210Z,"Resto de preparados de legumbres,hortalizas y frutas",aggregate-resto,direct,no,81476882.0
+2003,no,0,210Z,"Resto de preparados de legumbres,hortalizas y frutas",aggregate-resto,direct,no,81476882.0
+2004,no,0,210Z,"Resto de preparados de legumbres,hortalizas y frutas",aggregate-resto,direct,no,81476882.0
+2005,yes,22,210A,Aceitunas,clean,direct,no,
+2006,no,0,210Z,"Resto de preparados de legumbres,hortalizas y frutas",aggregate-resto,direct,no,81476882.0
+2007,yes,14,210B,"Puré, pastas de frutas, etc",clean,direct,no,136722.0
+2008,yes,42,210C,Duraznos conservados,clean,direct,yes,
+2008,yes,42,210Z,"Resto de preparados de legumbres,hortalizas y frutas",aggregate-resto,direct,yes,81476882.0
+2009,no,0,210D,Jugos de frutas y hortalizas,clean,direct,no,
+2101,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+2102,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+2103,yes,1,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+2104,yes,12,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+2105,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+2106,yes,7,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+2201,yes,2,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,direct,no,26074058.0
+2202,yes,13,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,direct,no,26074058.0
+2203,yes,10,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,direct,no,26074058.0
+2204,yes,6,211A,Vino de uva,clean,direct,no,
+2205,no,0,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,direct,no,26074058.0
+2206,no,0,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,direct,no,26074058.0
+2207,no,0,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,direct,no,26074058.0
+2208,yes,9,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,direct,no,26074058.0
+2209,no,0,211Z,"Resto de bebidas,líquidos alcohólicos y vinagre excluido el vino de uva",aggregate-resto,direct,no,26074058.0
+2301,no,0,212Z,Resto de residuos alimenticios y preparados para animales,aggregate-resto,direct,no,30232302.0
+2302,yes,5,212B,"Afrecho, afrechillo, pellets (trigo, maíz, sorgo, mijo)",clean,direct,no,53981025.0
+2303,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+2304,yes,4,212AE,Subproductos oleaginosos de soja,clean,direct,no,32518856.0
+2305,yes,11,212AD,Subproductos oleaginosos de maní,clean,direct,no,9746090.0
+2306,yes,1,212AB,Subproductos oleaginosos de girasol,clean,direct,no,
+2307,no,0,212Z,Resto de residuos alimenticios y preparados para animales,aggregate-resto,direct,no,30232302.0
+2308,yes,10,212Z,Resto de residuos alimenticios y preparados para animales,aggregate-resto,direct,no,30232302.0
+2309,yes,31,212Z,Resto de residuos alimenticios y preparados para animales,aggregate-resto,direct,no,30232302.0
+2401,yes,2,108A,Tabaco sin elaborar en hojas,clean,direct,no,
+2402,no,0,108Z,Resto de tabaco sin elaborar,aggregate-resto,direct,no,
+2403,no,0,108Z,Resto de tabaco sin elaborar,aggregate-resto,direct,no,
+2501,yes,20,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2502,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2503,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2504,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2505,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2506,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2507,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2508,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2509,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2510,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2511,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2512,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2513,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2514,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2515,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2516,yes,10,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2517,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2518,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2519,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2520,yes,29,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2521,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2522,yes,29,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2523,yes,5,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2524,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2525,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2526,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2527,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2528,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2529,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2530,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2601,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2602,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2603,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2604,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2605,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2606,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2607,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2608,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2609,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2610,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2611,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2612,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2613,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2614,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2615,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2616,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2617,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2618,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2619,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2620,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2621,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2701,no,0,499,Resto de combustibles ,aggregate-resto,direct,no,
+2702,no,0,499,Resto de combustibles ,aggregate-resto,direct,no,
+2703,no,0,499,Resto de combustibles ,aggregate-resto,direct,no,
+2704,no,0,499,Resto de combustibles ,aggregate-resto,direct,no,
+2705,no,0,499,Resto de combustibles ,aggregate-resto,direct,no,
+2706,no,0,499,Resto de combustibles ,aggregate-resto,direct,no,
+2707,no,0,499,Resto de combustibles ,aggregate-resto,direct,no,
+2708,no,0,499,Resto de combustibles ,aggregate-resto,direct,no,
+2709,no,0,401,Petróleo crudo,clean,direct,no,
+2710,yes,1,402A,Naftas,clean,direct,yes,
+2710,yes,1,402B,Gasolinas,clean,direct,yes,
+2710,yes,1,403,Grasas y aceites lubricantes,clean,direct,yes,
+2711,no,0,404A,Gas de petróleo,clean,direct,no,
+2712,no,0,499,Resto de combustibles ,aggregate-resto,direct,no,
+2713,no,0,499,Resto de combustibles ,aggregate-resto,direct,no,
+2714,no,0,499,Resto de combustibles ,aggregate-resto,direct,no,
+2715,no,0,499,Resto de combustibles ,aggregate-resto,direct,no,
+2716,yes,1,499,Resto de combustibles ,aggregate-resto,direct,no,
+2801,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2802,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2803,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2804,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2805,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2806,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2807,yes,27,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2808,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2809,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2810,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2811,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2812,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2813,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2814,yes,27,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2815,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2816,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2817,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2818,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2819,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2820,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2821,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2822,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2823,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2824,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2825,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2826,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2827,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2828,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2829,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2830,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2831,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2832,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2833,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2834,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2835,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2836,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2837,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2838,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+2839,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2840,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2841,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2842,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2843,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2844,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2845,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2846,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2847,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2848,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2849,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2850,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2851,no,0,302A,Productos químicos inorgánicos,aggregate-broad-chapter,direct,no,4003480.0
+2901,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2902,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2903,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2904,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2905,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2906,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2907,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2908,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2909,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2910,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2911,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2912,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2913,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2914,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2915,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2916,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2917,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2918,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2919,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2920,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2921,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2922,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2923,yes,2,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2924,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2925,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2926,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2927,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2928,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2929,yes,2,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2930,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2931,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2932,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2933,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2934,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2935,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2936,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2937,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2938,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2939,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2940,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2941,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+2942,no,0,302B,Productos químicos orgánicos,aggregate-broad-chapter,direct,no,11963845.0
+3001,no,0,302C,Productos farmacéuticos,aggregate-broad-chapter,direct,no,3357053.0
+3002,yes,38,302C,Productos farmacéuticos,aggregate-broad-chapter,direct,no,3357053.0
+3003,yes,16,302C,Productos farmacéuticos,aggregate-broad-chapter,direct,no,3357053.0
+3004,no,0,302C,Productos farmacéuticos,aggregate-broad-chapter,direct,no,3357053.0
+3005,no,0,302C,Productos farmacéuticos,aggregate-broad-chapter,direct,no,3357053.0
+3006,no,0,302C,Productos farmacéuticos,aggregate-broad-chapter,direct,no,3357053.0
+3101,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3102,no,0,302D,Abonos y fertilizantes distintos de los primarios,clean,direct,no,106935.0
+3103,no,0,302D,Abonos y fertilizantes distintos de los primarios,clean,direct,no,106935.0
+3104,no,0,302D,Abonos y fertilizantes distintos de los primarios,clean,direct,no,106935.0
+3105,yes,10,302D,Abonos y fertilizantes distintos de los primarios,clean,direct,no,106935.0
+3201,no,0,213A,Extracto de quebracho,clean,direct,yes,
+3201,no,0,213Z,Otros extractos curtientes y tintóreos excluido extracto de quebracho,clean,direct,yes,366332.0
+3202,no,0,213Z,Otros extractos curtientes y tintóreos excluido extracto de quebracho,clean,direct,no,366332.0
+3203,no,0,213Z,Otros extractos curtientes y tintóreos excluido extracto de quebracho,clean,direct,no,366332.0
+3204,yes,3,213Z,Otros extractos curtientes y tintóreos excluido extracto de quebracho,clean,direct,no,366332.0
+3205,no,0,213Z,Otros extractos curtientes y tintóreos excluido extracto de quebracho,clean,direct,no,366332.0
+3206,no,0,213Z,Otros extractos curtientes y tintóreos excluido extracto de quebracho,clean,direct,no,366332.0
+3207,no,0,213Z,Otros extractos curtientes y tintóreos excluido extracto de quebracho,clean,direct,no,366332.0
+3208,no,0,302E,"Extractos curtientes y tintóreos, pinturas y tintas",clean,direct,no,107613.0
+3209,no,0,302E,"Extractos curtientes y tintóreos, pinturas y tintas",clean,direct,no,107613.0
+3210,no,0,302E,"Extractos curtientes y tintóreos, pinturas y tintas",clean,direct,no,107613.0
+3211,no,0,302E,"Extractos curtientes y tintóreos, pinturas y tintas",clean,direct,no,107613.0
+3212,no,0,302E,"Extractos curtientes y tintóreos, pinturas y tintas",clean,direct,no,107613.0
+3213,no,0,302E,"Extractos curtientes y tintóreos, pinturas y tintas",clean,direct,no,107613.0
+3214,no,0,302E,"Extractos curtientes y tintóreos, pinturas y tintas",clean,direct,no,107613.0
+3215,no,0,302E,"Extractos curtientes y tintóreos, pinturas y tintas",clean,direct,no,107613.0
+3301,yes,1,302F,"Aceites esenciales y resinoides (perfume, cosmética, tocador)",clean,direct,no,22346.0
+3302,yes,1,302F,"Aceites esenciales y resinoides (perfume, cosmética, tocador)",clean,direct,no,22346.0
+3303,yes,20,302F,"Aceites esenciales y resinoides (perfume, cosmética, tocador)",clean,direct,no,22346.0
+3304,yes,3,302F,"Aceites esenciales y resinoides (perfume, cosmética, tocador)",clean,direct,no,22346.0
+3305,no,0,302F,"Aceites esenciales y resinoides (perfume, cosmética, tocador)",clean,direct,no,22346.0
+3306,no,0,302F,"Aceites esenciales y resinoides (perfume, cosmética, tocador)",clean,direct,no,22346.0
+3307,no,0,302F,"Aceites esenciales y resinoides (perfume, cosmética, tocador)",clean,direct,no,22346.0
+3401,yes,1,302G,"Jabones, productos orgánicos tensoactivos, ceras",clean,direct,no,1476250.0
+3402,yes,12,302G,"Jabones, productos orgánicos tensoactivos, ceras",clean,direct,no,1476250.0
+3403,no,0,302G,"Jabones, productos orgánicos tensoactivos, ceras",clean,direct,no,1476250.0
+3404,yes,1,302G,"Jabones, productos orgánicos tensoactivos, ceras",clean,direct,no,1476250.0
+3405,no,0,302G,"Jabones, productos orgánicos tensoactivos, ceras",clean,direct,no,1476250.0
+3406,no,0,302G,"Jabones, productos orgánicos tensoactivos, ceras",clean,direct,no,1476250.0
+3407,no,0,302G,"Jabones, productos orgánicos tensoactivos, ceras",clean,direct,no,1476250.0
+3501,no,0,213B,"Caseína,albúminas,gelatinas y sus derivados",clean,direct,no,
+3502,no,0,213B,"Caseína,albúminas,gelatinas y sus derivados",clean,direct,no,
+3503,no,0,213B,"Caseína,albúminas,gelatinas y sus derivados",clean,direct,no,
+3504,no,0,213B,"Caseína,albúminas,gelatinas y sus derivados",clean,direct,no,
+3505,yes,1,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3506,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3507,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3601,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3602,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3603,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3604,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3605,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3606,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3701,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3702,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3703,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3704,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3705,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3706,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3707,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3801,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3802,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3803,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3804,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3805,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3806,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3807,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3808,yes,6,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+3809,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3810,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3811,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3812,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3813,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3814,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3815,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3816,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3817,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3818,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3819,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3820,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3821,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3822,yes,13,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3823,no,0,302JZ,Resto de los productos diversos de las industrias químicas,aggregate-resto,direct,no,1890275.0
+3901,yes,96,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3902,yes,59,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3903,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3904,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3905,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3906,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3907,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3908,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3909,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3910,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3911,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3912,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3913,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3914,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3915,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3916,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3917,yes,10,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3918,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3919,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3920,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3921,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3922,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3923,yes,30,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3924,no,0,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3925,yes,5,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+3926,yes,53,303,Materias plásticas y sus manufacturas,aggregate-broad-chapter,direct,no,37228990.0
+4001,no,0,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4002,no,0,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4003,no,0,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4004,no,0,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4005,no,0,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4006,no,0,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4007,no,0,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4008,no,0,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4009,no,0,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4010,yes,15,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4011,yes,32,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4012,no,0,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4013,no,0,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4014,no,0,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4015,no,0,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4016,no,0,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4017,no,0,304,Cauchos y sus manufacturas,aggregate-broad-chapter,direct,no,30972444.0
+4101,yes,1,214A,Pieles y cueros en bruto,clean,direct,no,
+4102,no,0,214A,Pieles y cueros en bruto,clean,direct,no,
+4103,no,0,214A,Pieles y cueros en bruto,clean,direct,no,
+4104,yes,36,214B,Pieles y cueros preparados,clean,direct,no,
+4105,no,0,214B,Pieles y cueros preparados,clean,direct,no,
+4106,no,0,214B,Pieles y cueros preparados,clean,direct,no,
+4107,no,0,214B,Pieles y cueros preparados,clean,direct,no,
+4108,no,0,214B,Pieles y cueros preparados,clean,direct,no,
+4109,no,0,214B,Pieles y cueros preparados,clean,direct,no,
+4110,no,0,214B,Pieles y cueros preparados,clean,direct,no,
+4111,no,0,214B,Pieles y cueros preparados,clean,direct,no,
+4201,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4202,yes,6,305,"Manufacturas de cuero, marroquinería, etc.",clean,direct,no,19994.0
+4203,yes,6,305,"Manufacturas de cuero, marroquinería, etc.",clean,direct,no,19994.0
+4204,no,0,305,"Manufacturas de cuero, marroquinería, etc.",clean,direct,no,19994.0
+4205,no,0,305,"Manufacturas de cuero, marroquinería, etc.",clean,direct,no,19994.0
+4206,no,0,305,"Manufacturas de cuero, marroquinería, etc.",clean,direct,no,19994.0
+4301,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4302,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4303,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4304,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4401,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4402,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4403,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4404,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4405,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4406,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4407,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4408,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4409,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4410,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4411,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4412,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4413,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4414,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4415,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4416,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4417,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4418,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4419,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4420,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4421,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4501,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4502,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4503,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4504,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4601,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4602,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4701,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4702,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4703,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4704,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4705,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4706,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4707,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+4801,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4802,yes,15,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4803,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4804,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4805,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4806,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4807,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4808,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4809,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4810,yes,15,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4811,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4812,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4813,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4814,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4815,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4816,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4817,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4818,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4819,yes,9,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4820,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4821,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4822,no,0,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4823,yes,30,306A,"Papel,cartón y sus manufacturas",aggregate-broad-chapter,direct,no,3641819.0
+4901,no,0,306B,Productos editoriales y otras industrias gráficas,clean,direct,no,45321.0
+4902,no,0,306B,Productos editoriales y otras industrias gráficas,clean,direct,no,45321.0
+4903,no,0,306B,Productos editoriales y otras industrias gráficas,clean,direct,no,45321.0
+4904,no,0,306B,Productos editoriales y otras industrias gráficas,clean,direct,no,45321.0
+4905,no,0,306B,Productos editoriales y otras industrias gráficas,clean,direct,no,45321.0
+4906,no,0,306B,Productos editoriales y otras industrias gráficas,clean,direct,no,45321.0
+4907,no,0,306B,Productos editoriales y otras industrias gráficas,clean,direct,no,45321.0
+4908,no,0,306B,Productos editoriales y otras industrias gráficas,clean,direct,no,45321.0
+4909,no,0,306B,Productos editoriales y otras industrias gráficas,clean,direct,no,45321.0
+4910,no,0,306B,Productos editoriales y otras industrias gráficas,clean,direct,no,45321.0
+4911,no,0,306B,Productos editoriales y otras industrias gráficas,clean,direct,no,45321.0
+5001,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+5002,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+5003,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+5004,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+5005,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+5006,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+5007,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+5101,yes,6,109,Lanas sucias,clean,direct,no,
+5102,no,0,109,Lanas sucias,clean,direct,no,
+5103,no,0,215,Lanas elaboradas,clean,direct,no,
+5104,no,0,215,Lanas elaboradas,clean,direct,no,
+5105,no,0,215,Lanas elaboradas,clean,direct,no,
+5106,yes,15,215,Lanas elaboradas,clean,direct,no,
+5107,yes,12,215,Lanas elaboradas,clean,direct,no,
+5108,no,0,215,Lanas elaboradas,clean,direct,no,
+5109,no,0,215,Lanas elaboradas,clean,direct,no,
+5110,no,0,215,Lanas elaboradas,clean,direct,no,
+5111,no,0,215,Lanas elaboradas,clean,direct,no,
+5112,no,0,215,Lanas elaboradas,clean,direct,no,
+5113,no,0,215,Lanas elaboradas,clean,direct,no,
+5201,no,0,110,Fibras de algodón,clean,direct,no,344403.0
+5202,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+5203,no,0,299,Resto de MOA (Manufacturas de Origen Agropecuario),aggregate-resto,direct,no,30451363.0
+5204,no,0,307C,Hilados y tejidos de algodón,clean,direct,no,
+5205,no,0,307C,Hilados y tejidos de algodón,clean,direct,no,
+5206,no,0,307C,Hilados y tejidos de algodón,clean,direct,no,
+5207,no,0,307C,Hilados y tejidos de algodón,clean,direct,no,
+5208,no,0,307C,Hilados y tejidos de algodón,clean,direct,no,
+5209,no,0,307C,Hilados y tejidos de algodón,clean,direct,no,
+5210,no,0,307C,Hilados y tejidos de algodón,clean,direct,no,
+5211,no,0,307C,Hilados y tejidos de algodón,clean,direct,no,
+5212,no,0,307C,Hilados y tejidos de algodón,clean,direct,no,
+5301,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5302,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5303,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5304,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5305,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5306,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5307,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5308,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5309,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5310,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5311,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5401,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5402,no,0,307A,Textiles sintéticos o artificiales continuos,clean,direct,no,
+5403,no,0,307A,Textiles sintéticos o artificiales continuos,clean,direct,no,
+5404,no,0,307A,Textiles sintéticos o artificiales continuos,clean,direct,no,
+5405,no,0,307A,Textiles sintéticos o artificiales continuos,clean,direct,no,
+5406,no,0,307A,Textiles sintéticos o artificiales continuos,clean,direct,no,
+5407,no,0,307A,Textiles sintéticos o artificiales continuos,clean,direct,no,
+5408,no,0,307A,Textiles sintéticos o artificiales continuos,clean,direct,no,
+5501,no,0,307D,Textiles sintéticos o artificiales discontinuos,clean,direct,no,
+5502,no,0,307D,Textiles sintéticos o artificiales discontinuos,clean,direct,no,
+5503,no,0,307D,Textiles sintéticos o artificiales discontinuos,clean,direct,no,
+5504,no,0,307D,Textiles sintéticos o artificiales discontinuos,clean,direct,no,
+5505,no,0,307D,Textiles sintéticos o artificiales discontinuos,clean,direct,no,
+5506,no,0,307D,Textiles sintéticos o artificiales discontinuos,clean,direct,no,
+5507,no,0,307D,Textiles sintéticos o artificiales discontinuos,clean,direct,no,
+5508,no,0,307D,Textiles sintéticos o artificiales discontinuos,clean,direct,no,
+5509,yes,1,307D,Textiles sintéticos o artificiales discontinuos,clean,direct,no,
+5510,no,0,307D,Textiles sintéticos o artificiales discontinuos,clean,direct,no,
+5511,no,0,307D,Textiles sintéticos o artificiales discontinuos,clean,direct,no,
+5512,no,0,307D,Textiles sintéticos o artificiales discontinuos,clean,direct,no,
+5513,no,0,307D,Textiles sintéticos o artificiales discontinuos,clean,direct,no,
+5514,no,0,307D,Textiles sintéticos o artificiales discontinuos,clean,direct,no,
+5515,no,0,307D,Textiles sintéticos o artificiales discontinuos,clean,direct,no,
+5516,no,0,307D,Textiles sintéticos o artificiales discontinuos,clean,direct,no,
+5601,no,0,307F,"Guatas y filtros, cordelería, tejidos especiales",clean,direct,no,11368.0
+5602,no,0,307F,"Guatas y filtros, cordelería, tejidos especiales",clean,direct,no,11368.0
+5603,no,0,307F,"Guatas y filtros, cordelería, tejidos especiales",clean,direct,no,11368.0
+5604,no,0,307F,"Guatas y filtros, cordelería, tejidos especiales",clean,direct,no,11368.0
+5605,no,0,307F,"Guatas y filtros, cordelería, tejidos especiales",clean,direct,no,11368.0
+5606,no,0,307F,"Guatas y filtros, cordelería, tejidos especiales",clean,direct,no,11368.0
+5607,no,0,307F,"Guatas y filtros, cordelería, tejidos especiales",clean,direct,no,11368.0
+5608,no,0,307F,"Guatas y filtros, cordelería, tejidos especiales",clean,direct,no,11368.0
+5609,no,0,307F,"Guatas y filtros, cordelería, tejidos especiales",clean,direct,no,11368.0
+5701,no,0,307E,"Alfombras, tapices, terciopelo, felpas",clean,direct,no,2060.0
+5702,no,0,307E,"Alfombras, tapices, terciopelo, felpas",clean,direct,no,2060.0
+5703,no,0,307E,"Alfombras, tapices, terciopelo, felpas",clean,direct,no,2060.0
+5704,no,0,307E,"Alfombras, tapices, terciopelo, felpas",clean,direct,no,2060.0
+5705,no,0,307E,"Alfombras, tapices, terciopelo, felpas",clean,direct,no,2060.0
+5801,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5802,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5803,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5804,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5805,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5806,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5807,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5808,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5809,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5810,no,0,307F,"Guatas y filtros, cordelería, tejidos especiales",clean,direct,no,11368.0
+5811,no,0,307F,"Guatas y filtros, cordelería, tejidos especiales",clean,direct,no,11368.0
+5901,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5902,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5903,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5904,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5905,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5906,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5907,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5908,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5909,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5910,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+5911,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+6001,no,0,307G,Géneros de punto,clean,direct,no,
+6002,no,0,307G,Géneros de punto,clean,direct,no,
+6101,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6102,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6103,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6104,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6105,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6106,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6107,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6108,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6109,yes,15,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6110,yes,15,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6111,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6112,yes,5,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6113,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6114,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6115,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6116,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6117,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6201,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6202,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6203,yes,5,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6204,yes,5,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6205,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6206,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6207,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6208,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6209,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6210,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6211,yes,5,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6212,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6213,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6214,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6215,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6216,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6217,no,0,307H,Prendas de vestir y accesorios de tejidos,clean,direct,no,1104905.0
+6301,no,0,307I,Otros artículos de tejidos confeccionados,clean,direct,no,11697.0
+6302,no,0,307I,Otros artículos de tejidos confeccionados,clean,direct,no,11697.0
+6303,no,0,307I,Otros artículos de tejidos confeccionados,clean,direct,no,11697.0
+6304,no,0,307I,Otros artículos de tejidos confeccionados,clean,direct,no,11697.0
+6305,no,0,307I,Otros artículos de tejidos confeccionados,clean,direct,no,11697.0
+6306,no,0,307I,Otros artículos de tejidos confeccionados,clean,direct,no,11697.0
+6307,no,0,307I,Otros artículos de tejidos confeccionados,clean,direct,no,11697.0
+6308,no,0,307I,Otros artículos de tejidos confeccionados,clean,direct,no,11697.0
+6309,no,0,307I,Otros artículos de tejidos confeccionados,clean,direct,no,11697.0
+6310,no,0,307I,Otros artículos de tejidos confeccionados,clean,direct,no,11697.0
+6401,no,0,308,Calzado y sus componentes,clean,direct,no,
+6402,no,0,308,Calzado y sus componentes,clean,direct,no,
+6403,yes,33,308,Calzado y sus componentes,clean,direct,no,
+6404,yes,3,308,Calzado y sus componentes,clean,direct,no,
+6405,no,0,308,Calzado y sus componentes,clean,direct,no,
+6406,no,0,308,Calzado y sus componentes,clean,direct,no,
+6501,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+6502,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+6503,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+6504,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+6505,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+6506,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+6507,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+6601,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+6602,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+6603,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+6701,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+6702,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+6703,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+6704,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+6801,no,0,309A,Manufacturas de piedra y amianto,clean,direct,no,950883.0
+6802,no,0,309A,Manufacturas de piedra y amianto,clean,direct,no,950883.0
+6803,no,0,309A,Manufacturas de piedra y amianto,clean,direct,no,950883.0
+6804,no,0,309A,Manufacturas de piedra y amianto,clean,direct,no,950883.0
+6805,no,0,309A,Manufacturas de piedra y amianto,clean,direct,no,950883.0
+6806,no,0,309A,Manufacturas de piedra y amianto,clean,direct,no,950883.0
+6807,no,0,309A,Manufacturas de piedra y amianto,clean,direct,no,950883.0
+6808,no,0,309A,Manufacturas de piedra y amianto,clean,direct,no,950883.0
+6809,no,0,309A,Manufacturas de piedra y amianto,clean,direct,no,950883.0
+6810,yes,27,309A,Manufacturas de piedra y amianto,clean,direct,no,950883.0
+6811,no,0,309A,Manufacturas de piedra y amianto,clean,direct,no,950883.0
+6812,no,0,309A,Manufacturas de piedra y amianto,clean,direct,no,950883.0
+6813,no,0,309A,Manufacturas de piedra y amianto,clean,direct,no,950883.0
+6814,no,0,309A,Manufacturas de piedra y amianto,clean,direct,no,950883.0
+6815,no,0,309A,Manufacturas de piedra y amianto,clean,direct,no,950883.0
+6901,no,0,309B,Productos cerámicos,clean,direct,no,3931.0
+6902,no,0,309B,Productos cerámicos,clean,direct,no,3931.0
+6903,no,0,309B,Productos cerámicos,clean,direct,no,3931.0
+6904,no,0,309B,Productos cerámicos,clean,direct,no,3931.0
+6905,no,0,309B,Productos cerámicos,clean,direct,no,3931.0
+6906,no,0,309B,Productos cerámicos,clean,direct,no,3931.0
+6907,yes,27,309B,Productos cerámicos,clean,direct,no,3931.0
+6908,no,0,309B,Productos cerámicos,clean,direct,no,3931.0
+6909,no,0,309B,Productos cerámicos,clean,direct,no,3931.0
+6910,no,0,309B,Productos cerámicos,clean,direct,no,3931.0
+6911,no,0,309B,Productos cerámicos,clean,direct,no,3931.0
+6912,no,0,309B,Productos cerámicos,clean,direct,no,3931.0
+6913,no,0,309B,Productos cerámicos,clean,direct,no,3931.0
+6914,no,0,309B,Productos cerámicos,clean,direct,no,3931.0
+7001,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7002,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7003,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7004,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7005,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7006,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7007,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7008,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7009,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7010,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7011,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7012,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7013,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7014,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7015,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7016,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7017,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7018,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7019,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7020,no,0,309C,Vidrio y sus manufacturas,clean,direct,no,104892.0
+7101,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7102,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7103,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7104,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7105,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7106,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7107,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7108,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7109,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7110,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7111,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7112,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7113,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7114,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7115,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7116,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7117,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7118,no,0,310A,Piedras y metales preciosos,clean,direct,no,
+7201,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7202,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7203,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7204,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7205,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7206,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7207,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7208,no,0,311AC,"Chapas y planchas de fundición,hierro o acero",clean,direct,no,
+7209,no,0,311AC,"Chapas y planchas de fundición,hierro o acero",clean,direct,no,
+7210,yes,77,311AC,"Chapas y planchas de fundición,hierro o acero",clean,direct,no,
+7211,no,0,311AC,"Chapas y planchas de fundición,hierro o acero",clean,direct,no,
+7212,no,0,311AC,"Chapas y planchas de fundición,hierro o acero",clean,direct,no,
+7213,no,0,311AA,"Barras de fundición,hierro o acero",clean,direct,no,
+7214,no,0,311AA,"Barras de fundición,hierro o acero",clean,direct,no,
+7215,no,0,311AA,"Barras de fundición,hierro o acero",clean,direct,no,
+7216,no,0,311AB,"Perfiles estructurales de fundición,hierro o acero",clean,direct,no,
+7217,no,0,311AB,"Perfiles estructurales de fundición,hierro o acero",clean,direct,no,
+7218,no,0,311AD,Aceros especiales,clean,direct,no,
+7219,no,0,311AD,Aceros especiales,clean,direct,no,
+7220,no,0,311AD,Aceros especiales,clean,direct,no,
+7221,no,0,311AD,Aceros especiales,clean,direct,no,
+7222,no,0,311AD,Aceros especiales,clean,direct,no,
+7223,no,0,311AD,Aceros especiales,clean,direct,no,
+7224,no,0,311AD,Aceros especiales,clean,direct,no,
+7225,no,0,311AD,Aceros especiales,clean,direct,no,
+7226,no,0,311AD,Aceros especiales,clean,direct,no,
+7227,no,0,311AD,Aceros especiales,clean,direct,no,
+7228,no,0,311AD,Aceros especiales,clean,direct,no,
+7229,no,0,311AD,Aceros especiales,clean,direct,no,
+7301,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7302,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7303,no,0,311AE,"Tubos y caños de fundición, hierro o acero",clean,direct,no,294837.0
+7304,no,0,311AE,"Tubos y caños de fundición, hierro o acero",clean,direct,no,294837.0
+7305,no,0,311AE,"Tubos y caños de fundición, hierro o acero",clean,direct,no,294837.0
+7306,no,0,311AE,"Tubos y caños de fundición, hierro o acero",clean,direct,no,294837.0
+7307,no,0,311AE,"Tubos y caños de fundición, hierro o acero",clean,direct,no,294837.0
+7308,yes,89,311AF,"Estructuras, hangares, etc. de hierro o acero",clean,direct,no,17866.0
+7309,yes,4,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+7310,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7311,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7312,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7313,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7314,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7315,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7316,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7317,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7318,yes,18,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7319,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7320,yes,2,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7321,no,0,311AG,"Estufas, cocinas, etc.de fundición,hierro o acero",clean,direct,no,
+7322,no,0,311AG,"Estufas, cocinas, etc.de fundición,hierro o acero",clean,direct,no,
+7323,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7324,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7325,no,0,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7326,yes,53,311AZ,"Resto de arrabio,fundición,hierro o acero",aggregate-resto,direct,no,5733165.0
+7401,no,0,311B,Cobre,clean,direct,no,8487.0
+7402,no,0,311B,Cobre,clean,direct,no,8487.0
+7403,no,0,311B,Cobre,clean,direct,no,8487.0
+7404,no,0,311B,Cobre,clean,direct,no,8487.0
+7405,no,0,311B,Cobre,clean,direct,no,8487.0
+7406,no,0,311B,Cobre,clean,direct,no,8487.0
+7407,no,0,311B,Cobre,clean,direct,no,8487.0
+7408,no,0,311B,Cobre,clean,direct,no,8487.0
+7409,no,0,311B,Cobre,clean,direct,no,8487.0
+7410,no,0,311B,Cobre,clean,direct,no,8487.0
+7411,no,0,311B,Cobre,clean,direct,no,8487.0
+7412,no,0,311B,Cobre,clean,direct,no,8487.0
+7413,no,0,311B,Cobre,clean,direct,no,8487.0
+7414,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+7415,no,0,311B,Cobre,clean,direct,no,8487.0
+7416,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+7417,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+7418,no,0,311B,Cobre,clean,direct,no,8487.0
+7419,no,0,311B,Cobre,clean,direct,no,8487.0
+7501,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+7502,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+7503,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+7504,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+7505,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+7506,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+7507,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+7508,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+7601,no,0,311C,Aluminio,clean,direct,no,289372.0
+7602,no,0,311C,Aluminio,clean,direct,no,289372.0
+7603,no,0,311C,Aluminio,clean,direct,no,289372.0
+7604,no,0,311C,Aluminio,clean,direct,no,289372.0
+7605,no,0,311C,Aluminio,clean,direct,no,289372.0
+7606,no,0,311C,Aluminio,clean,direct,no,289372.0
+7607,no,0,311C,Aluminio,clean,direct,no,289372.0
+7608,no,0,311C,Aluminio,clean,direct,no,289372.0
+7609,no,0,311C,Aluminio,clean,direct,no,289372.0
+7610,yes,7,311C,Aluminio,clean,direct,no,289372.0
+7611,no,0,311C,Aluminio,clean,direct,no,289372.0
+7612,no,0,311C,Aluminio,clean,direct,no,289372.0
+7613,no,0,311C,Aluminio,clean,direct,no,289372.0
+7614,no,0,311C,Aluminio,clean,direct,no,289372.0
+7615,no,0,311C,Aluminio,clean,direct,no,289372.0
+7616,no,0,311C,Aluminio,clean,direct,no,289372.0
+7801,no,0,311D,Plomo,clean,direct,no,
+7802,no,0,311D,Plomo,clean,direct,no,
+7803,no,0,311D,Plomo,clean,direct,no,
+7804,no,0,311D,Plomo,clean,direct,no,
+7805,no,0,311D,Plomo,clean,direct,no,
+7806,no,0,311D,Plomo,clean,direct,no,
+7901,no,0,311E,Otros metales comunes,clean,direct,no,
+7902,no,0,311E,Otros metales comunes,clean,direct,no,
+7903,no,0,311E,Otros metales comunes,clean,direct,no,
+7904,no,0,311E,Otros metales comunes,clean,direct,no,
+7905,no,0,311E,Otros metales comunes,clean,direct,no,
+7906,no,0,311E,Otros metales comunes,clean,direct,no,
+7907,no,0,311E,Otros metales comunes,clean,direct,no,
+8001,no,0,311E,Otros metales comunes,clean,direct,no,
+8002,no,0,311E,Otros metales comunes,clean,direct,no,
+8003,no,0,311E,Otros metales comunes,clean,direct,no,
+8004,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8005,no,0,311E,Otros metales comunes,clean,direct,no,
+8006,no,0,311E,Otros metales comunes,clean,direct,no,
+8007,no,0,311E,Otros metales comunes,clean,direct,no,
+8101,no,0,311E,Otros metales comunes,clean,direct,no,
+8102,no,0,311E,Otros metales comunes,clean,direct,no,
+8103,no,0,311E,Otros metales comunes,clean,direct,no,
+8104,no,0,311E,Otros metales comunes,clean,direct,no,
+8105,no,0,311E,Otros metales comunes,clean,direct,no,
+8106,no,0,311E,Otros metales comunes,clean,direct,no,
+8107,no,0,311E,Otros metales comunes,clean,direct,no,
+8108,no,0,311E,Otros metales comunes,clean,direct,no,
+8109,no,0,311E,Otros metales comunes,clean,direct,no,
+8110,no,0,311E,Otros metales comunes,clean,direct,no,
+8111,no,0,311E,Otros metales comunes,clean,direct,no,
+8112,no,0,311E,Otros metales comunes,clean,direct,no,
+8113,no,0,311E,Otros metales comunes,clean,direct,no,
+8201,yes,10,311F,Herramientas y cuchillería de metal,clean,direct,no,2048782.0
+8202,no,0,311F,Herramientas y cuchillería de metal,clean,direct,no,2048782.0
+8203,no,0,311F,Herramientas y cuchillería de metal,clean,direct,no,2048782.0
+8204,no,0,311F,Herramientas y cuchillería de metal,clean,direct,no,2048782.0
+8205,yes,13,311F,Herramientas y cuchillería de metal,clean,direct,no,2048782.0
+8206,no,0,311F,Herramientas y cuchillería de metal,clean,direct,no,2048782.0
+8207,no,0,311F,Herramientas y cuchillería de metal,clean,direct,no,2048782.0
+8208,yes,1,311F,Herramientas y cuchillería de metal,clean,direct,no,2048782.0
+8209,no,0,311F,Herramientas y cuchillería de metal,clean,direct,no,2048782.0
+8210,no,0,311F,Herramientas y cuchillería de metal,clean,direct,no,2048782.0
+8211,no,0,311F,Herramientas y cuchillería de metal,clean,direct,no,2048782.0
+8212,no,0,311F,Herramientas y cuchillería de metal,clean,direct,no,2048782.0
+8213,no,0,311F,Herramientas y cuchillería de metal,clean,direct,no,2048782.0
+8214,no,0,311F,Herramientas y cuchillería de metal,clean,direct,no,2048782.0
+8215,no,0,311F,Herramientas y cuchillería de metal,clean,direct,no,2048782.0
+8301,no,0,311G,Manufacturas diversas de metales comunes,clean,direct,no,231521.0
+8302,no,0,311G,Manufacturas diversas de metales comunes,clean,direct,no,231521.0
+8303,no,0,311G,Manufacturas diversas de metales comunes,clean,direct,no,231521.0
+8304,no,0,311G,Manufacturas diversas de metales comunes,clean,direct,no,231521.0
+8305,no,0,311G,Manufacturas diversas de metales comunes,clean,direct,no,231521.0
+8306,no,0,311G,Manufacturas diversas de metales comunes,clean,direct,no,231521.0
+8307,no,0,311G,Manufacturas diversas de metales comunes,clean,direct,no,231521.0
+8308,no,0,311G,Manufacturas diversas de metales comunes,clean,direct,no,231521.0
+8309,no,0,311G,Manufacturas diversas de metales comunes,clean,direct,no,231521.0
+8310,no,0,311G,Manufacturas diversas de metales comunes,clean,direct,no,231521.0
+8311,no,0,311G,Manufacturas diversas de metales comunes,clean,direct,no,231521.0
+8401,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8402,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8403,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8404,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8405,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8406,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8407,no,0,312AA,"Motores de explosión o de combustión interna, de émbolos y sus partes",aggregate-broad,direct,no,174432269.0
+8408,yes,1,312AA,"Motores de explosión o de combustión interna, de émbolos y sus partes",aggregate-broad,direct,no,174432269.0
+8409,no,0,312AA,"Motores de explosión o de combustión interna, de émbolos y sus partes",aggregate-broad,direct,no,174432269.0
+8410,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8411,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8412,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8413,yes,147,312AB,"Bombas, motobombas, turbobombas y sus partes",aggregate-broad,direct,no,8318446.0
+8414,yes,113,312AB,"Bombas, motobombas, turbobombas y sus partes",aggregate-broad,direct,no,8318446.0
+8415,yes,1,312AC,"Material, máquinas y aparatos para la producción de frío y sus partes",aggregate-broad,direct,no,10430885.0
+8416,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8417,no,0,312AD,Aparatos y dispositivos para calentado y cocción,clean,direct,no,797976.0
+8418,yes,5,312AC,"Material, máquinas y aparatos para la producción de frío y sus partes",aggregate-broad,direct,no,10430885.0
+8419,no,0,312AD,Aparatos y dispositivos para calentado y cocción,clean,direct,no,797976.0
+8420,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8421,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8422,yes,10,312AE,Máquinas para limpiar/llenar/cerrar botellas,clean,direct,no,878031.0
+8423,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8424,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8425,yes,12,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,direct,no,6211003.0
+8426,yes,16,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,direct,no,6211003.0
+8427,yes,1,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,direct,no,6211003.0
+8428,yes,19,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,direct,no,6211003.0
+8429,no,0,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,direct,no,6211003.0
+8430,no,0,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,direct,no,6211003.0
+8431,no,0,312AF,"Máquinas y aparatos para la elevación, carga y descarga",aggregate-broad,direct,no,6211003.0
+8432,yes,76,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios",aggregate-broad,direct,no,44657495.0
+8433,yes,74,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios",aggregate-broad,direct,no,44657495.0
+8434,yes,1,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios",aggregate-broad,direct,no,44657495.0
+8435,no,0,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios",aggregate-broad,direct,no,44657495.0
+8436,yes,18,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios",aggregate-broad,direct,no,44657495.0
+8437,yes,18,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios",aggregate-broad,direct,no,44657495.0
+8438,yes,8,312AG,Máquinas n.c.o.p. para preparación/fabricación,clean,direct,no,56668.0
+8439,no,0,312AG,Máquinas n.c.o.p. para preparación/fabricación,clean,direct,no,56668.0
+8440,no,0,312AG,Máquinas n.c.o.p. para preparación/fabricación,clean,direct,no,56668.0
+8441,no,0,312AG,Máquinas n.c.o.p. para preparación/fabricación,clean,direct,no,56668.0
+8442,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8443,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8444,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8445,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8446,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8447,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8448,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8449,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8450,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8451,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8452,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8453,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8454,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8455,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8456,no,0,312AH,Máquinas para el trabajo de los metales,clean,direct,no,155507.0
+8457,no,0,312AH,Máquinas para el trabajo de los metales,clean,direct,no,155507.0
+8458,no,0,312AH,Máquinas para el trabajo de los metales,clean,direct,no,155507.0
+8459,no,0,312AH,Máquinas para el trabajo de los metales,clean,direct,no,155507.0
+8460,no,0,312AH,Máquinas para el trabajo de los metales,clean,direct,no,155507.0
+8461,no,0,312AH,Máquinas para el trabajo de los metales,clean,direct,no,155507.0
+8462,no,0,312AH,Máquinas para el trabajo de los metales,clean,direct,no,155507.0
+8463,no,0,312AH,Máquinas para el trabajo de los metales,clean,direct,no,155507.0
+8464,no,0,312AH,Máquinas para el trabajo de los metales,clean,direct,no,155507.0
+8465,no,0,312AH,Máquinas para el trabajo de los metales,clean,direct,no,155507.0
+8466,no,0,312AH,Máquinas para el trabajo de los metales,clean,direct,no,155507.0
+8467,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8468,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8469,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8470,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8471,no,0,312AJ,Máquinas automáticas para el procesamiento de datos,clean,direct,no,
+8472,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8473,no,0,312AK,"Piezas y accesorios para máquina de escribir, calcular, estadística y otras máquinas de oficina",clean,direct,no,
+8474,yes,1,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8475,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8476,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8477,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8478,no,0,312AZ,"Resto de máquinas, aparatos y artículos mecánicos",aggregate-resto,direct,no,943625.0
+8479,no,0,312AL,"Otras máquinas y aparatos mecánicos, piezas y accesorios",aggregate-broad,direct,no,44657495.0
+8480,yes,10,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8481,no,0,312AM,Grifería y similares,clean,direct,no,2216941.0
+8482,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8483,yes,1,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8484,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8485,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8501,yes,65,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8502,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8503,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8504,yes,64,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8505,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8506,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8507,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8508,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8509,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8510,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8511,yes,1,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8512,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8513,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8514,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8515,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8516,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8517,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8518,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8519,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8520,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8521,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8522,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8523,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8524,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8525,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8526,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8527,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8528,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8529,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8530,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8531,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8532,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8533,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8534,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8535,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8536,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8537,yes,2,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8538,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8539,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8540,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8541,yes,3,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8542,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8543,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8544,yes,3,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8545,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8546,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8547,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8548,no,0,312B,Máquinas y aparatos eléctricos y objetos destinado al uso electrónico y sus partes,aggregate-broad-chapter,direct,no,41032100.0
+8601,no,0,313A,Vehículos y materiales para vías férreas y sus partes,clean,direct,no,
+8602,no,0,313A,Vehículos y materiales para vías férreas y sus partes,clean,direct,no,
+8603,no,0,313A,Vehículos y materiales para vías férreas y sus partes,clean,direct,no,
+8604,no,0,313A,Vehículos y materiales para vías férreas y sus partes,clean,direct,no,
+8605,no,0,313A,Vehículos y materiales para vías férreas y sus partes,clean,direct,no,
+8606,no,0,313A,Vehículos y materiales para vías férreas y sus partes,clean,direct,no,
+8607,no,0,313A,Vehículos y materiales para vías férreas y sus partes,clean,direct,no,
+8608,no,0,313A,Vehículos y materiales para vías férreas y sus partes,clean,direct,no,
+8609,no,0,313A,Vehículos y materiales para vías férreas y sus partes,clean,direct,no,
+8701,no,0,313BZ,Resto de vehículos automóviles/tractores/ciclos,clean,direct,no,2835246.0
+8702,yes,55,313BB,Vehículos automóviles terrestres,aggregate-broad-chapter,direct,no,674541884.0
+8703,yes,60,313BB,Vehículos automóviles terrestres,aggregate-broad-chapter,direct,no,674541884.0
+8704,yes,24,313BB,Vehículos automóviles terrestres,aggregate-broad-chapter,direct,no,674541884.0
+8705,yes,2,313BB,Vehículos automóviles terrestres,aggregate-broad-chapter,direct,no,674541884.0
+8706,no,0,313BC,Partes y piezas de vehículos y tractores,aggregate-broad,direct,no,260046171.0
+8707,no,0,313BC,Partes y piezas de vehículos y tractores,aggregate-broad,direct,no,260046171.0
+8708,yes,53,313BC,Partes y piezas de vehículos y tractores,aggregate-broad,direct,no,260046171.0
+8709,no,0,313BZ,Resto de vehículos automóviles/tractores/ciclos,clean,direct,no,2835246.0
+8710,no,0,313BZ,Resto de vehículos automóviles/tractores/ciclos,clean,direct,no,2835246.0
+8711,no,0,313BZ,Resto de vehículos automóviles/tractores/ciclos,clean,direct,no,2835246.0
+8712,no,0,313BZ,Resto de vehículos automóviles/tractores/ciclos,clean,direct,no,2835246.0
+8713,no,0,313BZ,Resto de vehículos automóviles/tractores/ciclos,clean,direct,no,2835246.0
+8714,yes,9,313BC,Partes y piezas de vehículos y tractores,aggregate-broad,direct,no,260046171.0
+8715,no,0,313BZ,Resto de vehículos automóviles/tractores/ciclos,clean,direct,no,2835246.0
+8716,yes,15,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+8801,no,0,314A,"Vehículos de navegación aérea, aeronaves, vehículos espaciales y sus partes",clean,direct,no,
+8802,yes,5,314A,"Vehículos de navegación aérea, aeronaves, vehículos espaciales y sus partes",clean,direct,no,
+8803,no,0,314A,"Vehículos de navegación aérea, aeronaves, vehículos espaciales y sus partes",clean,direct,no,
+8804,no,0,314A,"Vehículos de navegación aérea, aeronaves, vehículos espaciales y sus partes",clean,direct,no,
+8805,no,0,314A,"Vehículos de navegación aérea, aeronaves, vehículos espaciales y sus partes",clean,direct,no,
+8901,yes,5,314B,Vahículos de navegación marítima y fluvial,clean,direct,no,
+8902,no,0,314B,Vahículos de navegación marítima y fluvial,clean,direct,no,
+8903,no,0,314B,Vahículos de navegación marítima y fluvial,clean,direct,no,
+8904,no,0,314B,Vahículos de navegación marítima y fluvial,clean,direct,no,
+8905,no,0,314B,Vahículos de navegación marítima y fluvial,clean,direct,no,
+8906,no,0,314B,Vahículos de navegación marítima y fluvial,clean,direct,no,
+8907,no,0,314B,Vahículos de navegación marítima y fluvial,clean,direct,no,
+8908,no,0,314B,Vahículos de navegación marítima y fluvial,clean,direct,no,
+9001,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9002,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9003,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9004,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9005,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9006,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9007,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9008,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9009,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9010,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9011,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9012,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9013,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9014,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9015,yes,31,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9016,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9017,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9018,yes,25,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9019,yes,22,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9020,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9021,yes,5,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9022,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9023,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9024,yes,31,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9025,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9026,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9027,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9028,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9029,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9030,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9031,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9032,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9033,no,0,399A,"Instrumentos y aparatos de óptica, cine, fotografía y medicoquirúrgico y sus partes",aggregate-broad-chapter,direct,no,20527178.0
+9101,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9102,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9103,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9104,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9105,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9106,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9107,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9108,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9109,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9110,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9111,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9112,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9113,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9114,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9201,no,0,399C,"Instrumentos de música, partes y accesorios",clean,direct,no,
+9202,no,0,399C,"Instrumentos de música, partes y accesorios",clean,direct,no,
+9203,no,0,399C,"Instrumentos de música, partes y accesorios",clean,direct,no,
+9204,no,0,399C,"Instrumentos de música, partes y accesorios",clean,direct,no,
+9205,no,0,399C,"Instrumentos de música, partes y accesorios",clean,direct,no,
+9206,no,0,399C,"Instrumentos de música, partes y accesorios",clean,direct,no,
+9207,no,0,399C,"Instrumentos de música, partes y accesorios",clean,direct,no,
+9208,no,0,399C,"Instrumentos de música, partes y accesorios",clean,direct,no,
+9209,no,0,399C,"Instrumentos de música, partes y accesorios",clean,direct,no,
+9301,no,0,399D,Armas y municiones,clean,direct,no,21488.0
+9302,no,0,399D,Armas y municiones,clean,direct,no,21488.0
+9303,no,0,399D,Armas y municiones,clean,direct,no,21488.0
+9304,no,0,399D,Armas y municiones,clean,direct,no,21488.0
+9305,no,0,399D,Armas y municiones,clean,direct,no,21488.0
+9306,no,0,399D,Armas y municiones,clean,direct,no,21488.0
+9307,no,0,399D,Armas y municiones,clean,direct,no,21488.0
+9401,yes,31,399E,"Muebles, equipo médico-quirúrgico, construcciones prefabricadas",clean,direct,no,1670317.0
+9402,no,0,399E,"Muebles, equipo médico-quirúrgico, construcciones prefabricadas",clean,direct,no,1670317.0
+9403,yes,70,399E,"Muebles, equipo médico-quirúrgico, construcciones prefabricadas",clean,direct,no,1670317.0
+9404,no,0,399E,"Muebles, equipo médico-quirúrgico, construcciones prefabricadas",clean,direct,no,1670317.0
+9405,no,0,399E,"Muebles, equipo médico-quirúrgico, construcciones prefabricadas",clean,direct,no,1670317.0
+9406,no,0,399E,"Muebles, equipo médico-quirúrgico, construcciones prefabricadas",clean,direct,no,1670317.0
+9501,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9502,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9503,yes,14,399F,Juguetes y artículos de recreación,clean,direct,no,320397.0
+9504,yes,14,399F,Juguetes y artículos de recreación,clean,direct,no,320397.0
+9505,no,0,399F,Juguetes y artículos de recreación,clean,direct,no,320397.0
+9506,no,0,399F,Juguetes y artículos de recreación,clean,direct,no,320397.0
+9507,no,0,399F,Juguetes y artículos de recreación,clean,direct,no,320397.0
+9508,no,0,399F,Juguetes y artículos de recreación,clean,direct,no,320397.0
+9601,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9602,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9603,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9604,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9605,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9606,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9607,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9608,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9609,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9610,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9611,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9612,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9613,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9614,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9615,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9616,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9617,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9618,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9701,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9702,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9703,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9704,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9705,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9706,no,0,399Z,Resto de MOI,aggregate-resto,direct,no,421762.0
+9999,no,0,,(no OPEX line covers this HS chapter),outside-opex,no-match,no,
+XXXX,no,0,,(no OPEX line covers this HS chapter),outside-opex,no-match,no,

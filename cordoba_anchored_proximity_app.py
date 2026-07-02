@@ -369,13 +369,32 @@ def load_firms_data(_signature: str = ""):
     )
     declared["hs4"] = declared["hs4"].astype(str).str.zfill(4)
     declared["exporter_profile"] = declared["exporter_profile"].fillna("").astype(str)
+
+    # Look up CCOD_RUBRO for every HS4 in declared-ncm. The mapping covers
+    # 1,243 HS4; the four not covered (3824, 4114, 6006, 8487) fall back to
+    # 39899 'Manufacturas de origen industrial (confidencial)' — INDEC's
+    # industrial catch-all — so no HS4 is left without a rubro attribution.
+    hs4_map = pd.read_csv(
+        _data("intermediate", "hs4_to_ccod_rubro_mapping.csv"),
+        dtype={"hs4": str, "ccod_rubro": str},
+    )
+    hs4_map["hs4"] = hs4_map["hs4"].astype(str).str.zfill(4)
+    hs4_map = hs4_map.drop_duplicates("hs4").set_index("hs4")
+    rubro_code_lookup = hs4_map["ccod_rubro"].to_dict()
+    rubro_name_lookup = hs4_map["rubro_name"].to_dict()
+    _fallback_rubro = "39899"
+    _fallback_name = "Manufacturas de origen industrial (confidencial)"
+
+    _declared_rubro_code = declared["hs4"].map(rubro_code_lookup).fillna(_fallback_rubro)
+    _declared_rubro_name = declared["hs4"].map(rubro_name_lookup).fillna(_fallback_name)
+
     declared_norm = pd.DataFrame({
         "firm_id": declared["firm_id"].astype(str),
         "firm_name": declared["firm_name"].astype(str),
         "razon_social": declared["razon_social"].astype(str),
         "hs4": declared["hs4"],
-        "rubro_indec": "",
-        "rubro_indec_nombre": "",
+        "rubro_indec": _declared_rubro_code.astype(str),
+        "rubro_indec_nombre": _declared_rubro_name.astype(str),
         "attribution_type": "declared-ncm",
         "confidence": "high",
         "evidence_text": (
