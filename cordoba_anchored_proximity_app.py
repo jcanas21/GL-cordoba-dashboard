@@ -1796,6 +1796,62 @@ Al mover el slider **Umbral OPEX** del sidebar, la tabla se restringe a los HS4 
 # ---------------------------------------------------------------------------
 # Multi-page navigation
 # ---------------------------------------------------------------------------
+@st.cache_data
+def _recomendado_top_candidates(_signature: str = "", top_n: int = 30) -> list[str]:
+    """Return the candidate HS4s (zfilled) that would appear in page 2's
+    'Recomendado' preset ranking, top-N by combined score.
+
+    Mirrors _apply_profile("top_candidates"): anchor OPEX ≥ USD 10 M,
+    sections 1/2/3 excluded on both sides, natural-resource HS4 excluded,
+    proximity rank ∈ [1, 10], market ≥ USD 0.5 B, growth > 0, strategic
+    balance 0.50, weights (0.40/0.40/0.20 feas; 0.50/0.25/0.25 attr).
+    """
+    df, presence, _, _, _, _ = load_data()
+
+    anchor_universe = set(
+        presence.loc[
+            presence["max_rubro_opex_2023_2025_avg_usd"].fillna(0) >= 10_000_000,
+            "hs4",
+        ].astype(str).str.zfill(4)
+    )
+    za = df["anchor_hs4"].astype(str).str.zfill(4)
+    zc = df["candidate_hs4"].astype(str).str.zfill(4)
+    flt = df[za.isin(anchor_universe) & ~zc.isin(anchor_universe)].copy()
+    for col in ("anchor_hs_section_name", "candidate_hs_section_name"):
+        flt = flt[~flt[col].astype(str).str.match(r"^[123]\.")]
+    flt = flt[~flt["candidate_hs4"].astype(str).str.zfill(4).isin(NATURAL_RESOURCE_HS4)]
+    flt = flt[
+        pd.to_numeric(flt["proximity_rank"], errors="coerce").between(1, 10)
+        & (pd.to_numeric(flt["accessible_market_size_b"], errors="coerce") >= 0.5)
+        & (pd.to_numeric(flt["accessible_market_growth_5y"], errors="coerce") > 0)
+    ]
+    if flt.empty:
+        return []
+
+    cs = flt.groupby("candidate_hs4", as_index=False).agg(
+        accessible_market_size=("accessible_market_size", "first"),
+        accessible_market_growth_5y=("accessible_market_growth_5y", "first"),
+        dai_percentile=("dai_percentile", "first"),
+        pci=("pci", "first"),
+        distance_travelled=("distance_travelled", "first"),
+        anchor_count=("anchor_hs4", "nunique"),
+    )
+    cs["dai_mm"] = normalize_0_1(cs["dai_percentile"])
+    cs["distance_pctile"] = (
+        pd.to_numeric(cs["distance_travelled"], errors="coerce").rank(pct=True).fillna(0.5)
+    )
+    cs["pci_mm"] = normalize_0_1(cs["pci"])
+    cs["growth_mm"] = normalize_0_1(cs["accessible_market_growth_5y"])
+    cs["market_mm"] = normalize_0_1(cs["accessible_market_size"])
+    cs["anchor_mm"] = normalize_0_1(cs["anchor_count"])
+
+    feas = 0.40 * cs["dai_mm"] + 0.40 * cs["distance_pctile"] + 0.20 * cs["anchor_mm"]
+    attr = 0.50 * cs["pci_mm"] + 0.25 * cs["growth_mm"] + 0.25 * cs["market_mm"]
+    cs["combined"] = 0.5 * feas + 0.5 * attr
+    top = cs.sort_values("combined", ascending=False).head(top_n)
+    return top["candidate_hs4"].astype(str).str.zfill(4).tolist()
+
+
 def page_mercado_accesible():
     _page_header(
         "Mercado Accesible por Producto",
@@ -1805,16 +1861,23 @@ def page_mercado_accesible():
     )
 
     am = load_accessible_market(_data_signature() if "_data_signature" in globals() else "")
-    df, presence, umap, trade_2024, cluster_color, names = load_data()
 
-    # Product universe: HS4 in the proximity file (anchors + candidates) that
-    # also have accessible-market data. Default = the top-ranked candidate
-    # from the Recomendado preset (highest combined score with default weights).
-    hs4_in_am = set(am["hs92"].unique())
-    prox_hs4 = set(df["anchor_hs4"].astype(str).str.zfill(4).unique()) | set(
-        df["candidate_hs4"].astype(str).str.zfill(4).unique()
+    # Product universe: top-30 candidates from the 'Recomendado' preset on
+    # page 2. Ordered by combined score desc.
+    st.caption(
+        "Los productos disponibles corresponden a los **top-30 candidatos** que "
+        "el preset **Recomendado** de la página 2 (Análisis de Proximidad) "
+        "produce con los filtros y pesos por defecto."
     )
-    product_universe = sorted(hs4_in_am & prox_hs4)
+    hs4_in_am = set(am["hs92"].unique())
+    recomendado_top = _recomendado_top_candidates(
+        _data_signature() if "_data_signature" in globals() else ""
+    )
+    # Preserve Recomendado ranking order, but only keep HS4 with accessible-market data
+    product_universe = [h for h in recomendado_top if h in hs4_in_am]
+    if not product_universe:
+        st.info("El preset Recomendado no produjo candidatos con datos de mercado accesible.")
+        return
 
     # Label as "HS4 - Producto (Spanish)"
     label_by_hs4 = {
