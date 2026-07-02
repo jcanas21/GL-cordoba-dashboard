@@ -334,20 +334,69 @@ def load_firms_data(_signature: str = ""):
     return firm_ev, opex
 
 
-def page_inicio():
+def _page_header(title: str, caption: str = "") -> None:
+    """Render the shared page header: bandera Córdoba (left) + title +
+    Growth Lab logo (right). Used across all pages."""
     _assets = Path(__file__).resolve().parent / "assets"
     col_flag, col_title, col_gl = st.columns([1, 4, 2], vertical_alignment="center")
     with col_flag:
         st.image(str(_assets / "bandera_cordoba.svg"), width=130)
     with col_title:
-        st.title("Diversificación productiva — Córdoba")
-        st.caption(
-            "Tablero exploratorio para la agenda de diversificación productiva "
-            "de la Provincia de Córdoba, Argentina."
-        )
+        st.title(title)
+        if caption:
+            st.caption(caption)
     with col_gl:
         st.image(str(_assets / "growth_lab_logo.png"), width=220)
     st.markdown("---")
+
+
+# ISO3 → continente (Spanish). Cubre ~180 países comerciales.
+_ISO3_TO_CONTINENT: dict[str, str] = {
+    # América
+    **{c: "América" for c in [
+        "USA","CAN","MEX","BRA","ARG","CHL","COL","PER","URY","VEN","BOL","PRY","ECU",
+        "GTM","CRI","PAN","DOM","CUB","HTI","SLV","JAM","TTO","HND","NIC","BLZ","SUR",
+        "GUY","BHS","BRB","VCT","ATG","GRD","LCA","DMA","KNA","PRI"]},
+    # Europa
+    **{c: "Europa" for c in [
+        "ESP","FRA","DEU","ITA","GBR","NLD","BEL","PRT","POL","AUT","CHE","SWE","DNK",
+        "FIN","NOR","IRL","GRC","CZE","ROU","HUN","BGR","HRV","SVK","SVN","EST","LTU",
+        "LVA","LUX","MLT","RUS","UKR","BLR","SRB","BIH","ALB","MKD","MDA","MNE","ISL",
+        "CYP","AND","MCO","SMR","LIE","VAT","XKX"]},
+    # Asia
+    **{c: "Asia" for c in [
+        "CHN","JPN","KOR","IND","IDN","TUR","SAU","IRN","ISR","ARE","PAK","BGD","VNM",
+        "THA","MYS","PHL","SGP","HKG","TWN","MAC","IRQ","SYR","JOR","LBN","YEM","OMN",
+        "KWT","QAT","BHR","KAZ","UZB","KGZ","TJK","TKM","AFG","NPL","LKA","MMR","KHM",
+        "LAO","MNG","PRK","BTN","MDV","BRN","PSE","TLS","GEO","ARM","AZE"]},
+    # África
+    **{c: "África" for c in [
+        "ZAF","EGY","MAR","TUN","DZA","NGA","KEN","ETH","GHA","SEN","CIV","AGO","COD",
+        "MOZ","TZA","UGA","CMR","MDG","LBY","SDN","ZWE","ZMB","MLI","BFA","NER","TCD",
+        "SOM","GIN","RWA","BEN","TGO","SLE","LBR","MRT","NAM","BWA","GMB","GNB","GAB",
+        "CAF","COG","ERI","DJI","SSD","BDI","CPV","COM","STP","SYC","SWZ","LSO","MWI",
+        "MUS","GNQ"]},
+    # Oceanía
+    **{c: "Oceanía" for c in [
+        "AUS","NZL","PNG","FJI","SLB","VUT","WSM","TON","KIR","MHL","PLW","FSM","NRU","TUV"]},
+}
+
+
+@st.cache_data
+def load_accessible_market(_signature: str = ""):
+    df = pd.read_csv(DATA_DIR / "accessible_market_arg.csv", dtype={{"hs92": str}})
+    df["hs92"] = df["hs92"].str.zfill(4)
+    df["continente"] = df["iso3_d"].map(_ISO3_TO_CONTINENT).fillna("Otros")
+    return df
+
+
+
+def page_inicio():
+    _page_header(
+        "Diversificación productiva — Córdoba",
+        "Tablero exploratorio para la agenda de diversificación productiva "
+        "de la Provincia de Córdoba, Argentina."
+    )
 
     st.markdown("""
 ### Qué hace este tablero
@@ -514,12 +563,12 @@ def load_hs4_sector_map(_signature: str = ""):
 
 
 def page_firmas():
-    st.title("Firmas → anclas")
-    st.caption(
+    _page_header(
+        "Firmas → anclas",
         "Firmas del registro de Córdoba con evidencia de atribución HS4. "
-        "Dos capas: **`curated`** (rows con evidencia HS4 explícita + URL "
-        "fuente, curados a mano) y **`registry-keyword`** (atribución vía "
-        "match de keyword en `products_text`, post-fix sin fallback ciego)."
+        "Dos capas: curated (rows con evidencia HS4 explícita + URL fuente, "
+        "curados a mano) y registry-keyword (atribución vía match de keyword "
+        "en products_text, post-fix sin fallback ciego)."
     )
 
     firm_ev, opex = load_firms_data(_data_signature() if "_data_signature" in globals() else "")
@@ -827,8 +876,8 @@ sector/rubro coincida. Click en el fondo del treemap para limpiar.
         """)
 
 def page_analisis():
-    st.title("Córdoba — Análisis de proximidad anclada")
-    st.caption(
+    _page_header(
+        "Córdoba — Análisis de proximidad anclada",
         "Explorá productos candidatos conectados por proximidad en el espacio "
         "de productos a los HS4 donde Córdoba tiene presencia evidenciada."
     )
@@ -1311,6 +1360,11 @@ def page_analisis():
     _anchor_tbl["Producto"] = _anchor_tbl["hs4"].map(lambda h: SPANISH_OVERRIDES.get(h, ""))
     _anchor_tbl["Sector"] = _anchor_tbl["hs4"].map(lambda h: _hs4_sector.get(h, "Other"))
     _anchor_tbl["OPEX rubro (USD M)"] = _anchor_tbl["max_rubro_opex_2023_2025_avg_usd"] / 1e6
+    # Match = 'Residual' si el rubro INDEC termina en '899' (confidencial);
+    # 'Directo' en cualquier otro caso (clean / named-aggregate / broad-chapter / resto).
+    _anchor_tbl["Match"] = _anchor_tbl["primary_ccod_rubro"].astype(str).str.strip().apply(
+        lambda c: "Residual" if c.endswith("899") else "Directo"
+    )
     _anchor_tbl = _anchor_tbl.rename(columns={
         "hs4": "HS4",
         "primary_ccod_rubro": "CCOD_RUBRO",
@@ -1328,6 +1382,7 @@ def page_analisis():
 | **Sector** | Sector Atlas / Growth Lab del HS4. |
 | **CCOD_RUBRO** | Rubro INDEC (código) al que el HS4 fold-up en el panel OPEX. |
 | **Rubro INDEC** | Nombre del rubro INDEC. |
+| **Match** | Tipo de correspondencia entre el HS4 y su rubro INDEC. **`Directo`**: el rubro es específico y publicado — clean (1-2 HS4), named-aggregate, broad-chapter o resto. **`Residual`**: el rubro es confidencial INDEC (código terminado en `899`); el HS4 sólo puede establecerse desde el lado firm porque la composición interna no está publicada por Ley 17.622. |
 | **OPEX rubro (USD M)** | Monto exportado por Córdoba en ese rubro, promedio anual 2023-2025 (USD millones). Es del **rubro entero**. |
 | **# firmas** | Cantidad de firmas del registro que evidencian el HS4 (curated + registry-keyword combinadas). |
 | **Firmas ejemplo** | Sample de hasta 5 nombres de firmas evidenciando este HS4. |
@@ -1337,7 +1392,7 @@ Al mover el slider **Umbral OPEX** del sidebar, la tabla se restringe a los HS4 
 
     st.dataframe(
         _anchor_tbl[[
-            "HS4", "Producto", "Sector", "CCOD_RUBRO", "Rubro INDEC",
+            "HS4", "Producto", "Sector", "CCOD_RUBRO", "Rubro INDEC", "Match",
             "OPEX rubro (USD M)", "# firmas", "Firmas ejemplo",
         ]],
         use_container_width=True,
@@ -1348,6 +1403,11 @@ Al mover el slider **Umbral OPEX** del sidebar, la tabla se restringe a los HS4 
             "Sector": st.column_config.TextColumn("Sector"),
             "CCOD_RUBRO": st.column_config.TextColumn("CCOD_RUBRO", width="small"),
             "Rubro INDEC": st.column_config.TextColumn("Rubro INDEC", width="medium"),
+            "Match": st.column_config.TextColumn(
+                "Match",
+                help="`Directo` cuando el rubro INDEC es específico (clean / named-aggregate / broad-chapter / resto). `Residual` cuando el rubro es confidencial INDEC (código terminado en 899): el HS4 sólo se establece desde el lado firm.",
+                width="small",
+            ),
             "OPEX rubro (USD M)": st.column_config.NumberColumn(
                 "OPEX rubro (USD M)", format="%.1f",
                 help="Monto exportado por Córdoba en el rubro INDEC, promedio 2023-2025.",
@@ -1692,7 +1752,135 @@ Al mover el slider **Umbral OPEX** del sidebar, la tabla se restringe a los HS4 
 # ---------------------------------------------------------------------------
 # Multi-page navigation
 # ---------------------------------------------------------------------------
+def page_mercado_accesible():
+    _page_header(
+        "Mercado Accesible por Producto",
+        "Composición geográfica del mercado accesible para cada HS4 (2024). "
+        "Argentina puede alcanzar cada destino porque está dentro de la "
+        "distancia recorrida del producto o porque ya exporta ≥ USD 100 M."
+    )
+
+    am = load_accessible_market(_data_signature() if "_data_signature" in globals() else "")
+    df, presence, umap, trade_2024, cluster_color, names = load_data(_data_signature() if "_data_signature" in globals() else "")
+
+    # Product universe: HS4 in the proximity file (anchors + candidates) that
+    # also have accessible-market data. Default = the top-ranked candidate
+    # from the Recomendado preset (highest combined score with default weights).
+    hs4_in_am = set(am["hs92"].unique())
+    prox_hs4 = set(df["anchor_hs4"].astype(str).str.zfill(4).unique()) | set(
+        df["candidate_hs4"].astype(str).str.zfill(4).unique()
+    )
+    product_universe = sorted(hs4_in_am & prox_hs4)
+
+    # Label as "HS4 - Producto (Spanish)"
+    label_by_hs4 = {
+        h: f"{h} - {SPANISH_OVERRIDES.get(h, '')}".rstrip(" -")
+        for h in product_universe
+    }
+    labels = [label_by_hs4[h] for h in product_universe]
+
+    default_label = labels[0] if labels else None
+    st.selectbox(
+        "Producto (HS4)",
+        options=labels,
+        key="c4_am_product_label",
+        index=0 if default_label else None,
+    )
+    picked_label = st.session_state.get("c4_am_product_label")
+    if not picked_label:
+        st.info("Sin productos con datos de mercado accesible.")
+        return
+    picked_hs4 = picked_label.split(" - ", 1)[0]
+
+    sub = am[am["hs92"] == picked_hs4].copy()
+    sub["mercado_b"] = sub["total_imports"] / 1e9  # miles de millones USD
+    sub["mercado_m"] = sub["total_imports"] / 1e6  # millones USD
+    total_b = float(sub["mercado_b"].sum())
+    n_dest = int(sub["iso3_d"].nunique())
+
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Producto seleccionado", picked_hs4)
+    c2.metric("Mercado accesible total (miles de millones USD)", f"{total_b:.1f}")
+    c3.metric("Destinos accesibles", f"{n_dest}")
+
+    if sub.empty or total_b == 0:
+        st.info("Sin destinos accesibles para este producto.")
+        return
+
+    # Treemap — tile per destination country, single-colour matching page-2 sector palette 'Other'
+    sub["participacion"] = sub["mercado_b"] / total_b
+    sub["tile_label"] = sub["iso3_d"] + "<br>$" + (sub["total_imports"] / 1e6).map(lambda v: f"{v:,.0f}M")
+    fig = px.treemap(
+        sub,
+        path=["iso3_d"],
+        values="mercado_b",
+        color_discrete_sequence=["#a03e3e"],
+        hover_data={
+            "mercado_b": ":.3f",
+            "mercado_m": ":.1f",
+            "participacion": ":.1%",
+            "iso3_d": False,
+        },
+        title=(
+            f"Mercado accesible para {picked_label} "
+            f"(n = {n_dest} destinos | total = {total_b:,.2f} USD mil M) "
+            f"| tamaño = importaciones totales del destino"
+        ),
+    )
+    fig.update_traces(
+        textinfo="label+value",
+        texttemplate="<b>%{label}</b><br>$%{value:,.2f} mil M",
+        textfont=dict(size=16, color="#ffffff"),
+        marker=dict(line=dict(width=1, color="rgba(255,255,255,0.45)")),
+    )
+    fig.update_layout(margin=dict(t=60, l=10, r=10, b=10), height=560)
+    st.plotly_chart(fig, use_container_width=True)
+
+    # Table
+    tbl = (
+        sub.assign(continente=sub["iso3_d"].map(_ISO3_TO_CONTINENT).fillna("Otros"))
+        .sort_values("mercado_b", ascending=False)
+        [["continente", "iso3_d", "mercado_b", "participacion"]]
+        .rename(columns={
+            "continente": "Continente",
+            "iso3_d": "País (ISO3)",
+            "mercado_b": "Mercado accesible (miles de millones USD)",
+            "participacion": "Participación",
+        })
+    )
+    with st.expander("Diccionario de columnas — Mercado accesible por país"):
+        st.markdown(r"""
+| Columna | Significado |
+|---|---|
+| **Continente** | Región geográfica del país destino (América / Europa / Asia / África / Oceanía). |
+| **País (ISO3)** | Código ISO 3166-1 alpha-3 del país destino. |
+| **Mercado accesible (miles de millones USD)** | Importaciones totales del país destino para el producto seleccionado en 2024 (BACI). Incluído en el conjunto accesible porque satisface la condición de distancia recorrida o el umbral de flujo existente de USD 100 M desde Argentina. |
+| **Participación** | Porcentaje del mercado accesible total del producto que representa ese país destino. |
+        """)
+
+    st.dataframe(
+        tbl,
+        use_container_width=True,
+        hide_index=True,
+        column_config={
+            "Continente": st.column_config.TextColumn("Continente"),
+            "País (ISO3)": st.column_config.TextColumn("País (ISO3)", width="small"),
+            "Mercado accesible (miles de millones USD)": st.column_config.NumberColumn(
+                "Mercado accesible (mil M USD)", format="%.3f",
+            ),
+            "Participación": st.column_config.NumberColumn("Participación", format="%.2f%%"),
+        },
+    )
+    st.download_button(
+        "⬇ Descargar tabla (CSV)",
+        tbl.to_csv(index=False).encode("utf-8"),
+        f"mercado_accesible_{picked_hs4}.csv",
+        "text/csv",
+    )
+
+
 inicio = st.Page(page_inicio, title="Inicio", icon=":material/home:", default=True)
 analisis = st.Page(page_analisis, title="Análisis de Proximidad", icon=":material/insights:")
 firmas = st.Page(page_firmas, title="Firmas y Rubros", icon=":material/business:")
-st.navigation([inicio, analisis, firmas]).run()
+mercado = st.Page(page_mercado_accesible, title="Mercado Accesible por Producto", icon=":material/public:")
+st.navigation([inicio, analisis, firmas, mercado]).run()
