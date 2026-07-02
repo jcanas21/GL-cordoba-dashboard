@@ -145,6 +145,12 @@ NATURAL_RESOURCE_HS4 = ["2711", "2710", "7108", "2709", "2713", "2701", "2603", 
 #   8542 — Circuitos integrados electrónicos (semiconductores)
 PRESET_EXCLUDED_HS4 = ["8473", "8542"]
 
+# Default exporter-profile subset used to compute the anchor universe.
+# 'No Exporta / Próxima a Exportar' is excluded — those firms declared NCM
+# in the Procórdoba registry but don't actually export, so they don't
+# constitute evidence for the diversification analysis.
+DEFAULT_ANCHOR_PROFILES = ("Exportadora Habitual", "Exportadora Ocasional")
+
 HS_SECTIONS = [
     (1,  1,  5,  "1. Live animals; animal products"),
     (2,  6,  14, "2. Vegetable products"),
@@ -460,6 +466,36 @@ CONTINENT_COLORS: dict[str, str] = {
     "Oceanía": "#f2bc67",
     "Otros": "#2f5d74",
 }
+
+
+@st.cache_data
+def anchor_firms_per_hs4(_signature: str, profiles: tuple[str, ...]) -> dict:
+    """Per-HS4 count of distinct firms whose exporter_profile is in `profiles`.
+    Used to make the anchor universe respond to the profile filter set on
+    the Firmas y Rubros page — so 'No Exporta' firms unchecked upstream
+    stop propping up HS4 downstream.
+    Returns a plain dict[hs4 -> int] so it hashes cleanly under st.cache_data."""
+    firm_ev, _ = load_firms_data(_signature)
+    keep = set(profiles or DEFAULT_ANCHOR_PROFILES)
+    filtered = firm_ev[firm_ev["exporter_profile"].astype(str).isin(keep)]
+    return (
+        filtered.drop_duplicates(["firm_id", "hs4"])
+        .groupby("hs4")["firm_id"]
+        .nunique()
+        .to_dict()
+    )
+
+
+def _selected_anchor_profiles() -> tuple[str, ...]:
+    """Read the user's exporter_profile selection from Page 2's sidebar
+    (session_state) and return it as a canonicalized tuple. Falls back to
+    the default (Habitual + Ocasional) if the user hasn't opened Page 2 yet.
+    Intentionally drops empty selections so a stray reset doesn't produce an
+    empty anchor universe."""
+    sel = st.session_state.get("firms_sel_profile")
+    if not sel:
+        return DEFAULT_ANCHOR_PROFILES
+    return tuple(sorted(sel))
 
 
 @st.cache_data
@@ -1058,6 +1094,24 @@ def page_analisis():
     if df.empty:
         st.warning("No anchor proximity data available.")
         st.stop()
+
+    # Cross-page filter: propagate the exporter_profile selection from the
+    # Firmas y Rubros page into the anchor universe. Recompute per-HS4 firm
+    # counts using only the selected profiles; presence rows with 0 filtered
+    # firms fall out of the anchor set.
+    _selected_profiles = _selected_anchor_profiles()
+    _n_firms_dyn = anchor_firms_per_hs4("", _selected_profiles)
+    presence = presence.copy()
+    presence["n_firms"] = (
+        presence["hs4"].astype(str).str.zfill(4).map(_n_firms_dyn).fillna(0).astype(int)
+    )
+    if set(_selected_profiles) != set(DEFAULT_ANCHOR_PROFILES):
+        st.info(
+            "🔎 Filtro cruzado activo: **Perfil exportador = "
+            f"{', '.join(_selected_profiles)}** (heredado de la página "
+            "*Firmas y Rubros*). El set de anclas y todos los paneles se "
+            "recalculan con este filtro."
+        )
 
     # ---------------------------------------------------------------------------
     # Filter universes
@@ -2000,24 +2054,37 @@ Al mover el slider **Umbral OPEX** del sidebar, la tabla se restringe a los HS4 
 # Multi-page navigation
 # ---------------------------------------------------------------------------
 @st.cache_data
-def _recomendado_top_candidates(_signature: str = "", top_n: int = 40) -> list[str]:
-    """Return the candidate HS4s (zfilled) that would appear in page 2's
-    'Recomendado' preset ranking, top-N by combined score.
+def _recomendado_top_candidates(
+    _signature: str = "",
+    top_n: int = 40,
+    profiles: tuple[str, ...] = DEFAULT_ANCHOR_PROFILES,
+) -> list[str]:
+    """Return the candidate HS4s (zfilled) that would appear in the
+    Recomendado preset ranking on the Análisis de Proximidad page, top-N
+    by combined score.
 
     Mirrors _apply_profile("top_candidates"): anchor OPEX ≥ USD 10 M,
     sections 1/2/3 excluded on both sides, natural-resource + manually
     excluded HS4 dropped, proximity rank ∈ [1, 10], market ≥ USD 0.5 B,
     growth > 0, strategic balance 0.50, weights (0.40/0.40/0.20 feas;
     0.50/0.25/0.25 attr).
+
+    `profiles` propagates the exporter_profile filter set on the Firmas
+    y Rubros page — HS4 evidenced only by firms outside this set drop
+    out of the anchor universe.
     """
     df, presence, _, _, _, _ = load_data()
 
+    # Restrict the anchor universe to HS4 that have at least one firm in
+    # the selected exporter_profile set (cross-page filter).
+    n_firms_dyn = anchor_firms_per_hs4(_signature, profiles)
+    profile_ok = {h for h, n in n_firms_dyn.items() if n > 0}
     anchor_universe = set(
         presence.loc[
             presence["max_rubro_opex_2023_2025_avg_usd"].fillna(0) >= 10_000_000,
             "hs4",
         ].astype(str).str.zfill(4)
-    )
+    ) & profile_ok
     za = df["anchor_hs4"].astype(str).str.zfill(4)
     zc = df["candidate_hs4"].astype(str).str.zfill(4)
     flt = df[za.isin(anchor_universe) & ~zc.isin(anchor_universe)].copy()
@@ -2067,6 +2134,16 @@ def page_mercado_accesible():
 
     am = load_accessible_market(_data_signature() if "_data_signature" in globals() else "")
 
+    # Cross-page filter: inherit the exporter_profile selection from Firmas y
+    # Rubros so the top-40 shown here matches the anchor universe upstream.
+    selected_profiles = _selected_anchor_profiles()
+    if set(selected_profiles) != set(DEFAULT_ANCHOR_PROFILES):
+        st.info(
+            "🔎 Filtro cruzado activo: **Perfil exportador = "
+            f"{', '.join(selected_profiles)}** (heredado de la página "
+            "*Firmas y Rubros*)."
+        )
+
     # Product universe: top-40 candidates from the 'Recomendado' preset on
     # the Análisis de Proximidad page. Ordered by combined score desc.
     st.caption(
@@ -2076,7 +2153,8 @@ def page_mercado_accesible():
     )
     hs4_in_am = set(am["hs92"].unique())
     recomendado_top = _recomendado_top_candidates(
-        _data_signature() if "_data_signature" in globals() else ""
+        _data_signature() if "_data_signature" in globals() else "",
+        profiles=selected_profiles,
     )
     # Preserve Recomendado ranking order, but only keep HS4 with accessible-market data
     product_universe = [h for h in recomendado_top if h in hs4_in_am]
