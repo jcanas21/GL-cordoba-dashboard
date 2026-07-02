@@ -141,9 +141,10 @@ NATURAL_RESOURCE_HS4 = ["2711", "2710", "7108", "2709", "2713", "2701", "2603", 
 
 # Additional HS4 excluded from the "Recomendado" preset by hand — plausible
 # via proximity but not realistic diversification targets for Córdoba.
+#   4011 — Neumáticos nuevos (industria capital-intensiva sin base local)
 #   8473 — Partes y accesorios para máquinas de oficina / cómputo
 #   8542 — Circuitos integrados electrónicos (semiconductores)
-PRESET_EXCLUDED_HS4 = ["8473", "8542"]
+PRESET_EXCLUDED_HS4 = ["4011", "8473", "8542"]
 
 # Default exporter-profile subset used to compute the anchor universe.
 # 'No Exporta / Próxima a Exportar' is excluded — those firms declared NCM
@@ -537,23 +538,13 @@ def page_inicio():
 ### Qué hace este tablero
 
 Identifica **productos candidatos** a los que Córdoba podría diversificarse,
-partiendo del conjunto de productos **HS4 (HS 1992)** donde la provincia ya
-tiene presencia exportadora evidenciada por firmas reales. El núcleo
-metodológico es la **proximidad en el espacio de productos** (Hidalgo, Hausmann
-et al.) construida con datos BACI 2020–2024 y la implementación
+partiendo de los productos **HS4 (HS 1992)** donde la provincia ya tiene
+presencia exportadora evidenciada por firmas reales. Usa como núcleo
+metodológico la **proximidad en el espacio de productos** (Hidalgo, Hausmann
+et al.), construida con datos BACI 2020–2024 y la implementación
 [`ecomplexity`](https://github.com/cid-harvard/py-ecomplexity) del Growth Lab.
-
-Cada candidato se rankea combinando dos dimensiones:
-
-- **Factibilidad** — qué tan cerca está el candidato de la base productiva
-  actual (proximidad), si su demanda global se alinea con el patrón
-  exportador (DAI), y si es un producto que viaja lejos en el mundo
-  (`distance_travelled`).
-- **Atractivo** — qué tan complejo es el producto (PCI), qué tan grande
-  es su mercado accesible, y a qué tasa crece ese mercado.
-
-Un dial estratégico balancea ambas dimensiones, y los pesos internos de cada
-componente son configurables en el sidebar.
+Debajo se detalla el enfoque, las fuentes de evidencia, el glosario y las
+fórmulas.
     """)
 
     st.markdown("""
@@ -569,6 +560,67 @@ componente son configurables en el sidebar.
 - **Mercado Accesible por Producto**: para cada uno de los top-30
   candidatos del preset Recomendado, la composición geográfica del
   mercado accesible (países destino con sus importaciones).
+    """)
+
+    st.subheader("Qué es el análisis de proximidad anclada")
+    st.markdown(r"""
+La pregunta operativa de fondo es simple: **¿a qué productos podría
+Córdoba diversificarse que sean realistas dada su base productiva
+actual?** No cualquiera. Un análisis útil tiene que arrancar de lo que
+la provincia efectivamente sabe hacer y buscar afuera productos
+adyacentes.
+
+**El punto de partida: las anclas.** Llamamos *anclas* al conjunto de
+HS4 donde Córdoba ya tiene presencia exportadora evidenciada por firmas
+reales (soja, autopartes, maní, cueros, medicamentos, maquinaria
+agrícola, etc.). No son aspiraciones — son capacidades demostradas por
+empresas que hoy exportan. Esos productos anclan el análisis: fijan un
+piso realista sobre el mapa de posibilidades.
+
+**La medida de cercanía: proximidad en el espacio de productos.** El
+espacio de productos (Hidalgo, Hausmann et al.) es un mapa empírico
+donde dos productos están cerca si los mismos países tienden a
+exportarlos con ventaja competitiva. Producir uno requiere capacidades
+—conocimientos técnicos, redes de proveedores, logística, regulación—
+que suelen ser útiles para el otro. Esas capacidades son **pegajosas**:
+los países diversifican hacia productos cercanos, casi nunca hacia
+saltos aleatorios. El *biodiesel* está cerca del *aceite de soja*; los
+*motores eléctricos* están cerca de las *piezas de vehículos*. La
+proximidad convierte una intuición sobre similitud productiva en un
+número entre 0 y 1.
+
+**El resultado: candidatos anclados.** Para cada ancla de Córdoba
+extraemos su top-1 % de productos más cercanos en el espacio global.
+La unión de esos vecinos —descontando lo que Córdoba ya exporta— es el
+conjunto de **candidatos**: HS4 que la provincia no exporta hoy pero
+que quedan a distancia productiva razonable de su base actual. No es
+una lista mágica de "esto va a funcionar"; es un filtrado sobre el
+universo HS 1992 que descarta los productos que están fuera del rango
+de capacidades reales.
+
+**Rankeo por factibilidad y atractivo.** Los candidatos se ordenan
+combinando dos dimensiones:
+
+- **Factibilidad** — qué tan cerca está el candidato de la base
+  productiva actual (proximidad), qué tan alineada está su demanda
+  global con el patrón exportador argentino (DAI), y qué tan lejos
+  viaja el producto en el comercio mundial (`distance_travelled`). Un
+  producto es más factible cuando la provincia tiene más chances de
+  producirlo competitivamente y cuando su mercado global es alcanzable.
+- **Atractivo** — qué tan complejo es el producto (PCI, un indicador
+  de sofisticación), qué tan grande es el mercado accesible para
+  Argentina, y a qué tasa crece ese mercado.
+
+Un dial estratégico en el sidebar permite priorizar factibilidad
+(diversificaciones cercanas, casi seguras) o atractivo (saltos más
+ambiciosos hacia productos complejos y de mercados grandes). Los pesos
+internos de cada dimensión también son configurables.
+
+**Qué no es este análisis.** No estima costos de entrada, no evalúa
+políticas específicas, no proyecta volúmenes de exportación. Es un
+tamiz de plausibilidad sobre 1.243 productos posibles: te da un punto
+de partida ordenado para conversaciones con firmas, cámaras y
+policymakers, no una recomendación cerrada.
     """)
 
     st.subheader("De dónde salen los HS4 evidenciados")
