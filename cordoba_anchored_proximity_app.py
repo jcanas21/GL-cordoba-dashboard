@@ -541,6 +541,19 @@ def load_accessible_market(_signature: str = ""):
     return df
 
 
+@st.cache_data
+def load_competitors_bilateral(_signature: str = ""):
+    """Per-(HS4, exporter, destination) export values into Argentina's
+    accessible destinations only. BACI 2024. ~289k rows. Used to power
+    the competitors treemap with an optional per-market filter."""
+    df = pd.read_csv(
+        _data("intermediate", "competitors_by_hs4.csv"),
+        dtype={"hs92": str, "iso3_o": str, "iso3_d": str},
+    )
+    df["hs92"] = df["hs92"].str.zfill(4)
+    return df
+
+
 
 def page_inicio():
     _page_header(
@@ -2389,45 +2402,127 @@ def page_mercado_accesible():
     )
     st.plotly_chart(fig, use_container_width=True)
 
-    # Table
-    tbl = (
-        sub.assign(continente=sub["iso3_d"].map(_ISO3_TO_CONTINENT).fillna("Otros"))
-        .sort_values("mercado_b", ascending=False)
-        [["continente", "iso3_d", "mercado_b", "participacion"]]
-        .rename(columns={
-            "continente": "Continente",
-            "iso3_d": "País (ISO3)",
-            "mercado_b": "Mercado accesible (miles de millones USD)",
-            "participacion": "Participación",
-        })
+    # -------------------------------------------------------------------------
+    # Competidores — top-20 exportadores hacia el mercado accesible
+    # -------------------------------------------------------------------------
+    st.markdown("---")
+    st.subheader("Top-20 competidores")
+    st.caption(
+        "Quiénes están exportando este producto hacia los mercados a los que "
+        "Argentina también puede llegar. Datos BACI 2024. Podés restringir el "
+        "cálculo a un destino específico o dejarlo sobre todos los destinos "
+        "accesibles del producto."
     )
-    with st.expander("Diccionario de columnas — Mercado accesible por país"):
+
+    competitors_all = load_competitors_bilateral(
+        _data_signature() if "_data_signature" in globals() else ""
+    )
+    comp_sub = competitors_all[competitors_all["hs92"] == picked_hs4].copy()
+
+    # Destination filter: 'Todos los mercados accesibles' + one entry per iso3_d
+    accessible_dests = sorted(sub["iso3_d"].dropna().unique().tolist())
+    OPTION_ALL = "Todos los mercados accesibles"
+    dest_options = [OPTION_ALL] + accessible_dests
+    picked_dest = st.selectbox(
+        "Mercado para treemap de competidores",
+        options=dest_options,
+        index=0,
+        key=f"c4_am_competitor_dest_{picked_hs4}",
+    )
+    st.caption(f"Mercado seleccionado para treemap de competidores: **{picked_dest}**")
+
+    if picked_dest != OPTION_ALL:
+        comp_sub = comp_sub[comp_sub["iso3_d"] == picked_dest]
+    # Also restrict to accessible destinations only when 'All' is picked
+    else:
+        comp_sub = comp_sub[comp_sub["iso3_d"].isin(accessible_dests)]
+
+    # Argentina is not a competitor of itself — remove.
+    comp_sub = comp_sub[comp_sub["iso3_o"] != "ARG"]
+
+    # Aggregate per exporter
+    per_exp = (
+        comp_sub.groupby("iso3_o", as_index=False)["export_value"].sum()
+        .rename(columns={"export_value": "value_usd"})
+        .sort_values("value_usd", ascending=False)
+    )
+    if per_exp.empty or per_exp["value_usd"].sum() == 0:
+        st.info(
+            "No hay exportaciones desde competidores hacia este mercado en 2024 "
+            "según los datos BACI disponibles."
+        )
+        return
+
+    total_market_usd = float(per_exp["value_usd"].sum())
+    top20 = per_exp.head(20).copy()
+    top20_total = float(top20["value_usd"].sum())
+    coverage_top20 = top20_total / total_market_usd if total_market_usd > 0 else 0
+
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Exportadores mostrados", f"{len(top20)}")
+    c2.metric("Exportaciones acumuladas (M USD)", f"{top20_total/1e6:,.1f}")
+    c3.metric("Cobertura del top 20", f"{coverage_top20:.1%}")
+
+    # Color: continente for consistency with the destinations treemap
+    top20["continente"] = top20["iso3_o"].map(_ISO3_TO_CONTINENT).fillna("Otros")
+    top20["value_m"] = top20["value_usd"] / 1e6
+
+    fig_comp = px.treemap(
+        top20,
+        path=["continente", "iso3_o"],
+        values="value_m",
+        color="continente",
+        color_discrete_map=CONTINENT_COLORS,
+        hover_data={
+            "value_m": ":.1f",
+            "iso3_o": False,
+            "continente": False,
+        },
+        title=(
+            f"Treemap de competidores para {picked_dest} | "
+            f"Producto {picked_label} · "
+            f"tamaño = exportaciones a {picked_dest if picked_dest != OPTION_ALL else 'destinos accesibles'} "
+            f"en 2024 (M USD) · color = continente"
+        ),
+    )
+    fig_comp.update_traces(
+        textinfo="label+value",
+        texttemplate="<b>%{label}</b><br>$%{value:,.0f}M",
+        textfont=dict(size=16, color="#ffffff"),
+        marker=dict(line=dict(width=1, color="rgba(255,255,255,0.45)")),
+    )
+    fig_comp.update_layout(
+        margin=dict(t=60, l=10, r=10, b=95),
+        height=620,
+        legend=dict(
+            orientation="h", yanchor="top", y=-0.05, xanchor="center", x=0.5,
+            title_text="Continente",
+        ),
+    )
+    st.plotly_chart(fig_comp, use_container_width=True)
+
+    with st.expander("Cómo se calcula"):
         st.markdown(r"""
-| Columna | Significado |
-|---|---|
-| **Continente** | Región geográfica del país destino (América / Europa / Asia / África / Oceanía). |
-| **País (ISO3)** | Código ISO 3166-1 alpha-3 del país destino. |
-| **Mercado accesible (miles de millones USD)** | Importaciones totales del país destino para el producto seleccionado en 2024 (BACI). Incluído en el conjunto accesible porque satisface la condición de distancia recorrida o el umbral de flujo existente de USD 100 M desde Argentina. |
-| **Participación** | Porcentaje del mercado accesible total del producto que representa ese país destino. |
+Para el producto seleccionado, tomamos todas las **exportaciones de cada
+país** (BACI 2024, valor FOB) hacia los destinos que forman parte del
+**mercado accesible** de Argentina para ese HS4. Argentina queda excluida
+de la lista de competidores (se excluye a sí misma).
+
+- **"Todos los mercados accesibles"** suma los flujos exportados por
+  cada país hacia todos los destinos accesibles.
+- **Un destino específico** restringe la suma a ese único mercado —
+  útil para ver quiénes son los rivales concretos en, por ejemplo, USA.
+
+**Cobertura del top 20**: qué porcentaje del total exportado por
+competidores hacia el mercado accesible cubren los 20 países mostrados.
+Un número alto (>80%) indica un mercado concentrado; un número bajo
+indica muchos exportadores marginales relevantes.
         """)
 
-    st.dataframe(
-        tbl,
-        use_container_width=True,
-        hide_index=True,
-        column_config={
-            "Continente": st.column_config.TextColumn("Continente"),
-            "País (ISO3)": st.column_config.TextColumn("País (ISO3)", width="small"),
-            "Mercado accesible (miles de millones USD)": st.column_config.NumberColumn(
-                "Mercado accesible (mil M USD)", format="%.3f",
-            ),
-            "Participación": st.column_config.NumberColumn("Participación", format="%.2f%%"),
-        },
-    )
     st.download_button(
-        "⬇ Descargar tabla (CSV)",
-        tbl.to_csv(index=False).encode("utf-8"),
-        f"mercado_accesible_{picked_hs4}.csv",
+        "⬇ Descargar datos de competidores (CSV)",
+        per_exp.to_csv(index=False).encode("utf-8"),
+        f"competidores_{picked_hs4}_{picked_dest.replace(' ', '_')}.csv",
         "text/csv",
     )
 
