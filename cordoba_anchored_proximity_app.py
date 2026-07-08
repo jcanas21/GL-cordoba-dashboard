@@ -1011,9 +1011,10 @@ def page_firmas():
                 "rubro_label_wrapped": False,
             },
             title=(
-                f"Exportaciones OPEX por rubro INDEC (n = {opex_tm['CCOD_RUBRO'].nunique()} rubros | "
-                f"OPEX total = {opex_split['opex_avg_m'].sum():,.1f} USD M) "
-                f"| tamaño = OPEX (split por sector cuando hay atribución firme; rubros confidenciales/resto van enteros a 'Other')"
+                f"Exportaciones promedio por rubro INDEC "
+                f"(n = {opex_tm['CCOD_RUBRO'].nunique()} rubros | "
+                f"total = {opex_split['opex_avg_m'].sum():,.1f} USD M · "
+                f"promedio 2023-2025) | tamaño = OPEX"
             ),
         )
         fig_tm.update_traces(
@@ -1034,6 +1035,14 @@ def page_firmas():
             use_container_width=True,
             on_select="rerun",
             key="firms_treemap_select",
+        )
+        st.caption(
+            "Nota: cuando el rubro INDEC tiene atribución firme, su OPEX se "
+            "divide entre los sectores presentes en proporción a los HS4 que "
+            "cada sector aporta. Los rubros confidenciales (códigos terminados "
+            "en `899`) y los rubros 'resto' (terminados en `Z`) no se dividen "
+            "— la composición interna no está publicada por INDEC — y van "
+            "enteros a la categoría **Other**."
         )
 
         # Decode selection — leaves are (sector, rubro) pairs now.
