@@ -299,9 +299,13 @@ def load_data():
         dtype={"hs4": str},
     )
     presence["hs4"] = presence["hs4"].str.zfill(4)
-    presence["max_rubro_opex_2023_2025_avg_usd"] = pd.to_numeric(
-        presence["max_rubro_opex_2023_2025_avg_usd"], errors="coerce"
-    )
+    # `usd_promedio_anual` is the new per-HS4 export value from the DPE
+    # (Dirección de Estadística de la Provincia) share file scaled by the
+    # OPEX absolute total. Replaces the old rubro-inherited OPEX value.
+    for c in ["usd_promedio_anual", "usd_acumulado_2023_2025", "share_2023_2025",
+              "max_rubro_opex_2023_2025_avg_usd"]:
+        if c in presence.columns:
+            presence[c] = pd.to_numeric(presence[c], errors="coerce")
 
     umap = pd.read_csv(_data("input", "umap_layout_hs92.csv"),
                        dtype={"product_hs92_code": str})
@@ -576,18 +580,22 @@ fórmulas.
     """)
 
     st.markdown("""
-### Cuatro páginas
+### Cinco páginas
 
 - **Inicio** (acá): contexto, glosario, fórmulas.
-- **Firmas y Rubros**: catálogo de las firmas con evidencia explícita de
-  exportar productos ancla, con el rubro INDEC al que se atribuyen y el
-  monto de exportaciones del rubro en OPEX.
-- **Análisis de Proximidad**: el tablero interactivo principal con todos
-  los filtros, el espacio de productos, el Sankey, la tabla de
+- **Exportaciones por producto**: composición 2023-2025 de las
+  exportaciones cordobesas a nivel HS4, agrupadas por sector Atlas
+  (fuente: Dirección de Estadística de la Provincia). Click en un HS4
+  para ver las firmas identificadas que lo exportan.
+- **Análisis de Proximidad**: el tablero interactivo principal con
+  todos los filtros, el espacio de productos, el Sankey, la tabla de
   candidatos rankeados y el treemap.
 - **Mercado Accesible por Producto**: para cada uno de los top-30
   candidatos del preset Recomendado, la composición geográfica del
   mercado accesible (países destino con sus importaciones).
+- **Firmas y Rubros [Legacy]**: vista original firma→rubro INDEC con
+  OPEX por rubro entero, conservada para comparación con la nueva
+  vista por HS4.
     """)
 
     st.subheader("Qué es el análisis de proximidad anclada")
@@ -678,13 +686,25 @@ para la misma firma se deduplican y el analista humano gana; los HS4
 adicionales de cada capa se conservan porque documentan porciones
 distintas del portafolio.
 
-Los 462 HS4 son ~37 % del universo HS 1992 (1.243 códigos). El resto se
-analiza como **candidatos** vía proximidad al set ancla en la página **Análisis de Proximidad**.
+### Base de exportaciones — ground truth desde DPE (2023-2025)
 
-El set efectivo de **anclas** depende de los dos sliders del sidebar:
-umbral OPEX del rubro y mínimo # de firmas evidenciando el HS4. Un HS4
-evidenciado que no entra al set ancla puede reaparecer como candidato
-marcado como *posible ancla*.
+A partir de julio de 2026 la base cuantitativa del dashboard es el
+archivo de la **Dirección de Estadística de la Provincia (DPE)** de
+Córdoba: participación por NCM 8-dígitos en las exportaciones
+provinciales acumuladas 2023-2025 en USD FOB. Ese archivo se agrega a
+HS4 (primeros 4 dígitos del NCM) y se multiplica por el total OPEX
+acumulado del período, obteniendo **exportaciones promedio anuales en
+USD por HS4**. Cobertura: 592 HS4 con exportaciones positivas, top 30 =
+93 % del total, top 100 = 99 %.
+
+El set de **anclas** hoy es el conjunto de esos 592 HS4 con
+exportaciones reales, restringido por dos sliders del sidebar en la
+página *Análisis de Proximidad*: umbral de exportación promedio anual
+(USD por HS4) y mínimo número de firmas identificadas. Un HS4 que no
+entra al set ancla puede reaparecer como candidato marcado como
+*posible ancla*. Los ~80 HS4 evidenciados por firmas pero sin
+exportaciones DPE registradas quedan en el registro pero **no
+participan** del análisis de diversificación.
     """)
 
     st.subheader("Glosario")
@@ -692,10 +712,11 @@ marcado como *posible ancla*.
 | Variable | Significado |
 |---|---|
 | **HS4** | Sistema Armonizado a 4 dígitos, revisión 1992 (convención Atlas / Growth Lab). |
-| **Ancla** | HS4 donde Córdoba tiene presencia exportadora **evidenciada por firmas reales** (código NCM declarado en registro + curado manual). 462 HS4 evidenciados en total; el set ancla activo se restringe con los sliders OPEX y # firmas del sidebar. |
-| **Candidato** | HS4 sin presencia evidenciada que aparece en el top-1% de proximidad de al menos un ancla, **o** un HS4 evidenciado cuyo OPEX cayó por debajo del umbral del slider (se flaguea como *posible ancla*). |
-| **OPEX** | Exportaciones de Córdoba por rubro INDEC (CCOD_RUBRO), promedio 2023–2025. El slider de umbral OPEX filtra el set de anclas. |
-| **Rubro** | "Grandes Rubros / Capítulos" de INDEC (clasificación ICA); 100 rubros en el panel OPEX. **No es lo mismo que NCM ni que Complejos Exportadores Rev. 2018**. |
+| **Ancla** | HS4 con **exportaciones reales de Córdoba** en 2023-2025 según DPE. 592 HS4 en total; el set ancla activo se restringe con los sliders exportación promedio anual y # firmas del sidebar en *Análisis de Proximidad*. |
+| **Candidato** | HS4 que aparece en el top-1% de proximidad de al menos un ancla, **o** un HS4 exportado por Córdoba cuya exportación promedio anual cayó por debajo del umbral (se flaguea como *posible ancla*). |
+| **Exportación promedio anual (USD)** | Valor exportado por Córdoba en el HS4 específico, promedio anual 2023-2025. Fuente: DPE (Dirección de Estadística de la Provincia), archivo participación NCM 2023-2025 × total OPEX acumulado. El slider correspondiente en el sidebar filtra el set de anclas. |
+| **OPEX (legacy)** | Exportaciones de Córdoba por rubro INDEC (CCOD_RUBRO), promedio 2023-2025. Ya no filtra el análisis principal — reemplazado por la exportación por HS4 desde DPE. Se conserva en la página *Firmas y Rubros [Legacy]* para comparación. |
+| **Rubro (legacy)** | "Grandes Rubros / Capítulos" de INDEC (clasificación ICA); 100 rubros en el panel OPEX. Ya no es la base cuantitativa del análisis — el nuevo pipeline usa HS4 directamente. |
 | **Proximidad** | Probabilidad condicional `min(P(p₁\|p₂), P(p₂\|p₁))` de que un país exporte ambos productos con RCA, suavizada con `rca / (rca + 1)`. Está en [0, 1]. |
 | **PCI** *(Product Complexity Index)* | Sofisticación productiva implícita de un HS4 — más alto = más complejo. |
 | **DAI** *(Índice de alineación de demanda)* | Qué tanto la demanda externa por un producto se alinea con la canasta exportadora del país. Ver fórmula abajo. |
@@ -704,7 +725,7 @@ marcado como *posible ancla*.
 | **Factibilidad** | Promedio ponderado del DAI, del percentil de distancia recorrida y del número normalizado de anclas del candidato. Todos en [0, 1]. |
 | **Atractivo** | Promedio ponderado del PCI, del tamaño del mercado accesible y del crecimiento a 5 años del mercado accesible. |
 | **Puntaje combinado** | `(1 − balance) · factibilidad + balance · atractivo`, donde `balance` es el dial estratégico del sidebar. |
-| **Posible ancla** | Dummy 1/0: el candidato pertenece al set de HS4 evidenciados pero su OPEX no llegó al umbral. |
+| **Posible ancla** | Dummy 1/0: el candidato pertenece al set DPE de 592 HS4 con exportación real, pero su exportación promedio anual no llegó al umbral del slider. |
 | **Anclas del candidato** | HS4 (separados por ·) de las anclas que tienen al candidato en su top-1% de proximidad. |
     """)
 
@@ -1376,15 +1397,16 @@ def page_analisis():
 
         st.header("Presencia (set de anclas)")
         opex_threshold = st.select_slider(
-            "Umbral OPEX (promedio 2023-2025)",
+            "Umbral exportación promedio anual (USD)",
             options=OPEX_OPTIONS,
             value=st.session_state["c4_opex_threshold"],
             format_func=lambda v: OPEX_LABELS[v],
             key="c4_opex_threshold",
             help=(
-                "Define el set de anclas (anchors) para Córdoba. Sólo los HS4 con "
-                "presencia evidenciada cuya CCOD_RUBRO de destino tiene un promedio "
-                "anual ≥ este umbral se consideran anclas."
+                "Define el set de anclas (anchors) para Córdoba. Sólo los HS4 "
+                "cuya exportación promedio anual 2023-2025 (Dirección de "
+                "Estadística de la Provincia, promediada del acumulado 3 años) "
+                "es ≥ a este umbral se consideran anclas."
             ),
         )
         _presence_max_firms = int(pd.to_numeric(presence.get("n_firms"), errors="coerce").fillna(0).max()) if "n_firms" in presence.columns else 1
@@ -1539,18 +1561,18 @@ def page_analisis():
             )
 
     # ---------------------------------------------------------------------------
-    # 1. Derive anchor universe from OPEX threshold + apply filters
+    # 1. Derive anchor universe from export-value threshold + apply filters
     # ---------------------------------------------------------------------------
-    # evidenced_set is the firm-evidenced HS4 universe (currently 462 HS4). The anchor universe
-    # is the subset of those whose OPEX clears the threshold. Evidenced HS4 that
-    # fall BELOW the threshold can resurface as candidates of the surviving
-    # anchors — they're flagged `posible_ancla = 1` so users can spot them.
+    # evidenced_set is the DPE-ground-truth HS4 universe (592 HS4). The anchor
+    # universe is the subset whose average annual export value clears the
+    # threshold. HS4 that fall below the threshold can resurface as candidates
+    # of the surviving anchors — they're flagged `posible_ancla = 1`.
     evidenced_set = set(presence["hs4"].astype(str).str.zfill(4))
     _n_firms_series = pd.to_numeric(presence.get("n_firms"), errors="coerce").fillna(0)
     _nat_res_set = set(NATURAL_RESOURCE_HS4) if exclude_nat_resources else set()
     anchor_universe = set(
         presence.loc[
-            (presence["max_rubro_opex_2023_2025_avg_usd"].fillna(0) >= opex_threshold)
+            (presence["usd_promedio_anual"].fillna(0) >= opex_threshold)
             & (_n_firms_series >= min_firmas_ancla)
             & (~presence["hs4"].astype(str).str.zfill(4).isin(_nat_res_set)),
             "hs4",
@@ -1791,7 +1813,7 @@ def page_analisis():
     )
     _anchor_tbl["Producto"] = _anchor_tbl["hs4"].map(lambda h: SPANISH_OVERRIDES.get(h, ""))
     _anchor_tbl["Sector"] = _anchor_tbl["hs4"].map(lambda h: _hs4_sector.get(h, "Other"))
-    _anchor_tbl["OPEX rubro (USD M)"] = _anchor_tbl["max_rubro_opex_2023_2025_avg_usd"] / 1e6
+    _anchor_tbl["Exportación promedio anual (USD M)"] = _anchor_tbl["usd_promedio_anual"] / 1e6
     # Match = 'Residual' cuando la atribución OPEX del HS4 es a un rubro
     # confidencial (INDEC Ley 17.622, códigos terminados en 899); 'Directo'
     # cuando el rubro es clean / named-aggregate / broad-chapter / resto.
@@ -1812,7 +1834,7 @@ def page_analisis():
         "primary_rubro_name": "Rubro INDEC",
         "n_firms": "# firmas",
         "evidencing_firms_sample": "Firmas ejemplo",
-    }).sort_values("OPEX rubro (USD M)", ascending=False)
+    }).sort_values("Exportación promedio anual (USD M)", ascending=False)
 
     if min_firmas_ancla > 1:
         st.caption(
@@ -1830,17 +1852,17 @@ def page_analisis():
 | **CCOD_RUBRO** | Rubro INDEC (código) al que el HS4 fold-up en el panel OPEX. |
 | **Rubro INDEC** | Nombre del rubro INDEC. |
 | **Match** | Tipo de correspondencia entre el HS4 y su rubro INDEC. **`Directo`**: el rubro es específico y publicado — clean (1-2 HS4), named-aggregate, broad-chapter o resto. **`Residual`**: el rubro es confidencial INDEC (código terminado en `899`); el HS4 sólo puede establecerse desde el lado firm porque la composición interna no está publicada por Ley 17.622. |
-| **OPEX rubro (USD M)** | Monto exportado por Córdoba en ese rubro, promedio anual 2023-2025 (USD millones). Es del **rubro entero**. |
+| **Exportación promedio anual (USD M)** | Monto exportado por Córdoba en **este HS4 específico**, promedio anual 2023-2025 (USD millones). Fuente: Dirección de Estadística de la Provincia (DPE), acumulado 2023-2025 dividido por 3. No es el rubro entero — es el producto HS4 concreto. |
 | **# firmas** | Cantidad de firmas que evidencian el HS4 (declared-ncm + curated combinadas). |
 | **Firmas ejemplo** | Sample de hasta 5 nombres de firmas evidenciando este HS4. |
 
-Al mover el slider **Umbral OPEX** del sidebar, la tabla se restringe a los HS4 cuyo rubro cumple el umbral.
+Al mover el slider **Umbral exportación promedio anual** del sidebar, la tabla se restringe a los HS4 cuyo valor exportado cumple el umbral.
         """)
 
     st.dataframe(
         _anchor_tbl[[
             "HS4", "Producto", "Sector", "CCOD_RUBRO", "Rubro INDEC", "Match",
-            "OPEX rubro (USD M)", "# firmas", "Firmas ejemplo",
+            "Exportación promedio anual (USD M)", "# firmas", "Firmas ejemplo",
         ]],
         use_container_width=True,
         hide_index=True,
@@ -1855,9 +1877,9 @@ Al mover el slider **Umbral OPEX** del sidebar, la tabla se restringe a los HS4 
                 help="`Directo` cuando el rubro INDEC es específico (clean / named-aggregate / broad-chapter / resto). `Residual` cuando el rubro es confidencial INDEC (código terminado en 899): el HS4 sólo se establece desde el lado firm.",
                 width="small",
             ),
-            "OPEX rubro (USD M)": st.column_config.NumberColumn(
-                "OPEX rubro (USD M)", format="%.1f",
-                help="Monto exportado por Córdoba en el rubro INDEC, promedio 2023-2025.",
+            "Exportación promedio anual (USD M)": st.column_config.NumberColumn(
+                "Exportación promedio anual (USD M)", format="%.1f",
+                help="Exportación del HS4 en Córdoba, promedio anual 2023-2025 según DPE (Dirección de Estadística de la Provincia). Es específico del HS4, no del rubro entero.",
             ),
             "# firmas": st.column_config.NumberColumn("# firmas", format="%.0f"),
             "Firmas ejemplo": st.column_config.TextColumn("Firmas ejemplo", width="large"),
@@ -2237,7 +2259,7 @@ def _recomendado_top_candidates(
     anchor_universe = (
         set(
             presence.loc[
-                presence["max_rubro_opex_2023_2025_avg_usd"].fillna(0) >= 10_000_000,
+                presence["usd_promedio_anual"].fillna(0) >= 10_000_000,
                 "hs4",
             ].astype(str).str.zfill(4)
         )
@@ -2536,8 +2558,209 @@ indica muchos exportadores marginales relevantes.
     )
 
 
+def page_exportaciones_producto():
+    """Exportaciones por producto (HS4). Ground truth: Dirección de Estadística
+    de la Provincia (DPE), archivo 'ExpoCba participacion NCM_23_25.xlsx',
+    escalado por el total absoluto OPEX 2023-2025.
+    Treemap sector Atlas → HS4, size = share, tooltip con USD promedio anual.
+    Click en un HS4 → tabla de firmas identificadas para ese HS4."""
+    _page_header(
+        "Exportaciones por producto",
+        "Composición de las exportaciones cordobesas 2023-2025 por HS4, "
+        "agrupadas por sector Atlas. Fuente: Dirección de Estadística de la "
+        "Provincia (DPE). Cada baldosa representa un HS4 — tamaño = "
+        "participación %; el USD promedio anual está en el tooltip. "
+        "Clickeá un HS4 para ver las firmas identificadas que lo exportan."
+    )
+
+    df_prox, presence, umap, trade, cluster_color, names = load_data()
+
+    # ------------------------------------------------------------------
+    # Attach Atlas sector via HS4 → sector map (from proximity file)
+    # ------------------------------------------------------------------
+    hs4_to_sector = load_hs4_sector_map(_data_signature() if "_data_signature" in globals() else "")
+
+    presence = presence.copy()
+    presence["hs4"] = presence["hs4"].astype(str).str.zfill(4)
+    presence["sector"] = presence["hs4"].map(hs4_to_sector).fillna("Otros")
+    presence["hs4_es"] = presence["hs4"].map(lambda h: SPANISH_OVERRIDES.get(h, ""))
+    presence["hs4_label"] = presence["hs4"] + presence["hs4_es"].where(
+        presence["hs4_es"] == "", " - " + presence["hs4_es"]
+    )
+    presence["usd_promedio_anual"] = pd.to_numeric(
+        presence["usd_promedio_anual"], errors="coerce"
+    ).fillna(0)
+    presence["usd_promedio_m"] = presence["usd_promedio_anual"] / 1e6
+    presence["share_pct"] = pd.to_numeric(presence.get("share_2023_2025"),
+                                           errors="coerce").fillna(0) * 100
+
+    # Only HS4 with positive exports go into the treemap
+    tm_data = presence[presence["usd_promedio_anual"] > 0].copy()
+    total_usd = float(tm_data["usd_promedio_anual"].sum())
+
+    # ------------------------------------------------------------------
+    # KPIs
+    # ------------------------------------------------------------------
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Exportación total (USD M · prom anual)", f"{total_usd/1e6:,.0f}")
+    c2.metric("HS4 mostrados", f"{len(tm_data):,}")
+    c3.metric("Sectores Atlas", f"{tm_data['sector'].nunique()}")
+    c4.metric("Firmas identificadas", f"{int(tm_data['n_firms'].sum()):,}")
+
+    st.caption(
+        "Los HS4 se ordenan por su participación en las exportaciones "
+        "totales de Córdoba. Cobertura acumulada: top 30 HS4 = "
+        f"{tm_data.sort_values('usd_promedio_anual', ascending=False).head(30)['share_pct'].sum():.1f} % · "
+        f"top 100 HS4 = {tm_data.sort_values('usd_promedio_anual', ascending=False).head(100)['share_pct'].sum():.1f} %."
+    )
+
+    # ------------------------------------------------------------------
+    # Treemap por sector Atlas → HS4
+    # ------------------------------------------------------------------
+    tm_data["descripcion_corta"] = tm_data["descripcion_top_ncm"].fillna("").astype(str).str[:60]
+    fig_tm = px.treemap(
+        tm_data,
+        path=["sector", "hs4_label"],
+        values="usd_promedio_m",
+        color="sector",
+        color_discrete_map=SECTOR_COLORS,
+        hover_data={
+            "usd_promedio_m": ":.1f",
+            "share_pct": ":.2f",
+            "n_firms": True,
+            "descripcion_corta": True,
+            "hs4_label": False,
+            "sector": False,
+        },
+        title=(
+            f"Exportaciones por HS4 (sector Atlas → HS4) | "
+            f"n = {len(tm_data)} HS4 · total = {total_usd/1e6:,.0f} USD M/año · "
+            f"tamaño = exportación promedio anual · color = sector Atlas"
+        ),
+    )
+    fig_tm.update_traces(
+        textinfo="label+value",
+        texttemplate="<b>%{label}</b><br>$%{value:,.0f} M",
+        textfont=dict(size=15, color="#ffffff"),
+        marker=dict(line=dict(width=1, color="rgba(255,255,255,0.45)")),
+    )
+    fig_tm.update_layout(
+        margin=dict(t=60, l=10, r=10, b=95),
+        height=720,
+        legend=dict(orientation="h", yanchor="top", y=-0.12, xanchor="center", x=0.5,
+                    title_text="Sector Atlas"),
+    )
+    tm_state = st.plotly_chart(
+        fig_tm,
+        use_container_width=True,
+        on_select="rerun",
+        key="expo_prod_treemap",
+    )
+
+    st.caption(
+        "Fuente: DPE (Dirección de Estadística de la Provincia de Córdoba), "
+        "archivo participación NCM 2023-2025, escalado por total OPEX anual. "
+        "Cada NCM 8-dígitos se agrega a su HS4 (primeros 4 dígitos)."
+    )
+
+    # ------------------------------------------------------------------
+    # Decode treemap click → HS4 filter for the firms table below
+    # ------------------------------------------------------------------
+    selected_hs4: set = set()
+    selected_sectors: set = set()
+    try:
+        pts = tm_state.selection.points if hasattr(tm_state, "selection") else (tm_state.get("selection", {}) or {}).get("points", [])
+    except Exception:
+        pts = []
+    label_to_hs4 = dict(zip(tm_data["hs4_label"].astype(str), tm_data["hs4"].astype(str)))
+    for p in pts or []:
+        pid = p.get("id", "") if isinstance(p, dict) else getattr(p, "id", "")
+        label = p.get("label", "") if isinstance(p, dict) else getattr(p, "label", "")
+        if not pid:
+            continue
+        if "/" in pid:
+            code = label_to_hs4.get(str(label))
+            if code:
+                selected_hs4.add(code)
+        else:
+            selected_sectors.add(str(label))
+
+    # ------------------------------------------------------------------
+    # Firms table for selected HS4 (or all if nothing selected)
+    # ------------------------------------------------------------------
+    firm_ev, _ = load_firms_data(_data_signature() if "_data_signature" in globals() else "")
+    firm_ev["hs4"] = firm_ev["hs4"].astype(str).str.zfill(4)
+    firm_ev["sector"] = firm_ev["hs4"].map(hs4_to_sector).fillna("Otros")
+
+    # Apply exporter_profile filter inherited from Firmas y Rubros page.
+    selected_profiles = _selected_anchor_profiles()
+    firm_ev = firm_ev[firm_ev["exporter_profile"].astype(str).isin(selected_profiles)]
+
+    st.subheader("Firmas identificadas")
+    if selected_hs4:
+        firm_filt = firm_ev[firm_ev["hs4"].isin(selected_hs4)].copy()
+        hs4_labels = ", ".join(sorted(selected_hs4))
+        st.caption(f"Filtrando por HS4 seleccionados: **{hs4_labels}** · "
+                   f"click en el fondo del treemap para limpiar.")
+    elif selected_sectors:
+        firm_filt = firm_ev[firm_ev["sector"].astype(str).isin(selected_sectors)].copy()
+        st.caption(f"Filtrando por sector: **{', '.join(sorted(selected_sectors))}** · "
+                   f"click en el fondo del treemap para limpiar.")
+    else:
+        firm_filt = firm_ev.copy()
+        st.caption("Mostrando todas las firmas identificadas. Clickeá un HS4 "
+                   "o sector en el treemap para filtrar.")
+
+    if firm_filt.empty:
+        st.info("No hay firmas identificadas para este filtro.")
+    else:
+        firm_disp = firm_filt.copy()
+        firm_disp["HS4"] = firm_disp["hs4"] + firm_disp["hs4"].map(
+            lambda h: (" - " + SPANISH_OVERRIDES.get(h, "")) if SPANISH_OVERRIDES.get(h) else ""
+        )
+        firm_disp = firm_disp[[
+            "firm_name", "razon_social", "HS4", "sector",
+            "evidence_layer", "exporter_profile", "confidence",
+            "evidence_text", "source_url",
+        ]].rename(columns={
+            "firm_name": "Firma", "razon_social": "Razón social",
+            "sector": "Sector", "evidence_layer": "Capa",
+            "exporter_profile": "Perfil exportador",
+            "confidence": "Confianza", "evidence_text": "Evidencia",
+            "source_url": "Página registro",
+        }).sort_values(["Firma", "HS4"])
+
+        c_kpi1, c_kpi2, c_kpi3 = st.columns(3)
+        c_kpi1.metric("Firmas únicas", f"{firm_disp['Firma'].nunique():,}")
+        c_kpi2.metric("Filas (firma × HS4)", f"{len(firm_disp):,}")
+        c_kpi3.metric("HS4 cubiertos", f"{firm_disp['HS4'].nunique():,}")
+
+        st.dataframe(
+            firm_disp, use_container_width=True, hide_index=True,
+            column_config={
+                "Firma": st.column_config.TextColumn("Firma", width="medium"),
+                "Razón social": st.column_config.TextColumn("Razón social", width="medium"),
+                "HS4": st.column_config.TextColumn("HS4", width="medium"),
+                "Sector": st.column_config.TextColumn("Sector"),
+                "Capa": st.column_config.TextColumn("Capa"),
+                "Perfil exportador": st.column_config.TextColumn("Perfil exportador"),
+                "Confianza": st.column_config.TextColumn("Confianza"),
+                "Evidencia": st.column_config.TextColumn("Evidencia", width="large"),
+                "Página registro": st.column_config.LinkColumn("Registro", display_text="↗", width="small"),
+            },
+        )
+        st.download_button(
+            "⬇ Descargar tabla de firmas (CSV)",
+            firm_disp.to_csv(index=False).encode("utf-8"),
+            "cordoba_firmas_por_hs4.csv",
+            "text/csv",
+        )
+
+
 inicio = st.Page(page_inicio, title="Inicio", icon=":material/home:", default=True)
+expo_producto = st.Page(page_exportaciones_producto, title="Exportaciones por producto",
+                        icon=":material/analytics:")
 analisis = st.Page(page_analisis, title="Análisis de Proximidad", icon=":material/insights:")
-firmas = st.Page(page_firmas, title="Firmas y Rubros", icon=":material/business:")
 mercado = st.Page(page_mercado_accesible, title="Mercado Accesible por Producto", icon=":material/public:")
-st.navigation([inicio, firmas, analisis, mercado]).run()
+firmas = st.Page(page_firmas, title="Firmas y Rubros [Legacy]", icon=":material/business:")
+st.navigation([inicio, expo_producto, analisis, mercado, firmas]).run()
