@@ -580,7 +580,7 @@ fórmulas.
     """)
 
     st.markdown("""
-### Cinco páginas
+### Seis páginas
 
 - **Inicio** (acá): contexto, glosario, fórmulas.
 - **Exportaciones por producto**: composición 2023-2025 de las
@@ -589,7 +589,14 @@ fórmulas.
   para ver las firmas identificadas que lo exportan.
 - **Análisis de Proximidad**: el tablero interactivo principal con
   todos los filtros, el espacio de productos, el Sankey, la tabla de
-  candidatos rankeados y el treemap.
+  candidatos rankeados y el treemap. Basado en la lógica de anclas
+  evidenciadas por firmas.
+- **Oportunidades**: **NUEVO**. Ranking HS4 combinando factibilidad
+  (proximidad al know-how cordobés) y atractivo (complejidad + mercado
+  accesible). Réplica de la metodología Growth Lab / ARG_Dashboard_V2
+  aplicada al caso Córdoba: complejidad y densidad del panel
+  Córdoba+BACI, métricas de mercado heredadas de Argentina. Presets
+  *Margen Intensivo* y *Margen Extensivo*.
 - **Mercado Accesible por Producto**: para cada uno de los top-30
   candidatos del preset Recomendado, la composición geográfica del
   mercado accesible (países destino con sus importaciones).
@@ -2757,10 +2764,471 @@ def page_exportaciones_producto():
         )
 
 
+# ============================================================================
+# Página: Oportunidades — Feasibility × Attractiveness (adaptación de ARG_V2)
+# ============================================================================
+
+@st.cache_data
+def load_oportunidades_dataset(_signature: str = "") -> pd.DataFrame:
+    """Loader del CSV opportunity_metrics_hs4_cordoba.csv.
+    Contiene 1,241 HS4 con:
+      - Componentes de complejidad de Córdoba (nuestro panel): RCA raw+transformed,
+        PCI, COG, density, density_percentile.
+      - Componentes heredados de ARG_V2: accessible_market_size, growth, share,
+        DAI (index/percentile/lead), distance_travelled, eff_num_exp, market_growth_5y.
+      - Rankings globales de Córdoba y ARG-sin-Córdoba por HS4.
+      - Percentiles de cada componente (bounded [0,1]).
+    """
+    df = pd.read_csv(_data("output", "opportunity_metrics_hs4_cordoba.csv"), dtype={"hs4": str})
+    df["hs4"] = df["hs4"].str.zfill(4)
+    return df
+
+
+def page_oportunidades_cordoba():
+    _page_header(
+        "Oportunidades — Feasibility × Attractiveness",
+        "Ranking de HS4 combinando factibilidad (proximidad al know-how cordobés) "
+        "y atractivo (complejidad del producto + mercado accesible). Adapta la "
+        "metodología del Growth Lab / ARG_Dashboard_V2 al caso Córdoba: se usan "
+        "métricas de Córdoba+BACI para complejidad y densidad, y se heredan de "
+        "Argentina las métricas de mercado (accessible market, DAI, distance)."
+    )
+
+    df = load_oportunidades_dataset(_data_signature() if "_data_signature" in globals() else "")
+    if df.empty:
+        st.warning("El dataset de oportunidades está vacío.")
+        st.stop()
+
+    # ------------------------------------------------------------------------
+    # Constantes de la página
+    # ------------------------------------------------------------------------
+    FEAS_COMPS = [
+        ("w_rca",       "RCA transformada",           "rca_transformed_cba_pct"),
+        ("w_density",   "Density (percentil)",        "density_pct_cba_pct"),
+        ("w_eff",       "Effective exporters (inv.)", "eff_num_exp_pct"),
+        ("w_dai",       "DAI percentil (heredado)",   "dai_pct_norm"),
+        ("w_dist",      "Distancia recorrida %",      "distance_travelled_pct"),
+    ]
+    ATTR_COMPS = [
+        ("w_pci",       "PCI",                         "pci_pct"),
+        ("w_cog",       "COG",                         "cog_pct"),
+        ("w_tma",       "Tamaño Mercado Accesible",    "accessible_market_size_share_pct"),
+        ("w_cma",       "Crecimiento Mercado Accesible", "accessible_market_growth_5y_pct"),
+    ]
+    SECTOR_COLORS_OPP = {
+        "Services": "#b23c6f",
+        "Textiles": "#7bc8a4",
+        "Agriculture": "#e5c21a",
+        "Stone": "#caa46b",
+        "Minerals": "#a88b7d",
+        "Metals": "#c9656b",
+        "Chemicals": "#b07ac9",
+        "Vehicles": "#7a6cc3",
+        "Machinery": "#6e8fc3",
+        "Electronics": "#74c5c6",
+        "Other": "#2f5d74",
+    }
+
+    # Techo dinámico del slider RCA = ceil(max) + 1
+    rca_max_data = float(pd.to_numeric(df["raw_rca_cba"], errors="coerce").max() or 0.0)
+    RCA_MAX_UI = int(np.ceil(rca_max_data)) + 1
+
+    sector_options = sorted(df["sector"].dropna().astype(str).unique().tolist())
+
+    hs4_labels_df = (
+        df[["hs4", "product_name_short"]].copy()
+        .assign(hs4=lambda d: d["hs4"].astype(str).str.zfill(4))
+        .assign(product_name_short=lambda d: d["product_name_short"].fillna("").astype(str))
+    )
+    hs4_labels_df["hs4_label"] = hs4_labels_df["hs4"] + " - " + hs4_labels_df["product_name_short"]
+    hs4_label_to_code = dict(zip(hs4_labels_df["hs4_label"], hs4_labels_df["hs4"]))
+
+    # Session-state defaults
+    defaults = {
+        "opp_rca_min": 0.0,
+        "opp_rca_max": float(RCA_MAX_UI),
+        "opp_tma_min_b": 0.0,          # Tamaño Mercado Accesible mínimo (BUSD)
+        "opp_dens_pct_range": (0.0, 1.0),
+        "opp_sectors": sector_options,
+        "opp_excluded_hs4": [],
+        "opp_toggle_market_cagr_pos": False,
+        "opp_toggle_export_cagr_pos": False,
+        "opp_toggle_accessible_growth_pos": False,
+        # Feasibility weights (default = Margen Intensivo)
+        "opp_w_rca": 0.00,
+        "opp_w_density": 0.50,
+        "opp_w_eff": 0.00,
+        "opp_w_dai": 0.50,
+        "opp_w_dist": 0.00,
+        # Attractiveness weights (default = Margen Intensivo)
+        "opp_w_pci": 0.50,
+        "opp_w_cog": 0.00,
+        "opp_w_tma": 0.25,
+        "opp_w_cma": 0.25,
+        # Balance
+        "opp_balance": 0.50,
+        # Display
+        "opp_top_n": 60,
+        "opp_size_var": "Tamaño Mercado Accesible (B USD)",
+    }
+    for k, v in defaults.items():
+        st.session_state.setdefault(k, v)
+
+    def _apply_preset_margen_intensivo():
+        st.session_state["opp_rca_min"] = 0.7
+        st.session_state["opp_rca_max"] = 10.0
+        st.session_state["opp_tma_min_b"] = 0.0
+        st.session_state["opp_dens_pct_range"] = (0.0, 1.0)
+        st.session_state["opp_sectors"] = sector_options
+        st.session_state["opp_excluded_hs4"] = []
+        st.session_state["opp_toggle_market_cagr_pos"] = False
+        st.session_state["opp_toggle_export_cagr_pos"] = False
+        st.session_state["opp_toggle_accessible_growth_pos"] = False
+        st.session_state["opp_w_rca"] = 0.00
+        st.session_state["opp_w_density"] = 0.50
+        st.session_state["opp_w_eff"] = 0.00
+        st.session_state["opp_w_dai"] = 0.50
+        st.session_state["opp_w_dist"] = 0.00
+        st.session_state["opp_w_pci"] = 0.50
+        st.session_state["opp_w_cog"] = 0.00
+        st.session_state["opp_w_tma"] = 0.25
+        st.session_state["opp_w_cma"] = 0.25
+        st.session_state["opp_balance"] = 0.50
+
+    def _apply_preset_margen_extensivo():
+        st.session_state["opp_rca_min"] = 0.0
+        st.session_state["opp_rca_max"] = 0.25
+        st.session_state["opp_tma_min_b"] = 0.0
+        st.session_state["opp_dens_pct_range"] = (0.0, 1.0)
+        st.session_state["opp_sectors"] = sector_options
+        st.session_state["opp_excluded_hs4"] = []
+        st.session_state["opp_toggle_market_cagr_pos"] = False
+        st.session_state["opp_toggle_export_cagr_pos"] = False
+        st.session_state["opp_toggle_accessible_growth_pos"] = False
+        st.session_state["opp_w_rca"] = 0.00
+        st.session_state["opp_w_density"] = 0.40
+        st.session_state["opp_w_eff"] = 0.00
+        st.session_state["opp_w_dai"] = 0.40
+        st.session_state["opp_w_dist"] = 0.20
+        st.session_state["opp_w_pci"] = 0.35
+        st.session_state["opp_w_cog"] = 0.35
+        st.session_state["opp_w_tma"] = 0.15
+        st.session_state["opp_w_cma"] = 0.15
+        st.session_state["opp_balance"] = 0.50
+
+    def _reset_opp_filters():
+        for k, v in defaults.items():
+            st.session_state[k] = v
+
+    # ------------------------------------------------------------------------
+    # Sidebar
+    # ------------------------------------------------------------------------
+    with st.sidebar:
+        st.header("Perfiles predefinidos")
+        st.button("Margen Intensivo", on_click=_apply_preset_margen_intensivo,
+                  use_container_width=True,
+                  help="RCA ∈ [0.7, 10] · Attractiveness (PCI 50 · TMA 25 · CMA 25) · "
+                       "Feasibility (DAI 50 · Density 50) · Balance 0.50")
+        st.button("Margen Extensivo", on_click=_apply_preset_margen_extensivo,
+                  use_container_width=True,
+                  help="RCA < 0.25 · Attractiveness (PCI 35 · COG 35 · TMA 15 · CMA 15) · "
+                       "Feasibility (DAI 40 · Density 40 · Distancia 20) · Balance 0.50")
+        st.button("Reiniciar filtros", on_click=_reset_opp_filters, use_container_width=True)
+
+        st.header("Filtros de universo")
+        rca_min = st.number_input(
+            "RCA raw mínima",
+            min_value=0.0,
+            max_value=float(RCA_MAX_UI),
+            value=float(st.session_state["opp_rca_min"]),
+            step=0.05,
+            format="%.3f",
+            key="opp_rca_min",
+        )
+        rca_max = st.number_input(
+            "RCA raw máxima",
+            min_value=float(rca_min),
+            max_value=float(RCA_MAX_UI),
+            value=max(float(st.session_state["opp_rca_max"]), float(rca_min)),
+            step=0.05,
+            format="%.3f",
+            key="opp_rca_max",
+            help=f"Techo dinámico basado en el RCA máximo de Córdoba (~{rca_max_data:.1f}).",
+        )
+        tma_max_data = float(df["accessible_market_size_b"].max() or 0.0)
+        tma_min_b = st.number_input(
+            "Tamaño Mercado Accesible mínimo (B USD)",
+            min_value=0.0,
+            max_value=max(tma_max_data, 0.1),
+            value=float(st.session_state["opp_tma_min_b"]),
+            step=0.1,
+            format="%.2f",
+            key="opp_tma_min_b",
+        )
+        dens_range = st.slider(
+            "Percentil de densidad — Córdoba",
+            0.0, 1.0,
+            tuple(st.session_state["opp_dens_pct_range"]),
+            0.01,
+            key="opp_dens_pct_range",
+            help="Filtra HS4 por la posición de Córdoba en la distribución de density del HS4.",
+        )
+        selected_sectors = st.multiselect(
+            "Sectores Atlas",
+            options=sector_options,
+            default=st.session_state["opp_sectors"],
+            key="opp_sectors",
+        )
+        excluded_labels = st.multiselect(
+            "Excluir HS4 específicos",
+            options=list(hs4_label_to_code.keys()),
+            default=st.session_state["opp_excluded_hs4"],
+            key="opp_excluded_hs4",
+        )
+        excluded_hs4_codes = {hs4_label_to_code[l] for l in excluded_labels}
+
+        st.header("Filtros de crecimiento")
+        st.toggle("Market growth 5y > 0 (mundial)", key="opp_toggle_market_cagr_pos")
+        st.toggle("Accessible market growth 5y > 0", key="opp_toggle_accessible_growth_pos")
+
+        st.header("Balance estratégico")
+        st.slider(
+            "Factibilidad ← 0    |    Atractivo → 1",
+            0.0, 1.0, float(st.session_state["opp_balance"]), 0.05,
+            key="opp_balance",
+        )
+
+        st.header("Pesos — Factibilidad")
+        st.caption("Componentes del índice (percentiles). Suman implícitamente al normalizar.")
+        for key, label, _col in FEAS_COMPS:
+            st.slider(label, 0.0, 1.0, float(st.session_state[f"opp_{key.split('_',1)[1]}"]),
+                      0.05, key=f"opp_{key.split('_',1)[1]}")
+
+        st.header("Pesos — Atractivo")
+        for key, label, _col in ATTR_COMPS:
+            st.slider(label, 0.0, 1.0, float(st.session_state[f"opp_{key.split('_',1)[1]}"]),
+                      0.05, key=f"opp_{key.split('_',1)[1]}")
+
+    # ------------------------------------------------------------------------
+    # Filtro + Cálculo de índices
+    # ------------------------------------------------------------------------
+    flt = df.copy()
+    flt = flt[(flt["raw_rca_cba"] >= rca_min) & (flt["raw_rca_cba"] <= rca_max)]
+    flt = flt[flt["accessible_market_size_b"].fillna(0) >= tma_min_b]
+    flt = flt[
+        (flt["density_pct_cba"].fillna(0) >= dens_range[0])
+        & (flt["density_pct_cba"].fillna(0) <= dens_range[1])
+    ]
+    if selected_sectors:
+        flt = flt[flt["sector"].isin(selected_sectors)]
+    if excluded_hs4_codes:
+        flt = flt[~flt["hs4"].isin(excluded_hs4_codes)]
+    if st.session_state["opp_toggle_market_cagr_pos"]:
+        flt = flt[flt["market_growth_5y"].fillna(0) > 0]
+    if st.session_state["opp_toggle_accessible_growth_pos"]:
+        flt = flt[flt["accessible_market_growth_5y"].fillna(0) > 0]
+
+    def _weighted(frame, comps, weight_prefix):
+        cols, weights = [], []
+        for key, _label, col in comps:
+            w = float(st.session_state[f"opp_{key.split('_',1)[1]}"])
+            if w > 0:
+                cols.append(col)
+                weights.append(w)
+        if not cols:
+            return pd.Series(0.0, index=frame.index)
+        weight_sum = sum(weights)
+        arr = np.column_stack([pd.to_numeric(frame[c], errors="coerce").fillna(0).to_numpy() for c in cols])
+        return pd.Series((arr * np.array(weights)).sum(axis=1) / weight_sum, index=frame.index)
+
+    flt["feasibility_index"] = _weighted(flt, FEAS_COMPS, "opp_")
+    flt["attractiveness_index"] = _weighted(flt, ATTR_COMPS, "opp_")
+    bal = float(st.session_state["opp_balance"])
+    flt["combined_score"] = (1 - bal) * flt["feasibility_index"] + bal * flt["attractiveness_index"]
+
+    if flt.empty:
+        st.warning("Ningún HS4 cumple los filtros actuales. Ajustá el sidebar.")
+        st.stop()
+
+    # ------------------------------------------------------------------------
+    # KPIs
+    # ------------------------------------------------------------------------
+    k1, k2, k3, k4 = st.columns(4)
+    k1.metric("HS4 mostrados", f"{len(flt):,} / {len(df):,}")
+    k2.metric("Feasibility media", f"{flt['feasibility_index'].mean():.3f}")
+    k3.metric("Attractiveness media", f"{flt['attractiveness_index'].mean():.3f}")
+    k4.metric("Score combinado top", f"{flt['combined_score'].max():.3f}")
+
+    # ------------------------------------------------------------------------
+    # Scatter Feasibility × Attractiveness
+    # ------------------------------------------------------------------------
+    size_choices = {
+        "Tamaño Mercado Accesible (B USD)": "accessible_market_size_b",
+        "Exportación Córdoba (USD)": "cordoba_value_usd",
+        "PCI": "pci",
+        "RCA raw Córdoba": "raw_rca_cba",
+        "Distancia recorrida (%)": "distance_travelled_pct",
+    }
+    size_label = st.selectbox(
+        "Tamaño del punto",
+        options=list(size_choices.keys()),
+        index=list(size_choices.keys()).index(st.session_state["opp_size_var"])
+              if st.session_state["opp_size_var"] in size_choices else 0,
+        key="opp_size_var",
+    )
+    size_col = size_choices[size_label]
+    size_raw = pd.to_numeric(flt[size_col], errors="coerce").fillna(0).clip(lower=0)
+    size_min, size_max = 6, 26
+    if size_raw.max() > size_raw.min():
+        flt["_dot_size"] = size_min + ((size_raw - size_raw.min()) / (size_raw.max() - size_raw.min())) * (size_max - size_min)
+    else:
+        flt["_dot_size"] = (size_min + size_max) / 2
+
+    fig = px.scatter(
+        flt,
+        x="feasibility_index", y="attractiveness_index",
+        color="sector", color_discrete_map=SECTOR_COLORS_OPP,
+        size="_dot_size", size_max=size_max,
+        hover_name="product_name_short",
+        hover_data={
+            "hs4": True,
+            "raw_rca_cba": ":.3f",
+            "pci": ":.2f",
+            "cog_cba": ":.2f",
+            "density_cba": ":.3f",
+            "density_pct_cba": ":.2f",
+            "dai_percentile": ":.1f",
+            "distance_travelled": ":.0f",
+            "accessible_market_size_b": ":.2f",
+            "accessible_market_growth_5y": ":.2%",
+            "combined_score": ":.3f",
+            "_dot_size": False,
+            "sector": False,
+        },
+        labels={
+            "feasibility_index": "Factibilidad (Feasibility)",
+            "attractiveness_index": "Atractivo (Attractiveness)",
+            "raw_rca_cba": "RCA raw",
+            "density_pct_cba": "Density pct",
+            "dai_percentile": "DAI pct",
+            "distance_travelled": "Distancia recorrida (km)",
+            "accessible_market_size_b": "TMA (B USD)",
+            "accessible_market_growth_5y": "CMA (5y)",
+            "sector": "Sector Atlas",
+        },
+        template="plotly_white",
+        title=f"Feasibility × Attractiveness  ·  {len(flt):,} HS4 mostrados",
+    )
+    fig.update_traces(marker=dict(opacity=0.78, line=dict(width=0.4, color="#1f2937")))
+    fig.update_layout(margin=dict(t=60, l=20, r=20, b=20), height=580, legend_title="Sector Atlas")
+    # Diagonal referencia
+    dmin = float(min(flt["feasibility_index"].min(), flt["attractiveness_index"].min()))
+    dmax = float(max(flt["feasibility_index"].max(), flt["attractiveness_index"].max()))
+    fig.add_shape(type="line", x0=dmin, y0=dmin, x1=dmax, y1=dmax,
+                  line=dict(color="rgba(180,60,60,0.5)", width=1.5, dash="dash"))
+    st.plotly_chart(fig, use_container_width=True)
+
+    # ------------------------------------------------------------------------
+    # Tabla top-N
+    # ------------------------------------------------------------------------
+    st.subheader("Ranking de HS4 — top oportunidades")
+    top_n = st.slider("Filas a mostrar", 10, 300, int(st.session_state["opp_top_n"]), 10, key="opp_top_n")
+
+    table = flt.sort_values("combined_score", ascending=False).head(top_n).copy()
+    table.insert(0, "rank", range(1, len(table) + 1))
+
+    display = table[[
+        "rank", "hs4", "product_name_short", "sector",
+        "raw_rca_cba", "cordoba_value_usd", "pci", "cog_cba",
+        "density_pct_cba", "dai_percentile", "distance_travelled",
+        "accessible_market_size_b", "accessible_market_growth_5y",
+        "rank_cordoba", "rank_arg_ex_cba",
+        "feasibility_index", "attractiveness_index", "combined_score",
+    ]].rename(columns={
+        "product_name_short": "Producto",
+        "sector": "Sector",
+        "raw_rca_cba": "RCA Cba",
+        "cordoba_value_usd": "Exp. Cba (USD)",
+        "pci": "PCI",
+        "cog_cba": "COG",
+        "density_pct_cba": "Density pct",
+        "dai_percentile": "DAI pct",
+        "distance_travelled": "Dist. (km)",
+        "accessible_market_size_b": "TMA (B USD)",
+        "accessible_market_growth_5y": "CMA 5y",
+        "rank_cordoba": "Rank Cba",
+        "rank_arg_ex_cba": "Rank ARG-Cba",
+        "feasibility_index": "Feas.",
+        "attractiveness_index": "Attr.",
+        "combined_score": "Score",
+    })
+
+    st.dataframe(
+        display,
+        use_container_width=True, hide_index=True,
+        column_config={
+            "rank": st.column_config.NumberColumn("#", format="%d", width="small"),
+            "hs4": st.column_config.TextColumn("HS4", width="small"),
+            "Producto": st.column_config.TextColumn("Producto", width="medium"),
+            "Sector": st.column_config.TextColumn("Sector"),
+            "RCA Cba": st.column_config.NumberColumn("RCA Cba", format="%.3f"),
+            "Exp. Cba (USD)": st.column_config.NumberColumn("Exp. Cba (USD)", format="$%.0f"),
+            "PCI": st.column_config.NumberColumn("PCI", format="%.2f"),
+            "COG": st.column_config.NumberColumn("COG", format="%.2f"),
+            "Density pct": st.column_config.NumberColumn("Density pct", format="%.2f"),
+            "DAI pct": st.column_config.NumberColumn("DAI pct", format="%.1f"),
+            "Dist. (km)": st.column_config.NumberColumn("Dist. (km)", format="%.0f"),
+            "TMA (B USD)": st.column_config.NumberColumn("TMA (B USD)", format="%.2f"),
+            "CMA 5y": st.column_config.NumberColumn("CMA 5y", format="%.2%%"),
+            "Rank Cba": st.column_config.NumberColumn("Rank Cba", format="%.0f"),
+            "Rank ARG-Cba": st.column_config.NumberColumn("Rank ARG-Cba", format="%.0f"),
+            "Feas.": st.column_config.NumberColumn("Feas.", format="%.3f"),
+            "Attr.": st.column_config.NumberColumn("Attr.", format="%.3f"),
+            "Score": st.column_config.NumberColumn("Score", format="%.3f"),
+        },
+    )
+
+    csv_bytes = display.to_csv(index=False).encode("utf-8")
+    st.download_button("⬇ Descargar ranking (CSV)", csv_bytes,
+                       "cordoba_oportunidades_ranking.csv", "text/csv")
+
+    # ------------------------------------------------------------------------
+    # Nota metodológica
+    # ------------------------------------------------------------------------
+    with st.expander("Nota metodológica"):
+        st.markdown("""
+**Factibilidad (Feasibility)** — promedio ponderado (por pesos del sidebar) de percentiles:
+- **RCA transformada** (`rca/(rca+1)`) de Córdoba en el panel Córdoba+BACI.
+- **Density (percentil)** — cercanía de Córdoba al producto en el espacio de productos, recomputado dentro del panel Córdoba+BACI.
+- **Effective exporters (invertido)** — inversa del percentil de número efectivo de exportadores; más competencia mundial = menos feasibility.
+- **DAI percentil** — heredado de Argentina (ARG_Dashboard_V2).
+- **Distancia recorrida (percentil)** — producto que viaja lejos globalmente = mercado accesible más amplio.
+
+**Atractivo (Attractiveness)** — promedio ponderado de percentiles:
+- **PCI** — complejidad del producto en el panel Córdoba+BACI.
+- **COG** — Complexity Outlook Gain de Córdoba en el HS4.
+- **TMA (Tamaño Mercado Accesible)** — participación del HS4 en el mercado accesible total de Argentina (heredado).
+- **CMA (Crecimiento Mercado Accesible)** — CAGR 5 años del mercado accesible (heredado).
+
+**Combined Score** = (1 − balance) × Feasibility + balance × Attractiveness.
+
+**Presets**:
+- **Margen Intensivo**: RCA ∈ [0.7, 10] · Feas (DAI 50 · Density 50) · Attr (PCI 50 · TMA 25 · CMA 25) · Balance 0.50.
+- **Margen Extensivo**: RCA < 0.25 · Feas (DAI 40 · Density 40 · Dist 20) · Attr (PCI 35 · COG 35 · TMA 15 · CMA 15) · Balance 0.50.
+
+**Fuentes**:
+- Complejidad + RCA + PCI + COG + density: nuestro panel `complexity_cordoba_full.csv` (BACI 2020-2024 con Córdoba como location adicional).
+- Métricas de mercado y DAI: `data/reference/arg_v2_inherited/opportunity_metrics_hs4_arg.csv` (snapshot desde ARG_Dashboard_V2 del Growth Lab).
+- Nombres y sectores HS4: `data/reference/arg_v2_inherited/hs92_4digits.csv`.
+        """)
+
+
 inicio = st.Page(page_inicio, title="Inicio", icon=":material/home:", default=True)
 expo_producto = st.Page(page_exportaciones_producto, title="Exportaciones por producto",
                         icon=":material/analytics:")
 analisis = st.Page(page_analisis, title="Análisis de Proximidad", icon=":material/insights:")
+oportunidades = st.Page(page_oportunidades_cordoba, title="Oportunidades",
+                        icon=":material/target:")
 mercado = st.Page(page_mercado_accesible, title="Mercado Accesible por Producto", icon=":material/public:")
 firmas = st.Page(page_firmas, title="Firmas y Rubros [Legacy]", icon=":material/business:")
-st.navigation([inicio, expo_producto, analisis, mercado, firmas]).run()
+st.navigation([inicio, expo_producto, analisis, oportunidades, mercado, firmas]).run()
