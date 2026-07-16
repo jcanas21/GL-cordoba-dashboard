@@ -3001,13 +3001,13 @@ def page_oportunidades_cordoba():
         st.header("Pesos — Factibilidad")
         st.caption("Componentes del índice (percentiles). Suman implícitamente al normalizar.")
         for key, label, _col in FEAS_COMPS:
-            st.slider(label, 0.0, 1.0, float(st.session_state[f"opp_{key.split('_',1)[1]}"]),
-                      0.05, key=f"opp_{key.split('_',1)[1]}")
+            st.slider(label, 0.0, 1.0, float(st.session_state[f"opp_{key}"]),
+                      0.05, key=f"opp_{key}")
 
         st.header("Pesos — Atractivo")
         for key, label, _col in ATTR_COMPS:
-            st.slider(label, 0.0, 1.0, float(st.session_state[f"opp_{key.split('_',1)[1]}"]),
-                      0.05, key=f"opp_{key.split('_',1)[1]}")
+            st.slider(label, 0.0, 1.0, float(st.session_state[f"opp_{key}"]),
+                      0.05, key=f"opp_{key}")
 
     # ------------------------------------------------------------------------
     # Filtro + Cálculo de índices
@@ -3031,7 +3031,7 @@ def page_oportunidades_cordoba():
     def _weighted(frame, comps, weight_prefix):
         cols, weights = [], []
         for key, _label, col in comps:
-            w = float(st.session_state[f"opp_{key.split('_',1)[1]}"])
+            w = float(st.session_state[f"opp_{key}"])
             if w > 0:
                 cols.append(col)
                 weights.append(w)
