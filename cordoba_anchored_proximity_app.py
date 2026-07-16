@@ -3193,6 +3193,145 @@ def page_oportunidades_cordoba():
                        "cordoba_oportunidades_ranking.csv", "text/csv")
 
     # ------------------------------------------------------------------------
+    # Treemap de oportunidades seleccionadas (top-N)
+    # ------------------------------------------------------------------------
+    st.subheader("Treemap — top oportunidades seleccionadas")
+    st.caption(
+        f"Muestra los top {len(table)} HS4 del ranking, agrupados por sector Atlas. "
+        "Elegí la variable que define el tamaño de cada baldosa y la variable de color."
+    )
+
+    tm_size_choices = {
+        "Score combinado":                   "combined_score",
+        "Factibilidad":                      "feasibility_index",
+        "Atractivo":                         "attractiveness_index",
+        "Tamaño Mercado Accesible (B USD)":  "accessible_market_size_b",
+        "Exportación Córdoba (USD)":         "cordoba_value_usd",
+        "PCI":                               "pci",
+    }
+    tm_color_choices = ["Sector Atlas", "PCI (raw)"]
+    PCI_COLOR_SCALE = [
+        [0.000, "rgb(227, 159, 96)"],
+        [0.279, "rgb(231, 173, 120)"],
+        [0.339, "rgb(235, 188, 143)"],
+        [0.398, "rgb(240, 202, 168)"],
+        [0.448, "rgb(244, 217, 191)"],
+        [0.494, "rgb(248, 231, 215)"],
+        [0.495, "rgb(192, 228, 225)"],
+        [0.534, "rgb(154, 211, 207)"],
+        [0.571, "rgb(116, 195, 189)"],
+        [0.607, "rgb(77, 178, 171)"],
+        [0.662, "rgb(40, 162, 153)"],
+        [1.000, "rgb(2, 146, 135)"],
+    ]
+
+    c_tm1, c_tm2 = st.columns(2)
+    with c_tm1:
+        st.session_state.setdefault("opp_tm_size", "Score combinado")
+        tm_size_label = st.selectbox(
+            "Tamaño de la baldosa",
+            options=list(tm_size_choices.keys()),
+            index=list(tm_size_choices.keys()).index(st.session_state["opp_tm_size"])
+                  if st.session_state["opp_tm_size"] in tm_size_choices else 0,
+            key="opp_tm_size",
+        )
+    with c_tm2:
+        st.session_state.setdefault("opp_tm_color", "Sector Atlas")
+        tm_color_label = st.selectbox(
+            "Color de la baldosa",
+            options=tm_color_choices,
+            index=tm_color_choices.index(st.session_state["opp_tm_color"])
+                  if st.session_state["opp_tm_color"] in tm_color_choices else 0,
+            key="opp_tm_color",
+        )
+
+    treemap_df = table.copy()
+    tm_size_col = tm_size_choices[tm_size_label]
+    tm_size_values = pd.to_numeric(treemap_df[tm_size_col], errors="coerce").fillna(0)
+    # Some size cols can be non-positive; treemap needs positive values → floor at a tiny eps
+    tm_size_values = tm_size_values.clip(lower=0)
+    if tm_size_values.sum() == 0:
+        # Fallback to score if the picked col is all-zero for the filtered set
+        tm_size_values = pd.to_numeric(treemap_df["combined_score"], errors="coerce").fillna(0).clip(lower=0)
+    treemap_df["_size_val"] = tm_size_values
+
+    def _wrap(text: str, width: int = 20) -> str:
+        words = str(text).split()
+        if not words:
+            return str(text)
+        lines, cur = [], words[0]
+        for w in words[1:]:
+            if len(cur) + 1 + len(w) <= width:
+                cur = f"{cur} {w}"
+            else:
+                lines.append(cur); cur = w
+        lines.append(cur)
+        return "<br>".join(lines)
+
+    treemap_df["product_label"] = (
+        treemap_df["hs4"].astype(str).str.zfill(4)
+        + " - " + treemap_df["product_name_short"].fillna("").astype(str)
+    )
+    treemap_df["product_label_wrapped"] = treemap_df["product_label"].map(_wrap)
+
+    common_hover = {
+        "combined_score": ":.3f",
+        "feasibility_index": ":.3f",
+        "attractiveness_index": ":.3f",
+        "raw_rca_cba": ":.3f",
+        "pci": ":.2f",
+        "accessible_market_size_b": ":.2f",
+        "accessible_market_growth_5y": ":.2%",
+        "product_label": True,
+        "sector": False,
+        "product_label_wrapped": False,
+        "_size_val": False,
+    }
+    tm_kwargs = dict(
+        data_frame=treemap_df,
+        path=["sector", "product_label_wrapped"],
+        values="_size_val",
+        hover_data=common_hover,
+        title=f"Top {len(treemap_df)} oportunidades  ·  tamaño = {tm_size_label}  ·  color = {tm_color_label}",
+    )
+
+    if tm_color_label == "PCI (raw)":
+        fig_tm = px.treemap(
+            color="pci",
+            color_continuous_scale=PCI_COLOR_SCALE,
+            range_color=(-2.0, 2.0),
+            labels={"pci": "PCI"},
+            **tm_kwargs,
+        )
+        text_color = "#1f2937"
+        fig_tm.update_layout(
+            coloraxis_colorbar=dict(
+                title=dict(text="PCI (raw)", side="top"),
+                orientation="h", x=0.5, xanchor="center", y=-0.14, yanchor="top",
+                len=0.6, thickness=14,
+                tickmode="array", tickvals=[-2, -1, 0, 1, 2],
+                ticktext=["≤ -2", "-1", "0", "1", "≥ 2"],
+            ),
+            margin=dict(t=60, l=10, r=10, b=80),
+        )
+    else:
+        fig_tm = px.treemap(
+            color="sector",
+            color_discrete_map=SECTOR_COLORS_OPP,
+            **tm_kwargs,
+        )
+        text_color = "#ffffff"
+        fig_tm.update_layout(margin=dict(t=60, l=10, r=10, b=10))
+
+    fig_tm.update_traces(
+        textinfo="label",
+        textfont=dict(size=15, color=text_color),
+        marker=dict(line=dict(width=1, color="rgba(255,255,255,0.45)")),
+    )
+    fig_tm.update_layout(height=620)
+    st.plotly_chart(fig_tm, use_container_width=True)
+
+    # ------------------------------------------------------------------------
     # Nota metodológica
     # ------------------------------------------------------------------------
     with st.expander("Nota metodológica"):
