@@ -2781,6 +2781,17 @@ def load_oportunidades_dataset(_signature: str = "") -> pd.DataFrame:
     """
     df = pd.read_csv(_data("output", "opportunity_metrics_hs4_cordoba.csv"), dtype={"hs4": str})
     df["hs4"] = df["hs4"].str.zfill(4)
+    # Override product names with Spanish overrides (SPANISH_OVERRIDES combines
+    # hs4_names_es.py — ~1,240 curated Spanish HS4 short names — with the
+    # script-13 curated dict). Fallback to the ARG_V2 English name if no
+    # Spanish override exists.
+    _en_backup = df["product_name_short"].fillna("").astype(str)
+    df["product_name_short"] = df["hs4"].map(
+        lambda h: SPANISH_OVERRIDES.get(h, "")
+    )
+    df["product_name_short"] = df["product_name_short"].where(
+        df["product_name_short"].astype(str).str.len() > 0, _en_backup
+    )
     return df
 
 
