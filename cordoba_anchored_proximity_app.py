@@ -1642,6 +1642,24 @@ def page_analisis():
         )
     )
 
+    # Córdoba's own export value for the candidate HS4 (DPE promedio anual
+    # 2023-2025). Non-zero only for `posible ancla` candidates — pure
+    # candidates have no evidenced presence, so the value is 0.
+    _cordoba_export_usd = dict(
+        zip(
+            presence["hs4"].astype(str).str.zfill(4),
+            pd.to_numeric(presence["usd_promedio_anual"], errors="coerce").fillna(0.0),
+        )
+    )
+    candidate_scores["cordoba_export_usd_m"] = (
+        candidate_scores["candidate_hs4"]
+        .astype(str)
+        .str.zfill(4)
+        .map(_cordoba_export_usd)
+        .fillna(0.0)
+        / 1e6
+    )
+
     # Normalise components within the filtered candidate set
     candidate_scores["dai_mm"] = normalize_0_1(candidate_scores["dai_percentile"])
     # Distance: percentile rank (0 → 1, higher rank = travels farther = more
@@ -2054,6 +2072,7 @@ Al mover el slider **Umbral exportación promedio anual** del sidebar, la tabla 
 | **Producto** | Nombre corto del HS4 en español (curado, ~1.240 entradas). |
 | **Sector** | Sector Atlas / Growth Lab del HS4. |
 | **Posible ancla** | Dummy 1/0. `1` = el candidato pertenece al set de 462 HS4 evidenciados pero su OPEX o su # firmas quedó por debajo del umbral del slider — es una ex-ancla reaparecida como candidato. Ver Inicio → glosario. |
+| **Exportación Córdoba (USD M)** | Exportaciones actuales de Córdoba en este HS4, promedio anual 2023-2025 (USD millones, fuente DPE). `> 0` sólo para los candidatos flagueados como *posible ancla*; `0` para candidatos puros (sin evidencia previa de exportación desde Córdoba). |
 | **Puntaje combinado** | `(1 − balance) · Factibilidad + balance · Atractivo`, normalizado 0-1 dentro del set filtrado. `balance` es el dial del sidebar. |
 | **Índice de atractivo** | Promedio ponderado del PCI, tamaño del mercado accesible y crecimiento a 5 años del mercado accesible, normalizado 0-1. |
 | **Índice de factibilidad** | Promedio ponderado del DAI, percentil de distancia recorrida y # de anclas normalizado, normalizado 0-1. |
@@ -2072,7 +2091,7 @@ Al mover el slider **Umbral exportación promedio anual** del sidebar, la tabla 
     st.dataframe(
         candidate_display[[
             "rank", "candidate_hs4", "candidate_product_name_es", "candidate_sector",
-            "posible_ancla",
+            "posible_ancla", "cordoba_export_usd_m",
             "combined_score", "attractiveness_index", "feasibility_index",
             "dai_index", "pci", "dai_percentile", "distance_travelled", "distance_pctile",
             "accessible_market_growth_5y", "accessible_market_size_b",
@@ -2093,6 +2112,16 @@ Al mover el slider **Umbral exportación promedio anual** del sidebar, la tabla 
                     "debajo del umbral actual; reaparece como candidato del set "
                     "de anclas que sí supera el umbral. 0 = candidato 'puro' "
                     "(sin evidencia previa de presencia)."
+                ),
+            ),
+            "cordoba_export_usd_m": st.column_config.NumberColumn(
+                "Exportación Córdoba (USD M)",
+                format="%.2f",
+                help=(
+                    "Exportaciones actuales de Córdoba en este HS4, promedio "
+                    "anual 2023-2025 (USD millones, fuente DPE). >0 sólo para "
+                    "candidatos flagueados como posible ancla; 0 para "
+                    "candidatos puros sin evidencia previa."
                 ),
             ),
             "combined_score": st.column_config.NumberColumn("Puntaje combinado", format="%.4f"),
