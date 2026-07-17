@@ -2331,27 +2331,58 @@ def page_mercado_accesible():
             "*Firmas y Rubros*)."
         )
 
-    # Product universe: mirror EXACTLY the top-N shown on Análisis de Proximidad
-    # (whatever sliders/weights/filters the user has active there). Fall back to
-    # the Recomendado preset if the user hasn't opened that page yet in this
-    # session, so a first-visit-to-Page-4 doesn't crash empty.
-    p3_live = st.session_state.get("p3_displayed_candidates")
+    # Selector de fuente: (1) Análisis de Proximidad live/preset,
+    # (2) Margen Intensivo top-30, (3) Margen Extensivo top-30.
     hs4_in_am = set(am["hs92"].unique())
-    if p3_live:
-        source_label = "vivo desde **Análisis de Proximidad**"
-        candidates_ordered = [str(h).zfill(4) for h in p3_live]
-    else:
-        source_label = "preset **Recomendado**"
-        candidates_ordered = _recomendado_top_candidates(
+    fuente_opciones = [
+        "Análisis de Proximidad (vivo)",
+        "Margen Intensivo (top 30)",
+        "Margen Extensivo (top 30)",
+    ]
+    st.session_state.setdefault("mercado_fuente", fuente_opciones[0])
+    fuente = st.selectbox(
+        "Fuente del universo de productos",
+        options=fuente_opciones,
+        index=fuente_opciones.index(st.session_state["mercado_fuente"])
+              if st.session_state["mercado_fuente"] in fuente_opciones else 0,
+        key="mercado_fuente",
+        help=(
+            "Elegí qué lista de HS4 mostrar acá: la tabla viva de la página "
+            "*Análisis de Proximidad*, o el top-30 de uno de los presets de "
+            "Oportunidades (Margen Intensivo o Margen Extensivo)."
+        ),
+    )
+
+    if fuente == "Margen Intensivo (top 30)":
+        source_label = "preset **Margen Intensivo** (top 30 fijo)"
+        candidates_ordered = _preset_top_n_candidates(
             _data_signature() if "_data_signature" in globals() else "",
-            profiles=selected_profiles,
+            "margen_intensivo", 30
         )
+    elif fuente == "Margen Extensivo (top 30)":
+        source_label = "preset **Margen Extensivo** (top 30 fijo)"
+        candidates_ordered = _preset_top_n_candidates(
+            _data_signature() if "_data_signature" in globals() else "",
+            "margen_extensivo", 30
+        )
+    else:
+        # Fuente por defecto: replica lo que hay live en Análisis de Proximidad,
+        # o cae al preset Recomendado si el usuario no visitó esa página aún.
+        p3_live = st.session_state.get("p3_displayed_candidates")
+        if p3_live:
+            source_label = "vivo desde **Análisis de Proximidad**"
+            candidates_ordered = [str(h).zfill(4) for h in p3_live]
+        else:
+            source_label = "preset **Recomendado**"
+            candidates_ordered = _recomendado_top_candidates(
+                _data_signature() if "_data_signature" in globals() else "",
+                profiles=selected_profiles,
+            )
 
     st.caption(
-        f"Los productos disponibles reflejan la tabla de candidatos de la "
-        f"página **Análisis de Proximidad** ({source_label}), en el mismo "
-        f"orden en que aparecen allí. Cambiá sliders, pesos o filtros en esa "
-        f"página y la lista acá se actualiza."
+        f"Universo actual: {source_label}. Cambiá la fuente en el selector de arriba "
+        f"para alternar entre la lista viva de Análisis de Proximidad y los top-30 "
+        f"de los presets de la página *Oportunidades*."
     )
 
     # Preserve the ranking order, but only keep HS4 with accessible-market data
@@ -2795,6 +2826,76 @@ def load_oportunidades_dataset(_signature: str = "") -> pd.DataFrame:
     return df
 
 
+# Preset definitions (RCA filter + weights + balance) reusable across pages.
+OPP_PRESETS = {
+    "margen_intensivo": {
+        "label": "Margen Intensivo",
+        "rca_range": (0.7, 10.0),
+        "balance": 0.50,
+        "feas": {
+            "rca_transformed_cba_pct": 0.00,
+            "density_pct_cba_pct":     0.50,
+            "eff_num_exp_pct":         0.00,
+            "dai_pct_norm":            0.50,
+            "distance_travelled_pct":  0.00,
+        },
+        "attr": {
+            "pci_pct":                          0.50,
+            "cog_pct":                          0.00,
+            "accessible_market_size_share_pct": 0.25,
+            "accessible_market_growth_5y_pct":  0.25,
+        },
+    },
+    "margen_extensivo": {
+        "label": "Margen Extensivo",
+        "rca_range": (0.0, 0.25),
+        "balance": 0.50,
+        "feas": {
+            "rca_transformed_cba_pct": 0.00,
+            "density_pct_cba_pct":     0.40,
+            "eff_num_exp_pct":         0.00,
+            "dai_pct_norm":            0.40,
+            "distance_travelled_pct":  0.20,
+        },
+        "attr": {
+            "pci_pct":                          0.35,
+            "cog_pct":                          0.35,
+            "accessible_market_size_share_pct": 0.15,
+            "accessible_market_growth_5y_pct":  0.15,
+        },
+    },
+}
+
+
+@st.cache_data
+def _preset_top_n_candidates(_signature: str, preset_name: str, top_n: int = 30) -> list[str]:
+    """Return top-N HS4 codes (zfilled strings) for a Oportunidades preset.
+    Used by both the Oportunidades page and the Mercado Accesible page to
+    ensure a single source of truth for what 'top 30 Margen Intensivo' means."""
+    if preset_name not in OPP_PRESETS:
+        return []
+    p = OPP_PRESETS[preset_name]
+    df = load_oportunidades_dataset(_signature)
+    rca_lo, rca_hi = p["rca_range"]
+    df = df[(df["raw_rca_cba"] >= rca_lo) & (df["raw_rca_cba"] <= rca_hi)].copy()
+
+    def _wavg(comp_weights):
+        cols = [c for c, w in comp_weights.items() if w > 0]
+        weights = [w for _c, w in comp_weights.items() if w > 0]
+        if not cols:
+            return pd.Series(0.0, index=df.index)
+        arr = np.column_stack([pd.to_numeric(df[c], errors="coerce").fillna(0).to_numpy() for c in cols])
+        weight_sum = sum(weights)
+        return pd.Series((arr * np.array(weights)).sum(axis=1) / weight_sum, index=df.index)
+
+    df["_feas"] = _wavg(p["feas"])
+    df["_attr"] = _wavg(p["attr"])
+    bal = p["balance"]
+    df["_score"] = (1 - bal) * df["_feas"] + bal * df["_attr"]
+    top = df.sort_values("_score", ascending=False).head(top_n)
+    return top["hs4"].astype(str).str.zfill(4).tolist()
+
+
 def page_oportunidades_cordoba():
     _page_header(
         "Oportunidades — Feasibility × Attractiveness",
@@ -2905,6 +3006,7 @@ def page_oportunidades_cordoba():
         st.session_state["opp_w_tma"] = 0.25
         st.session_state["opp_w_cma"] = 0.25
         st.session_state["opp_balance"] = 0.50
+        st.session_state["opp_top_n"] = 30  # Preset expone top-30
 
     def _apply_preset_margen_extensivo():
         st.session_state["opp_rca_min"] = 0.0
@@ -2926,6 +3028,7 @@ def page_oportunidades_cordoba():
         st.session_state["opp_w_tma"] = 0.15
         st.session_state["opp_w_cma"] = 0.15
         st.session_state["opp_balance"] = 0.50
+        st.session_state["opp_top_n"] = 30  # Preset expone top-30
 
     def _reset_opp_filters():
         for k, v in defaults.items():
