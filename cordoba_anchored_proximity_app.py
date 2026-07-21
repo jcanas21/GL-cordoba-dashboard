@@ -2361,38 +2361,47 @@ def page_mercado_accesible():
         )
 
     # Selector de fuente: (1) Análisis de Proximidad live/preset,
-    # (2) Margen Intensivo top-30, (3) Margen Extensivo top-30.
+    # (2) Margen Intensivo top-15, (3) Margen Extensivo top-30.
+    # Top-N por preset viene del propio OPP_PRESETS (single source of truth).
+    _n_int = int(OPP_PRESETS["margen_intensivo"]["top_n"])
+    _n_ext = int(OPP_PRESETS["margen_extensivo"]["top_n"])
     hs4_in_am = set(am["hs92"].unique())
+    label_intensivo = f"Margen Intensivo (top {_n_int})"
+    label_extensivo = f"Margen Extensivo (top {_n_ext})"
     fuente_opciones = [
         "Análisis de Proximidad (vivo)",
-        "Margen Intensivo (top 30)",
-        "Margen Extensivo (top 30)",
+        label_intensivo,
+        label_extensivo,
     ]
     st.session_state.setdefault("mercado_fuente", fuente_opciones[0])
+    # If the stored label doesn't match current top_n (e.g. after preset changes),
+    # reset to default to avoid a ValueError in options.index().
+    if st.session_state["mercado_fuente"] not in fuente_opciones:
+        st.session_state["mercado_fuente"] = fuente_opciones[0]
     fuente = st.selectbox(
         "Fuente del universo de productos",
         options=fuente_opciones,
-        index=fuente_opciones.index(st.session_state["mercado_fuente"])
-              if st.session_state["mercado_fuente"] in fuente_opciones else 0,
+        index=fuente_opciones.index(st.session_state["mercado_fuente"]),
         key="mercado_fuente",
         help=(
             "Elegí qué lista de HS4 mostrar acá: la tabla viva de la página "
-            "*Análisis de Proximidad*, o el top-30 de uno de los presets de "
-            "Oportunidades (Margen Intensivo o Margen Extensivo)."
+            "*Análisis de Proximidad*, o el top-N de uno de los presets de "
+            "Oportunidades (Margen Intensivo top-15 · Margen Extensivo top-30, "
+            "según el algoritmo Growth Lab)."
         ),
     )
 
-    if fuente == "Margen Intensivo (top 30)":
-        source_label = "preset **Margen Intensivo** (top 30 fijo)"
+    if fuente == label_intensivo:
+        source_label = f"preset **Margen Intensivo** (top {_n_int} fijo)"
         candidates_ordered = _preset_top_n_candidates(
             _data_signature() if "_data_signature" in globals() else "",
-            "margen_intensivo", 30
+            "margen_intensivo",
         )
-    elif fuente == "Margen Extensivo (top 30)":
-        source_label = "preset **Margen Extensivo** (top 30 fijo)"
+    elif fuente == label_extensivo:
+        source_label = f"preset **Margen Extensivo** (top {_n_ext} fijo)"
         candidates_ordered = _preset_top_n_candidates(
             _data_signature() if "_data_signature" in globals() else "",
-            "margen_extensivo", 30
+            "margen_extensivo",
         )
     else:
         # Fuente por defecto: replica lo que hay live en Análisis de Proximidad,
@@ -2852,21 +2861,51 @@ def load_oportunidades_dataset(_signature: str = "") -> pd.DataFrame:
     df["product_name_short"] = df["product_name_short"].where(
         df["product_name_short"].astype(str).str.len() > 0, _en_backup
     )
+    # Merge n_anchors_linking from cordoba_candidates_ranked (candidates in the
+    # anchored-proximity output). HS4 that never appear as a candidate get 0.
+    # n_anchors_linking_pct is a min-max normalization used as a feasibility
+    # component for Margen Extensivo (imagen: Factibilidad = DAI 50% + # anclas 50%).
+    try:
+        _cand = pd.read_csv(
+            _data("output", "cordoba_candidates_ranked.csv"),
+            dtype={"candidate_hs4": str},
+        )
+        _cand["candidate_hs4"] = _cand["candidate_hs4"].str.zfill(4)
+        df = df.merge(
+            _cand[["candidate_hs4", "n_anchors_linking"]].rename(
+                columns={"candidate_hs4": "hs4"}
+            ),
+            on="hs4", how="left",
+        )
+    except FileNotFoundError:
+        df["n_anchors_linking"] = np.nan
+    df["n_anchors_linking"] = pd.to_numeric(df["n_anchors_linking"], errors="coerce").fillna(0.0)
+    _max_anchors = float(df["n_anchors_linking"].max() or 0.0)
+    df["n_anchors_linking_pct"] = (
+        df["n_anchors_linking"] / _max_anchors if _max_anchors > 0 else 0.0
+    )
     return df
 
 
-# Preset definitions (RCA filter + weights + balance) reusable across pages.
+# Preset definitions (RCA filter + root filters + weights + balance + top_n)
+# reusable across pages. Sigue el algoritmo del Growth Lab (Identificación de
+# Oportunidades): Mercado Accesible ≥ 500M USD + CAGR 5y > 0, luego split RCA
+# en Intensivo (0.7-10, top 15) y Extensivo (0-0.25, top 30).
 OPP_PRESETS = {
     "margen_intensivo": {
         "label": "Margen Intensivo",
         "rca_range": (0.7, 10.0),
+        "market_min_b": 0.5,
+        "require_growth_positive": True,
+        "top_n": 15,
         "balance": 0.50,
         "feas": {
-            "rca_transformed_cba_pct": 0.00,
-            "density_pct_cba_pct":     0.50,
-            "eff_num_exp_pct":         0.00,
-            "dai_pct_norm":            0.50,
-            "distance_travelled_pct":  0.00,
+            "rca_transformed_cba_pct":  0.00,
+            "density_pct_cba_pct":      0.50,
+            "eff_num_exp_pct":          0.00,
+            "dai_pct_norm":             0.50,
+            "distance_travelled_pct":   0.00,
+            "n_anchors_linking_pct":    0.00,
         },
         "attr": {
             "pci_pct":                          0.50,
@@ -2878,13 +2917,17 @@ OPP_PRESETS = {
     "margen_extensivo": {
         "label": "Margen Extensivo",
         "rca_range": (0.0, 0.25),
+        "market_min_b": 0.5,
+        "require_growth_positive": True,
+        "top_n": 30,
         "balance": 0.50,
         "feas": {
-            "rca_transformed_cba_pct": 0.00,
-            "density_pct_cba_pct":     0.40,
-            "eff_num_exp_pct":         0.00,
-            "dai_pct_norm":            0.40,
-            "distance_travelled_pct":  0.20,
+            "rca_transformed_cba_pct":  0.00,
+            "density_pct_cba_pct":      0.00,
+            "eff_num_exp_pct":          0.00,
+            "dai_pct_norm":             0.50,
+            "distance_travelled_pct":   0.00,
+            "n_anchors_linking_pct":    0.50,
         },
         "attr": {
             "pci_pct":                          0.35,
@@ -2897,20 +2940,40 @@ OPP_PRESETS = {
 
 
 @st.cache_data
-def _preset_top_n_candidates(_signature: str, preset_name: str, top_n: int = 30) -> list[str]:
-    """Return top-N HS4 codes (zfilled strings) for a Oportunidades preset.
-    Used by both the Oportunidades page and the Mercado Accesible page to
-    ensure a single source of truth for what 'top 30 Margen Intensivo' means."""
+def _preset_top_n_candidates(_signature: str, preset_name: str, top_n: int | None = None) -> list[str]:
+    """Return top-N HS4 codes (zfilled strings) for an Oportunidades preset.
+
+    Aplica el algoritmo Growth Lab en orden:
+      1. Mercado Accesible ≥ market_min_b (default 500M USD si el preset lo declara).
+      2. Mercado Accesible CAGR 5y > 0 (si require_growth_positive=True).
+      3. RCA en el rango del preset (Intensivo 0.7-10 · Extensivo 0-0.25).
+      4. Score = (1-balance)·feas + balance·attr con los pesos del preset.
+      5. Retorna top-N (default = preset["top_n"] si no se pasa argumento).
+
+    Single source of truth para lo que la página Mercado Accesible y la página
+    Oportunidades entienden por "top Margen Intensivo/Extensivo".
+    """
     if preset_name not in OPP_PRESETS:
         return []
     p = OPP_PRESETS[preset_name]
+    if top_n is None:
+        top_n = int(p.get("top_n", 30))
     df = load_oportunidades_dataset(_signature)
+
+    # Root filters (Identificación de Oportunidades)
+    market_min_b = float(p.get("market_min_b", 0.0))
+    if market_min_b > 0:
+        df = df[pd.to_numeric(df["accessible_market_size_b"], errors="coerce") >= market_min_b]
+    if p.get("require_growth_positive", False):
+        df = df[pd.to_numeric(df["accessible_market_growth_5y"], errors="coerce") > 0]
+
+    # RCA-margin split
     rca_lo, rca_hi = p["rca_range"]
     df = df[(df["raw_rca_cba"] >= rca_lo) & (df["raw_rca_cba"] <= rca_hi)].copy()
 
     def _wavg(comp_weights):
-        cols = [c for c, w in comp_weights.items() if w > 0]
-        weights = [w for _c, w in comp_weights.items() if w > 0]
+        cols = [c for c, w in comp_weights.items() if w > 0 and c in df.columns]
+        weights = [w for c, w in comp_weights.items() if w > 0 and c in df.columns]
         if not cols:
             return pd.Series(0.0, index=df.index)
         arr = np.column_stack([pd.to_numeric(df[c], errors="coerce").fillna(0).to_numpy() for c in cols])
@@ -2944,11 +3007,12 @@ def page_oportunidades_cordoba():
     # Constantes de la página
     # ------------------------------------------------------------------------
     FEAS_COMPS = [
-        ("w_rca",       "RCA transformada",           "rca_transformed_cba_pct"),
-        ("w_density",   "Density (percentil)",        "density_pct_cba_pct"),
-        ("w_eff",       "Effective exporters (inv.)", "eff_num_exp_pct"),
-        ("w_dai",       "DAI percentil (heredado)",   "dai_pct_norm"),
-        ("w_dist",      "Distancia recorrida %",      "distance_travelled_pct"),
+        ("w_rca",        "RCA transformada",           "rca_transformed_cba_pct"),
+        ("w_density",    "Density (percentil)",        "density_pct_cba_pct"),
+        ("w_eff",        "Effective exporters (inv.)", "eff_num_exp_pct"),
+        ("w_dai",        "DAI percentil (heredado)",   "dai_pct_norm"),
+        ("w_dist",       "Distancia recorrida %",      "distance_travelled_pct"),
+        ("w_n_anchors",  "Número de anclas (norm.)",   "n_anchors_linking_pct"),
     ]
     ATTR_COMPS = [
         ("w_pci",       "PCI",                         "pci_pct"),
@@ -3001,6 +3065,7 @@ def page_oportunidades_cordoba():
         "opp_w_eff": 0.00,
         "opp_w_dai": 0.50,
         "opp_w_dist": 0.00,
+        "opp_w_n_anchors": 0.00,
         # Attractiveness weights (default = Margen Intensivo)
         "opp_w_pci": 0.50,
         "opp_w_cog": 0.00,
@@ -3016,48 +3081,58 @@ def page_oportunidades_cordoba():
         st.session_state.setdefault(k, v)
 
     def _apply_preset_margen_intensivo():
+        # Algoritmo Growth Lab · Margen Intensivo (0.7<RCA<10) · Top 15
+        # Root filters: Mercado Accesible ≥ 500M USD + CAGR 5y > 0
         st.session_state["opp_rca_min"] = 0.7
         st.session_state["opp_rca_max"] = 10.0
-        st.session_state["opp_tma_min_b"] = 0.0
+        st.session_state["opp_tma_min_b"] = 0.5
         st.session_state["opp_dens_pct_range"] = (0.0, 1.0)
         st.session_state["opp_sectors"] = sector_options
         st.session_state["opp_excluded_hs4"] = []
         st.session_state["opp_toggle_market_cagr_pos"] = False
         st.session_state["opp_toggle_export_cagr_pos"] = False
-        st.session_state["opp_toggle_accessible_growth_pos"] = False
+        st.session_state["opp_toggle_accessible_growth_pos"] = True
+        # Feasibility · DAI 50 + Densidad 50
         st.session_state["opp_w_rca"] = 0.00
         st.session_state["opp_w_density"] = 0.50
         st.session_state["opp_w_eff"] = 0.00
         st.session_state["opp_w_dai"] = 0.50
         st.session_state["opp_w_dist"] = 0.00
+        st.session_state["opp_w_n_anchors"] = 0.00
+        # Attractiveness · PCI 50 + Crec 25 + Tamaño 25 (sin COG)
         st.session_state["opp_w_pci"] = 0.50
         st.session_state["opp_w_cog"] = 0.00
         st.session_state["opp_w_tma"] = 0.25
         st.session_state["opp_w_cma"] = 0.25
         st.session_state["opp_balance"] = 0.50
-        st.session_state["opp_top_n"] = 30  # Preset expone top-30
+        st.session_state["opp_top_n"] = 15
 
     def _apply_preset_margen_extensivo():
+        # Algoritmo Growth Lab · Margen Extensivo (0<RCA<0.25) · Top 30
+        # Root filters: Mercado Accesible ≥ 500M USD + CAGR 5y > 0
         st.session_state["opp_rca_min"] = 0.0
         st.session_state["opp_rca_max"] = 0.25
-        st.session_state["opp_tma_min_b"] = 0.0
+        st.session_state["opp_tma_min_b"] = 0.5
         st.session_state["opp_dens_pct_range"] = (0.0, 1.0)
         st.session_state["opp_sectors"] = sector_options
         st.session_state["opp_excluded_hs4"] = []
         st.session_state["opp_toggle_market_cagr_pos"] = False
         st.session_state["opp_toggle_export_cagr_pos"] = False
-        st.session_state["opp_toggle_accessible_growth_pos"] = False
+        st.session_state["opp_toggle_accessible_growth_pos"] = True
+        # Feasibility · DAI 50 + Número de anclas 50 (imagen: sin densidad/distancia)
         st.session_state["opp_w_rca"] = 0.00
-        st.session_state["opp_w_density"] = 0.40
+        st.session_state["opp_w_density"] = 0.00
         st.session_state["opp_w_eff"] = 0.00
-        st.session_state["opp_w_dai"] = 0.40
-        st.session_state["opp_w_dist"] = 0.20
+        st.session_state["opp_w_dai"] = 0.50
+        st.session_state["opp_w_dist"] = 0.00
+        st.session_state["opp_w_n_anchors"] = 0.50
+        # Attractiveness · PCI 35 + COG 35 + Crec 15 + Tamaño 15
         st.session_state["opp_w_pci"] = 0.35
         st.session_state["opp_w_cog"] = 0.35
         st.session_state["opp_w_tma"] = 0.15
         st.session_state["opp_w_cma"] = 0.15
         st.session_state["opp_balance"] = 0.50
-        st.session_state["opp_top_n"] = 30  # Preset expone top-30
+        st.session_state["opp_top_n"] = 30
 
     def _reset_opp_filters():
         for k, v in defaults.items():
@@ -3070,12 +3145,18 @@ def page_oportunidades_cordoba():
         st.header("Perfiles predefinidos")
         st.button("Margen Intensivo", on_click=_apply_preset_margen_intensivo,
                   use_container_width=True,
-                  help="RCA ∈ [0.7, 10] · Attractiveness (PCI 50 · TMA 25 · CMA 25) · "
-                       "Feasibility (DAI 50 · Density 50) · Balance 0.50")
+                  help="Algoritmo Growth Lab · RCA ∈ [0.7, 10] · "
+                       "Root: Mercado Accesible ≥ 500M USD + CAGR > 0 · "
+                       "Feasibility (DAI 50 · Densidad 50) · "
+                       "Attractiveness (PCI 50 · Crec 25 · Tamaño 25) · "
+                       "Balance 0.50 · Top 15")
         st.button("Margen Extensivo", on_click=_apply_preset_margen_extensivo,
                   use_container_width=True,
-                  help="RCA < 0.25 · Attractiveness (PCI 35 · COG 35 · TMA 15 · CMA 15) · "
-                       "Feasibility (DAI 40 · Density 40 · Distancia 20) · Balance 0.50")
+                  help="Algoritmo Growth Lab · RCA ∈ [0, 0.25] · "
+                       "Root: Mercado Accesible ≥ 500M USD + CAGR > 0 · "
+                       "Feasibility (DAI 50 · # anclas 50) · "
+                       "Attractiveness (PCI 35 · COG 35 · Crec 15 · Tamaño 15) · "
+                       "Balance 0.50 · Top 30")
         st.button("Reiniciar filtros", on_click=_reset_opp_filters, use_container_width=True)
 
         st.header("Filtros de universo")
@@ -3370,7 +3451,7 @@ def page_oportunidades_cordoba():
 
     c_tm1, c_tm2 = st.columns(2)
     with c_tm1:
-        st.session_state.setdefault("opp_tm_size", "Score combinado")
+        st.session_state.setdefault("opp_tm_size", "Tamaño Mercado Accesible (B USD)")
         tm_size_label = st.selectbox(
             "Tamaño de la baldosa",
             options=list(tm_size_choices.keys()),
@@ -3430,12 +3511,22 @@ def page_oportunidades_cordoba():
         "product_label_wrapped": False,
         "_size_val": False,
     }
+    # Mercado accesible agregado del top-N mostrado (siempre visible en el
+    # título, independiente de la variable de tamaño seleccionada).
+    _ma_total_b = float(
+        pd.to_numeric(treemap_df["accessible_market_size_b"], errors="coerce")
+        .fillna(0).sum()
+    )
     tm_kwargs = dict(
         data_frame=treemap_df,
         path=["sector", "product_label_wrapped"],
         values="_size_val",
         hover_data=common_hover,
-        title=f"Top {len(treemap_df)} oportunidades  ·  tamaño = {tm_size_label}  ·  color = {tm_color_label}",
+        title=(
+            f"Top {len(treemap_df)} oportunidades  ·  tamaño = {tm_size_label}  ·  color = {tm_color_label}"
+            f"<br><span style='font-size:0.8em'>Mercado accesible agregado (top {len(treemap_df)}) = "
+            f"USD {_ma_total_b:,.2f} mil M</span>"
+        ),
     )
 
     if tm_color_label == "PCI (raw)":
@@ -3494,9 +3585,16 @@ def page_oportunidades_cordoba():
 
 **Combined Score** = (1 − balance) × Feasibility + balance × Attractiveness.
 
-**Presets**:
-- **Margen Intensivo**: RCA ∈ [0.7, 10] · Feas (DAI 50 · Density 50) · Attr (PCI 50 · TMA 25 · CMA 25) · Balance 0.50.
-- **Margen Extensivo**: RCA < 0.25 · Feas (DAI 40 · Density 40 · Dist 20) · Attr (PCI 35 · COG 35 · TMA 15 · CMA 15) · Balance 0.50.
+**Presets (Algoritmo Growth Lab · Identificación de Oportunidades)**:
+
+Filtros raíz aplicados a ambos márgenes:
+- **Mercado Accesible ≥ 500M USD**
+- **Mercado Accesible CAGR 5y > 0**
+
+- **Margen Intensivo** — RCA ∈ [0.7, 10] · Top 15 · Feas (DAI 50 · Densidad 50) · Attr (PCI 50 · TMA 25 · CMA 25) · Balance 0.50.
+- **Margen Extensivo** — RCA ∈ [0, 0.25] · Top 30 · Feas (DAI 50 · # anclas 50) · Attr (PCI 35 · COG 35 · TMA 15 · CMA 15) · Balance 0.50.
+
+**Número de anclas** en Margen Extensivo = `n_anchors_linking` normalizado a [0, 1] (min-max sobre `cordoba_candidates_ranked.csv`). Cuenta cuántas anclas de Córdoba referencian al HS4 candidato en su top-K de proximidad.
 
 **Fuentes**:
 - Complejidad + RCA + PCI + COG + density: nuestro panel `complexity_cordoba_full.csv` (BACI 2020-2024 con Córdoba como location adicional).
