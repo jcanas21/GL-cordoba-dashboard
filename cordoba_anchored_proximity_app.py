@@ -2441,39 +2441,69 @@ def page_mercado_accesible():
         h: f"{h} - {SPANISH_OVERRIDES.get(h, '')}".rstrip(" -")
         for h in product_universe
     }
-    labels = [label_by_hs4[h] for h in product_universe]
+    ALL_LABEL = f"— Todos los productos ({len(product_universe)}) —"
+    per_product_labels = [label_by_hs4[h] for h in product_universe]
+    labels = [ALL_LABEL] + per_product_labels
 
-    default_label = labels[0] if labels else None
     st.selectbox(
         "Producto (HS4)",
         options=labels,
         key="c4_am_product_label",
-        index=0 if default_label else None,
+        index=0,  # default: vista agregada sobre todos los HS4 del universo
+        help=(
+            "Por defecto se muestra el mercado accesible agregado sobre todos "
+            "los HS4 del universo seleccionado arriba. Elegí un producto "
+            "específico para ver su composición por destino individualmente."
+        ),
     )
     picked_label = st.session_state.get("c4_am_product_label")
     if not picked_label:
         st.info("Sin productos con datos de mercado accesible.")
         return
-    picked_hs4 = picked_label.split(" - ", 1)[0]
 
-    sub = am[am["hs92"] == picked_hs4].copy()
+    is_all = (picked_label == ALL_LABEL)
+    if is_all:
+        picked_hs4 = None
+        sub_raw = am[am["hs92"].isin(product_universe)].copy()
+        # Un HS4 aporta una fila por destino → agregamos total_imports por iso3_d
+        # para que el treemap tenga una baldosa única por destino.
+        sub = (
+            sub_raw.groupby("iso3_d", as_index=False)["total_imports"]
+            .sum()
+        )
+        n_products = int(sub_raw["hs92"].nunique())
+    else:
+        picked_hs4 = picked_label.split(" - ", 1)[0]
+        sub = am[am["hs92"] == picked_hs4].copy()
+        n_products = 1
     sub["mercado_b"] = sub["total_imports"] / 1e9  # miles de millones USD
     sub["mercado_m"] = sub["total_imports"] / 1e6  # millones USD
     total_b = float(sub["mercado_b"].sum())
     n_dest = int(sub["iso3_d"].nunique())
 
     c1, c2, c3 = st.columns(3)
-    c1.metric("Producto seleccionado", picked_hs4)
+    if is_all:
+        c1.metric("Productos agregados", f"{n_products}")
+    else:
+        c1.metric("Producto seleccionado", picked_hs4)
     c2.metric("Mercado accesible total (miles de millones USD)", f"{total_b:.1f}")
     c3.metric("Destinos accesibles", f"{n_dest}")
 
     if sub.empty or total_b == 0:
-        st.info("Sin destinos accesibles para este producto.")
+        st.info(
+            "Sin destinos accesibles para este universo."
+            if is_all else
+            "Sin destinos accesibles para este producto."
+        )
         return
 
     # Treemap — tile per (continente, destino), colored por continente
     sub["participacion"] = sub["mercado_b"] / total_b
     sub["continente"] = sub["iso3_d"].map(_ISO3_TO_CONTINENT).fillna("Otros")
+    _title_lead = (
+        f"Mercado accesible agregado — {n_products} HS4 del universo"
+        if is_all else f"Mercado accesible para {picked_label}"
+    )
     fig = px.treemap(
         sub,
         path=["continente", "iso3_d"],
@@ -2488,7 +2518,7 @@ def page_mercado_accesible():
             "continente": False,
         },
         title=(
-            f"Mercado accesible para {picked_label} "
+            f"{_title_lead} "
             f"(n = {n_dest} destinos | total = {total_b:,.2f} USD mil M) "
             f"| tamaño = importaciones totales del destino · color = continente"
         ),
@@ -2524,17 +2554,21 @@ def page_mercado_accesible():
     competitors_all = load_competitors_bilateral(
         _data_signature() if "_data_signature" in globals() else ""
     )
-    comp_sub = competitors_all[competitors_all["hs92"] == picked_hs4].copy()
+    if is_all:
+        comp_sub = competitors_all[competitors_all["hs92"].isin(product_universe)].copy()
+    else:
+        comp_sub = competitors_all[competitors_all["hs92"] == picked_hs4].copy()
 
     # Destination filter: 'Todos los mercados accesibles' + one entry per iso3_d
     accessible_dests = sorted(sub["iso3_d"].dropna().unique().tolist())
     OPTION_ALL = "Todos los mercados accesibles"
     dest_options = [OPTION_ALL] + accessible_dests
+    _dest_key_suffix = "ALL_UNIVERSE" if is_all else str(picked_hs4)
     picked_dest = st.selectbox(
         "Mercado para treemap de competidores",
         options=dest_options,
         index=0,
-        key=f"c4_am_competitor_dest_{picked_hs4}",
+        key=f"c4_am_competitor_dest_{_dest_key_suffix}",
     )
     st.caption(f"Mercado seleccionado para treemap de competidores: **{picked_dest}**")
 
@@ -2587,7 +2621,7 @@ def page_mercado_accesible():
         },
         title=(
             f"Treemap de competidores para {picked_dest} | "
-            f"Producto {picked_label} · "
+            f"{'Universo agregado (' + str(n_products) + ' HS4)' if is_all else 'Producto ' + str(picked_label)} · "
             f"tamaño = exportaciones a {picked_dest if picked_dest != OPTION_ALL else 'destinos accesibles'} "
             f"en 2024 (M USD) · color = continente"
         ),
@@ -2629,7 +2663,7 @@ indica muchos exportadores marginales relevantes.
     st.download_button(
         "⬇ Descargar datos de competidores (CSV)",
         per_exp.to_csv(index=False).encode("utf-8"),
-        f"competidores_{picked_hs4}_{picked_dest.replace(' ', '_')}.csv",
+        f"competidores_{'universo' if is_all else picked_hs4}_{picked_dest.replace(' ', '_')}.csv",
         "text/csv",
     )
 
